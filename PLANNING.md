@@ -1,10 +1,21 @@
-Tech Stack:
+### Tech Stack:
+
+-PSQL,
+-Express,
+-React Spring && Vite,
+-Node
 
 Features:
 
 Stretch Features:
 
 User Stories:
+- as a pet owner, I want to create and manage profiles for my pet
+- as a user, I want to record and track vaccinations for my pet
+- as a pet owner, I want to log daily activities, such as walks, meals, medicine, and playdates
+
+STRETCH:
+- as a pet provider I want to integrate my services to reach a broader audience
 
 
 ### Scrum Template:
@@ -27,22 +38,9 @@ User Stories:
 
 ### Functionality Requirements:
 
-- ES6 for server-side (NodeJS) code 
-
-- NodeJS 
-
-- Express:
-
-  - RESTful routes (COMPLETE)
-
-- One or more CSS or UI "framework"s:
-
-  - jQuery (COMPLETE)
-  - A CSS preprocessor such as SASS, Stylus, or PostCSS for styling -- or CSS Custom properties and no CSS preprocessor (COMPLETE)
-
-- PostgreSQL and pg (with promises) for DBMS (COMPLETE)
-
-- git for version control (COMPLETE)
+- Feed for pictures, statuses, videos.
+- Posting, editing deleting posts
+  - Picture Posts,
 
 ### Stretch Functionality:
 
