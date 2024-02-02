@@ -7,7 +7,7 @@ function App() {
   return (
 <div> 
   <HomeRoute />
-  <Login />
+  {/* <Login /> */}
 </div>
   )
 }
