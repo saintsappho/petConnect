@@ -1,0 +1,34 @@
+.top-nav-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Adjust the z-index to be lower than the modal's z-index */
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  align-items: center;
+  -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+  height: 72px;
+  list-style: none;
+}
+
+.top-nav-bar__logo {
+  text-decoration: overline;
+  font-weight: 500;
+  font-size: 24px;
+  color: #111;
+  text-underline-position: auto;
+  margin-left: 24px;
+  cursor: pointer;
+  scale: .2;
+}
+.top-nav-bar__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 24px;
+}
