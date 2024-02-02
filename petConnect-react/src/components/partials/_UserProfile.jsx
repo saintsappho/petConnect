@@ -6,7 +6,7 @@ export default function UserProfile () {
   return (
     <div>
       <h1>User Profile</h1>
-      <h2>Jane Doe</h2>
+      <h2>Ashley Tree</h2>
       <p>email: jane@doe.com</p>
       <p>phone: 403 777 7777</p>
       <ul>pets: 

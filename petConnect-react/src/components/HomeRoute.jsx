@@ -1,4 +1,5 @@
 import NavBar from './partials/_NavBar';
+import PetPost from './partials/_PetPost';
 import '../styles/TopNav.scss';
 export default function HomeRoute() {
   return (
@@ -16,7 +17,9 @@ export default function HomeRoute() {
       <body>
         <img src="../public/Logo.png"></img>
         <div className='dashboard'>
-          
+          <PetPost />
+          <PetPost />
+          <PetPost />
         </div>
       </body>
 
