@@ -59,12 +59,7 @@ STRETCH:
 
 ### Stretch Features
 
-- search bar for public quizzes and users
-- ajax the quizzes to remove scrolling.
-- like/share/report buttons
-- quiz custom styles through SASS
-- ai based quiz inspiration widget
-- account profile pictures attached to quiz
+
 
 ### User Stories
 
