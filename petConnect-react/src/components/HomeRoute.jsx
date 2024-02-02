@@ -1,11 +1,12 @@
 import NavBar from './partials/NavBar';
-
+import '../styles/TopNav.scss';
 export default function HomeRoute() {
   return (
     <div>
 
       <head>
         <title>PetConnect</title>
+        
       </head>
 
       <header>

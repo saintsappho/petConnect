@@ -7,21 +7,9 @@
 
 nav {
   display: flex; 
-  justify-content: space-between; 
+  
   margin: 0, auto;
   padding: 1rem 2rem; 
   background: #cfd8dc; 
 }
 
-.nav-logo{
-  height: 3vh;
-  width: 6vh;
-  scale: .25;
-  margin: 0;
-  padding: 0;
-}
-.nav-bar{
-  display: flex; 
-  
-  list-style: none; 
-}
