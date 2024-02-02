@@ -1,4 +1,4 @@
-import NavBar from './partials/NavBar';
+import NavBar from './partials/_NavBar';
 import '../styles/TopNav.scss';
 export default function HomeRoute() {
   return (
