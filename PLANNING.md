@@ -45,10 +45,9 @@ STRETCH:
   - User / Pet
 
 
-
 ### Stretch Functionality:
 
-- SPA (Single-Page Application) Behaviour (SEMI COMPLETE)
+- SPA (Single-Page Application) Behaviour.
 
 - Hosting, such as Railway.app, netlify, github pages, AWS, or Azure
 
@@ -60,12 +59,7 @@ STRETCH:
 
 ### Stretch Features
 
-- search bar for public quizzes and users
-- ajax the quizzes to remove scrolling (SPA behaviour i guess)
-- like/share/report buttons
-- quiz custom styles through SASS
-- ai based quiz inspiration widget
-- account profile pictures attached to quiz
+
 
 ### User Stories
 
