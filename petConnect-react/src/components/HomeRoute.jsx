@@ -15,9 +15,9 @@ export default function HomeRoute() {
 
       <body>
         <img src="../public/Logo.png"></img>
-        <h1>PetConnect</h1>
-        <h2>This is my App</h2>
-        <h3>I hope you like it!</h3>
+        <div className='dashboard'>
+          
+        </div>
       </body>
 
       <footer>
