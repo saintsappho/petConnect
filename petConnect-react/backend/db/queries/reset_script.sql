@@ -48,3 +48,33 @@ CREATE TABLE chats (
   user1_ID INTEGER REFERENCES users(user_ID),
   user2_ID INTEGER REFERENCES users(user_ID)
 );
+CREATE TABLE messages (
+  message_ID SERIAL PRIMARY KEY NOT NULL,
+  chat_ID INTEGER REFERENCES chats(chat_ID),
+  sender INTEGER REFERENCES users(user_ID),
+  receiver INTEGER REFERENCES users(user_ID),
+  message VARCHAR(255) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE comments (
+  comment_ID SERIAL PRIMARY KEY NOT NULL,
+  post_ID INTEGER REFERENCES posts(post_ID),
+  user_ID INTEGER REFERENCES users(user_ID),
+  content VARCHAR(255) NOT NULL,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE likes (
+  like_ID SERIAL PRIMARY KEY NOT NULL,
+  post_ID INTEGER REFERENCES posts(post_ID),
+  user_ID INTEGER REFERENCES users(user_ID)
+);
+CREATE TABLE attendees (
+  user_ID INTEGER REFERENCES users(user_ID),
+  event_ID INTEGER REFERENCES events(event_ID),
+  rsvp_status INTEGER DEFAULT 0
+);
+CREATE TABLE follows (
+  follow_ID SERIAL PRIMARY KEY NOT NULL,
+  follower INTEGER REFERENCES users(user_ID),
+  follow INTEGER REFERENCES users(user_ID)
+);
