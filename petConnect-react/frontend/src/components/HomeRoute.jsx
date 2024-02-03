@@ -7,8 +7,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
-import PetProfile from './PetProfile';
-import UserProfile from './UserProfile';
+import PetProfile from "./PetProfile";
+import UserProfile from "./UserProfile";
 import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
@@ -79,9 +79,6 @@ export default function HomeRoute() {
         <h1>Welcome to PetConnect</h1>
       </div>
       <div></div>
-      <head>
-        <title>PetConnect</title>
-      </head>
 
       <header>
         <NavBar pets={pets} onPetSelect={openModal}/>
@@ -95,13 +92,11 @@ export default function HomeRoute() {
       </header>
 
 
-      <body>
-        <div>
+      <div>
         <UserProfile />
         <PetProfile />
-          <PetPost />
-        </div>
-      </body>
+        <PetPost />
+      </div>
 
       <footer>
         <p>

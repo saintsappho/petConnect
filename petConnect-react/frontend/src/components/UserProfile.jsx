@@ -30,6 +30,4 @@ console.log('user', user);
     </aside>
     )
   )
-};
-
-export default UserProfile;
+}

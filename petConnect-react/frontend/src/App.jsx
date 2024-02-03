@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import './App.css'
-import HomeRoute from './components/HomeRoute'
-import Login from './components/Login'
+import { useState } from "react";
+import "./App.css";
+import HomeRoute from "./components/HomeRoute";
+import Login from "./components/Login";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
   return (
@@ -15,13 +15,12 @@ function App() {
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-
           <LogoutButton />
           <UserProfile />
         </>
       )}
     </div>
-  )
+  );
 }
 
 export default App;
