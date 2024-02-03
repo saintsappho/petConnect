@@ -3,6 +3,7 @@
 
 DROP TABLE IF EXISTS events CASCADE;
 CREATE TABLE events (
+  event_ID SERIAL PRIMARY KEY,
   creator_ID INTEGER REFERENCES users(user_ID),
   title VARCHAR(255) NOT NULL,
   event_description VARCHAR(255) NOT NULL,
