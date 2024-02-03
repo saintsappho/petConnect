@@ -9,6 +9,7 @@ import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import PetProfile from './PetProfile';
 import UserProfile from './UserProfile';
+import Messages from './Messages';
 import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
@@ -72,6 +73,7 @@ export default function HomeRoute() {
         <UserProfile />
         <PetProfile />
           <PetPost />
+          <Messages />
         </div>
       </body>
 

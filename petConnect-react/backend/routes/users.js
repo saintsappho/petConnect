@@ -15,7 +15,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.post("/", [check("users.sub").isString()], async (req, res) => {
+// router.post("/", [
+//   check("users.sub").isString()], async (req, res) => {
 //   try {
 //     // Validate request body
 //     const errors = validationResult(req);
