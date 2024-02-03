@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/petListItem.scss";
+
 
 const petListItem = ({ pet, petId, showModal }) => {
   // Destructure the pet object
@@ -21,4 +21,4 @@ const petListItem = ({ pet, petId, showModal }) => {
   );
 };
 
-export default PhotoListItem;
+export default petListItem;

@@ -67,6 +67,7 @@ export default function HomeRoute() {
         <NavBar />
       </header>
 
+
       <body>
         <div>
         <UserProfile />
