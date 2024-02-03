@@ -2,15 +2,16 @@
 //The NavBar component will be a fixed navigation bar at the top of the page. It will contain links to the home page, the scheduling page, the messaging page, and either the login page or the user's profile page and logout button.
 //The NavBar will be visible on all pages of the app, and will be responsive to different screen sizes.
 
-export default function Navbar({ pets, onPetSelect }) {
-  const handleSelectChange = (event) => {
-    event.preventDefault(); // Prevent form submission and page refresh
-
+export default function Navbar({ onPetSelect, petData }) {
+  // State for pet list selection
+  const handleListSelect = (event) => {
+    event.preventDefault(); 
     const petId = event.target.value;
-    const pet = pets.find(pet => pet.id === Number(petId));
+    const pet = petData.find(pet => pet.pet_id === Number(petId));
     onPetSelect(pet);
   }
   
+
   return (
     <nav className="top-nav-bar">
 
@@ -34,9 +35,10 @@ export default function Navbar({ pets, onPetSelect }) {
 
       <li>
       <form onSubmit={e => e.preventDefault()}> 
-        <select name="pets" onChange={handleSelectChange}>
-          {pets.map(pet => (
-            <option key={pet.id} value={pet.id}>{pet.name}</option>
+        <select name="pets" onChange={handleListSelect}>
+        <option value="">Select a pet</option>
+          {petData.map(pet => (
+            <option key={pet.pet_id} value={pet.pet_id}>{pet.name}</option>
           ))}
         </select>
       </form>

@@ -14,18 +14,17 @@ import { useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "./ProfileModal";
 
-
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  // const [petData, setPetData] = useState([]);
 
-  //dummy data for testing
-  const pets = [
-    { id: 1, name: 'Dog' },
-    { id: 2, name: 'Cat' },
-    { id: 3, name: 'Bird' },
+  const petData = [
+    { pet_id: 1, name: 'Max', age: 5 },
+    { pet_id: 2, name: 'Snoopy', age: 3 },
+    { pet_id: 3, name: 'Benji', age: 1 }
   ];
 
   const openModal = (pet) => {
@@ -36,15 +35,21 @@ export default function HomeRoute() {
     setIsModalOpen(false);
   }
 
-  // useEffect(() => {
-  //   const fetchData = async (url, target) => {
-  //     try {
-  //       const response = await axios.get(url);
-  //       console.log(`Data from ${target}:`, response.data);
-  //     } catch (error) {
-  //       console.error(`Error fetching data from ${target}:`, error.message);
-  //     }
-  //   };
+  const onPetSelect = (pet) => {
+    setSelectedPet(pet);    
+    openModal(pet);
+    console.log(pet);
+  }
+
+  useEffect(() => {
+    const fetchData = async (url, target) => {
+      try {
+        const response = await axios.get(url);
+        console.log(`Data from ${target}:`, response.data);
+      } catch (error) {
+        console.error(`Error fetching data from ${target}:`, error.message);
+      }
+    };
 
   //   fetchData("http://localhost:8080/users/", "users");
   //   fetchData("http://localhost:8080/posts/", "posts");
@@ -58,6 +63,17 @@ export default function HomeRoute() {
   //   fetchData("http://localhost:8080/follows/", "follows");
   // }, []);
  
+  // useEffect(() => {
+  //   axios.get("http://localhost:8080/pets/").then((response) => {
+  //     setPetData(response.data);
+  //   });
+  // }, []);
+
+  // petData.forEach((pet) => {
+  //   pets.push(pet.name);
+  // });
+
+  // console.log(pets);
 
 
   const { isLoading, error, user } = useAuth0();
@@ -81,12 +97,12 @@ export default function HomeRoute() {
       <div></div>
 
       <header>
-        <NavBar pets={pets} onPetSelect={openModal}/>
+        <NavBar petData={petData} onPetSelect={onPetSelect}/>
 
         {isModalOpen && (
         <ProfileModal onClose={closeModal}>
         {/* Display the selected pet's info here */}
-        <p>The selected pet is: {selectedPet.name}</p>
+        <p>PETPROFILE</p>
       </ProfileModal>
         )}
       </header>
