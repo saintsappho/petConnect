@@ -14,13 +14,16 @@ const newPost = async (postData) => {
   try {
     const data = await db.query(
       `INSERT INTO posts (
+        user_ID,
         pet_ID, 
+        title,
+        content,
         style, 
         sub_ID, 
         imageURL
-      ) VALUES ($1, $2, $3, $4) 
+      ) VALUES ($1, $2, $3, $4, $5) 
       RETURNING *;`,
-      [pet_ID, style, sub_ID, imageURL],
+      [user_ID, pet_ID, title, content, style, sub_ID, imageURL],
     );
 
     return data.rows[0];
