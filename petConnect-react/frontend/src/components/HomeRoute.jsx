@@ -14,6 +14,8 @@ import UserProfile from "./UserProfile";
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
+  const [create, setCreate] = useState(false);
+  
   useEffect(() => {
     const fetchData = async (url, target) => {
       try {
@@ -39,7 +41,8 @@ export default function HomeRoute() {
   const { isLoading, error, user } = useAuth0();
   return (
     <div>
-      <NewPost />
+      {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
+      {create && <NewPost />}
       <div>
         {!user && <LoginButton />}
         {error && <p>Authentication Error</p>}
