@@ -1,13 +1,11 @@
-import NavBar from './partials/_NavBar';
-import PetPost from './partials/_PetPost';
-import '../styles/TopNav.scss';
+import NavBar from "./partials/_NavBar";
+import PetPost from "./partials/_PetPost";
+import "../styles/TopNav.scss";
 export default function HomeRoute() {
   return (
     <div>
-
       <head>
         <title>PetConnect</title>
-        
       </head>
 
       <header>
@@ -16,7 +14,7 @@ export default function HomeRoute() {
 
       <body>
         <img src="../public/Logo.png"></img>
-        <div className='dashboard'>
+        <div className="dashboard">
           <PetPost />
           <PetPost />
           <PetPost />
@@ -24,8 +22,10 @@ export default function HomeRoute() {
       </body>
 
       <footer>
-        <p>Created by: <a href="Team13">Team13</a></p>
+        <p>
+          Created by: <a href="Team13">Team13</a>
+        </p>
       </footer>
     </div>
-  )
+  );
 }
