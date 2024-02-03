@@ -4,20 +4,37 @@
 export default function NavBar() {
   return (
     <nav className="top-nav-bar">
+
       <li className="top-nav-bar__logo">
         <a href="/">
           <img src="../public/RoundLogo.png"></img>
         </a>
       </li>
+
       <li className="top-nav-bar__item">
         <a href="/">Home</a>
       </li>
+
       <li className="top-nav-bar__item">
         <a href="/about">About</a>
+      </li>
+
+      <li className="top-nav-bar__item">
+        <a href="/">Profile</a>
+      </li>
+
+      <li className="top-nav-bar__item">
+        <a href="/"><select name="pets">
+          <option value="dog">Maxwell</option>
+          <option value="cat">Benji</option>
+          <option value="ferret">Snoopy</option>
+        </select></a>
+
       </li>
       <li className="top-nav-bar__item">
         <a href="/login">Login</a>
       </li>
+
       <li className="top-nav-bar__item">
         <a href="/">if login "Profile" and "Logout"</a>
       </li>

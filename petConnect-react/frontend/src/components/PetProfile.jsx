@@ -5,7 +5,6 @@
 const PetProfile = () => {
   return (
     <div className="pet-profile-container">
-      <h1>PetConnect</h1>
       <img className="pet-profile-pic" src="./src/assets/petProfileHead.gif" alt="Pet Profile Picture" />
     
       <div className="pet-profile-header">
