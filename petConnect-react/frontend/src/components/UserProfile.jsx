@@ -3,21 +3,19 @@ import React from "react";
 import LogoutButton from "./Logout";
 
 const UserProfile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-console.log('user', user);
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+
 
   return (
-    isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-        <LogoutButton />
+
+    <aside>
+      <div className="profile">
+        <img className="profile__image" src="./src/assets/profile-hex.png" />
       </div>
-    )
+        <div className="profile__name">
+          <h1>Ashley Tree</h1>
+        </div>
+    </aside>
+
   );
 };
 

@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getUsers } = require('../db/queries/gets/getUsers');
-const db = require('../db');
+// const db = require('../db');
 const { check, validationResult } = require('express-validator');
 
 router.get('/', async (req, res) => {

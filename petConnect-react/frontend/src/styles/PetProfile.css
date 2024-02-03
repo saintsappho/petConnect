@@ -1,0 +1,22 @@
+
+
+.profile-container {
+  width: 50%;
+  margin: auto;
+  border: 1px solid #000;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.profile-item {
+  margin-bottom: 20px;
+}
+.profile-item label {
+  font-weight: bold;
+}
+.profile-pic {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+}
