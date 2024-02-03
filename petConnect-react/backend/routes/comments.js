@@ -1,12 +1,12 @@
 const express = require('express');
 const router  = express.Router();
-const { getMessages } = require('../db/queries/gets/getMessages');
+const { getComments } = require('../db/queries/gets/getComments');
 
 router.get('/', async (req, res) => {
   try {
-    const messages = await getMessages()
-    console.log(messages)
-    res.send(messages)
+    const comments = await getComments()
+    console.log(comments)
+    res.send(comments)
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

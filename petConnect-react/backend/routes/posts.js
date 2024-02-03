@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
       pet_ID: 1, // hard-coded for now
       title: `Demo Post Confirming Post Route Works`,
       content: `this is a test of the automated post route system. If you see this, it worked!`,
-      style: `text-post`,
+      style: req.body.style,
       sub_ID: 1, // hard-coded for now
       imageURL: null, // hard-coded for now
     } 

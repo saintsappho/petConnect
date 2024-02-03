@@ -3,8 +3,8 @@ export default function TextPost(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="Photo">Photo:</label>
-      <input type="file" id="file" value="photo" onChange={handleTitleChange} />
+      <label htmlFor="file">Photo:</label>
+      <input type="file" id="file" onChange={handleTitleChange} />
 
       <label htmlFor="content">Content:</label>
       <textarea

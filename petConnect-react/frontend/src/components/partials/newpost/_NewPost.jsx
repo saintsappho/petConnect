@@ -43,7 +43,7 @@ export default function AddPostForm () {
         pet_ID: 1, 
         title: 'Demo Post', 
         content: content,
-        style: 'text-post', 
+        style: postData.style, 
         sub_ID: 1, 
         imageURL: null, 
       });
