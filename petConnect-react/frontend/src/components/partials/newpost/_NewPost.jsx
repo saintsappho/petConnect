@@ -45,7 +45,7 @@ export default function AddPostForm () {
         content: content,
         style: postData.style, 
         sub_ID: 1, 
-        imageURL: null, 
+        imageURL: postData.imageURL, 
       });
       console.log('Post created:', response.data); // Handle success (show a message, redirect etc.)
      

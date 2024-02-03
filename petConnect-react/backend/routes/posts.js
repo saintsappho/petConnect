@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       content: `this is a test of the automated post route system. If you see this, it worked!`,
       style: req.body.style,
       sub_ID: 1, // hard-coded for now
-      imageURL: null, // hard-coded for now
+      imageURL: req.body.imageURL 
     } 
     const thisPost = await newPost(postData);
     res.status(201).json(thisPost);
