@@ -1,5 +1,5 @@
-const { use } = require('../../routes/users');
-const db = require('../connection');
+const { use } = require('../../../routes/users');
+const db = require('../../connection');
 
 const newPost = (post) => {
   const { user_ID, pet_ID, style, sub_ID, registration_date, imageURL } = post; 
