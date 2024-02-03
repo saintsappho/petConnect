@@ -9,6 +9,7 @@ export default function AddPostForm () {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [style, setStyle] = useState("text-post");
+  const [image, setImage] = useState(null);
   const [postData, setPostData] = useState({
     user_ID: 1, // hard-coded for now
     pet_ID: 1, // hard-coded for now
@@ -29,24 +30,20 @@ export default function AddPostForm () {
     setStyle(e.target.value);
     console.log(e.target.value);
   };
+  const handleImageUpload = (e) => {
+    setImage(e.target.files[0]) && console.log("file uploaded");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setPostData(
-      setTitle(title),
-      setContent(content)
-    )
+    setPostData({
+      title: title,
+      content: content,
+      imageURL: image
+  })
     console.log('postData:', postData); // Handle success (show a message, redirect etc.
     try {
-      const response = await axios.post('http://localhost:8080/posts/', {
-        user_ID: 1, //hard-coded for now
-        pet_ID: 1, 
-        title: 'Demo Post', 
-        content: content,
-        style: postData.style, 
-        sub_ID: 1, 
-        imageURL: postData.imageURL, 
-      });
+      const response = await axios.post('http://localhost:8080/posts/', postData);
       console.log('Post created:', response.data); // Handle success (show a message, redirect etc.)
      
     } catch (error) {
@@ -79,6 +76,8 @@ export default function AddPostForm () {
           handleTitleChange={handleTitleChange}
           handleContentChange={handleContentChange}
           handleSubmit={handleSubmit}
+          handleImageUpload={handleImageUpload}
+          image={image}
           title={title}
           content={content}
         />

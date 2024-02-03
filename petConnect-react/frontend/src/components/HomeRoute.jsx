@@ -36,27 +36,27 @@ export default function HomeRoute() {
     setIsModalOpen(false);
   }
 
-  useEffect(() => {
-    const fetchData = async (url, target) => {
-      try {
-        const response = await axios.get(url);
-        console.log(`Data from ${target}:`, response.data);
-      } catch (error) {
-        console.error(`Error fetching data from ${target}:`, error.message);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async (url, target) => {
+  //     try {
+  //       const response = await axios.get(url);
+  //       console.log(`Data from ${target}:`, response.data);
+  //     } catch (error) {
+  //       console.error(`Error fetching data from ${target}:`, error.message);
+  //     }
+  //   };
 
-    fetchData("http://localhost:8080/users/", "users");
-    fetchData("http://localhost:8080/posts/", "posts");
-    fetchData("http://localhost:8080/pets/", "pets");
-    fetchData("http://localhost:8080/events/", "events");
-    fetchData("http://localhost:8080/chats/", "chats");
-    fetchData("http://localhost:8080/messages/", "messages");
-    fetchData("http://localhost:8080/comments/", "comments");
-    fetchData("http://localhost:8080/likes/", "likes");
-    fetchData("http://localhost:8080/attendees/", "attendees");
-    fetchData("http://localhost:8080/follows/", "follows");
-  }, []);
+  //   fetchData("http://localhost:8080/users/", "users");
+  //   fetchData("http://localhost:8080/posts/", "posts");
+  //   fetchData("http://localhost:8080/pets/", "pets");
+  //   fetchData("http://localhost:8080/events/", "events");
+  //   fetchData("http://localhost:8080/chats/", "chats");
+  //   fetchData("http://localhost:8080/messages/", "messages");
+  //   fetchData("http://localhost:8080/comments/", "comments");
+  //   fetchData("http://localhost:8080/likes/", "likes");
+  //   fetchData("http://localhost:8080/attendees/", "attendees");
+  //   fetchData("http://localhost:8080/follows/", "follows");
+  // }, []);
  
 
 

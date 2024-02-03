@@ -20,8 +20,8 @@ router.post("/", async (req, res) => {
     const postData = {
       user_ID: 1, // hard-coded for now
       pet_ID: 1, // hard-coded for now
-      title: `Demo Post Confirming Post Route Works`,
-      content: `this is a test of the automated post route system. If you see this, it worked!`,
+      title: req.body.title,
+      content: req.body.content,
       style: req.body.style,
       sub_ID: 1, // hard-coded for now
       imageURL: req.body.imageURL 
