@@ -66,25 +66,3 @@ app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
 
-const petsRoutes = require('./routes/pets');
-const postsRoutes = require('./routes/posts');
-const eventsRoutes = require('./routes/events');
-const chatsRoutes = require('./routes/chats');
-const messagesRoutes = require('./routes/messages');
-const commentsRoutes = require('./routes/comments');
-const likesRoutes = require('./routes/likes');
-const attendeesRoutes = require('./routes/attendees');
-const followsRoutes = require('./routes/follows');
-
-// Mount all resource routes
-// Note: Endpoints that return data (eg. JSON) usually start with /api
-app.use('/users', usersRoutes);
-app.use('/pets', petsRoutes);
-app.use('/posts', postsRoutes);
-app.use('/events', eventsRoutes);
-app.use('/chats', chatsRoutes);
-app.use('/messages', messagesRoutes);
-app.use('/comments', commentsRoutes);
-app.use('/likes', likesRoutes);
-app.use('/attendees', attendeesRoutes);
-app.use('/follows', followsRoutes);
