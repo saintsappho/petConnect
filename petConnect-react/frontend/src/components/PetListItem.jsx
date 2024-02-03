@@ -2,8 +2,7 @@ import React from "react";
 
 
 const petListItem = ({ pet, petId, showModal }) => {
-  // Destructure the pet object
-  const { pet_name, species, breed } = pet;
+
   // Return the template for each pet
   return (
     <div className={`pet-list__item`}>
