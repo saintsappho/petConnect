@@ -30,21 +30,22 @@ router.post('/', [
     const { user } = req.body;
 
     // Check if the user exists in the db with a 'sub'
-    const existingUser = await db('users').where({ sub: user.sub }).first();
+    const existingUser = await db('users').where({ sub_ID: user.sub }).first();
 
     if (existingUser) {
       console.log('Existing user found:', existingUser);
       // if user exists, send to the frontend
-      return res.status(200).json({ userID: existingUser.id });
+      return res.status(200).json({ user_ID: existingUser.id });
     } else {
       console.log('Creating a new user:', user.sub);
       // if user doesn't exist, create a new user in the db
-      const [newUserID] = await db('users').insert({ sub: user.sub }, 'id');
+      const [newUserID] = await db('users').insert({ sub_ID: user.sub });
 
       // once created, grab new user from the db
       const newUser = await db('users').where('id', newUserID).first();
 
       // Send to frontend
+      req.session.userID = newUserID;
       console.log('New user created:', newUser);
       return res.status(201).json({ user: newUser });
     }
@@ -54,12 +55,5 @@ router.post('/', [
   }
 });
 
-// app.post('/login',
-//   passport.authenticate('local', { failureRedirect: '/login-fail' }),
-//   function(req, res) {
-//     req.session.userID = req.user.id;
-//     res.redirect('/login-success');
-//   }
-// );
 
 module.exports = router;

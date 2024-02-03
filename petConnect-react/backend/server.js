@@ -4,6 +4,7 @@ require('dotenv').config();
 // Web server config
 const express = require('express');
 const morgan = require('morgan');
+const session = require('express-session');
 const PORT = process.env.PORT || 8080;
 const app = express();
 const cors = require('cors');
@@ -19,6 +20,12 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'default-secret',
+  resave: false,
+  saveUninitialized: true
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
