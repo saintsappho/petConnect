@@ -1,32 +1,32 @@
 import React from "react";
-import PetListItem from "./PetListItem";
-import "../styles/PetList.scss";
+import Pet from "./PetListItem";
 
-export default function PetList ({ pets, dark, showModal }) {
-  // Check if photos is an object or an array
-  if (typeof(photos) === 'object') {
-    photos = Object.values(photos);
+
+const PetList = ({ pets, dark, showModal }) => {
+  // Check if pets is an object or an array
+  if (typeof(pets) === 'object') {
+    pets = Object.values(pets);
   }
 
-  // Create a template for each photo
-  const photoList = photos.map(photo => {
+  // Create a template for each pet
+  const petList = pets.map(pet => {
     return (
-      <PhotoListItem
-        key={photo.id}
-        photo={photo}
-        photoId={photo.id}
-        toggleFav={toggleFav}
-        showModal={() => showModal(photo)}
-        isFav={isFav}
-        dark={dark}
+      <Pet
+        key={pet.pet_ID}
+        user_ID={pet.user_ID}
+        pet={pet.pet_name}
+        breed={pet.breed}
+        showModal={() => showModal(pet)}
       />
     );
   });
-  
+
  // Return the template wrapped in a ul
   return (
-    <ul className="photo-list">
-      {photoList}
+    <ul className="pet-list">
+      {petList}
     </ul>
   );
 };
+
+export default PetList;
