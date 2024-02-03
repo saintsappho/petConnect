@@ -59,9 +59,7 @@ export default function HomeRoute() {
         <h1>Welcome to PetConnect</h1>
       </div>
       <div></div>
-      <head>
-        <title>PetConnect</title>
-      </head>
+      
 
       <header>
         <NavBar />
