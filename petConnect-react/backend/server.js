@@ -24,38 +24,11 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 
 const usersRoutes = require('./routes/users');
-<<<<<<< HEAD
-const loginRoutes = require('./routes/login');
-=======
-const petsRoutes = require('./routes/pets')
-const postsRoutes = require('./routes/posts');
-const eventsRoutes = require('./routes/events')
-const chatsRoutes = require('./routes/chats')
-const messagesRoutes = require('./routes/messages')
-const commentsRoutes = require('./routes/comments')
-const likesRoutes = require('./routes/likes')
-const attendeesRoutes = require('./routes/attendees')
-const followsRoutes = require('./routes/follows')
->>>>>>> main
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/users', usersRoutes);
-<<<<<<< HEAD
-app.use('/api/users', loginRoutes);
-=======
-app.use('/pets', petsRoutes);
-app.use('/posts', postsRoutes);
-app.use('/events', eventsRoutes);
-app.use('/chats', chatsRoutes);
-app.use('/messages', messagesRoutes);
-app.use('/comments', commentsRoutes);
-app.use('/likes', likesRoutes);
-app.use('/attendees', attendeesRoutes);
-app.use('/follows', followsRoutes);
-// app.use('/users', usersRoutes);
->>>>>>> main
 // Note: mount other resources here, using the same pattern above
 
 // Home page
