@@ -8,12 +8,14 @@ import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import Profile from "./Profile";
-import NewPost from "./partials/Posts/_NewPost";
+import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
+  const [create, setCreate] = useState(false);
+  
   useEffect(() => {
     const fetchData = async (url, target) => {
       try {
@@ -39,7 +41,8 @@ export default function HomeRoute() {
   const { isLoading, error, user } = useAuth0();
   return (
     <div>
-      <NewPost />
+      {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
+      {create && <NewPost />}
       <div>
         {!user && <LoginButton />}
         {error && <p>Authentication Error</p>}
