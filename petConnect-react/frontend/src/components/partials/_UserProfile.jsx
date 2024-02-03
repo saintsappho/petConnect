@@ -6,6 +6,9 @@ export default function UserProfile() {
   return (
     <div>
       <h1>User Profile</h1>
+        <div className="profile">
+          <img className="profile__image" src="./src/assets/profile-hex.png" />
+        </div>
       <h2>Jane Doe</h2>
       <p>email: jane@doe.com</p>
       <p>phone: 403 777 7777</p>

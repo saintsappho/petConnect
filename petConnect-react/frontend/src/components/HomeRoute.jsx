@@ -7,10 +7,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
+import PetProfile from './PetProfile';
+import UserProfile from './UserProfile';
 import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
-import UserProfile from "./UserProfile";
+
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
@@ -50,11 +52,14 @@ export default function HomeRoute() {
         {!error && !isLoading && user && (
           <>
             <LogoutButton />
-            <Profile />
           </>
         )}
       </div>
-      {/* <head>
+      <div>
+        <h1>Welcome to PetConnect</h1>
+      </div>
+      <div></div>
+      <head>
         <title>PetConnect</title>
       </head>
 
@@ -63,10 +68,9 @@ export default function HomeRoute() {
       </header>
 
       <body>
-        <img src="../public/Logo.png"></img>
-        <div className="dashboard">
-          <PetPost />
-          <PetPost />
+        <div>
+        <UserProfile />
+        <PetProfile />
           <PetPost />
         </div>
       </body>
@@ -75,7 +79,7 @@ export default function HomeRoute() {
         <p>
           Created by: <a href="Team13">Team13</a>
         </p>
-      </footer> */}
+      </footer>
     </div>
   );
 }
