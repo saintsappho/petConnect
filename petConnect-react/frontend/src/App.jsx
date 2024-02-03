@@ -7,21 +7,20 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  
   return (
-<div> 
-  {/* <HomeRoute /> */}
-  {!user && <LoginButton />}
+    <div>
+      {/* <HomeRoute /> */}
+      {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          
+
           <LogoutButton />
           <UserProfile />
-          </>
+        </>
       )}
-</div>
+    </div>
   )
 }
 
