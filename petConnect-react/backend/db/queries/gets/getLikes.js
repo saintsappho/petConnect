@@ -1,4 +1,4 @@
-const db = require('../connection');
+const db = require('../../connection');
 
 const getLikes = () => {
   return db.query('SELECT * FROM likes;')

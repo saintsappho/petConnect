@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getUsers } = require('../db/queries/getUsers');
+const { getUsers } = require('../db/queries/gets/getUsers');
 
 router.get('/', async (req, res) => {
   try {

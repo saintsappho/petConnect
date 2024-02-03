@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getMessages } = require('../db/queries/getMessages');
+const { getMessages } = require('../db/queries/gets/getMessages');
 
 router.get('/', async (req, res) => {
   try {

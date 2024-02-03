@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getEvents } = require('../db/queries/getEvents');
+const { getEvents } = require('../db/queries/gets/getEvents');
 
 router.get('/', async (req, res) => {
   try {

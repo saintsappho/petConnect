@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getPets } = require('../db/queries/getPets');
+const { getPets } = require('../db/queries/gets/getPets');
 
 router.get('/', async (req, res) => {
   try {
