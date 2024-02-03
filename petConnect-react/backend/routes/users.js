@@ -54,5 +54,12 @@ router.post('/', [
   }
 });
 
+// app.post('/login',
+//   passport.authenticate('local', { failureRedirect: '/login-fail' }),
+//   function(req, res) {
+//     req.session.userID = req.user.id;
+//     res.redirect('/login-success');
+//   }
+// );
 
 module.exports = router;
