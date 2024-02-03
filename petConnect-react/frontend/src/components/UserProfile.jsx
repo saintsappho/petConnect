@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import LogoutButton from "./Logout";
 import PetList from './PetList';
+import PetListItem from './PetListItem';
 
 const UserProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,7 +25,7 @@ console.log('user', user);
             <th><button onClick="message">Message</button></th>
           </table>
           <article>"I'm Ashley and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!"</article>
-          <PetList />
+          <PetListItem />
         </div>
     </aside>
     )

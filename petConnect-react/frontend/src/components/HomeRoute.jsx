@@ -1,4 +1,4 @@
-import NavBar from "./partials/_NavBar";
+import NavBar from "./NavBar";
 import PetPost from "./partials/_PetPost";
 import { useState } from "react";
 // import './App.css'
@@ -12,12 +12,30 @@ import UserProfile from './UserProfile';
 import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
+import ProfileModal from "./ProfileModal";
 
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPet, setSelectedPet] = useState(null);
+
+  //dummy data for testing
+  const pets = [
+    { id: 1, name: 'Dog' },
+    { id: 2, name: 'Cat' },
+    { id: 3, name: 'Bird' },
+  ];
+
+  const openModal = (pet) => {
+    setSelectedPet(pet);
+    setIsModalOpen(true);
+  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
+
   useEffect(() => {
     const fetchData = async (url, target) => {
       try {
@@ -40,6 +58,8 @@ export default function HomeRoute() {
     fetchData("http://localhost:8080/follows/", "follows");
   }, []);
  
+
+
   const { isLoading, error, user } = useAuth0();
   return (
     <div>
@@ -64,7 +84,14 @@ export default function HomeRoute() {
       </head>
 
       <header>
-        <NavBar />
+        <NavBar pets={pets} onPetSelect={openModal}/>
+
+        {isModalOpen && (
+        <ProfileModal onClose={closeModal}>
+        {/* Display the selected pet's info here */}
+        <p>The selected pet is: {selectedPet.name}</p>
+      </ProfileModal>
+        )}
       </header>
 
 

@@ -1,0 +1,12 @@
+.profile-modal {
+  box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
+  position: fixed;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  height: 85%;
+  width: 55%;
+  overflow-y: scroll;
+  border-radius: 12px;
+}
+
