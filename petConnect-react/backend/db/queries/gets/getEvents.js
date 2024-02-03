@@ -1,10 +1,10 @@
 const db = require('../../connection');
 
-const getChats = () => {
-  return db.query('SELECT * FROM chats;')
+const getEvents = () => {
+  return db.query('SELECT * FROM events;')
     .then(data => {
       return data.rows;
     });
 };
 
-module.exports = { getChats };
+module.exports = { getEvents };
