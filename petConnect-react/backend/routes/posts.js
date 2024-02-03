@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getPosts } = require('../db/queries/gets/getPosts');
+const { newPost } = require('../db/queries/news/newPost');
 
 router.get('/', async (req, res) => {
   try {
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const posts = await getPosts()
+    const posts = await newPost(post)
     console.log(posts)
     res.send(posts)
   } catch (err) {
