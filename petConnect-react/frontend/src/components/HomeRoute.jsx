@@ -11,6 +11,7 @@ import Profile from "./Profile";
 import NewPost from "./partials/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
+import UserProfile from "./UserProfile";
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend

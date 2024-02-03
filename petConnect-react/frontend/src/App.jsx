@@ -18,7 +18,7 @@ function App() {
         <>
           
           <LogoutButton />
-          <Profile />
+          <UserProfile />
           </>
       )}
 </div>

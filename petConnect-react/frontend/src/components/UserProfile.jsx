@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import LogoutButton from "./Logout";
 
-const Profile = () => {
+const UserProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 console.log('user', user);
   if (isLoading) {
@@ -21,4 +21,4 @@ console.log('user', user);
   );
 };
 
-export default Profile;
+export default UserProfile;
