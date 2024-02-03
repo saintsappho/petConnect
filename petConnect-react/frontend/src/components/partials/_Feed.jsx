@@ -1,7 +1,7 @@
-import React from 'react';
+
 import PetPost from './PetPost';
 
-const PetPostList = ({ petPosts }) => {
+export default function PetPostList ({ petPosts }) {
   return (
     <div>
       {petPosts.map((petPost) => (
@@ -11,4 +11,3 @@ const PetPostList = ({ petPosts }) => {
   );
 };
 
-export default PetPostList;

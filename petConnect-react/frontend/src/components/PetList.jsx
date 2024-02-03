@@ -2,7 +2,7 @@ import React from "react";
 import PetListItem from "./PetListItem";
 import "../styles/PetList.scss";
 
-const PetList = ({ pets, dark, showModal }) => {
+export default function PetList ({ pets, dark, showModal }) {
   // Check if photos is an object or an array
   if (typeof(photos) === 'object') {
     photos = Object.values(photos);
@@ -30,5 +30,3 @@ const PetList = ({ pets, dark, showModal }) => {
     </ul>
   );
 };
-
-export default PhotoList;

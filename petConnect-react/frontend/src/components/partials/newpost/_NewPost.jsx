@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TextPost from "./_TextPost";
 import PhotoPost from "./_PhotoPost";
 import axios from "axios";
 // import { post } from '../../../../../backend/routes/users';
 
-const AddPostForm = () => {
+export default function AddPostForm () {
   //
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -90,4 +90,4 @@ const AddPostForm = () => {
   );
 };
 
-export default AddPostForm;
+
