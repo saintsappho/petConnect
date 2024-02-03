@@ -1,7 +1,7 @@
 import "./App.css";
 import HomeRoute from "./components/HomeRoute";
 import Login from "./components/Login";
-// import { getUsers } from "../backend/db/queries/users.js";
+// import { getUsers } from "";
 
 function App() {
   return (
