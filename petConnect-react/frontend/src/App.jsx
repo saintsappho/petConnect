@@ -1,28 +1,26 @@
-import { useState } from 'react'
-import './App.css'
-import HomeRoute from './components/HomeRoute'
-import Login from './components/Login'
+import { useState } from "react";
+import "./App.css";
+import HomeRoute from "./components/HomeRoute";
+import Login from "./components/Login";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
-  
   return (
-<div> 
-  {/* <HomeRoute /> */}
-  {!user && <LoginButton />}
+    <div>
+      {/* <HomeRoute /> */}
+      {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          
           <LogoutButton />
           <UserProfile />
-          </>
+        </>
       )}
-</div>
-  )
+    </div>
+  );
 }
 
 export default App;

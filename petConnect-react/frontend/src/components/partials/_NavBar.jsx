@@ -7,7 +7,7 @@ export default function NavBar() {
 
       <li className="top-nav-bar__logo">
         <a href="/">
-          <img src="../public/RoundLogo.png"></img>
+          <img src="../RoundLogo.png"></img>
         </a>
       </li>
 
@@ -31,13 +31,16 @@ export default function NavBar() {
         </select></a>
 
       </li>
-      <li className="top-nav-bar__item">
-        <a href="/login">Login</a>
-      </li>
-
-      <li className="top-nav-bar__item">
-        <a href="/">if login "Profile" and "Logout"</a>
-      </li>
+      {/* {!user && <LoginButton />}
+      {error && <p>Authentication Error</p>}
+      {!error && isLoading && <p>Loading...</p>}
+      {!error && !isLoading && user && (
+        <>
+          
+          <LogoutButton />
+          <UserProfile />
+          </>
+      )} */}
     </nav>
   );
 }
