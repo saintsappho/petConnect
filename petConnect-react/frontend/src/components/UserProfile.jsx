@@ -4,7 +4,7 @@ import LogoutButton from "./Logout";
 import PetList from './PetList';
 import PetListItem from './PetListItem';
 
-const UserProfile = () => {
+export default function UserProfile () {
   const { user, isAuthenticated, isLoading } = useAuth0();
 console.log('user', user);
   if (isLoading) {
