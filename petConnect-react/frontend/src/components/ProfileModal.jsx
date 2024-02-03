@@ -25,8 +25,7 @@ const ProfileModal = ({ hideModal }) => {
   return (
     <div className="profile-modal">
       <h2 className="profile-modal__title">Pet Profile</h2>
-      {selectedPet}
-      {petData}
+
       <button className="profile-modal__close-button" onClick={hideModal}></button>
     </div>
   );
