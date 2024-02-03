@@ -1,5 +1,5 @@
 export default function TextPost(props) {
-  const { content, handleTitleChange, handleContentChange, handleSubmit } = this.props;
+  const { content, handleTitleChange, handleContentChange, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>

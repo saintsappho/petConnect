@@ -1,55 +1,38 @@
-const express = require('express');
-const router  = express.Router();
-const { getPosts } = require('../db/queries/gets/getPosts');
-const { newPost } = require('../db/queries/news/newPost');
+const express = require("express");
+const router = express.Router();
+const { getPosts } = require("../db/queries/gets/getPosts");
+const { newPost } = require("../db/queries/news/newPost");
 
-// const makeNewPost = (user_ID, pet_ID, style, sub_ID, registration_date, imageURL) => {
-//   return db.query(
-//     `INSERT INTO posts (
-//       user_ID, 
-//       pet_ID, 
-//       style, 
-//       sub_ID, 
-//       registration_date, 
-//       imageURL
-//     ) VALUES ($1, $2, $3, $4, $5, $6) 
-//     RETURNING *;`
-//     // The RETURNING * clause returns the inserted row, you can customize it if needed
-//     // Make sure to pass the correct number of parameters and in the correct order
-//     , [user_ID, pet_ID, style, sub_ID, registration_date, imageURL]
-//   )
-//   .then(data => {
-//     return data.rows[0]; // Assuming you want to return the inserted row
-//   })
-//   .catch(error => {
-//     throw error; // Rethrow the error for handling in the calling function
-//   });
-// };
-// usage example
-// const result = await newPost(user_ID, pet_ID, style, sub_ID, registration_date, imageURL);
-// console.log('Inserted post:', result);
-
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const posts = await getPosts()
-    console.log(posts)
-    res.send(posts)
+    const posts = await getPosts();
+    console.log(posts);
+    res.send(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send("Internal Server Error");
   }
 });
 
-// router.post('/', async (req, res) => {
-  //   try {
-    //     const posts = await newPost(post)
-    //     console.log(posts)
-    //     res.send(posts)
-    //   } catch (err) {
-      //     console.error(err);
-      //     res.status(500).send('Internal Server Error');
-      //   }
-      // });
-      
+router.post("/", async (req, res) => {
+  try {
+    console.log("req.body", req.body);
+    const postData = {
+      user_ID: 1, // hard-coded for now
+      pet_ID: 1, // hard-coded for now
+      title: `Demo Post Confirming Post Route Works`,
+      content: `this is a test of the automated post route system. If you see this, it worked!`,
+      style: `text-post`,
+      sub_ID: 1, // hard-coded for now
+      imageURL: null, // hard-coded for now
+    } 
+    const thisPost = await newPost(postData);
+    res.status(201).json(thisPost);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to Post");
+  }
+});
+
 module.exports = router;
 // module.exports = { makeNewPost };
