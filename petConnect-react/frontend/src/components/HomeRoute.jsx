@@ -7,17 +7,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
-import PetProfile from './PetProfile';
-import UserProfile from './UserProfile';
+import PetProfile from "./PetProfile";
+import UserProfile from "./UserProfile";
 import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
 
-
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-  
+
   useEffect(() => {
     const fetchData = async (url, target) => {
       try {
@@ -39,7 +38,7 @@ export default function HomeRoute() {
     fetchData("http://localhost:8080/attendees/", "attendees");
     fetchData("http://localhost:8080/follows/", "follows");
   }, []);
- 
+
   const { isLoading, error, user } = useAuth0();
   return (
     <div>
@@ -59,19 +58,14 @@ export default function HomeRoute() {
         <h1>Welcome to PetConnect</h1>
       </div>
       <div></div>
-      
 
-      <header>
-        <NavBar />
-      </header>
+      <NavBar />
 
-      <body>
-        <div>
+      <div>
         <UserProfile />
         <PetProfile />
-          <PetPost />
-        </div>
-      </body>
+        <PetPost />
+      </div>
 
       <footer>
         <p>

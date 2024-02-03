@@ -27,7 +27,7 @@ export default function AddPostForm () {
   };
   const handleStyleChange = (e) => {
     setStyle(e.target.value);
-    console.log(`${e.target.value}-post`);
+    console.log(e.target.value);
   };
 
   const handleSubmit = async (e) => {

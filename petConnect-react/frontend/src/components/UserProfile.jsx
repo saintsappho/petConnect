@@ -4,7 +4,6 @@ import LogoutButton from "./Logout";
 
 export default function UserProfile() {
 
-
   return (
 
     <aside>
