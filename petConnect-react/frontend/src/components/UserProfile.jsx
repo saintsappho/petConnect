@@ -13,6 +13,8 @@ const UserProfile = () => {
       </div>
         <div className="profile__name">
           <h1>Ashley Tree</h1>
+          <h2>Los Angeles, CA</h2>
+          
         </div>
     </aside>
 
