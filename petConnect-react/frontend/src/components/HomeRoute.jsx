@@ -8,8 +8,15 @@ import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import Profile from "./Profile";
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function HomeRoute() {
+  useEffect(() => {
+    axios.get("http://localhost:8080/users/")
+    .then (res => console.log(res))
+  }, []);
+
   const { isLoading, error, user } = useAuth0();
   return (
     <div>

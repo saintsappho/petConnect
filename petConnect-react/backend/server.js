@@ -2,12 +2,14 @@
 require('dotenv').config();
 
 // Web server config
-const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
-
+const { getUsers } = require('./db/queries/users');
 const PORT = process.env.PORT || 8080;
 const app = express();
+const cors = require('cors');
+app.use(express.json());
+app.use(cors());
 
 app.set('view engine', 'ejs');
 
@@ -16,14 +18,7 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  '/styles',
-  sassMiddleware({
-    source: __dirname + '/styles',
-    destination: __dirname + '/public/styles',
-    isSass: false, // false => scss, true => sass
-  })
-);
+
 app.use(express.static('public'));
 
 // Separated Routes for each Resource
@@ -37,7 +32,7 @@ const usersRoutes = require('./routes/users');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
+// app.use('/users', usersRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -45,7 +40,13 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('<h1>Welcome to the Backend</h1>');
+});
+
+app.get('/users', async (req, res) => {
+  const users = await getUsers()
+  console.log(users)
+  res.send(users);
 });
 
 app.listen(PORT, () => {
