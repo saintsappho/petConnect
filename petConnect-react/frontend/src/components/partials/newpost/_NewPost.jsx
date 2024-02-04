@@ -40,7 +40,7 @@ export default function AddPostForm() {
         postState
       );
       console.log("Post created:", response.data);
-      console.log("postData: ", postData);
+      console.log("postData: ", postState);
     } catch (error) {
       console.error("Error creating post:", error.message);
     }

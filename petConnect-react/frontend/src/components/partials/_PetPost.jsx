@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 
 export default function PetPost(props) {
   const { petPost } = props;
-  const [ imageSrc, setImageSrc ] = useState("https://source.unsplash.com/3THn0EN_Ydo/300x510");
+  const [ imageSrc, setImageSrc ] = useState(null);
 
-  console.log('PetPost:', petPost);
 
-  if (petPost.style === "text") {
+  if (petPost.style === "text-post") {
     return (
       <div className="card">
         <figure className="card__thumb">
           <img
-            src="https://source.unsplash.com/qXMpNtNp1uE/300x510"
-            alt="Picture by David Monje"
+            src="https://source.unsplash.com/random/300x510"
+            alt="Random image from unsplash"
             className="card__image"
           ></img>
           <figcaption className="card__caption">
@@ -32,7 +31,7 @@ export default function PetPost(props) {
       <div className="card">
         <figure className="card__thumb">
           <img
-            src={imageSrc || "https://source.unsplash.com/3THn0EN_Ydo/300x510"}
+            src={petPost.image_file}
             alt={petPost.content}
             className="card__image"
           ></img>
@@ -47,14 +46,14 @@ export default function PetPost(props) {
       </div>
     );
   }
-  if (petPost.style === "poll") {
+  if (petPost.style === "poll-post") {
     return (
       <div className="card">
         <figure className="card__thumb">
           <img
             src={
               petPost.image_file ||
-              "https://source.unsplash.com/3THn0EN_Ydo/300x510"
+              "https://source.unsplash.com/random/300x510"
             }
             alt={petPost.content}
             className="card__image"
@@ -70,7 +69,7 @@ export default function PetPost(props) {
       </div>
     );
   }
-  if (petPost.style === "event") {
+  if (petPost.style === "event-post") {
     return (
       
         <div className="card">
@@ -78,7 +77,7 @@ export default function PetPost(props) {
             <img
               src={
                 petPost.image_file ||
-                "https://source.unsplash.com/71u2fOofI-U/300x510"
+                "https://source.unsplash.com/random/300x510"
               }
               alt={petPost.content}
               className="card__image"
@@ -94,7 +93,7 @@ export default function PetPost(props) {
         </div>
     );
   }
-  if (petPost.style === "forum") {
+  if (petPost.style === "forum-post") {
     return (
       
         <div className="card">
@@ -102,7 +101,7 @@ export default function PetPost(props) {
             <img
               src={
                 petPost.image_file ||
-                "https://source.unsplash.com/3THn0EN_Ydo/300x510"
+                "https://source.unsplash.com/random/300x510"
               }
               alt={petPost.content}
               className="card__image"
