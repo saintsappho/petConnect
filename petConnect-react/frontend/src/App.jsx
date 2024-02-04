@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile'
 // dependencies
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfileModal from './components/ProfileModal';
 import axios from "axios";
 
 
@@ -41,6 +42,9 @@ function App() {
     openModal(pet);
     console.log(pet);
   }
+  useEffect(() => {
+    setModal(false);
+  }, [user]);
   
   return (
     <div>
@@ -49,10 +53,9 @@ function App() {
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          <HomeRoute />
+          <HomeRoute petData={petData} onPetSelect={onPetSelect} />
           <LogoutButton />
           <UserProfile />
-          <HomeRoute petData={petData} onPetSelect={onPetSelect} />
         </>
       )}
       {modal && (

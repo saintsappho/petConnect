@@ -1,17 +1,15 @@
-// dependencies
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
-// components
 import NavBar from "./NavBar";
-import Feed from "./partials/_Feed";
+import PetPost from "./partials/_PetPost";
+import { useState } from "react";
+// import './App.css'
+// import Login from './components/Login'
+import { useAuth0 } from "@auth0/auth0-react";
+import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
-import PetProfile from './PetProfile';
-import PetPost from './partials/_PetPost';
-import UserProfile from './UserProfile';
-import Messages from './Messages';
 import NewPost from "./partials/newpost/_NewPost";
+import { useEffect } from "react";
+import axios from "axios";
 import ProfileModal from "./ProfileModal";
 //hooks 
 import useFetchData from "../hooks/useFetchData";
@@ -38,17 +36,16 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
     // useFetchData("http://localhost:8080/follows/", "follows");
   }, []);
  
-  const { isLoading, error, user, isAuthenticated } = useAuth0();
+  // useEffect(() => {
+  //   axios.get("http://localhost:8080/pets/").then((response) => {
+  //     setPetData(response.data);
+  //   });
+  // }, []);
 
-    useEffect(() => {
-      if (isAuthenticated) {
-        console.log('user', user);
-        axios.post('http://localhost:8080/users/', user).then( response => {
-          console.log('response', response);
-        });
-      }
-    }, [isAuthenticated]);
-  
+
+
+  const { isLoading, error, user } = useAuth0();
+
   return (
     <div>
       <header>
