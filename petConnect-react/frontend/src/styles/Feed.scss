@@ -31,9 +31,11 @@ html {
 	width: 300px;
 	margin: 10px;
 	background-color: white;
+  opacity: .9;
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 
 	&:hover {
+    opacity: 1;
 		.card__caption {
 			top: 50%;
 			transform: translateY(-50%);
@@ -41,6 +43,7 @@ html {
 
 		.card__image {
 			transform: translateY(-10px);
+      
 		}
 
 		.card__thumb {

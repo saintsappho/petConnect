@@ -16,7 +16,7 @@ import ProfileModal from "./ProfileModal";
 import useFetchData from "../hooks/useFetchData";
 // styles
 import "../styles/TopNav.scss";
-import "../styles/bubblyButton.scss"
+import "../styles/BubblyButton.scss"
 // import './App.css'
 
 export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {

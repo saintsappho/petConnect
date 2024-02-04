@@ -1,7 +1,11 @@
 import { useState } from "react";
+//  components
 import TextPost from "./_TextPost";
 import PhotoPost from "./_PhotoPost";
 import axios from "axios";
+// styles
+import "../../../styles/NewPost.scss";
+
 // import { post } from '../../../../../backend/routes/users';
 
 export default function AddPostForm() {
@@ -56,7 +60,7 @@ export default function AddPostForm() {
     <div className="new-post">
       <h1>Add a New Post</h1>
       <label htmlFor="style">Style:</label>
-      <select id="style" value={style} onChange={handleStyleChange}>
+      <select class="input-data" id="style" value={style} onChange={handleStyleChange}>
         <option value="text-post">Text</option>
         <option value="photo-post">Photo</option>
         <option value="event-post">Event</option>
