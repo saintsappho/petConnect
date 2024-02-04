@@ -17,7 +17,7 @@ export default function AddPostForm() {
   const [postData, setPostData] = useState({
     user_ID: 1, // hard-coded for now
     pet_ID: 1, // hard-coded for now
-    title: title,
+    title: "_NewPost postData default TEST",
     content: content,
     style: style,
     image_file: image,
@@ -40,19 +40,23 @@ export default function AddPostForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await setPostData({
-        title: title,
+      // Update the local state first
+      setPostData({
+        title: "_NewPost setPostData TEST",
         content: content,
         image_file: image,
       });
+  
+      // Use the updated state in the axios request
       const response = await axios.post(
         "http://localhost:8080/posts/",
-        postData,
+        postData
       );
-      console.log("Post created:", response.data); // Handle success (show a message, redirect etc.)
-      console.log("postData: ", postData); // Handle success (show a message, redirect etc.)
+      
+      console.log("Post created:", response.data);
+      console.log("postData: ", postData);
     } catch (error) {
-      console.error("Error creating post:", error.message); // Handle error (show a message, log, etc.)
+      console.error("Error creating post:", error.message);
     }
   };
 
