@@ -5,7 +5,7 @@ const { getPets } = require('../db/queries/gets/getPets');
 router.get('/', async (req, res) => {
   try {
     const pets = await getPets()
-    console.log(pets)
+    // console.log(pets)
     res.send(pets)
   } catch (err) {
     console.error(err);

@@ -20,12 +20,11 @@ import "../styles/TopNav.scss";
 // import './App.css'
 
 export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {
-  //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-  const [posts, setPosts] = useState([]);
+  //calling all backend routes to check if they are working and ensure data is being sent to the frontend
 
   // useFetchData("http://localhost:8080/users/", "users");
-  useFetchData("http://localhost:8080/posts/", "posts");
+  // useFetchData("http://localhost:8080/posts/", "posts");
   // useFetchData("http://localhost:8080/pets/", "pets");
   // useFetchData("http://localhost:8080/events/", "events");
   // useFetchData("http://localhost:8080/chats/", "chats");
@@ -37,9 +36,10 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
  
   const { isLoading, error, user, isAuthenticated } = useAuth0();
 
+    
     useEffect(() => {
       if (isAuthenticated) {
-        console.log('user', user);
+        console.log('User from Homeroute', user);
         axios.post('http://localhost:8080/users/', user).then( response => {
           console.log('response', response);
         });
@@ -53,9 +53,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
         <div>
           <h1>Welcome to PetConnect</h1>
         </div>
-        {!create && (
-          <button onClick={() => setCreate(!create)}>New Post</button>
-        )}
+        {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
         {create && <NewPost />}
         <div>
           {!user && <LoginButton />}

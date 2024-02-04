@@ -39,7 +39,7 @@ function App() {
   const onPetSelect = (pet) => {
     setSelectedPet(pet);    
     openModal(pet);
-    console.log(pet);
+    console.log("pet selected: ", pet);
   }
   
   return (

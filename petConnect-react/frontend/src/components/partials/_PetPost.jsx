@@ -2,7 +2,7 @@
 
 export default function PetPost(props) {
   const { petPost } = props;
-  console.log('PetPost:', petPost);
+  // console.log('PetPost:', petPost);
   if (petPost.style === "text") {
     return (
       <div className="post text">
@@ -16,7 +16,7 @@ export default function PetPost(props) {
     return (
       <div className="post photo">
         <h2>{petPost.pet_ID}</h2>
-        <img src={petPost.image_file} alt={petPost.title} />
+        <img src={petPost.image_file} alt={petPost.content} />
         <h3>{petPost.content}</h3>
       </div>
     );

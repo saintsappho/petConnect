@@ -6,7 +6,7 @@ const { newPost } = require("../db/queries/news/newPost");
 router.get("/", async (req, res) => {
   try {
     const posts = await getPosts();
-    console.log(posts);
+    // console.log(posts);
     res.send(posts);
   } catch (err) {
     console.error(err);

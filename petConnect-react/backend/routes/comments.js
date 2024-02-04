@@ -5,7 +5,7 @@ const { getComments } = require('../db/queries/gets/getComments');
 router.get('/', async (req, res) => {
   try {
     const comments = await getComments()
-    console.log(comments)
+    // console.log(comments)
     res.send(comments)
   } catch (err) {
     console.error(err);
