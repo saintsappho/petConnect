@@ -54,6 +54,8 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
     <div className="HomeRoute">
       <header>
         {petData && <NavBar petData={petData} onPetSelect={onPetSelect} handleListSelect={handleListSelect} />}
+      </header>
+      
         <div className="title-card">
           <h1>Welcome to PetConnect</h1>
           <button className="bubbly-button" onClick={() => setCreate(!create)}>New Post</button>
@@ -70,7 +72,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
             </>
           )}
         </div>
-      </header>
+
 
       <Feed />
       <UserProfile />
