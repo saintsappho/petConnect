@@ -5,17 +5,17 @@ export default function PetPost(props) {
   // console.log('PetPost:', petPost);
   if (petPost.style === "text") {
     return (
-      <div class="card">
-        <figure class="card__thumb">
+      <div className="card">
+        <figure className="card__thumb">
           <img
             src="https://source.unsplash.com/qXMpNtNp1uE/300x510"
             alt="Picture by David Monje"
-            class="card__image"
+            className="card__image"
           ></img>
-          <figcaption class="card__caption">
-            <h2 class="card__title">{petPost.title}</h2>
-            <p class="card__snippet">{petPost.content}</p>
-            <a href="" class="card__button">
+          <figcaption className="card__caption">
+            <h2 className="card__title">{petPost.title}</h2>
+            <p className="card__snippet">{petPost.content}</p>
+            <a href="" className="card__button">
               Read more
             </a>
           </figcaption>
@@ -26,17 +26,17 @@ export default function PetPost(props) {
 
   if (petPost.style === "photo") {
     return (
-      <div class="card">
-        <figure class="card__thumb">
+      <div className="card">
+        <figure className="card__thumb">
           <img
             src={petPost.image_file}
             alt={petPost.content}
-            class="card__image"
+            className="card__image"
           ></img>
-          <figcaption class="card__caption">
-            <h2 class="card__title">{petPost.title}</h2>
-            <p class="card__snippet">{petPost.content}</p>
-            <a href="" class="card__button">
+          <figcaption className="card__caption">
+            <h2 className="card__title">{petPost.title}</h2>
+            <p className="card__snippet">{petPost.content}</p>
+            <a href="" className="card__button">
               Read more
             </a>
           </figcaption>
@@ -46,20 +46,20 @@ export default function PetPost(props) {
   }
   if (petPost.style === "poll") {
     return (
-      <div class="card">
-        <figure class="card__thumb">
+      <div className="card">
+        <figure className="card__thumb">
           <img
             src={
               petPost.image_file ||
               "https://source.unsplash.com/3THn0EN_Ydo/300x510"
             }
             alt={petPost.content}
-            class="card__image"
+            className="card__image"
           ></img>
-          <figcaption class="card__caption">
-            <h2 class="card__title">{petPost.title}</h2>
-            <p class="card__snippet">{petPost.content}</p>
-            <a href="" class="card__button">
+          <figcaption className="card__caption">
+            <h2 className="card__title">{petPost.title}</h2>
+            <p className="card__snippet">{petPost.content}</p>
+            <a href="" className="card__button">
               Read more
             </a>
           </figcaption>
@@ -70,20 +70,20 @@ export default function PetPost(props) {
   if (petPost.style === "event") {
     return (
       
-        <div class="card">
-          <figure class="card__thumb">
+        <div className="card">
+          <figure className="card__thumb">
             <img
               src={
                 petPost.image_file ||
                 "https://source.unsplash.com/71u2fOofI-U/300x510"
               }
               alt={petPost.content}
-              class="card__image"
+              className="card__image"
             ></img>
-            <figcaption class="card__caption">
-              <h2 class="card__title">{petPost.title}</h2>
-              <p class="card__snippet">{petPost.content}</p>
-              <a href="" class="card__button">
+            <figcaption className="card__caption">
+              <h2 className="card__title">{petPost.title}</h2>
+              <p className="card__snippet">{petPost.content}</p>
+              <a href="" className="card__button">
                 Read more
               </a>
             </figcaption>
@@ -94,20 +94,20 @@ export default function PetPost(props) {
   if (petPost.style === "forum") {
     return (
       
-        <div class="card">
-          <figure class="card__thumb">
+        <div className="card">
+          <figure className="card__thumb">
             <img
               src={
                 petPost.image_file ||
                 "https://source.unsplash.com/3THn0EN_Ydo/300x510"
               }
               alt={petPost.content}
-              class="card__image"
+              className="card__image"
             ></img>
-            <figcaption class="card__caption">
-              <h2 class="card__title">{petPost.title}</h2>
-              <p class="card__snippet">{petPost.content}</p>
-              <a href="" class="card__button">
+            <figcaption className="card__caption">
+              <h2 className="card__title">{petPost.title}</h2>
+              <p className="card__snippet">{petPost.content}</p>
+              <a href="" className="card__button">
                 Read more
               </a>
             </figcaption>

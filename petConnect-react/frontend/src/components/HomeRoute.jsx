@@ -12,7 +12,6 @@ import Feed from "./partials/_Feed";
 import { useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "./PetProfileModal.jsx";
-import Feed from "./partials/_Feed.jsx"
 
 //hooks 
 import useFetchData from "../hooks/useFetchData";
