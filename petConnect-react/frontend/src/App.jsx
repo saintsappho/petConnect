@@ -7,7 +7,7 @@ import UserProfile from './components/UserProfile'
 // dependencies
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import ProfileModal from './components/ProfileModal';
+import ProfileModal from './components/PetProfileModal';
 import axios from "axios";
 
 
@@ -50,14 +50,12 @@ function App() {
   return (
     <div className="App">
     <div>
-      {!user && <LoginButton />}
+      {!user && <LoginButton className="login-button-login-page"/>}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
           <HomeRoute petData={petData} handleListSelect={handleListSelect} />
-          <LogoutButton />
-          <UserProfile />
         </>
       )}
     </div>

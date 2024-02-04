@@ -1,5 +1,6 @@
 import React from 'react';
 import PetProfile from './PetProfile';
+import "../styles/PetProfileModal.css"
 
 const selectedPet = {
   pet_name: "Max",
@@ -21,13 +22,13 @@ const petData = {
   registration_date: "08/01/2021"
 };
 
-const ProfileModal = ({ closeModal }) => {
+const PetProfileModal = ({ closeModal }) => {
   return (
     <div className="profile-modal">
-      <button className="profile-modal__close-button" onClick={closeModal}></button>      
+      <button className="profile-modal__close-button" onClick={closeModal}></button>
       <PetProfile pet={petData} selectedPet={selectedPet} />
     </div>
   );
 };
 
-export default ProfileModal;
+export default PetProfileModal;

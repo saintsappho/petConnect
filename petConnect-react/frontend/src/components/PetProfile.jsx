@@ -2,16 +2,16 @@ import "../styles/PetProfile.css";
 
 // Pet Profile Component
 
-export default function PetProfile() {
+export default function PetProfile({ petData }) {
   return (
     <div className="pet-profile-container">
       <img className="pet-profile-pic" src="./src/assets/Image(1).jpeg" alt="Pet Profile Picture" />
     
       <div className="pet-profile-header">
-        <h1>Maxwell</h1>
-        <p>Los Angles, California</p>
+        <h1>{pet_name}</h1>
+        <p>{location}</p>
         {/* In profile creation, ask species and favorite activity to fill this in */}        
-        <label>I&apos;m a 2 year old Golden Retriever that loves to play fetch! </label>
+        <label>I&apos;m a {age} year old {breed} that loves {routines}! </label>
       </div>
 
       <div className="pet-profile-item">

@@ -1,4 +1,5 @@
 import "../styles/TopNav.scss"
+import LogoutButton from "./Logout";
 // import { useState } from "
 // import React from 'react';
 //The NavBar component will be a fixed navigation bar at the top of the page. It will contain links to the home page, the scheduling page, the messaging page, and either the login page or the user's profile page and logout button.
@@ -14,6 +15,10 @@ export default function Navbar({ petData, handleListSelect }) {
       <div className="top-nav-bar__logo">
       </div>
 
+      <div className="top-nav-bar__title">
+        <h1>Petconnect</h1>
+      </div>
+
       <div className="top-nav-bar__links">
       <li className="top-nav-bar__item">
         <a href="/">Home</a>
@@ -21,10 +26,6 @@ export default function Navbar({ petData, handleListSelect }) {
 
       <li className="top-nav-bar__item">
         <a href="/about">About</a>
-      </li>
-
-      <li className="top-nav-bar__item">
-        <a href="/">Profile</a>
       </li>
 
       <li>
@@ -39,8 +40,13 @@ export default function Navbar({ petData, handleListSelect }) {
       </li>
 
       <li className="top-nav-bar__item">
-        <a href="/">if login "Profile" and "Logout"</a>
+        <a href="/">Profile</a>
       </li>
+
+      <li className="top-nav-bar__item">
+        <LogoutButton />
+      </li>
+
       </div>
     </nav>
   );
