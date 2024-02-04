@@ -7,14 +7,9 @@ import NavBar from "./NavBar";
 import Feed from "./partials/_Feed";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
-<<<<<<< HEAD
 import PetProfile from './PetProfile';
 import UserProfile from './UserProfile';
 import Messages from './Messages';
-=======
-import PetProfile from "./PetProfile";
-import UserProfile from "./UserProfile";
->>>>>>> Main
 import NewPost from "./partials/newpost/_NewPost";
 import ProfileModal from "./ProfileModal";
 // styles
@@ -71,7 +66,6 @@ export default function HomeRoute() {
     fetchData("http://localhost:8080/follows/", "follows");
   }, []);
  
-<<<<<<< HEAD
   const { isLoading, error, user, isAuthenticated } = useAuth0();
 
     useEffect(() => {
@@ -83,22 +77,6 @@ export default function HomeRoute() {
       }
     }, [isAuthenticated]);
   
-=======
-  // useEffect(() => {
-  //   axios.get("http://localhost:8080/pets/").then((response) => {
-  //     setPetData(response.data);
-  //   });
-  // }, []);
-
-  // petData.forEach((pet) => {
-  //   pets.push(pet.name);
-  // });
-
-  // console.log(pets);
-
-
-  const { isLoading, error, user } = useAuth0();
->>>>>>> Main
   return (
     <div>
       {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
@@ -116,7 +94,7 @@ export default function HomeRoute() {
       <div>
         <h1>Welcome to PetConnect</h1>
       </div>
-      <div></div>
+      <div> </div>
 
       <header>
         <NavBar petData={petData} onPetSelect={onPetSelect}/>
@@ -133,15 +111,12 @@ export default function HomeRoute() {
       <div>
         <UserProfile />
         <PetProfile />
-<<<<<<< HEAD
           <PetPost />
           <Messages />
         </div>
-      </body>
-=======
+
         <Feed fetchData={fetchData} />
-      </div>
->>>>>>> Main
+
 
       <footer>
         <p>
