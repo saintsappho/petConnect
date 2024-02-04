@@ -22,42 +22,20 @@ import "../styles/TopNav.scss";
 export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-
   const [posts, setPosts] = useState([]);
-  // const [petData, setPetData] = useState([]);
-
-  // const petData = [
-  //   { pet_id: 1, name: "Max", age: 5 },
-  //   { pet_id: 2, name: "Snoopy", age: 3 },
-  //   { pet_id: 3, name: "Benji", age: 1 },
-  // ];
-
-  const openModal = (pet) => {
-    setSelectedPet(pet);
-    setIsModalOpen(true);
-  };
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
-  // const onPetSelect = (pet) => {
-  //   setSelectedPet(pet);
-  //   openModal(pet);
-  //   console.log(pet);
-  // };
 
   
   useEffect(() => {
-    // fetchData("http://localhost:8080/users/", "users");
-    useFetchData("http://localhost:8080/posts/", "posts");
-    // fetchData("http://localhost:8080/pets/", "pets");
-    // fetchData("http://localhost:8080/events/", "events");
-    // fetchData("http://localhost:8080/chats/", "chats");
-    // fetchData("http://localhost:8080/messages/", "messages");
-    // fetchData("http://localhost:8080/comments/", "comments");
-    // fetchData("http://localhost:8080/likes/", "likes");
-    // fetchData("http://localhost:8080/attendees/", "attendees");
-    // fetchData("http://localhost:8080/follows/", "follows");
+    // useFetchData("http://localhost:8080/users/", "users");
+    useuseFetchData("http://localhost:8080/posts/", "posts");
+    // useFetchData("http://localhost:8080/pets/", "pets");
+    // useFetchData("http://localhost:8080/events/", "events");
+    // useFetchData("http://localhost:8080/chats/", "chats");
+    // useFetchData("http://localhost:8080/messages/", "messages");
+    // useFetchData("http://localhost:8080/comments/", "comments");
+    // useFetchData("http://localhost:8080/likes/", "likes");
+    // useFetchData("http://localhost:8080/attendees/", "attendees");
+    // useFetchData("http://localhost:8080/follows/", "follows");
   }, []);
  
   const { isLoading, error, user, isAuthenticated } = useAuth0();
@@ -74,6 +52,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
   return (
     <div>
       <header>
+        {console.log('petData', petData)}
         <NavBar petData={petData} onPetSelect={onPetSelect} />
         <div>
           <h1>Welcome to PetConnect</h1>
@@ -104,7 +83,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
       <div>
         <UserProfile />
         <PetProfile />
-        <Feed fetchData={fetchData} />
+        <Feed />
       </div>
 
       <footer>
