@@ -1,10 +1,12 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Custom hook to fetch data from a URL and set it in state
 // if using this hook, these states are required
 // const [posts, setPosts] = useState([]);
 // const [error, setError] = useState(null);
+
+
 const useFetchData = (url, target, setData, setError) => {
   useEffect(() => {
     async function fetchData() {
@@ -20,6 +22,8 @@ const useFetchData = (url, target, setData, setError) => {
 
     fetchData();
   }, [url, target, setData, setError]);
+
 };
+
 
 export default useFetchData;

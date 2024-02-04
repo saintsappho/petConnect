@@ -14,11 +14,15 @@ import axios from "axios";
 
 //styles
 import "./App.css";
+import useFetchData from './hooks/useFetchData'
 
 function App() {
   const { user, isLoading, isAuthenticated, error } = useAuth0();
   const [modal, setModal] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [petData, setPetData] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
+
   // animation for fancy button
   var animateButton = function(e) {
     e.preventDefault;
@@ -32,13 +36,9 @@ function App() {
   for (var i = 0; i < bubblyButtons.length; i++) {
     bubblyButtons[i].addEventListener('click', animateButton, false);
   }
-  
 
-  const petData = [
-    { pet_id: 1, name: 'Max', age: 5 },
-    { pet_id: 2, name: 'Snoopy', age: 3 },
-    { pet_id: 3, name: 'Benji', age: 1 }
-  ];
+  // fetch user's pet data for list
+  useFetchData("http://localhost:8080/pets", "pets", setPetData, setFetchError);
 
   const handleListSelect = (event) => {
     event.preventDefault(); 
@@ -63,6 +63,9 @@ function App() {
     setSelectedPet(null);
   }, [user]);
 
+
+
+
   // useEffect(() => {
   //   if (isAuthenticated) {
   //     axios.post('http://localhost:8080/users/', { user }).then(response => {
@@ -86,7 +89,8 @@ function App() {
     {modal && (
         <ProfileModal
           handleListSelect={handleListSelect}
-          selectedPet={selectedPet}
+          selectedPetData={selectedPet}
+          petData={petData}
           openModal={openModal}
           closeModal={closeModal}
         />
