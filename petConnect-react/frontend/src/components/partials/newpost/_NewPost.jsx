@@ -57,39 +57,47 @@ export default function AddPostForm() {
   };
 
   return (
-    <div className="new-post">
-      <h1>Add a New Post</h1>
-      <label htmlFor="style">Style:</label>
-      <select class="input-data" id="style" value={style} onChange={handleStyleChange}>
-        <option value="text-post">Text</option>
-        <option value="photo-post">Photo</option>
-        <option value="event-post">Event</option>
-        <option value="poll-post">Poll</option>
-        <option value="forum-post">Forum</option>
-      </select>
-      {style === "text-post" && (
-        <TextPost
-          handleTitleChange={handleTitleChange}
-          handleContentChange={handleContentChange}
-          handleSubmit={handleSubmit}
-          title={title}
-          content={content}
-        />
-      )}
-      {style === "photo-post" && (
-        <PhotoPost
-          handleTitleChange={handleTitleChange}
-          handleContentChange={handleContentChange}
-          handleSubmit={handleSubmit}
-          handleImageUpload={handleImageUpload}
-          image={image}
-          title={title}
-          content={content}
-        />
-      )}
-      {/* { style === "event-post" && <EventPost /> } */}
-      {/* { style === "poll-post" && <PollPost /> } */}
-      {/* { style === "forum-post" && <ForumPost /> } */}
+    <div className="new-post-card">
+      <h1 className="text">Add a New Post</h1>
+      <div>
+        <label htmlFor="style">Style:</label>
+        <select
+          className="input-data"
+          id="style"
+          value={style}
+          onChange={handleStyleChange}
+        >
+          <option value="text-post">Text</option>
+          <option value="photo-post">Photo</option>
+          <option value="event-post">Event</option>
+          <option value="poll-post">Poll</option>
+          <option value="forum-post">Forum</option>
+        </select>
+        <div className="underline"></div>
+        {style === "text-post" && (
+          <TextPost
+            handleTitleChange={handleTitleChange}
+            handleContentChange={handleContentChange}
+            handleSubmit={handleSubmit}
+            title={title}
+            content={content}
+          />
+        )}
+        {style === "photo-post" && (
+          <PhotoPost
+            handleTitleChange={handleTitleChange}
+            handleContentChange={handleContentChange}
+            handleSubmit={handleSubmit}
+            handleImageUpload={handleImageUpload}
+            image={image}
+            title={title}
+            content={content}
+          />
+        )}
+        {/* { style === "event-post" && <EventPost /> } */}
+        {/* { style === "poll-post" && <PollPost /> } */}
+        {/* { style === "forum-post" && <ForumPost /> } */}
+      </div>
     </div>
   );
 }
