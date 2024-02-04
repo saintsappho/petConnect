@@ -5,7 +5,7 @@ export default function PhotoPost(props) {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="file">Photo:</label>
-      <input type="file" id="file" onChange={handleImageUpload} />
+      <input className="input-data" type="file" id="file" onChange={handleImageUpload} />
 
       <label htmlFor="content">Content:</label>
       <textarea
@@ -13,7 +13,7 @@ export default function PhotoPost(props) {
         value={content}
         onChange={handleContentChange}
       ></textarea>
-      <button type="submit">Add Post</button>
+      <button className="bubbly-button" type="submit">Add Post</button>
     </form>
   );
 }

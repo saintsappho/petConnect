@@ -2,50 +2,117 @@
 
 export default function PetPost(props) {
   const { petPost } = props;
-  console.log('PetPost:', petPost);
+  // console.log('PetPost:', petPost);
   if (petPost.style === "text") {
     return (
-      <div className="post text">
-        <h1>{petPost.title}</h1>
-        <h2>{petPost.pet_ID}</h2>
-        <h3>{petPost.content}</h3>
+      <div class="card">
+        <figure class="card__thumb">
+          <img
+            src="https://source.unsplash.com/qXMpNtNp1uE/300x510"
+            alt="Picture by David Monje"
+            class="card__image"
+          ></img>
+          <figcaption class="card__caption">
+            <h2 class="card__title">{petPost.title}</h2>
+            <p class="card__snippet">{petPost.content}</p>
+            <a href="" class="card__button">
+              Read more
+            </a>
+          </figcaption>
+        </figure>
       </div>
     );
   }
+
   if (petPost.style === "photo") {
     return (
-      <div className="post photo">
-        <h2>{petPost.pet_ID}</h2>
-        <img src={petPost.image_file} alt={petPost.title} />
-        <h3>{petPost.content}</h3>
+      <div class="card">
+        <figure class="card__thumb">
+          <img
+            src={petPost.image_file}
+            alt={petPost.content}
+            class="card__image"
+          ></img>
+          <figcaption class="card__caption">
+            <h2 class="card__title">{petPost.title}</h2>
+            <p class="card__snippet">{petPost.content}</p>
+            <a href="" class="card__button">
+              Read more
+            </a>
+          </figcaption>
+        </figure>
       </div>
     );
   }
   if (petPost.style === "poll") {
     return (
-      <div className="post poll">
-        <h1>{petPost.title}</h1>
-        <h2>{petPost.pet_ID}</h2>
-        <h3>{petPost.content}</h3>
+      <div class="card">
+        <figure class="card__thumb">
+          <img
+            src={
+              petPost.image_file ||
+              "https://source.unsplash.com/3THn0EN_Ydo/300x510"
+            }
+            alt={petPost.content}
+            class="card__image"
+          ></img>
+          <figcaption class="card__caption">
+            <h2 class="card__title">{petPost.title}</h2>
+            <p class="card__snippet">{petPost.content}</p>
+            <a href="" class="card__button">
+              Read more
+            </a>
+          </figcaption>
+        </figure>
       </div>
     );
   }
   if (petPost.style === "event") {
     return (
-      <div className="post event">
-        <h1>{petPost.title}</h1>
-        <h2>{petPost.pet_ID}</h2>
-        <h3>{petPost.content}</h3>
-      </div>
+      
+        <div class="card">
+          <figure class="card__thumb">
+            <img
+              src={
+                petPost.image_file ||
+                "https://source.unsplash.com/71u2fOofI-U/300x510"
+              }
+              alt={petPost.content}
+              class="card__image"
+            ></img>
+            <figcaption class="card__caption">
+              <h2 class="card__title">{petPost.title}</h2>
+              <p class="card__snippet">{petPost.content}</p>
+              <a href="" class="card__button">
+                Read more
+              </a>
+            </figcaption>
+          </figure>
+        </div>
     );
   }
   if (petPost.style === "forum") {
     return (
-      <div className="post forum">
-        <h1>{petPost.title}</h1>
-        <h2>{petPost.pet_ID}</h2>
-        <h3>{petPost.content}</h3>
-      </div>
+      
+        <div class="card">
+          <figure class="card__thumb">
+            <img
+              src={
+                petPost.image_file ||
+                "https://source.unsplash.com/3THn0EN_Ydo/300x510"
+              }
+              alt={petPost.content}
+              class="card__image"
+            ></img>
+            <figcaption class="card__caption">
+              <h2 class="card__title">{petPost.title}</h2>
+              <p class="card__snippet">{petPost.content}</p>
+              <a href="" class="card__button">
+                Read more
+              </a>
+            </figcaption>
+          </figure>
+        </div>
     );
   }
 }

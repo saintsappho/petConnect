@@ -5,7 +5,7 @@ const { getFollows } = require('../db/queries/gets/getFollows');
 router.get('/', async (req, res) => {
   try {
     const follows = await getFollows()
-    console.log(follows)
+    // console.log(follows)
     res.send(follows)
   } catch (err) {
     console.error(err);

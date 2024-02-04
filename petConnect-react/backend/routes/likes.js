@@ -5,7 +5,7 @@ const { getLikes } = require('../db/queries/gets/getLikes');
 router.get('/', async (req, res) => {
   try {
     const likes = await getLikes()
-    console.log(likes)
+    // console.log(likes)
     res.send(likes)
   } catch (err) {
     console.error(err);
