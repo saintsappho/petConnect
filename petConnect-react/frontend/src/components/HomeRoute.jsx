@@ -8,6 +8,7 @@ import Feed from "./partials/_Feed";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import PetProfile from './PetProfile';
+import PetPost from './partials/_PetPost';
 import UserProfile from './UserProfile';
 import Messages from './Messages';
 import NewPost from "./partials/newpost/_NewPost";
