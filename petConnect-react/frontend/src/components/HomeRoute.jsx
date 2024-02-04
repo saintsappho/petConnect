@@ -16,11 +16,14 @@ import ProfileModal from "./ProfileModal";
 import useFetchData from "../hooks/useFetchData";
 // styles
 import "../styles/TopNav.scss";
+import "../styles/bubblyButton.scss"
 // import './App.css'
 
 export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {
+  //state 
   const [create, setCreate] = useState(false);
-  //calling all backend routes to check if they are working and ensure data is being sent to the frontend
+  const { isLoading, error, user, isAuthenticated } = useAuth0();
+  //Backend routes to fetch data stored here.
 
   // useFetchData("http://localhost:8080/users/", "users");
   // useFetchData("http://localhost:8080/posts/", "posts");
@@ -32,9 +35,8 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
   // useFetchData("http://localhost:8080/likes/", "likes");
   // useFetchData("http://localhost:8080/attendees/", "attendees");
   // useFetchData("http://localhost:8080/follows/", "follows");
- 
-  const { isLoading, error, user, isAuthenticated } = useAuth0();
 
+  
     
     useEffect(() => {
       if (isAuthenticated) {
@@ -49,11 +51,12 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
     <div>
       <header>
         {petData && <NavBar petData={petData} onPetSelect={onPetSelect} />}
-        <div>
+        <div className="title-card">
           <h1>Welcome to PetConnect</h1>
+          <button className="bubbly-button" onClick={() => setCreate(!create)}>New Post</button>
         </div>
-        {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
-        {create && <NewPost />}
+        {create && <div className="new-post-card"><NewPost /></div>}
+        
         <div>
           {!user && <LoginButton />}
           {error && <p>Authentication Error</p>}

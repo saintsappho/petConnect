@@ -19,6 +19,20 @@ function App() {
   const { user, isLoading, error } = useAuth0();
   const [modal, setModal] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  // animation for fancy button
+  var animateButton = function(e) {
+    e.preventDefault;
+    e.target.classList.remove('animate');
+    e.target.classList.add('animate');
+    setTimeout(function(){
+      e.target.classList.remove('animate');
+    },700);
+  };
+  var bubblyButtons = document.getElementsByClassName("bubbly-button");
+  for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+  }
+  
 
   const petData = [
     { pet_id: 1, name: 'Max', age: 5 },
@@ -49,7 +63,6 @@ function App() {
   
   return (
     <div>
-      {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <Loading />}
       {!error && !isLoading && user && (
@@ -59,6 +72,7 @@ function App() {
           <UserProfile />
         </>
       )}
+      {!user && <LoginButton />}
       {modal && (
         <ProfileModal
           handleListSelect={handleListSelect}
