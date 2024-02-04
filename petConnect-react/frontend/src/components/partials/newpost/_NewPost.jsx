@@ -10,7 +10,14 @@ export default function AddPostForm() {
   const [content, setContent] = useState("");
   const [style, setStyle] = useState("text-post");
   const [image, setImage] = useState(null);
-
+  const [postData, setPostData] = useState({
+    user_ID: 1, // hard-coded for now
+    pet_ID: 1, // hard-coded for now
+    title: title,
+    content: content,
+    style: style,
+    image_file: image,
+  });
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -27,21 +34,23 @@ export default function AddPostForm() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const postDataToSend = {
-    title: title,
-    content: content,
-    imageURL: image
+    e.preventDefault();
+    try {
+      await setPostData({
+        title: title,
+        content: content,
+        image_file: image,
+      });
+      const response = await axios.post(
+        "http://localhost:8080/posts/",
+        postData,
+      );
+      console.log("postData: ", postData); // Handle success (show a message, redirect etc.)
+      console.log("Post created:", response.data); // Handle success (show a message, redirect etc.)
+    } catch (error) {
+      console.error("Error creating post:", error.message); // Handle error (show a message, log, etc.)
+    }
   };
-  console.log('postData:', postDataToSend); // <- Access the latest state
-  
-  try {
-    const response = await axios.post('http://localhost:8080/posts/', postDataToSend);
-    console.log('Post created:', response.data);
-  } catch (error) {
-    console.error('Error creating post:', error.message);
-  }
-};
 
   return (
     <div className="new-post">

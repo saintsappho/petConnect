@@ -1,31 +1,37 @@
 /* eslint-disable react/prop-types */
 // dependencies
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
 // components
-import PetPost from './_PetPost.jsx';
+import PetPost from "./_PetPost.jsx";
+// hooks
+import useFetchData from "../../hooks/useFetchData.js";
 
-export default function PetPostList () {
-  const [posts, setPosts] = useState([]);
+export default function Feed(props) {
+  const [posts, setPosts] = useState();
+  const { user } = props;
 
-  const fetchData = async (url, target) => {
-    try {
-      const response = await axios.get(url);
-      setPosts(response.data);
-    } catch (error) {
-      console.error(`Error fetching data from ${target}:`, error.message);
-    }
-  };
   useEffect(() => {
-    fetchData("http://localhost:8080/posts/", "posts");
-  }, []);
+    async function fetchPosts() {
+      try {
+        const response = await useFetchData("http://localhost:8080/posts");
+        setPosts(response.data); // Update the posts state with the fetched data
+      } catch (error) {
+        console.error("Error fetching posts:", error.message);
+      }
+    }
+    fetchPosts();
+  }, [posts]); // Run only if posts changes
 
-  return (
+  if (!posts) return (<>
+      <h1>No posts to show </h1>
+      <p>[emptyboxgif]</p>
+    </>
+    );
+  if (posts) return (
     <div>
       {posts.map((post) => (
-        <PetPost key={post.id} petPost={post} />
+        <PetPost key={post.post_ID} petPost={post} />
       ))}
     </div>
   );
 }
-
