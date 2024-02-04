@@ -20,7 +20,7 @@
   cursor: pointer;
   width: 85px;
   height: 85px;
-  animation: colorchange 10s infinite linear;
+  animation: colorchange 7s infinite linear;
   border-radius: 50%; /* Makes the image circular */
   background-image: url('./public/RoundLogo.png');
   background-size: 154%;
@@ -30,18 +30,17 @@
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
   margin-left: 75px;
-  
-  @keyframes colorchange {
-    0% {box-shadow: 0 0 55px rgb(0, 238, 255);}
-    50% {box-shadow: 0 0 55px rgb(163, 26, 120);}
-    100% {box-shadow: 0 0 55px rgb(0, 238, 255);}
-  }
-
 
   &:hover {
     box-shadow: 0 0 50px rgba(255, 86, 2, 0.825); /* Adds a shadow */
     transform: scale(1.1);
     transition: all 0.3s ease-in-out;
+  }
+
+  @keyframes colorchange {
+    0% {box-shadow: 0 0 65px rgb(0, 238, 255);}
+    50% {box-shadow: 0 0 65px rgb(255, 9, 9); /* Adds a shadow */}
+    100% {box-shadow: 0 0 65px rgb(0, 238, 255);}
   }
 }
 

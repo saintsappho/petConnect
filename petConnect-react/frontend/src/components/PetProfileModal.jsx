@@ -25,8 +25,8 @@ const petData = {
 const PetProfileModal = ({ closeModal }) => {
   return (
     <div className="profile-modal">
-      <button className="profile-modal__close-button" onClick={closeModal}></button>
-      <PetProfile pet={petData} selectedPet={selectedPet} />
+      <button className="profile-modal__close-button" placeholder="X" onClick={closeModal}></button>
+      <PetProfile petData ={petData} selectedPetData={petData} />
     </div>
   );
 };

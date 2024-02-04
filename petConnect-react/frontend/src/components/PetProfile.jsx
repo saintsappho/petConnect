@@ -2,7 +2,8 @@ import "../styles/PetProfile.css";
 
 // Pet Profile Component
 
-export default function PetProfile({ petData }) {
+export default function PetProfile({ selectedPetData }) {
+  const { pet_name, age, breed, location, routines } = selectedPetData ;
   return (
     <div className="pet-profile-container">
       <img className="pet-profile-pic" src="./src/assets/Image(1).jpeg" alt="Pet Profile Picture" />
