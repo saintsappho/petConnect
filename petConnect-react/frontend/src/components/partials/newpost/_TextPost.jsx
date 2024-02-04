@@ -11,30 +11,29 @@ export default function TextPost(props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-row">
-        <div className="input-data">
-          <input
+        <div className="input-data textarea">
+          <textarea
             type="text"
             className="input-data"
             value={title}
             onChange={handleTitleChange}
-          />
+          ></textarea>
           <div className="underline"></div>
           <label htmlFor="title">Title:</label>
         </div>
       </div>
       <div className="form-row">
-        <div className="input-data">
-          <textarea
-            id="content"
+         <div className="input-data textarea">
+            <textarea id="content"
             value={content}
             onChange={handleContentChange}
-          ></textarea>
-          <div className="underline"></div>
-          <label htmlFor="content">Content:</label>
-        </div>
+            rows="8" cols="80" required></textarea>
+            <br />
+            <div className="underline"></div>
+            <label htmlFor="">Write your message</label>
+      <button className="bubbly-button" type="submit">Post!</button>
       </div>
-
-      <button className="bubbly-button" type="submit">Add Post</button>
+    </div>
     </form>
   );
 }
