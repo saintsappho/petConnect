@@ -18,7 +18,7 @@ export default function UserProfile () {
   };
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    return <div>Loading ...<br/><img className="loading-cat" src="./src/assets/petProfileHead.gif" alt="Pet Profile Picture" /></div>;
   }
 
   return (

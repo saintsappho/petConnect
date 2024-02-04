@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-export default function TextPost(props) {
+export default function EventPost(props) {
   const {
     handleSubmit,
     handlePostStateChange,
@@ -18,7 +17,7 @@ export default function TextPost(props) {
             rows="8" cols="20" required
           ></textarea>
           <div className="underline"></div>
-          <label htmlFor="new-title">Title:</label>
+          <label htmlFor="new-title">Event Title:</label>
         </div>
       </div>
       <div className="form-row">

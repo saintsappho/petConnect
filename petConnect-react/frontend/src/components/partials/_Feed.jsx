@@ -12,12 +12,14 @@ export default function Feed(props) {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
   useFetchData("http://localhost:8080/posts", "posts", setPosts, setError);
-
+  useEffect(() => {
+    console.log("Fetched posts:", posts);
+  }, [posts]);
   if (error) {
     return (
       <>
         <h1>Error fetching posts: {error}</h1>
-        <p>[errorboxgif]</p>
+        <img src="../../assets/empty.gif" alt="empty box gif" />
       </>
     );
   }
@@ -25,7 +27,7 @@ export default function Feed(props) {
     return (
       <>
         <h1>No posts to show </h1>
-        <p>[emptyboxgif]</p>
+        <img src="../../assets/empty.gif" alt="empty box gif" />
       </>
     );
   }
@@ -33,7 +35,8 @@ export default function Feed(props) {
   return (
     <div className="container">
       {posts.reverse().map((post) => (
-        <PetPost key={post.post_ID} petPost={post} />
+        console.log(`this time it mapped this post: ${post.post_id + post.user_id}`),
+        <PetPost key={post.post_id } petPost={post} />
       ))}
     </div>
   );
