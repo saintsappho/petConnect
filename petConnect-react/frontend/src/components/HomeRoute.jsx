@@ -38,14 +38,14 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
 
   
     
-    useEffect(() => {
-      if (isAuthenticated) {
-        console.log('User from Homeroute', user);
-        axios.post('http://localhost:8080/users/', user).then( response => {
-          console.log('response', response);
-        });
-      }
-    }, [isAuthenticated]);
+    // useEffect(() => {
+    //   if (isAuthenticated) {
+    //     console.log('User from Homeroute', user);
+    //     axios.post('http://localhost:8080/', user).then( response => {
+    //       console.log('response', response);
+    //     });
+    //   }
+    // }, [isAuthenticated]);
   
   return (
     <div>

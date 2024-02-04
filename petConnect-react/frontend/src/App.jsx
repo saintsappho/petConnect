@@ -61,13 +61,13 @@ function App() {
     setModal(false);
   }, [user]);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      axios.post('http://localhost:8080/users/', { user }).then(response => {
-        console.log('response', response);
-      });
-    }
-  }, [isAuthenticated, user]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     axios.post('http://localhost:8080/users/', { user }).then(response => {
+  //       console.log('response', response);
+  //     });
+  //   }
+  // }, [isAuthenticated, user]);
   
   return (
     <div>
