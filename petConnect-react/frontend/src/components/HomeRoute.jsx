@@ -109,8 +109,6 @@ export default function HomeRoute() {
 
 
       <div>
-        <UserProfile />
-        <PetProfile />
         <PetPost />
       </div>
 
@@ -120,5 +118,4 @@ export default function HomeRoute() {
         </p>
       </footer>
     </div>
-  );
-}
+  )}

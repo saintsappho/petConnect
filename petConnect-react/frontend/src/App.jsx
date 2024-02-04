@@ -1,15 +1,15 @@
-import { useState } from "react";
 import "./App.css";
-import HomeRoute from "./components/HomeRoute";
-import Login from "./components/Login";
+import ProfileModal from "./components/ProfileModal";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import axios from "axios";
+import UserProfile from "./components/UserProfile";
+import LoginButton from "./components/Login";
+import LogoutButton from "./components/Logout";
+import HomeRoute from "./components/HomeRoute";
+
 
 function App() {
   return (
     <div>
-      {/* <HomeRoute /> */}
       {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
@@ -17,7 +17,15 @@ function App() {
         <>
           <LogoutButton />
           <UserProfile />
+          <HomeRoute />
         </>
+      )}
+      {modal && (
+        <ProfileModal
+          selectedPet={selectedPet}
+          hideModal={onCloseModal}
+          showModal={showModal}
+        />
       )}
     </div>
   );
