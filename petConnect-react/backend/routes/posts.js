@@ -23,8 +23,7 @@ router.post("/", async (req, res) => {
       title: req.body.title,
       content: req.body.content,
       style: req.body.style,
-      sub_ID: 1, // hard-coded for now
-      imageURL: req.body.imageURL 
+      image_file: req.body.image_file 
     } 
     const thisPost = await newPost(postData);
     res.status(201).json(thisPost);

@@ -3,13 +3,6 @@
 export default function PetPost(props) {
   const { petPost } = props;
   console.log('PetPost:', petPost);
-  if (!petPost) {
-    return (<>
-      <h1>No posts to show </h1>
-      <p>[emptyboxgif]</p>
-    </>
-    ); // or render a loading message or handle the case when petPost is undefined
-  }
   if (petPost.style === "text") {
     return (
       <div className="post text">
@@ -23,7 +16,7 @@ export default function PetPost(props) {
     return (
       <div className="post photo">
         <h2>{petPost.pet_ID}</h2>
-        <img src={petPost.imageURL} alt={petPost.title} />
+        <img src={petPost.image_file} alt={petPost.title} />
         <h3>{petPost.content}</h3>
       </div>
     );

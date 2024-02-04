@@ -11,6 +11,8 @@ import PetProfile from "./PetProfile";
 import UserProfile from "./UserProfile";
 import NewPost from "./partials/newpost/_NewPost";
 import ProfileModal from "./ProfileModal";
+//hooks 
+import useFetchData from "../hooks/useFetchData";
 // styles
 import "../styles/TopNav.scss";
 // import './App.css'
@@ -43,26 +45,18 @@ export default function HomeRoute() {
     console.log(pet);
   };
 
-  const fetchData = async (url, target) => {
-    try {
-      const response = await axios.get(url);
-      console.log(`Data from ${target}:`, response.data);
-    } catch (error) {
-      console.error(`Error fetching data from ${target}:`, error.message);
-    }
-  };
-
+  
   useEffect(() => {
-    fetchData("http://localhost:8080/users/", "users");
-    setPosts(fetchData("http://localhost:8080/posts/"));
-    fetchData("http://localhost:8080/pets/", "pets");
-    fetchData("http://localhost:8080/events/", "events");
-    fetchData("http://localhost:8080/chats/", "chats");
-    fetchData("http://localhost:8080/messages/", "messages");
-    fetchData("http://localhost:8080/comments/", "comments");
-    fetchData("http://localhost:8080/likes/", "likes");
-    fetchData("http://localhost:8080/attendees/", "attendees");
-    fetchData("http://localhost:8080/follows/", "follows");
+    // fetchData("http://localhost:8080/users/", "users");
+    useFetchData("http://localhost:8080/posts/", "posts");
+    // fetchData("http://localhost:8080/pets/", "pets");
+    // fetchData("http://localhost:8080/events/", "events");
+    // fetchData("http://localhost:8080/chats/", "chats");
+    // fetchData("http://localhost:8080/messages/", "messages");
+    // fetchData("http://localhost:8080/comments/", "comments");
+    // fetchData("http://localhost:8080/likes/", "likes");
+    // fetchData("http://localhost:8080/attendees/", "attendees");
+    // fetchData("http://localhost:8080/follows/", "follows");
   }, []);
 
   // useEffect(() => {
@@ -111,7 +105,7 @@ export default function HomeRoute() {
       <div>
         <UserProfile />
         <PetProfile />
-        <Feed fetchData={fetchData} />
+        <Feed />
       </div>
 
       <footer>

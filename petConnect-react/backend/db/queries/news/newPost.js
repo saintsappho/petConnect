@@ -8,8 +8,7 @@ const newPost = async (postData) => {
     title, 
     content, 
     style, 
-    sub_ID, 
-    imageURL 
+    image_file 
   } = postData; //destructuring
   try {
     const data = await db.query(
@@ -19,11 +18,10 @@ const newPost = async (postData) => {
         title,
         content,
         style, 
-        sub_ID, 
-        imageURL
-      ) VALUES ($1, $2, $3, $4, $5) 
+        image_file
+      ) VALUES ($1, $2, $3, $4, $5, $6) 
       RETURNING *;`,
-      [user_ID, pet_ID, title, content, style, sub_ID, imageURL],
+      [user_ID, pet_ID, title, content, style, image_file],
     );
 
     return data.rows[0];
@@ -32,4 +30,3 @@ const newPost = async (postData) => {
   }
 };
 module.exports = { newPost };
-
