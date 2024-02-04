@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
     res.send(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Internal Server Error");
+    res.status(500).send("Failed to get Posts");
   }
 });
 
@@ -30,9 +30,8 @@ router.post("/", async (req, res) => {
     res.status(201).json(thisPost);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Failed to Post");
+    res.status(500).send("Failed to create Post");
   }
 });
 
 module.exports = router;
-// module.exports = { makeNewPost };

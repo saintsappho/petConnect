@@ -1,10 +1,11 @@
-export default function TextPost(props) {
-  const { content, handleTitleChange, handleContentChange, handleSubmit } = props;
+/* eslint-disable react/prop-types */
+export default function PhotoPost(props) {
+  const { content, handleContentChange, handleSubmit, handleImageUpload } = props;
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="file">Photo:</label>
-      <input type="file" id="file" onChange={handleTitleChange} />
+      <input type="file" id="file" onChange={handleImageUpload} />
 
       <label htmlFor="content">Content:</label>
       <textarea

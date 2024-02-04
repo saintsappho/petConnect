@@ -1,19 +1,19 @@
+// dependencies
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+// components
 import NavBar from "./NavBar";
 import PetPost from "./partials/_PetPost";
-import { useState } from "react";
-// import './App.css'
-// import Login from './components/Login'
-import { useAuth0 } from "@auth0/auth0-react";
-import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import PetProfile from "./PetProfile";
 import UserProfile from "./UserProfile";
 import NewPost from "./partials/newpost/_NewPost";
-import { useEffect } from "react";
-import axios from "axios";
 import ProfileModal from "./ProfileModal";
-
+// styles
+import "../styles/TopNav.scss";
+// import './App.css'
 
 export default function HomeRoute() {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend

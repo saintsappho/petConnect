@@ -16,7 +16,7 @@ export default function Navbar({ pets, onPetSelect }) {
 
       <li className="top-nav-bar__logo">
         <a href="/">
-          <img src="../public/RoundLogo.png"></img>
+          <img src="../RoundLogo.png"></img>
         </a>
       </li>
 
