@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/DirectMessages.scss";
 import NavBar from "./NavBar";
-import Conversations from "./messaging/conversations";
+import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
 export default function DirectMessages() {
