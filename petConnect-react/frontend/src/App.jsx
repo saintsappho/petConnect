@@ -41,6 +41,9 @@ function App() {
     openModal(pet);
     console.log(pet);
   }
+  useEffect(() => {
+    setModal(false);
+  }, [user]);
   
   return (
     <div>
@@ -49,10 +52,9 @@ function App() {
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          <HomeRoute />
+          <HomeRoute petData={petData} onPetSelect={onPetSelect} />
           <LogoutButton />
           <UserProfile />
-          <HomeRoute petData={petData} onPetSelect={onPetSelect} />
         </>
       )}
       {modal && (
