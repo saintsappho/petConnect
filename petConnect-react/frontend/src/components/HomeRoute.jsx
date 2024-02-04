@@ -4,7 +4,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 // components
 import NavBar from "./NavBar";
-import PetPost from "./partials/_PetPost";
+import Feed from "./partials/_Feed";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import PetProfile from "./PetProfile";
@@ -20,6 +20,7 @@ export default function HomeRoute() {
   const [create, setCreate] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [posts, setPosts] = useState([]);
   // const [petData, setPetData] = useState([]);
 
   const petData = [
@@ -42,27 +43,27 @@ export default function HomeRoute() {
     console.log(pet);
   }
 
-  // useEffect(() => {
-  //   const fetchData = async (url, target) => {
-  //     try {
-  //       const response = await axios.get(url);
-  //       console.log(`Data from ${target}:`, response.data);
-  //     } catch (error) {
-  //       console.error(`Error fetching data from ${target}:`, error.message);
-  //     }
-  //   };
-
-  //   fetchData("http://localhost:8080/users/", "users");
-  //   fetchData("http://localhost:8080/posts/", "posts");
-  //   fetchData("http://localhost:8080/pets/", "pets");
-  //   fetchData("http://localhost:8080/events/", "events");
-  //   fetchData("http://localhost:8080/chats/", "chats");
-  //   fetchData("http://localhost:8080/messages/", "messages");
-  //   fetchData("http://localhost:8080/comments/", "comments");
-  //   fetchData("http://localhost:8080/likes/", "likes");
-  //   fetchData("http://localhost:8080/attendees/", "attendees");
-  //   fetchData("http://localhost:8080/follows/", "follows");
-  // }, []);
+  const fetchData = async (url, target) => {
+    try {
+      const response = await axios.get(url);
+      console.log(`Data from ${target}:`, response.data);
+    } catch (error) {
+      console.error(`Error fetching data from ${target}:`, error.message);
+    }
+  };
+  
+  useEffect(() => {
+    fetchData("http://localhost:8080/users/", "users");
+    setPosts(fetchData("http://localhost:8080/posts/"));
+    fetchData("http://localhost:8080/pets/", "pets");
+    fetchData("http://localhost:8080/events/", "events");
+    fetchData("http://localhost:8080/chats/", "chats");
+    fetchData("http://localhost:8080/messages/", "messages");
+    fetchData("http://localhost:8080/comments/", "comments");
+    fetchData("http://localhost:8080/likes/", "likes");
+    fetchData("http://localhost:8080/attendees/", "attendees");
+    fetchData("http://localhost:8080/follows/", "follows");
+  }, []);
  
   // useEffect(() => {
   //   axios.get("http://localhost:8080/pets/").then((response) => {
@@ -112,7 +113,7 @@ export default function HomeRoute() {
       <div>
         <UserProfile />
         <PetProfile />
-        <PetPost />
+        <Feed fetchData={fetchData} />
       </div>
 
       <footer>
