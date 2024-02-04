@@ -4,6 +4,7 @@ import HomeRoute from './components/HomeRoute'
 import LoginButton from './components/Login'
 import LogoutButton from './components/Logout'
 import UserProfile from './components/UserProfile'
+import Loading from './components/Loading'
 // dependencies
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -50,7 +51,7 @@ function App() {
     <div>
       {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
-      {!error && isLoading && <p>Loading...</p>}
+      {!error && isLoading && <Loading />}
       {!error && !isLoading && user && (
         <>
           <HomeRoute petData={petData} onPetSelect={onPetSelect} />

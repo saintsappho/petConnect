@@ -7,10 +7,10 @@ import PetPost from "./_PetPost.jsx";
 import useFetchData from "../../hooks/useFetchData.js";
 
 export default function Feed(props) {
+  const { user } = props;
+  
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const { user } = props;
-
   useFetchData("http://localhost:8080/posts", "posts", setPosts, setError);
 
   if (error) {
@@ -32,7 +32,7 @@ export default function Feed(props) {
 
   return (
     <div className="container">
-      {posts.map((post) => (
+      {posts.reverse().map((post) => (
         <PetPost key={post.post_ID} petPost={post} />
       ))}
     </div>

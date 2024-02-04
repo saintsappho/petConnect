@@ -8,7 +8,7 @@ export default function PetPost(props) {
       <div class="card">
         <figure class="card__thumb">
           <img
-            src="https://source.unsplash.com/3THn0EN_Ydo/300x510"
+            src="https://source.unsplash.com/qXMpNtNp1uE/300x510"
             alt="Picture by David Monje"
             class="card__image"
           ></img>
@@ -75,7 +75,7 @@ export default function PetPost(props) {
             <img
               src={
                 petPost.image_file ||
-                "https://source.unsplash.com/3THn0EN_Ydo/300x510"
+                "https://source.unsplash.com/71u2fOofI-U/300x510"
               }
               alt={petPost.content}
               class="card__image"
