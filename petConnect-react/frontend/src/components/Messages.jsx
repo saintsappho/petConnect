@@ -4,12 +4,23 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:4000");
 
 function Messages() {
+  // Room state
+  const [chat, setChat] = useState("");
+  // Message State
   const [message, setMessage] = useState("");
   const [messageReceived, setMessageReceived] = useState("");
-  function sendMessage() {
-    console.log("Button clicked");
-    socket.emit("send_message", { message: message });
+
+  const joinChat = () => {
+    if (chat !== "") {
+      socket.emit("join_chat", chat);
+    }
   }
+  
+  const sendMessage = () => {
+    console.log("Button clicked");
+    socket.emit("send_message", { message, chat });
+  };
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageReceived(data.message);
@@ -21,10 +32,17 @@ function Messages() {
       <input
         placeholder="Message"
         onChange={(e) => {
-          setMessage(e.target.value);
+          setChat(e.target.value);
         }}
       />
-      <button onClick={sendMessage}>Send message</button>
+      <button onClick={joinChat}>Join the Chat</button>
+      <input
+      placeholder="Message..."
+      onChange={(e) => {
+        setMessage(e.target.value);
+      }}
+      />
+      <button onClick={sendMessage}>Send</button>
       <h1>
         Message: {messageReceived}</h1>
     </div>
