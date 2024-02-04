@@ -21,12 +21,11 @@ const petData = {
   registration_date: "08/01/2021"
 };
 
-const ProfileModal = ({ hideModal }) => {
+const ProfileModal = ({ closeModal }) => {
   return (
     <div className="profile-modal">
-      <h2 className="profile-modal__title">Pet Profile</h2>
+      <button className="profile-modal__close-button" onClick={closeModal}></button>      
       <PetProfile pet={petData} selectedPet={selectedPet} />
-      <button className="profile-modal__close-button" onClick={hideModal}></button>
     </div>
   );
 };

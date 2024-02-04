@@ -14,9 +14,9 @@
 .profile-item label {
   font-weight: bold;
 }
-.profile-pic {
-  width: 300px;
-  height: 300px;
+img.pet-profile-pic {
+  width: 275px;
+  height: 275px;
   border-radius: 50%;
   object-fit: cover;
 }

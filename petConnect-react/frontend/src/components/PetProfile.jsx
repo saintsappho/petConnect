@@ -1,11 +1,11 @@
-
+import "../styles/PetProfile.css";
 
 // Pet Profile Component
 
 export default function PetProfile() {
   return (
     <div className="pet-profile-container">
-      <img className="pet-profile-pic" src="./src/assets/puppy.jpg" alt="Pet Profile Picture" />
+      <img className="pet-profile-pic" src="./src/assets/Image(1).jpeg" alt="Pet Profile Picture" />
     
       <div className="pet-profile-header">
         <h1>Maxwell</h1>

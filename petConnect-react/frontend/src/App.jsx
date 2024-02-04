@@ -48,7 +48,7 @@ function App() {
   }, [user]);
   
   return (
-    <body>
+    <div className="App">
     <div>
       {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
@@ -69,7 +69,7 @@ function App() {
           closeModal={closeModal}
         />
       )}
-  </body>    
+  </div>    
   );
 }
 
