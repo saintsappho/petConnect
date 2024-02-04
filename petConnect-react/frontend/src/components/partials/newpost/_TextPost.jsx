@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function TextPost(props) {
   const { title, content, handleTitleChange, handleContentChange, handleSubmit } = props;
 

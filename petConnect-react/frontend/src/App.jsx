@@ -1,10 +1,12 @@
-import { useState } from "react";
-import "./App.css";
+// dependencies
+import { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
+// components
 import HomeRoute from "./components/HomeRoute";
 import Login from "./components/Login";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
-import axios from "axios";
+//styles
+import "./App.css";
 
 function App() {
   return (

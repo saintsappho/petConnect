@@ -4,21 +4,13 @@ import PhotoPost from "./_PhotoPost";
 import axios from "axios";
 // import { post } from '../../../../../backend/routes/users';
 
-export default function AddPostForm () {
+export default function AddPostForm() {
   //
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [style, setStyle] = useState("text-post");
   const [image, setImage] = useState(null);
-  const [postData, setPostData] = useState({
-    user_ID: 1, // hard-coded for now
-    pet_ID: 1, // hard-coded for now
-    title: `${title}`,
-    content: `${content}`,
-    style: `${style}`,
-    sub_ID: 1, // hard-coded for now
-    imageURL: null, // hard-coded for now
-  });
+
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -35,21 +27,21 @@ export default function AddPostForm () {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setPostData({
-      title: title,
-      content: content,
-      imageURL: image
-  })
-    console.log('postData:', postData); // Handle success (show a message, redirect etc.
-    try {
-      const response = await axios.post('http://localhost:8080/posts/', postData);
-      console.log('Post created:', response.data); // Handle success (show a message, redirect etc.)
-     
-    } catch (error) {
-      console.error('Error creating post:', error.message); // Handle error (show a message, log, etc.)
-    }
+  e.preventDefault();
+  const postDataToSend = {
+    title: title,
+    content: content,
+    imageURL: image
   };
+  console.log('postData:', postDataToSend); // <- Access the latest state
+  
+  try {
+    const response = await axios.post('http://localhost:8080/posts/', postDataToSend);
+    console.log('Post created:', response.data);
+  } catch (error) {
+    console.error('Error creating post:', error.message);
+  }
+};
 
   return (
     <div className="new-post">
@@ -87,6 +79,4 @@ export default function AddPostForm () {
       {/* { style === "forum-post" && <ForumPost /> } */}
     </div>
   );
-};
-
-
+}
