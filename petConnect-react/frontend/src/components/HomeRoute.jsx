@@ -12,6 +12,7 @@ import Feed from "./partials/_Feed";
 import { useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "./PetProfileModal.jsx";
+import UserProfile from './UserProfile';
 
 //hooks 
 import useFetchData from "../hooks/useFetchData";
@@ -72,6 +73,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
       </header>
 
       <Feed />
+      <UserProfile />
       
       <footer>
         <p>
