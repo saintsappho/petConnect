@@ -35,7 +35,6 @@ export default function Feed(props) {
   return (
     <div className="container">
       {posts.reverse().map((post) => (
-        console.log(`this time it mapped this post: ${post.post_id + post.user_id}`),
         <PetPost key={post.post_id } petPost={post} />
       ))}
     </div>

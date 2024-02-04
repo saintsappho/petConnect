@@ -7,6 +7,19 @@ export default function PhotoPost(props) {
   } = props;
   const { image_file, content } = postState;
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Set the image_file state with the data URL
+        handlePostStateChange(reader.result, "image_file");
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-row">
@@ -16,8 +29,7 @@ export default function PhotoPost(props) {
             className="input-data"
             type="file"
             id="file"
-            value={image_file}
-            onChange={()=>handlePostStateChange(event, "image_file")}
+            onChange={handleFileChange}
           />
         </div>
       </div>

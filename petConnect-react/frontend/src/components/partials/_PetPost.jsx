@@ -1,8 +1,11 @@
-// import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function PetPost(props) {
   const { petPost } = props;
-  // console.log('PetPost:', petPost);
+  const [ imageSrc, setImageSrc ] = useState("https://source.unsplash.com/3THn0EN_Ydo/300x510");
+
+  console.log('PetPost:', petPost);
+
   if (petPost.style === "text") {
     return (
       <div className="card">
@@ -24,12 +27,12 @@ export default function PetPost(props) {
     );
   }
 
-  if (petPost.style === "photo") {
+  if (petPost.style === "photo-post") {
     return (
       <div className="card">
         <figure className="card__thumb">
           <img
-            src={petPost.image_file}
+            src={imageSrc || "https://source.unsplash.com/3THn0EN_Ydo/300x510"}
             alt={petPost.content}
             className="card__image"
           ></img>
