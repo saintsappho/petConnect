@@ -17,33 +17,9 @@ import ProfileModal from "./ProfileModal";
 import "../styles/TopNav.scss";
 // import './App.css'
 
-export default function HomeRoute() {
+export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
-  const [posts, setPosts] = useState([]);
-  // const [petData, setPetData] = useState([]);
-
-  const petData = [
-    { pet_id: 1, name: 'Max', age: 5 },
-    { pet_id: 2, name: 'Snoopy', age: 3 },
-    { pet_id: 3, name: 'Benji', age: 1 }
-  ];
-
-  const openModal = (pet) => {
-    setSelectedPet(pet);
-    setIsModalOpen(true);
-  }
-  const closeModal = () => {
-    setIsModalOpen(false);
-  }
-
-  const onPetSelect = (pet) => {
-    setSelectedPet(pet);    
-    openModal(pet);
-    console.log(pet);
-  }
 
   const fetchData = async (url, target) => {
     try {
@@ -104,7 +80,7 @@ export default function HomeRoute() {
         <ProfileModal onClose={closeModal}>
         {/* Display the selected pet's info here */}
         <p>PETPROFILE</p>
-      </ProfileModal>
+        </ProfileModal>
         )}
       </header>
 
@@ -125,5 +101,4 @@ export default function HomeRoute() {
         </p>
       </footer>
     </div>
-  );
-}
+  )}

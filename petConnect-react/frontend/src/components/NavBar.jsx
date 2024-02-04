@@ -2,15 +2,9 @@
 //The NavBar component will be a fixed navigation bar at the top of the page. It will contain links to the home page, the scheduling page, the messaging page, and either the login page or the user's profile page and logout button.
 //The NavBar will be visible on all pages of the app, and will be responsive to different screen sizes.
 
-export default function Navbar({ onPetSelect, petData }) {
+export default function Navbar({ onPetSelect, petData, handleListSelect }) {
   // State for pet list selection
-  const handleListSelect = (event) => {
-    event.preventDefault(); 
-    const petId = event.target.value;
-    const pet = petData.find(pet => pet.pet_id === Number(petId));
-    onPetSelect(pet);
-  }
-  
+
 
   return (
     <nav className="top-nav-bar">
