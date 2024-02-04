@@ -8,6 +8,7 @@ import "../styles/TopNav.scss";
 import LoginButton from "./Login";
 import LogoutButton from "./Logout";
 import NewPost from "./partials/newpost/_NewPost";
+import Feed from "./partials/_Feed";
 import { useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "./ProfileModal";
@@ -25,7 +26,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
   
   useEffect(() => {
     // useFetchData("http://localhost:8080/users/", "users");
-    useuseFetchData("http://localhost:8080/posts/", "posts");
+    useFetchData("http://localhost:8080/posts/", "posts");
     // useFetchData("http://localhost:8080/pets/", "pets");
     // useFetchData("http://localhost:8080/events/", "events");
     // useFetchData("http://localhost:8080/chats/", "chats");
@@ -78,8 +79,6 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
       </header>
 
       <div>
-        <UserProfile />
-        <PetProfile />
         <Feed />
       </div>
 
