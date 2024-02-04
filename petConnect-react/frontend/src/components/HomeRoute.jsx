@@ -24,24 +24,24 @@ export default function HomeRoute() {
   // const [petData, setPetData] = useState([]);
 
   const petData = [
-    { pet_id: 1, name: 'Max', age: 5 },
-    { pet_id: 2, name: 'Snoopy', age: 3 },
-    { pet_id: 3, name: 'Benji', age: 1 }
+    { pet_id: 1, name: "Max", age: 5 },
+    { pet_id: 2, name: "Snoopy", age: 3 },
+    { pet_id: 3, name: "Benji", age: 1 },
   ];
 
   const openModal = (pet) => {
     setSelectedPet(pet);
     setIsModalOpen(true);
-  }
+  };
   const closeModal = () => {
     setIsModalOpen(false);
-  }
+  };
 
   const onPetSelect = (pet) => {
-    setSelectedPet(pet);    
+    setSelectedPet(pet);
     openModal(pet);
     console.log(pet);
-  }
+  };
 
   const fetchData = async (url, target) => {
     try {
@@ -51,7 +51,7 @@ export default function HomeRoute() {
       console.error(`Error fetching data from ${target}:`, error.message);
     }
   };
-  
+
   useEffect(() => {
     fetchData("http://localhost:8080/users/", "users");
     setPosts(fetchData("http://localhost:8080/posts/"));
@@ -64,7 +64,7 @@ export default function HomeRoute() {
     fetchData("http://localhost:8080/attendees/", "attendees");
     fetchData("http://localhost:8080/follows/", "follows");
   }, []);
- 
+
   // useEffect(() => {
   //   axios.get("http://localhost:8080/pets/").then((response) => {
   //     setPetData(response.data);
@@ -77,38 +77,36 @@ export default function HomeRoute() {
 
   // console.log(pets);
 
-
   const { isLoading, error, user } = useAuth0();
   return (
     <div>
-      {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
-      {create && <NewPost />}
-      <div>
-        {!user && <LoginButton />}
-        {error && <p>Authentication Error</p>}
-        {!error && isLoading && <p>Loading...</p>}
-        {!error && !isLoading && user && (
-          <>
-            <LogoutButton />
-          </>
-        )}
-      </div>
-      <div>
-        <h1>Welcome to PetConnect</h1>
-      </div>
-      <div></div>
-
       <header>
-        <NavBar petData={petData} onPetSelect={onPetSelect}/>
+        <NavBar petData={petData} onPetSelect={onPetSelect} />
+        <div>
+          <h1>Welcome to PetConnect</h1>
+        </div>
+        {!create && (
+          <button onClick={() => setCreate(!create)}>New Post</button>
+        )}
+        {create && <NewPost />}
+        <div>
+          {!user && <LoginButton />}
+          {error && <p>Authentication Error</p>}
+          {!error && isLoading && <p>Loading...</p>}
+          {!error && !isLoading && user && (
+            <>
+              <LogoutButton />
+            </>
+          )}
+        </div>
 
         {isModalOpen && (
-        <ProfileModal onClose={closeModal}>
-        {/* Display the selected pet's info here */}
-        <p>PETPROFILE</p>
-      </ProfileModal>
+          <ProfileModal onClose={closeModal}>
+            {/* Display the selected pet's info here */}
+            <p>PETPROFILE</p>
+          </ProfileModal>
         )}
       </header>
-
 
       <div>
         <UserProfile />
