@@ -3,7 +3,7 @@ import "../styles/PetProfile.css";
 // Pet Profile Component
 
 export default function PetProfile({ selectedPetData }) {
-  const { pet_name, age, breed, location, routines } = selectedPetData ;
+  const { pet_name, age, breed, location, routines, medical_conditions, diet, allergies, registration_date } = selectedPetData ;
   return (
     <div className="pet-profile-container">
       <img className="pet-profile-pic" src="./src/assets/Image(1).jpeg" alt="Pet Profile Picture" />
@@ -16,32 +16,32 @@ export default function PetProfile({ selectedPetData }) {
       </div>
 
       <div className="pet-profile-item">
-        <label>Breed:</label>
+        <label>Breed: {breed}</label>
         <span id="breed"></span>
       </div>
 
       <div className="pet-profile-item">
-        <label>Medical Conditions:</label>
+        <label>Medical Conditions: {medical_conditions}</label>
         <span id="medical-conditions"></span>
       </div>
 
       <div className="pet-profile-item">
-        <label>Diet:</label>
+        <label>Diet: {diet}</label>
         <span id="diet"></span>
       </div>
 
       <div className="pet-profile-item">
-        <label>Allergies:</label>
+        <label>Allergies: {allergies}</label>
         <span id="allergies"></span>
       </div>
 
       <div className="pet-profile-item">
-        <label>Routines:</label>
+        <label>Routines: {routines}</label>
         <span id="routines"></span>
       </div>
 
       <div className="pet-profile-item">
-        <label>Registration Date:</label>
+        <label>Registration Date: {registration_date}</label>
         <span id="registration-date"></span>
       </div>
     </div>
