@@ -1,5 +1,6 @@
 const express = require('express');
 const router  = express.Router();
+<<<<<<< HEAD
 const app = express();
 const { getComments } = require('../db/queries/gets/getComments');
 const http = require('http');
@@ -22,12 +23,15 @@ io.on("connection", (socket) => {
 server.listen(4000, () => {
   console.log("listening on *:4000");
 });
+=======
+const { getMessages } = require('../db/queries/gets/getMessages');
+>>>>>>> Main
 
 router.get('/', async (req, res) => {
   try {
-    const comments = await getComments()
-    console.log(comments)
-    res.send(comments)
+    const messages = await getMessages()
+    console.log(messages)
+    res.send(messages)
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

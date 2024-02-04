@@ -1,14 +1,31 @@
-import React from 'react';
-import PetPost from './PetPost';
+/* eslint-disable react/prop-types */
+// dependencies
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+// components
+import PetPost from './_PetPost.jsx';
 
-const PetPostList = ({ petPosts }) => {
+export default function PetPostList () {
+  const [posts, setPosts] = useState([]);
+
+  const fetchData = async (url, target) => {
+    try {
+      const response = await axios.get(url);
+      setPosts(response.data);
+    } catch (error) {
+      console.error(`Error fetching data from ${target}:`, error.message);
+    }
+  };
+  useEffect(() => {
+    fetchData("http://localhost:8080/posts/", "posts");
+  }, []);
+
   return (
     <div>
-      {petPosts.map((petPost) => (
-        <PetPost key={petPost.id} petPost={petPost} />
+      {posts.map((post) => (
+        <PetPost key={post.id} petPost={post} />
       ))}
     </div>
   );
-};
+}
 
-export default PetPostList;
