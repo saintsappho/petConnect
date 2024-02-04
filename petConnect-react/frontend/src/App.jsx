@@ -7,6 +7,7 @@ import UserProfile from './components/UserProfile'
 // dependencies
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import ProfileModal from './components/ProfileModal';
 import axios from "axios";
 
 
