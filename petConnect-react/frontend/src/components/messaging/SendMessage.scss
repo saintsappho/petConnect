@@ -1,0 +1,11 @@
+.send_message {
+  display: flex;
+  flex-direction: column;
+}
+
+.send_message__image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 15px;
+}

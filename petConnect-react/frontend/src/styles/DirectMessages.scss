@@ -1,0 +1,27 @@
+.direct_message {
+  height: calc(100vh - 70px);
+  display: flex;
+}
+
+.message_menu {
+  flex: 3.5;
+}
+
+.message_search {
+  width: 90%;
+  padding: 10px 0;
+}
+
+.message_box {
+  flex: 5.5;
+}
+
+.message_online {
+  flex: 3;
+}
+
+.message_menu_container,.message_box_container,.message_online_container {
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
