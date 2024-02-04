@@ -14,7 +14,7 @@ root.render(
       redirect_uri: window.location.origin
     }}
   >
-  <HomeRoute />
+  <App />
   </Auth0Provider >
   
 );
