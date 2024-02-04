@@ -31,7 +31,7 @@ export default function Feed(props) {
   }
 
   return (
-    <div>
+    <div className="container">
       {posts.map((post) => (
         <PetPost key={post.post_ID} petPost={post} />
       ))}

@@ -73,10 +73,8 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
         )}
       </header>
 
-      <div>
-        <Feed />
-      </div>
-
+      <Feed />
+      
       <footer>
         <p>
           Created by: <a href="Team13">Team13</a>
