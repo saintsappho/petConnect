@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const app = express();
-const { getComments } = require('../db/queries/gets/getComments');
+const { getMessages } = require('../db/queries/gets/getMessages');
 const http = require('http');
 const { Server } = require("socket.io");
 const cors = require('cors');

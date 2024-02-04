@@ -5,7 +5,7 @@ const { getChats } = require('../db/queries/gets/getChats');
 router.get('/', async (req, res) => {
   try {
     const chats = await getChats()
-    console.log(chats)
+    // console.log(chats)
     res.send(chats)
   } catch (err) {
     console.error(err);

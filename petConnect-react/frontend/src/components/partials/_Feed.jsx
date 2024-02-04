@@ -7,27 +7,30 @@ import PetPost from "./_PetPost.jsx";
 import useFetchData from "../../hooks/useFetchData.js";
 
 export default function Feed(props) {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState(null);
   const { user } = props;
 
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const response = await useFetchData("http://localhost:8080/posts");
-        setPosts(response.data); // Update the posts state with the fetched data
-      } catch (error) {
-        console.error("Error fetching posts:", error.message);
-      }
-    }
-    fetchPosts();
-  }, [posts]); // Run only if posts changes
+  useFetchData("http://localhost:8080/posts", "posts", setPosts, setError);
 
-  if (!posts) return (<>
-      <h1>No posts to show </h1>
-      <p>[emptyboxgif]</p>
-    </>
+  if (error) {
+    return (
+      <>
+        <h1>Error fetching posts: {error}</h1>
+        <p>[errorboxgif]</p>
+      </>
     );
-  if (posts) return (
+  }
+  if (!posts.length) {
+    return (
+      <>
+        <h1>No posts to show </h1>
+        <p>[emptyboxgif]</p>
+      </>
+    );
+  }
+
+  return (
     <div>
       {posts.map((post) => (
         <PetPost key={post.post_ID} petPost={post} />

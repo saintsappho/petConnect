@@ -27,7 +27,7 @@ export default function AddPostForm() {
   };
   const handleStyleChange = (e) => {
     setStyle(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const handleImageUpload = (e) => {
     setImage(e.target.files[0]) && console.log("file uploaded");
@@ -45,8 +45,8 @@ export default function AddPostForm() {
         "http://localhost:8080/posts/",
         postData,
       );
-      console.log("postData: ", postData); // Handle success (show a message, redirect etc.)
       console.log("Post created:", response.data); // Handle success (show a message, redirect etc.)
+      console.log("postData: ", postData); // Handle success (show a message, redirect etc.)
     } catch (error) {
       console.error("Error creating post:", error.message); // Handle error (show a message, log, etc.)
     }
