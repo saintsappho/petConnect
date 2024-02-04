@@ -1,18 +1,35 @@
 /* eslint-disable react/prop-types */
 export default function PhotoPost(props) {
-  const { content, handleContentChange, handleSubmit, handleImageUpload } =
-    props;
+  const {
+    handleSubmit,
+    handlePostStateChange,
+    postState
+  } = props;
+  const { image_file, content } = postState;
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Set the image_file state with the data URL
+        handlePostStateChange(reader.result, "image_file");
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-row">
         <div className="input-data textarea">
-          <label htmlFor="file">Photo:</label>
+          <label htmlFor="file">Upload your Photo:</label>
           <input
             className="input-data"
             type="file"
             id="file"
-            onChange={handleImageUpload}
+            onChange={handleFileChange}
           />
         </div>
       </div>
@@ -22,7 +39,7 @@ export default function PhotoPost(props) {
           <textarea
             id="new-content"
             value={content}
-            onChange={handleContentChange}
+            onChange={()=>{handlePostStateChange(event, "content")}}
             rows="8"
             cols="80"
             required
