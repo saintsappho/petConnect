@@ -11,12 +11,10 @@ export default function Navbar({ petData, handleListSelect }) {
   return (
     <nav className="top-nav-bar">
 
-      <li className="top-nav-bar__logo">
-        <a href="/">
-          <img src="../RoundLogo.png"></img>
-        </a>
-      </li>
+      <div className="top-nav-bar__logo">
+      </div>
 
+      <div className="top-nav-bar__links">
       <li className="top-nav-bar__item">
         <a href="/">Home</a>
       </li>
@@ -39,14 +37,11 @@ export default function Navbar({ petData, handleListSelect }) {
         </select>
       </form>
       </li>
-      
-      <li className="top-nav-bar__item">
-        <a href="/login">Login</a>
-      </li>
 
       <li className="top-nav-bar__item">
         <a href="/">if login "Profile" and "Logout"</a>
       </li>
+      </div>
     </nav>
   );
 }
