@@ -16,7 +16,7 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const { user, isLoading, error } = useAuth0();
+  const { user, isLoading, isAuthenticated, error } = useAuth0();
   const [modal, setModal] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   // animation for fancy button
@@ -60,6 +60,14 @@ function App() {
   useEffect(() => {
     setModal(false);
   }, [user]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      axios.post('http://localhost:8080/users/', { user }).then(response => {
+        console.log('response', response);
+      });
+    }
+  }, [isAuthenticated, user]);
   
   return (
     <div>
