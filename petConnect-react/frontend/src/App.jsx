@@ -29,6 +29,7 @@ function App() {
     event.preventDefault(); 
     const petId = event.target.value;
     const pet = petData.find(pet => pet.pet_id === Number(petId));
+    console.log(pet);
     onPetSelect(pet);
   }
   const closeModal = () => {
@@ -38,27 +39,29 @@ function App() {
     setModal(true);
   };
   const onPetSelect = (pet) => {
-    setSelectedPet(pet);    
-    openModal(pet);
     console.log(pet);
+    setSelectedPet(pet);
+    openModal(pet);
   }
   useEffect(() => {
     setModal(false);
   }, [user]);
   
   return (
+    <body>
     <div>
       {!user && <LoginButton />}
       {error && <p>Authentication Error</p>}
       {!error && isLoading && <p>Loading...</p>}
       {!error && !isLoading && user && (
         <>
-          <HomeRoute petData={petData} onPetSelect={onPetSelect} />
+          <HomeRoute petData={petData} handleListSelect={handleListSelect} />
           <LogoutButton />
           <UserProfile />
         </>
       )}
-      {modal && (
+    </div>
+    {modal && (
         <ProfileModal
           handleListSelect={handleListSelect}
           selectedPet={selectedPet}
@@ -66,7 +69,7 @@ function App() {
           closeModal={closeModal}
         />
       )}
-    </div>
+  </body>    
   );
 }
 

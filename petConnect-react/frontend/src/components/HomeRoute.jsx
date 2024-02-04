@@ -1,3 +1,4 @@
+import "../styles/HomeRoute.css";
 import NavBar from "./NavBar";
 import PetPost from "./partials/_PetPost";
 import { useState } from "react";
@@ -11,13 +12,15 @@ import NewPost from "./partials/newpost/_NewPost";
 import { useEffect } from "react";
 import axios from "axios";
 import ProfileModal from "./ProfileModal";
+import Feed from "./partials/_Feed.jsx"
+
 //hooks 
 import useFetchData from "../hooks/useFetchData";
 // styles
 import "../styles/TopNav.scss";
 // import './App.css'
 
-export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData }) {
+export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petData, handleListSelect }) {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -25,7 +28,7 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
   
   useEffect(() => {
     // useFetchData("http://localhost:8080/users/", "users");
-    useuseFetchData("http://localhost:8080/posts/", "posts");
+    useFetchData("http://localhost:8080/posts/", "posts");
     // useFetchData("http://localhost:8080/pets/", "pets");
     // useFetchData("http://localhost:8080/events/", "events");
     // useFetchData("http://localhost:8080/chats/", "chats");
@@ -47,10 +50,10 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
   const { isLoading, error, user } = useAuth0();
 
   return (
-    <div>
+    <div className="HomeRoute">
       <header>
         {console.log('petData', petData)}
-        <NavBar petData={petData} onPetSelect={onPetSelect} />
+        <NavBar petData={petData} handleListSelect={handleListSelect} />
         <div>
           <h1>Welcome to PetConnect</h1>
         </div>
@@ -68,18 +71,9 @@ export default function HomeRoute({ isModalOpen, closeModal, onPetSelect, petDat
             </>
           )}
         </div>
-
-        {isModalOpen && (
-        <ProfileModal onClose={closeModal}>
-        {/* Display the selected pet's info here */}
-        <p>PETPROFILE</p>
-      </ProfileModal>
-        )}
       </header>
 
       <div>
-        <UserProfile />
-        <PetProfile />
         <Feed />
       </div>
 
