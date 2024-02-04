@@ -34,8 +34,12 @@ router.get('/', async (req, res) => {
   }
 });
 
-server.listen(4000, () => {
-  console.log("listening on *:4000");
+// server.listen(4000, () => {
+//   console.log("listening on *:4000");
+// });
+
+server.close(() => {
+  console.log('Server closed.');
 });
 
 module.exports = router;

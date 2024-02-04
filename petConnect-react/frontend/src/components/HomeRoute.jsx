@@ -41,7 +41,17 @@ export default function HomeRoute() {
     fetchData("http://localhost:8080/follows/", "follows");
   }, []);
  
-  const { isLoading, error, user } = useAuth0();
+  const { isLoading, error, user, isAuthenticated } = useAuth0();
+
+    useEffect(() => {
+      if (isAuthenticated) {
+        console.log('user', user);
+        axios.post('http://localhost:8080/users/', user).then( response => {
+          console.log('response', response);
+        });
+      }
+    }, [isAuthenticated]);
+  
   return (
     <div>
       {!create && <button onClick={() => setCreate(!create)}>New Post</button>}
