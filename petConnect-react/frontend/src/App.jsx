@@ -44,23 +44,23 @@ function App() {
     event.preventDefault(); 
     const petId = event.target.value;
     const pet = petData.find(pet => pet.pet_id === Number(petId));
-    console.log(pet);
+    console.log('selected pet: ', pet);
     onPetSelect(pet);
   }
   const closeModal = () => {
     setModal(false);
+    setSelectedPet(null);
   };
   const openModal = () => {
     setModal(true);
   };
   const onPetSelect = (pet) => {
-    console.log(pet);
     setSelectedPet(pet);
     openModal(pet);
-    console.log("pet selected: ", pet);
   }
   useEffect(() => {
     setModal(false);
+    setSelectedPet(null);
   }, [user]);
 
   // useEffect(() => {
