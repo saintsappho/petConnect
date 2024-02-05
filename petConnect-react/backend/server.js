@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 // Web server config
+const { initializeSocket } = require('./routes/socketHandler');
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
@@ -33,7 +34,7 @@ app.use(session({
 const server = http.createServer(app);
 
 // Add Socket.IO to the server
-const io = socketIO(server);
+const io = initializeSocket(server);
 
 // Separated Routes for each Resource
 

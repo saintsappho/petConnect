@@ -1,5 +1,5 @@
 const router = require("express").Router();
-// const db = require('../../db');
+const { getChats } = require('../db/queries/gets/getChats');
 
 //new conversation
 
@@ -13,24 +13,31 @@ router.post("/", async (req, res) => {
   const values = [req.body.senderId, req.body.receiverId];
 
   try {
-    const newConversation = await db.query(insertQuery, values);
+    const newConversation = await getChats.query(insertQuery, values);
     res.status(200).json(newConversation.rows[0]);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
+
+    if (error.code === '23505') {
+      // Unique violation (duplicate conversation, handle accordingly)
+      res.status(400).json({ error: 'Duplicate conversation' });
+    } else {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   }
 });
 
 // Get conversation of a user
 
-router.get("/:userId", async (req, res) => {
+router.get("/conversations/:userId", async (req, res) => {
   try {
-    const conversation = await db.find({
+    const conversation = await getChats.find({
       members: { $in: [req.params.userId] },
     });
     res.status(200).json(conversation);
-  } catch (err) {
-    res.status(500).json(err);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
@@ -38,7 +45,7 @@ router.get("/:userId", async (req, res) => {
 
 router.get("/find/:firstUserId/:secondUserId", async (req, res) => {
   try {
-    const conversation = await db.findOne({
+    const conversation = await getChats.findOne({
       members: { $all: [req.params.firstUserId, req.params.secondUserId] },
     });
     res.status(200).json(conversation)

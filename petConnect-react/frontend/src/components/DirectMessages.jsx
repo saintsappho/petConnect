@@ -7,77 +7,69 @@ import Conversations from "./messaging/conversations";
 import SendMessage from "./messaging/SendMessage";
 import StatusOnline from "./messaging/StatusOnline";
 
-const socket = io('http://localhost:5173');
+const socket = io('http://localhost:5173', { path: '/socket.io' });
 
-export default function DirectMessages() {
+export default function DirectMessages({ onConversationClick }) {
   const [conversations, setConversations] = useState([]);
-  const [selectedChat, setSelectedChat] = useState(null);
+  const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
 
-  const currentUserId = 1; // Replace with the actual current user ID
-  const receiverId = 2; // Replace with the actual receiver ID
 
-  useEffect(() => {
-    // Fetch conversations when the component mounts
-    axios.get(`/api/chats/${currentUserId}`)
-      .then(response => setConversations(response.data))
-      .catch(error => console.error(error));
-  }, [currentUserId]);
+  const handleConversationClick = (selectedChat) => {
+    setCurrentChat(selectedChat);
+  }
 
   useEffect(() => {
-    // Fetch messages for the selected chat
-    if (selectedChat) {
-      axios.get(`/api/messages/${selectedChat}`)
-        .then(response => setMessages(response.data))
-        .catch(error => console.error(error));
-    }
-  }, [selectedChat]);
-
-  useEffect(() => {
-    // Example: Listen for new messages
-    socket.on('chat message', (msg) => {
-      console.log('New message:', msg);
-      // Update state or perform actions as needed
-      setMessages((prevMessages) => [...prevMessages, msg]);
+    // Listen for new conversations
+    socket.on('conversation_created', (newConversation) => {
+      setConversations((prevConversations) => [...prevConversations, newConversation]);
     });
 
+    // Listen for new messages
+    socket.on('new_message', (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    });
+
+    // Add more event listeners as needed
+
     return () => {
-      // Cleanup on component unmount
-      socket.disconnect();
+      // Clean up listeners on component unmount
+      socket.off('conversation_created');
+      socket.off('new_message');
+      // Remove other listeners
     };
-  }, [selectedChat]);
+  }, []);
 
-  const handleChatSelection = (chatId, receiverId) => {
-    setSelectedChat(chatId);
-    // Assuming you have a way to determine the sender ID (current user ID)
-    const senderId = currentUserId;
+  const handleSendMessage = async () => {
+    try {
+      // check if currentChat exists before accessing properties
+      if (!currentChat || !currentChat.chat_ID) {
+        console.error("No chat selected");
+        return;
+      }
 
-    // Here you might want to store senderId and receiverId in state or use them for other purposes
+      // Send the message to the backend
+      const response = await axios.post('/api/messages', {
+        chat_ID: currentChat.chat_ID,
+        sender: currentChat.user1_ID,  
+        receiver: currentChat.user2_ID, 
+        message: newMessage,
+      });
+
+      // Emit a Socket.IO event to notify other clients
+      socket.emit('send_message', response.data);
+
+      // Clear the input field
+      setNewMessage("");
+    } catch (error) {
+      console.error("Error sending message:",error);
+    }
   };
 
-  const handleSendMessage = () => {
-    socket.emit('chat message', { chatId: selectedChat, sender: currentUserId, message: newMessage });
-
-    // Send the new message to the selected chat
-    axios.post('/api/messages', {
-      chat_ID: selectedChat,
-      sender: currentUserId, // change when you have a way to determine the sender
-      receiver: receiverId, // change when you have a way to determine the receiver
-      message: newMessage,
-    })
-      .then(response => {
-        // Update the state or perform any necessary actions
-        setMessages([...messages, response.data]);
-      })
-      .catch(error => console.error(error));
-
-    setNewMessage('');
-  };
-
-  return (
-    <div>
-     {/* <NavBar /> */}
+return (
+  <div>
+    {/* <NavBar /> */}
     <div className="direct_message">
       <div className="message_menu">
         <div className="message_menu_container">Menu</div>
@@ -86,10 +78,8 @@ export default function DirectMessages() {
         </div>
         <div className="message_new">
           <button>New Message</button>
-          <Conversations />
-          <Conversations />
-          <Conversations />
-          <Conversations />
+          <Conversations onConversationClick={handleConversationClick} />
+          <Conversations onConversationClick={handleConversationClick} />
         </div>
       </div>
 
@@ -97,14 +87,16 @@ export default function DirectMessages() {
         <div className="message_box_container">
           <div className="message_box_header">
             <SendMessage />
-            <SendMessage mine={true}/>
+            <SendMessage mine={true} />
             <SendMessage />
             <SendMessage />
             <SendMessage />
           </div>
           <div className="message_box_footer">
             <textarea className="message_type_box" id="message" cols="30" rows="10" placeholder="Type a message"></textarea>
-            <button className="send_message_button">Send</button>
+            <button className="send_message_button" onClick={handleSendMessage}>
+              Send
+            </button>
           </div>
         </div>
       </div>
@@ -115,6 +107,6 @@ export default function DirectMessages() {
         </div>
       </div>
     </div>
-    </div>
-  );
+  </div>
+);
 }

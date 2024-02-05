@@ -10,10 +10,7 @@ export default function SendMessage({mine}) {
             {/* <span className="send_message__name">Jane Doe</span> */}
             <p className="message_text">Wow what a cool App!</p>
           </div>
-          <div className="send_message_footer">1 hour ago
-            {/* <input type="text" placeholder="Type a message" />
-            <button>Send</button> */}
-          </div>
+          <div className="send_message_footer">1 hour ago</div>
         </div>
       </div>
     </div>
