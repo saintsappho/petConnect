@@ -1,31 +1,25 @@
-import NavBar from "./NavBar";
-import PetPost from "./partials/_PetPost";
-import { useState } from "react";
-
-// import Login from './components/Login'
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import "../styles/TopNav.scss";
+// import Login from './components/Login'
 import LoginButton from "./Login";
 import NewPost from "./partials/newpost/_NewPost";
 import Feed from "./partials/_Feed";
-import { useEffect } from "react";
-import axios from "axios";
-import ProfileModal from "./PetProfileModal.jsx";
 import UserProfile from "./UserProfile";
-
+import NavBar from "./NavBar"
 //hooks
 import useFetchData from "../hooks/useFetchData";
 // styles
 import "../styles/TopNav.scss";
 import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
+import "../styles/UserProfile.css";
+import "../styles/Modal.scss";
 
 export default function HomeRoute({
-  isModalOpen,
-  closeModal,
   onPetSelect,
   petData,
-  handleListSelect,
+  handlePetListSelect,
+  openCurrentUserModal,
 }) {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
@@ -62,7 +56,9 @@ export default function HomeRoute({
           <NavBar
             petData={petData}
             onPetSelect={onPetSelect}
-            handleListSelect={handleListSelect}
+            handlePetListSelect={handlePetListSelect}
+            user={user}
+            openCurrentUserModal={openCurrentUserModal}
           />
         )}
       </header>

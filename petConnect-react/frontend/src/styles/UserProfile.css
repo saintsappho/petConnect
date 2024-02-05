@@ -4,3 +4,9 @@ table {
   justify-content: center;
   scale: 1.5;
 }
+
+img {
+  width: 7%;
+  height: 7%;
+  border-radius: 50%;
+}
