@@ -3,7 +3,7 @@ import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
 import axios from "axios";
 import NavBar from "./NavBar";
-import Conversations from "./messaging/conversations";
+import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 import StatusOnline from "./messaging/StatusOnline";
 
