@@ -1,6 +1,6 @@
 import "../styles/TopNav.scss"
 import LogoutButton from "./Logout";
-import Modal from "../components/modals/Modal.jsx";
+import Modal from "./modals/Modal.jsx";
 
 // import { useState } from "
 // import React from 'react';

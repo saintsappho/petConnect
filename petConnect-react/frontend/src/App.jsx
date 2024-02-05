@@ -16,7 +16,6 @@ import axios from "axios";
 //styles
 import "./App.css";
 import "./styles/Modal.scss"
-
 // hooks
 import useFetchData from './hooks/useFetchData'
 

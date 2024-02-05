@@ -24,7 +24,7 @@ a:hover {
 
 
 
-.profile-modal {
+/* .profile-modal {
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
   position: fixed;
   top: 43%;
@@ -36,7 +36,7 @@ a:hover {
   border-radius: 12px;
   background-color: #fff;
   z-index: 100;
-}
+}*/
 
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 

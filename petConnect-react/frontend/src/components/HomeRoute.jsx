@@ -13,7 +13,7 @@ import "../styles/TopNav.scss";
 import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
-import "../styles/Modal.scss";
+
 
 export default function HomeRoute({
   onPetSelect,
