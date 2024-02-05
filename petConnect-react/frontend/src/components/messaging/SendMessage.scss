@@ -1,11 +1,40 @@
 .send_message {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
+}
+
+.send_message_header {
+  display: flex;
+  // align-items: center;
+  // padding: 10px;
 }
 
 .send_message__image {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  margin-right: 15px;
+  margin-right: 10px;
+}
+
+.message_text {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #1877f2;
+  color: white;
+  max-width: 60%;
+}
+
+.send_message_footer {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.send_message.mine{
+  align-items: flex-end;
+}
+
+.send_message.mine .message_text {
+  background-color: #dcf8c6;
+  color: black;
 }
