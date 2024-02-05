@@ -3,6 +3,8 @@ require('dotenv').config();
 
 // Web server config
 const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
 const morgan = require('morgan');
 const session = require('express-session');
 const PORT = process.env.PORT || 8080;
@@ -27,6 +29,12 @@ app.use(session({
   saveUninitialized: true
 }));
 
+// Create a new HTTP server using the Express app
+const server = http.createServer(app);
+
+// Add Socket.IO to the server
+const io = socketIO(server);
+
 // Separated Routes for each Resource
 
 const usersRoutes = require('./routes/users');
@@ -35,6 +43,8 @@ const postsRoutes = require('./routes/posts');
 const eventsRoutes = require('./routes/events');
 const chatsRoutes = require('./routes/chats');
 const messagesRoutes = require('./routes/messages');
+const directMessagesRoutes = require('./routes/directMessages');
+const conversationsRoutes = require('./routes/conversations');
 const commentsRoutes = require('./routes/comments');
 const likesRoutes = require('./routes/likes');
 const attendeesRoutes = require('./routes/attendees');
@@ -48,6 +58,8 @@ app.use('/posts', postsRoutes);
 app.use('/events', eventsRoutes);
 app.use('/chats', chatsRoutes);
 app.use('/messages', messagesRoutes);
+app.use('/directMessages', directMessagesRoutes);
+app.use('/conversations', conversationsRoutes);
 app.use('/comments', commentsRoutes);
 app.use('/likes', likesRoutes);
 app.use('/attendees', attendeesRoutes);
@@ -60,6 +72,17 @@ app.use('/follows', followsRoutes);
 
 app.get('/', (req, res) => {
   res.render('<h1>Welcome to the Backend</h1>');
+});
+
+// Socket.IO logic
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  // Handle Socket.IO events here
+
+  socket.on('disconnect', () => {
+    console.log('User disconnected');
+  });
 });
 
 app.listen(PORT, () => {
