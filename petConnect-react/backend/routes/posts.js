@@ -3,6 +3,33 @@ const router = express.Router();
 const { getPosts } = require("../db/queries/gets/getPosts");
 const { newPost } = require("../db/queries/news/newPost");
 
+// //SSE for live updates
+// let clients = [];
+
+
+
+// router.get('/posts/stream', (req, res) => {
+//   res.setHeader('Content-Type', 'text/event-stream');
+//   res.setHeader('Cache-Control', 'no-cache');
+//   res.setHeader('Connection', 'keep-alive');
+
+//   // Function to send a message
+//   const clientId = Date.now();
+//   const newClient = {
+//     id: clientId,
+//     res
+//   };
+//   clients.push(newClient);
+
+//   // When client closes connection, remove them from the array
+//   req.on('close', () => {
+//     console.log(`${clientId} Connection closed`);
+//     clients = clients.filter(client => client.id !== clientId);
+//   });
+// });
+
+// Routes
+
 router.get("/", async (req, res) => {
   try {
     const posts = await getPosts();
