@@ -4,12 +4,25 @@ import { useState, useEffect } from "react";
 // components
 import PetPost from "./_PetPost.jsx";
 // hooks
-import useFetchData from "../../hooks/useFetchData.js";
 
 export default function Feed(props) {
-  const { user, setPosts, posts, error } = props;
+  const { user, posts, error } = props;
 
-  
+  // when this useEffect starts working, remove the reverse from the array.map in the return statement
+  // useEffect(() => {
+  //   const eventSource = new EventSource("http://localhost:8080/posts/stream");
+  //   console.log(
+  //     "remember to remove the reverse from the array.map in the return statement",
+  //   );
+  //   eventSource.onmessage = function (event) {
+  //     const newPost = JSON.parse(event.data);
+  //     setPosts((prevPosts) => [newPost, ...prevPosts]); // Add newPost to the beginning
+  //   };
+  //   return () => {
+  //     eventSource.close(); // Close connection when component unmounts
+  //   };
+  // }, [posts]); // Notice that we add setPosts here to ensure correctness. Adjust if necessary, especially if setPosts changes or is re-created on re-renders.
+
   if (error) {
     return (
       <>
@@ -29,10 +42,9 @@ export default function Feed(props) {
 
   return (
     <div className="container">
-      {posts.reverse().map((post) => (
-        console.log('post:', post),
-        <PetPost key={post.post_id} petPost={post} />
-      ))}
+      {posts.reverse().map(
+        (post) => (<PetPost key={post.post_id} petPost={post} />),
+      )}
     </div>
   );
 }

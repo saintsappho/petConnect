@@ -1,11 +1,21 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+
 export default function PhotoPost(props) {
   const {
     handleSubmit,
     handlePostStateChange,
     postState
   } = props;
+  
   const { image_file, content } = postState;
+
+  const [file, setFile] = useState();
+  function handleChange(e) {
+      console.log(e.target.files);
+      setFile(URL.createObjectURL(e.target.files[0]));
+  }
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -14,11 +24,12 @@ export default function PhotoPost(props) {
       const reader = new FileReader();
       reader.onload = () => {
         // Set the image_file state with the data URL
-        handlePostStateChange(reader.result, "image_file");
-      };
+        handlePostStateChange(reader.result, "image_file"); //reader.result
+      }
       reader.readAsDataURL(file);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -39,7 +50,7 @@ export default function PhotoPost(props) {
           <textarea
             id="new-content"
             value={content}
-            onChange={()=>{handlePostStateChange(event, "content")}}
+            onChange={(event)=>{handlePostStateChange(event, "content")}}
             rows="8"
             cols="80"
             required

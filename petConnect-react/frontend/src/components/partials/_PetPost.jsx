@@ -1,17 +1,21 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 
 export default function PetPost(props) {
   const { petPost } = props;
   const [imageSrc, setImageSrc] = useState(null);
 
-  
+  function randomImage() {
+    return `https://source.unsplash.com/random/300x510?${petPost.title}`;
+  }
   if (petPost.style === "text-post") {
     return (
       <div className="card">
         <div id="img-container"></div>
         <figure className="card__thumb">
           <img
-            src={"https://source.unsplash.com/random/300x510?pet"}
+            src={randomImage()}
             alt="Random image from unsplash"
             className="card__image"
           ></img>
@@ -51,7 +55,7 @@ export default function PetPost(props) {
       <div className="card">
         <figure className="card__thumb">
           <img
-            src={petPost.image_file || "https://source.unsplash.com/random/300x510?quiz"}
+            src={petPost.image_file || randomImage()}
             alt={petPost.content}
             className="card__image"
           ></img>
@@ -71,7 +75,7 @@ export default function PetPost(props) {
       <div className="card">
         <figure className="card__thumb">
           <img
-            src={petPost.image_file || "https://source.unsplash.com/random/300x510?event"}
+            src={petPost.image_file || randomImage()}
             alt={petPost.content}
             className="card__image"
           ></img>
@@ -91,7 +95,7 @@ export default function PetPost(props) {
       <div className="card">
         <figure className="card__thumb">
           <img
-            src={petPost.image_file || "https://source.unsplash.com/random/300x510?query"}
+            src={petPost.image_file || randomImage()}
             alt={petPost.content}
             className="card__image"
           ></img>

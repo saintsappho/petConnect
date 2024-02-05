@@ -19,6 +19,7 @@ import useFetchData from "../hooks/useFetchData";
 import "../styles/TopNav.scss";
 import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
+// import { use } from "../../../backend/routes/users.js";
 
 export default function HomeRoute({
   isModalOpen,
@@ -35,6 +36,7 @@ export default function HomeRoute({
   const [fetchError, setFetchError] = useState(null);
 
   useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
+
 
   useEffect(
     (posts) => {
@@ -84,7 +86,7 @@ export default function HomeRoute({
             </div>
             {create && (
               <div className="new-post-card">
-                <NewPost />
+                <NewPost setPosts={setPosts} useFetchData={useFetchData} setFetchError={setFetchError}/>
               </div>
             )}
           </>

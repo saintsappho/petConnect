@@ -1,5 +1,7 @@
 const { use } = require('../../../routes/users');
 const db = require('../../connection');
+const postsRouter = require('../../../routes/posts');
+// const sendPostsUpdate = postsRouter.sendPostsUpdate;
 
 const newPost = async (postData) => {
   const { 
@@ -23,7 +25,7 @@ const newPost = async (postData) => {
       RETURNING *;`,
       [user_ID, pet_ID, title, content, style, image_file],
     );
-
+    // sendPostsUpdate(data.rows[0]);
     return data.rows[0];
   } catch (error) {
     throw error;
