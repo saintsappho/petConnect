@@ -8,5 +8,6 @@ CREATE TABLE events (
   title VARCHAR(255) NOT NULL,
   event_description VARCHAR(255) NOT NULL,
   event_location VARCHAR(255) NOT NULL,
-  scheduled_date DATE 
+  scheduled_date DATE,
+  scheduled_time INTEGER
 );
