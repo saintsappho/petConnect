@@ -1,6 +1,27 @@
+aside {
+
+  padding-top: 2rem;
+}
+
 table {
   display: flex;
   align-items: center;
   justify-content: center;
   scale: 1.5;
+}
+
+img {
+  cursor: pointer;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 2px solid #0088ff73;
+  box-shadow: 0 0 50px rgba(51, 0, 61, 0.825); /* Adds a shadow */
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+  }
 }

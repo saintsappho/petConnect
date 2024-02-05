@@ -2,7 +2,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 import LogoutButton from "./Logout";
 import DirectMessages from "./DirectMessages";
-import "../styles/UserProfile.css";
 
 export default function UserProfile () {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -24,12 +23,10 @@ export default function UserProfile () {
   return (
     isAuthenticated && (
     <aside>
-      <div className="profile">
-        <img className="profile__image" src="./src/assets/profile-hex.png" />
-      </div>
-        <div className="profile__name">
-          <h1>Ashley Tree</h1>
-          <table> 
+        <div className="profile__header">
+        <img className="profile__image" src={user.picture} alt={user.name} />
+          <h1 className="profile__name">{user.name}</h1>
+          <table className="profile__buttons"> 
             <thead>
               <tr>
                 <td>
@@ -42,8 +39,8 @@ export default function UserProfile () {
             </thead>
             
           </table>
-          <h2>Los Angeles, CA</h2>
-          <article>"I'm Ashley and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!"</article>
+          <h2>{user.location}</h2>
+          <article>"I'm {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!"</article>
         </div>
 
       {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}

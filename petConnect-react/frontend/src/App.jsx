@@ -5,15 +5,18 @@ import LoginButton from './components/Login'
 import LogoutButton from './components/Logout'
 import UserProfile from './components/UserProfile'
 import Loading from './components/Loading'
+import PetProfile from './components/PetProfile';
+
 // dependencies
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import ProfileModal from './components/PetProfileModal';
+import Modal from './components/modals/Modal';
 import axios from "axios";
-
 
 //styles
 import "./App.css";
+import "./styles/Modal.scss"
+// hooks
 import useFetchData from './hooks/useFetchData'
 
 function App() {
@@ -22,6 +25,7 @@ function App() {
   const [selectedPet, setSelectedPet] = useState(null);
   const [petData, setPetData] = useState(null);
   const [fetchError, setFetchError] = useState(null);
+  const [modalContent, setModalContent] = useState([]);
 
   // animation for fancy button
   var animateButton = function(e) {
@@ -40,31 +44,40 @@ function App() {
   // fetch user's pet data for list
   useFetchData("http://localhost:8080/pets", "pets", setPetData, setFetchError);
 
-  const handleListSelect = (event) => {
-    event.preventDefault(); 
-    const petId = event.target.value;
-    const pet = petData.find(pet => pet.pet_id === Number(petId));
-    console.log('selected pet: ', pet);
-    onPetSelect(pet);
-  }
-  const closeModal = () => {
-    setModal(false);
-    setSelectedPet(null);
-  };
-  const openModal = () => {
-    setModal(true);
-  };
-  const onPetSelect = (pet) => {
-    setSelectedPet(pet);
-    openModal(pet);
-  }
+  // ensure modal is closed when user logs in/out
   useEffect(() => {
     setModal(false);
     setSelectedPet(null);
+    setModalContent([]);
   }, [user]);
 
+ // handle 
+  const handlePetListSelect = (event) => {
+    event.preventDefault(); 
+    const petId = event.target.value;
+    const pet = petData.find(pet => pet.pet_id === Number(petId));
+    setSelectedPet(pet);    
+    console.log('selected pet: ', pet);
+    setModalContent(<PetProfile selectedPet={selectedPet} />);
+    openModal(event);
+  }
 
+  const openCurrentUserModal = (event) => {
+    event.preventDefault();
+    setModalContent(<UserProfile user={user} />);
+    console.log('user modal: ', modalContent);
+    openModal(event);
+  };
 
+  const openModal = (event) => {
+    event.preventDefault();
+    setModal(true);
+    console.log('setModal', modal)};
+
+  const closeModal = () => {
+    setModal(false);
+    setModalContent([]);
+  };
 
   // useEffect(() => {
   //   if (isAuthenticated) {
@@ -82,16 +95,15 @@ function App() {
       {!error && isLoading && <Loading />}
       {!error && !isLoading && user && (
         <>
-          <HomeRoute petData={petData} handleListSelect={handleListSelect} />
+          <HomeRoute openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
         </>
       )}
     </div>
     {modal && (
-        <ProfileModal
-          handleListSelect={handleListSelect}
-          selectedPetData={selectedPet}
-          petData={petData}
-          openModal={openModal}
+        <Modal
+          selectedPet={selectedPet}
+          modal={modal}
+          content={modalContent}
           closeModal={closeModal}
         />
       )}
