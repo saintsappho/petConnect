@@ -70,7 +70,7 @@ export default function HomeRoute({
         {!error && !isLoading && user && (
           <>
             <div className="title-card">
-              <h1>Welcome to PetConnect, {user.name}</h1>
+              <h2>Welcome to PetConnect, {user.name}!</h2>
               <button
                 className="bubbly-button"
                 onClick={() => setCreate(!create)}
