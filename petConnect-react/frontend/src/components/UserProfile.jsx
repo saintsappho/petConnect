@@ -23,12 +23,10 @@ export default function UserProfile () {
   return (
     isAuthenticated && (
     <aside>
-      <div className="profile">
+        <div className="profile__header">
         <img className="profile__image" src={user.picture} alt={user.name} />
-      </div>
-        <div className="profile__name">
-          <h1>{user.name}</h1>
-          <table> 
+          <h1 className="profile__name">{user.name}</h1>
+          <table className="profile__buttons"> 
             <thead>
               <tr>
                 <td>
