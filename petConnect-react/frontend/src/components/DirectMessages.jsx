@@ -8,6 +8,7 @@ import SendMessage from "./messaging/SendMessage";
 export default function DirectMessages({ userId }) {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
+  // const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
 
@@ -18,15 +19,15 @@ export default function DirectMessages({ userId }) {
     socket.on('connect', () => {
       console.log("Socket connected:", socket.connected);
 
-      socket.on('conversation_created', (newConversation) => {
+      socket.on('send_message', (newConversation) => {
         console.log("New conversation received:", newConversation);
         setConversations((prevConversations) => [...prevConversations, newConversation]);
       });
 
-      socket.on('new_message', (newMessage) => {
-        console.log("New message received:", newMessage);
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-      });
+      // socket.on('new_message', (newMessage) => {
+      //   console.log("New message received:", newMessage);
+      //   setMessages((prev) => [...prev, newMessage]);
+      // });
     });
 
     return () => {
@@ -49,6 +50,7 @@ export default function DirectMessages({ userId }) {
     // Emit an event to request messages for the selected chat
     socket.emit('fetch_messages', selectedChat.chat_id);
   };
+
 
   return (
     <div>

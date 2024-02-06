@@ -17,23 +17,71 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
   console.log(`User connected:`, socket.id);
 
+  // Event when a user joins a chat
   socket.on("join_chat", (chatId) => {
     console.log(`User joined chat: ${chatId}`);
     socket.join(chatId);
   });
 
-  socket.on("send_message", async (message) => {
-    try {
-      console.log("Message received:", message);
-      // Emit the new message to all clients in the chat room
-      io.to(message.chatId).emit('new_message', message);
+  // Event when a user sends a message
+  socket.on("send_message", ({ senderId, receiverId, text }) => {
+    io.emit("getMessage", {
+      senderId,
+      text,
+    });
+  });
 
-      // Additional logic for saving the message to the database, if necessary
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
+  // Event when a user disconnects
+  socket.on("disconnect", () => {
+    console.log(`User disconnected:`, socket.id);
   });
 });
+
+
+// const users = new Map(); // Map to store users and their socketIds
+
+// io.on("connection", (socket) => {
+//   console.log(`User connected:`, socket.id);
+
+//   // Function to add user to the Map
+//   const addUser = (userId, socketId) => {
+//     users.set(userId, socketId);
+//   };
+
+//   // Function to get socketId of a user
+//   const getUserSocketId = (userId) => {
+//     return users.get(userId);
+//   };
+
+//   // Function to send message to a specific user
+//   const sendMessage = ({ senderId, receiverId, text }) => {
+//     const socketId = getUserSocketId(receiverId);
+//     if (socketId) {
+//       io.to(socketId).emit("getMessage", {
+//         senderId,
+//         text,
+//       });
+//     } else {
+//       console.log("User not found or offline");
+//     }
+//   };
+
+//   // Event when a user joins a chat
+//   socket.on("join_chat", (chatId) => {
+//     console.log(`User joined chat: ${chatId}`);
+//     socket.join(chatId);
+//   });
+
+//   // Event when a user sends a message
+//   socket.on("send_message", ({ senderId, receiverId, text }) => {
+//     sendMessage({ senderId, receiverId, text });
+//   });
+
+//   // Event when a user disconnects
+//   socket.on("disconnect", () => {
+//     console.log(`User disconnected:`, socket.id);
+//   });
+// });
 
 server.listen(4000, () => {
   console.log("Server is running on port 4000");

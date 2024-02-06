@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import io from 'socket.io-client';
 import './SendMessage.scss';
 
 export default function SendMessage({ currentChat, socket }) {
   const [newMessage, setNewMessage] = useState("");
+  const [text, setText] = useState("");
+  // const [socket, setSocket] = useState();
 
   const handleSendMessage = () => {
     console.log("Sending message:", newMessage);
@@ -28,6 +31,10 @@ export default function SendMessage({ currentChat, socket }) {
     setNewMessage("");
   };
 
+  const onChange = function(e) {
+    setNewMessage(e.target.value);
+  }
+
   return (
     <div>
       <textarea
@@ -37,7 +44,8 @@ export default function SendMessage({ currentChat, socket }) {
         rows="10"
         placeholder="Type a message"
         value={newMessage}
-        onChange={(e) => setNewMessage(e.target.value)}
+        onChange={onChange}
+        // onChange={(e) => setNewMessage(e.target.value)}
       ></textarea>
       <button className="send_message_button" onClick={handleSendMessage}>
         Send
