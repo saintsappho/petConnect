@@ -28,13 +28,13 @@ function App() {
   const [modalContent, setModalContent] = useState([]);
 
   // animation for fancy button
-  var animateButton = function(e) {
+  var animateButton = function (e) {
     e.preventDefault;
     e.target.classList.remove('animate');
     e.target.classList.add('animate');
-    setTimeout(function(){
+    setTimeout(function () {
       e.target.classList.remove('animate');
-    },700);
+    }, 700);
   };
   var bubblyButtons = document.getElementsByClassName("bubbly-button");
   for (var i = 0; i < bubblyButtons.length; i++) {
@@ -51,15 +51,22 @@ function App() {
     setModalContent([]);
   }, [user]);
 
- // handle 
-  const handlePetListSelect = (event) => {
-    event.preventDefault(); 
+
+  const handlePetListSelect = async (event) => {
+    event.preventDefault();
     const petId = event.target.value;
     const pet = petData.find(pet => pet.pet_id === Number(petId));
-    setSelectedPet(pet);    
+    setSelectedPet(pet);
     console.log('selected pet: ', pet);
-    setModalContent(<PetProfile user={user} selectedPet={selectedPet} />);
-    openModal(event);
+    if (pet === "Select a pet" || pet === undefined) {
+      setModalContent([]);
+      closeModal(event);
+      return;
+    } else {
+      await setModalContent(<PetProfile user={user} selectedPet={pet} />);
+      console.log('modal content: ', modalContent);
+      openModal(event)
+    }
   }
 
   const openCurrentUserModal = (event) => {
@@ -72,7 +79,8 @@ function App() {
   const openModal = (event) => {
     event.preventDefault();
     setModal(true);
-    console.log('setModal', modal)};
+    console.log('setModal', modal)
+  };
 
   const closeModal = () => {
     setModal(false);
@@ -86,20 +94,20 @@ function App() {
   //     });
   //   }
   // }, [isAuthenticated, user]);
-  
+
   return (
     <div className="App">
-    <div>
-      {!user && <LoginButton className="login-button-login-page"/>}
-      {error && <p>Authentication Error</p>}
-      {!error && isLoading && <Loading />}
-      {!error && !isLoading && user && (
-        <>
-          <HomeRoute openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
-        </>
-      )}
-    </div>
-    {modal && (
+      <div>
+        {!user && <LoginButton className="login-button-login-page" />}
+        {error && <p>Authentication Error</p>}
+        {!error && isLoading && <Loading />}
+        {!error && !isLoading && user && (
+          <>
+            <HomeRoute openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+          </>
+        )}
+      </div>
+      {modal && (
         <Modal
           selectedPet={selectedPet}
           modal={modal}
@@ -107,7 +115,7 @@ function App() {
           closeModal={closeModal}
         />
       )}
-  </div>    
+    </div>
   );
 }
 

@@ -1,5 +1,6 @@
 import "../styles/PetProfile.css";
 
+
 // Pet Profile Component
 
 export default function PetProfile({ selectedPet, user }) {
@@ -20,15 +21,8 @@ export default function PetProfile({ selectedPet, user }) {
         {/* In profile creation, ask species and favorite activity to fill this in */}        
         <label>I&apos;m a {age} year old {breed} that loves {routines}! </label>
       </div>
-      
-      <table className="meet-owner-card">
-        <thead>
-          <tr>
-            <th><button className="profile__owner-button" onClick={()=>{console.log("message")}}>Meet My Owner!</button></th>
-            <th><img className="owner-profile-pic" src={user.picture} alt="User Profile Picture" /></th>
-          </tr>
-        </thead>
-        </table>
+
+
       <table className="pet-info-table">
         <tbody>
           <tr>

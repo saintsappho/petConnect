@@ -6,6 +6,7 @@ CREATE TABLE pets (
   user_ID INTEGER REFERENCES users(user_ID),
   pet_name VARCHAR(255) NOT NULL,
   species VARCHAR(255) NOT NULL,
+  age INTEGER NOT NULL,
   breed VARCHAR(255) NOT NULL,
   medical_conditions VARCHAR(255) NOT NULL,
   diet VARCHAR(255) NOT NULL,

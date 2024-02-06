@@ -24,7 +24,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
       </li>
 
       <li className="top-nav-bar__item">
-        <a href="/about">About</a>
+        <link path="/about" ele>
       </li>
 
       <li>
