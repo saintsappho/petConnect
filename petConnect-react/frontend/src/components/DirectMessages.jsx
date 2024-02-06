@@ -7,20 +7,28 @@ import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 import StatusOnline from "./messaging/StatusOnline";
 
-const socket = io('http://localhost:5173', { path: '/socket.io' });
 
-export default function DirectMessages({ onConversationClick }) {
+// const socket = io('http://localhost:4001', { path: '/socket.io' });
+
+export default function DirectMessages() {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
-
-  const handleConversationClick = (selectedChat) => {
+  const handleConversationClick = async (selectedChat) => {
     setCurrentChat(selectedChat);
-  }
+
+    try {
+      const response = await axios.get(`/api/messages/${selectedChat.chat_ID}`);
+      setMessages(response.data);
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
+  };
 
   useEffect(() => {
+    const socket = io('http://localhost:4000', { path: '/socket.io' });
     // Listen for new conversations
     socket.on('conversation_created', (newConversation) => {
       setConversations((prevConversations) => [...prevConversations, newConversation]);
@@ -42,6 +50,8 @@ export default function DirectMessages({ onConversationClick }) {
   }, []);
 
   const handleSendMessage = async () => {
+    const socket = io('http://localhost:4001', { path: '/socket.io' });
+    
     try {
       // check if currentChat exists before accessing properties
       if (!currentChat || !currentChat.chat_ID) {
@@ -77,8 +87,7 @@ return (
           <input type="text" placeholder="Search Messages" />
         </div>
         <div className="message_new">
-          <button>New Message</button>
-          <Conversations onConversationClick={handleConversationClick} />
+          <button>Add New Friend to Chat With</button>
           <Conversations onConversationClick={handleConversationClick} />
         </div>
       </div>
@@ -98,12 +107,6 @@ return (
               Send
             </button>
           </div>
-        </div>
-      </div>
-
-      <div className="message_online">
-        <div className="message_online_container">
-          <StatusOnline />
         </div>
       </div>
     </div>

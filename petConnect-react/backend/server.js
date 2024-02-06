@@ -45,7 +45,7 @@ const eventsRoutes = require('./routes/events');
 const chatsRoutes = require('./routes/chats');
 const messagesRoutes = require('./routes/messages');
 const directMessagesRoutes = require('./routes/directMessages');
-const conversationsRoutes = require('./routes/conversations');
+const conversationsRoutes = require('./routes/Conversations');
 const commentsRoutes = require('./routes/comments');
 const likesRoutes = require('./routes/likes');
 const attendeesRoutes = require('./routes/attendees');
@@ -80,7 +80,6 @@ io.on('connection', (socket) => {
   console.log('A user connected');
 
   // Handle Socket.IO events here
-
   socket.on('disconnect', () => {
     console.log('User disconnected');
   });
