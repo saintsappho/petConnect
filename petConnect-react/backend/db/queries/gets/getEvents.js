@@ -7,4 +7,11 @@ const getEvents = () => {
     });
 };
 
+const getEventsByID = () => {
+  return db.query('SELECT * FROM events;')
+    .then(data => {
+      return data.rows;
+    });
+};
+
 module.exports = { getEvents };

@@ -37,25 +37,26 @@ export default function HomeRoute({
 
   useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
 
+  // // log to ensure posts are being fetched dynamically
+  // useEffect(
+  //   (posts) => {
+  //     console.log("posts array has changed:", posts);
+  //   },
+  //   [posts.length],
+  // );
 
-  useEffect(
-    (posts) => {
-      console.log("posts array has changed:", posts);
-    },
-    [posts.length],
-  );
-
-  //Backend routes to fetch data stored here.
-  // useFetchData("http://localhost:8080/users/", "users");
-  // useFetchData("http://localhost:8080/posts/", "posts");
-  // useFetchData("http://localhost:8080/pets/", "pets");
-  // useFetchData("http://localhost:8080/events/", "events");
-  // useFetchData("http://localhost:8080/chats/", "chats");
-  // useFetchData("http://localhost:8080/messages/", "messages");
-  // useFetchData("http://localhost:8080/comments/", "comments");
-  // useFetchData("http://localhost:8080/likes/", "likes");
-  // useFetchData("http://localhost:8080/attendees/", "attendees");
-  // useFetchData("http://localhost:8080/follows/", "follows");
+  // // example hook usage for backend routes to fetch data stored here. 
+  // // feel free to copy and paste
+  // useFetchData("http://localhost:8080/users/", "users", setUsers, setFetchError);
+  // useFetchData("http://localhost:8080/posts/", "posts", setPosts, setFetchError);
+  // useFetchData("http://localhost:8080/pets/", "pets", setPets, setFetchError);
+  // useFetchData("http://localhost:8080/events/", "events", setEvents, setFetchError);
+  // useFetchData("http://localhost:8080/chats/", "chats", setChats, setFetchError);
+  // useFetchData("http://localhost:8080/messages/", "messages", setMessages, setFetchError);
+  // useFetchData("http://localhost:8080/comments/", "comments", setComments, setFetchError);
+  // useFetchData("http://localhost:8080/likes/", "likes", setLikes, setFetchError);
+  // useFetchData("http://localhost:8080/attendees/", "attendees", setAttendees, setFetchError);
+  // useFetchData("http://localhost:8080/follows/", "follows", setFollows, setFetchError);
 
   return (
     <div className="HomeRoute">
