@@ -66,6 +66,8 @@ form .form-row .textarea{
   padding-top: 10px;
 }
 .input-data label{
+  display: flex;
+  
   position: absolute;
   pointer-events: none;
   bottom: 10px;
@@ -78,6 +80,8 @@ form .form-row .textarea{
   background: #fff;
 }
 .input-data .underline{
+  display: block;
+  width: 100%;
   position: absolute;
   bottom: 0;
   height: 2px;
