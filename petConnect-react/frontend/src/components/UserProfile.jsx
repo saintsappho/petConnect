@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import DirectMessages from "./DirectMessages";
 
-export default function UserProfile () {
+export default function UserProfile ({ userId, handleConversationClick }) {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);

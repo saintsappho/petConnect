@@ -10,21 +10,6 @@ export default function Conversations({ userId, onConversationClick }) {
   const [error, setError] = useState(null);
   console.log('rendering Conversations component');
 
-// useEffect(() => {
-// const fetchConversations = async () => {
-//   const response = await axios.get('http://localhost:8080/conversations/${userId}')
-//   .then(response => {
-//     setConversations(response.data);
-//   })
-
-//   .catch(error => {
-//     console.log('Error fetching conversations:', error);
-//   });
-// };
-// console.log('Calling fetchConversations...');
-//     fetchConversations();
-//   }, []);
-
 const fetchDataCallback = (url, target, setData, setError) => {
   const fetchConversations = async () => {
     try {
@@ -53,35 +38,16 @@ useFetchData(`http://localhost:8080/conversations/${userId}`, "conversations", s
       {conversations && Array.isArray(conversations) && conversations.map((chat) => (
         <div
           key={chat.chat_id}
-          className="conversations"
+          className="conversations-container"
           onClick={() => handleClick(chat)}
         >
-          <div className="conversations_container">
+          <div className="status-online">
             <StatusOnline user={chat} />
           </div>
-          <img className="conversations__image" src="./src/assets/profile-hex.png" alt="Profile" />
-          <span className="conversations__name">{chat.name}</span>
+          <img className="conversations-image" src={"./src/assets/profile-hex.png"} alt="Profile" />
+          <span className="conversations-name">{chat.name}</span>
         </div>
       ))}
     </div>
   );
 }
-
-//   return (
-//     <div>
-//       {conversations && Array.isArray(conversations) && conversations.map((chat) => (
-//         <div
-//           key={chat.chat_id}
-//           className="conversations"
-//           onClick={() => handleClick(chat)}
-//         >
-//           <div className="conversations_container">
-//             <StatusOnline user={chat} />
-//           </div>
-//           <img className="conversations__image" src="./src/assets/profile-hex.png" alt="Profile" />
-//           <span className="conversations__name">{chat.name}</span>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
