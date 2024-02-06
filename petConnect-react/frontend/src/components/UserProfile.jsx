@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useState } from "react";
-import LogoutButton from "./Logout";
+import { useState } from "react";
 import DirectMessages from "./DirectMessages";
 
 export default function UserProfile () {
@@ -40,7 +39,7 @@ export default function UserProfile () {
             
           </table>
           <h2>{user.location}</h2>
-          <article>"I'm {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!"</article>
+            <article id="bio" >&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
 
       {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}
