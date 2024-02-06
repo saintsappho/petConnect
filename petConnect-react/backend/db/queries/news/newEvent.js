@@ -2,7 +2,7 @@ const { use } = require("../../../routes/users");
 const db = require("../../connection");
 const eventsRouter = require("../../../routes/events");
 
-const newEvent = async (postData) => {
+const newEvent = async (eventData) => {
   const {
     creator_ID, // hard-coded for now
     title,
@@ -14,7 +14,7 @@ const newEvent = async (postData) => {
   try {
     const data = await db.query(
       `INSERT INTO events (
-        creator_ID, // hard-coded for now
+        creator_ID, 
         title,
         event_description,
         event_location,

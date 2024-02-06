@@ -80,7 +80,7 @@ export default function AddPostForm(props) {
       //   setPosts((prev) => [...prev, forumResponse.data]);
       // }
     } catch (error) {
-      console.error("Error creating post:", error.message);
+      console.error("Error:", error.message);
     }
   };
 

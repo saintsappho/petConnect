@@ -1,6 +1,6 @@
 export default function EventPost(props) {
   const { handleSubmit, handlePostStateChange, postState } = props;
-  const { title, content, location } = postState;
+  const { title, content, location, eventDescription } = postState;
   return (
 
     <form onSubmit={handleSubmit}>
@@ -26,9 +26,9 @@ export default function EventPost(props) {
         <div className="input-data textarea">
           <textarea
             id="new-event-description"
-            value={content}
+            value={eventDescription}
             onChange={() => {
-              handlePostStateChange(event, "content");
+              handlePostStateChange(event, "event_description");
             }}
             rows="8"
             cols="80"
@@ -48,7 +48,7 @@ export default function EventPost(props) {
             className="input-data"
             // value={eventDate}
             onChange={() => {
-              handlePostStateChange(event, "start-date");
+              handlePostStateChange(event, "event_date");
             }}
             rows="8"
             cols="20"
@@ -64,7 +64,7 @@ export default function EventPost(props) {
             className="input-data"
             // value={endDate}
             onChange={() => {
-              handlePostStateChange(event, "end-date");
+              handlePostStateChange(event, "end_date");
             }}
             rows="8"
             cols="20"
@@ -80,7 +80,7 @@ export default function EventPost(props) {
             id="new-event-location"
             value={location}
             onChange={() => {
-              handlePostStateChange(event, "location");
+              handlePostStateChange(event, "event_location");
             }}
             rows="8"
             cols="80"
