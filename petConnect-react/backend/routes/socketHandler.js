@@ -16,23 +16,23 @@ const initializeSocket = (server) => {
       socket.broadcast.emit('userOnline', userId);
     });
 
-    socket.on('new_conversation', async (data) => {
-      try {
-        const insertQuery = `
-          INSERT INTO chats (user1_ID, user2_ID)
-          VALUES ($1, $2)
-          RETURNING *;
-        `;
+    // socket.on('new_conversation', async (data) => {
+    //   try {
+    //     const insertQuery = `
+    //       INSERT INTO chats (user1_ID, user2_ID)
+    //       VALUES ($1, $2)
+    //       RETURNING *;
+    //     `;
 
-        const values = [data.senderId, data.receiverId];
+    //     const values = [data.senderId, data.receiverId];
 
-        const newConversation = await getMessages.query(insertQuery, values);
-        io.emit('conversation_created', newConversation.rows[0]);
-      } catch (err) {
-        console.error(err);
-        // Handle error and emit an error event if needed
-      }
-    });
+    //     const newConversation = await getMessages.query(insertQuery, values);
+    //     io.emit('conversation_created', newConversation.rows[0]);
+    //   } catch (err) {
+    //     console.error(err);
+    //     // Handle error and emit an error event if needed
+    //   }
+    // });
 
     socket.on('disconnect', () => {
       console.log('User disconnected');

@@ -24,59 +24,70 @@ io.on("connection", (socket) => {
     io.emit('user join chat', data);
   });
 
-  socket.on("send_message", (data) => {
-    socket.to(currentChat.chat_ID).emit('send_message', response.data);
-  });
+//   socket.on("send_message", (data) => {
+//     socket.to(currentChat.chat_ID).emit('send_message', response.data);
+//   });
+// });
+
+socket.on("send_message", async (data) => {
+  try {
+    // Send the message to the chat room
+    socket.to(data.chat_id).emit('new_message', data);
+
+    const newMessage = await getMessages();
+
+    // Check if newMessage and newMessage.rows exist before accessing properties
+    if (newMessage && newMessage.rows && newMessage.rows.length > 0) {
+      // Emit the new message to all clients in the chat room
+      io.to(data.chat_ID).emit('new_message', newMessage.rows[0]);
+    } else {
+      console.error("Error: No messages found or invalid message structure");
+    }
+  } catch (error) {
+    console.error("Error sending message:", error);
+  }
+});
 });
 
 server.listen(4000, () => {
   console.log("Server is running on port 4000");
 });
 
-router.post("/", async (req, res) => {
-  const insertQuery = `
-    INSERT INTO messages (chat_ID, sender, receiver, message, timestamp)
-    VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP)
-    RETURNING *;
-  `;
+router.post("/", (req, res) => {
 
-  const values = [
-    req.body.chat_ID,
-    req.body.sender,
-    req.body.receiver,
-    req.body.message
-  ];
-
-  try {
-    const newMessage = await getMessages.query(insertQuery, values);
-    res.status(201).json(newMessage.rows[0]);
-  } catch (err) {
-    console.error(err);
-
-    if (error.code === '23505') {
-      // Unique violation (duplicate message, handle accordingly)
-      res.status(400).json({ error: 'Duplicate message' });
+  getMessages()
+  .then(result => {
+    if (result.rows && result.rows.length > 0) {
+      const newMessage = result.rows[0];
+      res.status(201).json(newMessage);
     } else {
-      res.status(500).json({ error: 'Internal Server Error' });
+      // Handle the case where no rows were returned
+      res.status(500).json({ error: 'Internal Server Error: No rows returned' });
     }
-  }
+  })
+    .catch(error => {
+      console.error(error);
+
+      if (error.code === '23505') {
+        // Unique violation (duplicate message, handle accordingly)
+        res.status(400).json({ error: 'Duplicate message' });
+      } else {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    });
 });
 
-router.get("/:conversationId", async (req, res) => {
-  const selectQuery = `
-    SELECT * FROM messages
-    WHERE chat_ID = $1;
-  `;
+router.get("/:chat_Id", (req, res) => {
 
-  const values = [req.params.conversationId];
-
-  try {
-    const messages = await getMessages.query(selectQuery, values);
-    res.status(200).json(messages.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+  getMessages()
+    .then(result => {
+      const messages = result.rows;
+      res.status(200).json(messages);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
 });
 
 module.exports = router;

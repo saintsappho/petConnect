@@ -42,11 +42,9 @@ router.post("/", async (req, res) => {
 
 // Get conversation of a user
 
-router.get("/", (req, res) => {
+router.get("/:user_Id", (req, res) => {
   console.log('GET /api/conversations endpoint hit');
-  getChats.find({
-    members: { $in: [req.params.userId] },
-  })
+  getChats()
   .then(conversation => {
     console.log('Conversations fetched:', conversation);
     res.status(200).json(conversation);
