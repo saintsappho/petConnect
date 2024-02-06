@@ -1,22 +1,49 @@
-
-
-.profile-container {
+.content-container {
   width: 50%;
   margin: auto;
-  border: 1px solid #000;
-  padding: 20px;
-  border-radius: 10px;
   text-align: center;
+  padding-top: 2rem;
 }
+
 .profile-item {
   margin-bottom: 20px;
 }
+
 .profile-item label {
   font-weight: bold;
 }
+
 img.pet-profile-pic {
-  width: 275px;
-  height: 275px;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.profile_buttons {
+  padding: 2rem;
+}
+
+.meet-owner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2.5px solid #b9b9b9;
+  background-color: #cccccc;
+  border-radius: 10px;
+  width: 12.5em;
+  height: 5rem;
+}
+
+img.owner-profile-pic {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #00d7b3d1;
+  box-shadow: 0 0 15px rgb(0, 166, 255);
+  transition: all 0.3s ease-in-out;
 }

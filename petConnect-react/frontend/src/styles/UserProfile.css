@@ -1,13 +1,18 @@
-aside {
+.user-profile-container {
 
   padding-top: 2rem;
 }
 
-table {
+.profile__buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   scale: 1.5;
+}
+
+article {
+  padding-left: 28rem;
+  padding-right: 28rem;
 }
 
 img {

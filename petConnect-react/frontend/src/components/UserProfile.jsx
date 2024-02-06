@@ -22,7 +22,7 @@ export default function UserProfile () {
 
   return (
     isAuthenticated && (
-    <aside>
+    <div className="user-profile-container">
         <div className="profile__header">
         <img className="profile__image" src={user.picture} alt={user.name} />
           <h1 className="profile__name">{user.name}</h1>
@@ -44,7 +44,7 @@ export default function UserProfile () {
         </div>
 
       {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}
-    </aside>
+    </div>
     )
   )
 }

@@ -58,7 +58,7 @@ function App() {
     const pet = petData.find(pet => pet.pet_id === Number(petId));
     setSelectedPet(pet);    
     console.log('selected pet: ', pet);
-    setModalContent(<PetProfile selectedPet={selectedPet} />);
+    setModalContent(<PetProfile user={user} selectedPet={selectedPet} />);
     openModal(event);
   }
 

@@ -2,7 +2,7 @@ import "../styles/PetProfile.css";
 
 // Pet Profile Component
 
-export default function PetProfile({ selectedPet }) {
+export default function PetProfile({ selectedPet, user }) {
   if (!selectedPet) {
     return null;
   }
@@ -10,44 +10,53 @@ export default function PetProfile({ selectedPet }) {
   const { pet_name, age, breed, location, routines, medical_conditions, diet, allergies, registration_date } = selectedPet;
   return (
     <div className="pet-profile-container">
-      <img className="pet-profile-pic" src="./src/assets/Image(1).jpeg" alt="Pet Profile Picture" />
-    
-      <div className="pet-profile-header">
+      <div className="pet-profile-header"> 
+        <img className="pet-profile-pic" src={"./src/assets/Image(1).jpeg"} alt="Pet Profile Picture" />
         <h1>{pet_name}</h1>
+        <div className="profile__buttons"> 
+          <button className="profile__follow-button" onClick={()=>{console.log("followed pet")}}>Follow</button>
+        </div>
         <p>{location}</p>
         {/* In profile creation, ask species and favorite activity to fill this in */}        
         <label>I&apos;m a {age} year old {breed} that loves {routines}! </label>
       </div>
-
-      <div className="pet-profile-item">
-        <label>Breed: {breed}</label>
-        <span id="breed"></span>
-      </div>
-
-      <div className="pet-profile-item">
-        <label>Medical Conditions: {medical_conditions}</label>
-        <span id="medical-conditions"></span>
-      </div>
-
-      <div className="pet-profile-item">
-        <label>Diet: {diet}</label>
-        <span id="diet"></span>
-      </div>
-
-      <div className="pet-profile-item">
-        <label>Allergies: {allergies}</label>
-        <span id="allergies"></span>
-      </div>
-
-      <div className="pet-profile-item">
-        <label>Routines: {routines}</label>
-        <span id="routines"></span>
-      </div>
-
-      <div className="pet-profile-item">
-        <label>Registration Date: {registration_date}</label>
-        <span id="registration-date"></span>
-      </div>
+      
+      <table className="meet-owner-card">
+        <thead>
+          <tr>
+            <th><button className="profile__owner-button" onClick={()=>{console.log("message")}}>Meet My Owner!</button></th>
+            <th><img className="owner-profile-pic" src={user.picture} alt="User Profile Picture" /></th>
+          </tr>
+        </thead>
+        </table>
+      <table className="pet-info-table">
+        <tbody>
+          <tr>
+            <td>Breed:</td>
+            <td>{breed}</td>
+          </tr>
+          <tr>
+            <td>Medical Conditions:</td>
+            <td>{medical_conditions}</td>
+          </tr>
+          <tr>
+            <td>Diet:</td>
+            <td>{diet}</td>
+          </tr>
+          <tr>
+            <td>Allergies:</td>
+            <td>{allergies}</td>
+          </tr>
+          <tr>
+            <td>Routines:</td>
+            <td>{routines}</td>
+          </tr>
+          <tr>
+            <td>Registration Date:</td>
+            <td>{registration_date}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
-};
+}
