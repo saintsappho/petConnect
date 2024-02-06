@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getEvents } = require('../db/queries/gets/getEvents');
+const { getEvents, getEventsByPostID } = require('../db/queries/gets/getEvents');
 const { newEvent } = require('../db/queries/news/newEvent');
 
 router.get('/', async (req, res) => {
@@ -10,7 +10,18 @@ router.get('/', async (req, res) => {
     res.send(events)
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error: Failed to get Events');
+  }
+});
+//get By post_ID
+router.get('/:id', async (req, res) => {
+  try {
+    const events = await getEventsByPostID(req.params.id)
+    // console.log(events)
+    res.send(events)
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error: Failed to get Events by post_ID');
   }
 });
 
@@ -30,7 +41,7 @@ router.post("/", async (req, res) => {
     res.status(201).json(thisEvent);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Failed to schedule Event");
+    res.status(500).send("Internal Server Error: Failed to schedule Event");
   }
 });
 

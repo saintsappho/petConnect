@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-//  components
-import TextPost from "./_TextPost";
-import PhotoPost from "./_PhotoPost";
-import EventPost from "./_EventPost";
-import ForumPost from "./_ForumPost";
-import PollPost from "./_PollPost";
 import axios from "axios";
+//  components
+import TextPost from "./_NewTextPost";
+import PhotoPost from "./_NewPhotoPost";
+import EventPost from "./_NewEventPost";
+import ForumPost from "./_NewForumPost";
+import PollPost from "./_NewPollPost";
 // styles
 import "../../../styles/NewPost.scss";
 

@@ -7,11 +7,11 @@ const getEvents = () => {
     });
 };
 
-const getEventsByID = () => {
-  return db.query('SELECT * FROM events;')
+const getEventsByPostID = (post_ID) => {
+  return db.query('SELECT * FROM events WHERE post_ID = $1;', [post_ID])
     .then(data => {
       return data.rows;
     });
 };
 
-module.exports = { getEvents };
+module.exports = { getEvents, getEventsByPostID };
