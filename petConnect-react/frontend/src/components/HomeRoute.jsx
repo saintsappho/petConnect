@@ -43,6 +43,7 @@ export default function HomeRoute({
     [posts.length],
   );
 
+
   //Backend routes to fetch data stored here.
   // useFetchData("http://localhost:8080/users/", "users");
   // useFetchData("http://localhost:8080/posts/", "posts");
