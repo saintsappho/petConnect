@@ -34,11 +34,11 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
   return (
     isAuthenticated && (
       <div className="user-profile-container">
-        <div className="profile__header">
-          <img className="profile__image" src={user.picture} alt={user.name} />
-          <h1 className="profile__name">{user.name}</h1>
+        <div className="user-profile-header">
+          <img className="user-profile_-mage" src={user.picture} alt={user.name} />
+          <h1 className="user-profile-name">{user.name}</h1>
           <h2>{user.location}</h2>
-          <table className="profile__buttons">
+          <table className="user-profile-buttons">
             <thead>
               <tr>
                 <td>
@@ -53,8 +53,8 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
           <h2>{user.location}</h2>
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
-        <div className="profileBody">
-          <h2 id="petSectionTitle">Pets!</h2>
+        <div className="user-profile-body">
+          <h2 id="pet-section-title">Pets!</h2>
           <PetListWidget petData={petData} listPayload="currentUser" />
         </div>
         {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}
