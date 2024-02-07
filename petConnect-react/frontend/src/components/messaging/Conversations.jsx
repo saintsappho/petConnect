@@ -8,7 +8,7 @@ import "./Conversations.scss";
 export default function Conversations({ userId, onConversationClick }) {
   const [conversations, setConversations] = useState([]);
   const [error, setError] = useState(null);
-  const [userData, setUserData] = useState({ profilePicture: '', name: '' });
+  // const [userData, setUserData] = useState({ profilePicture: '', name: '' });
   console.log('rendering Conversations component');
 
   useEffect(() => {
@@ -26,30 +26,20 @@ export default function Conversations({ userId, onConversationClick }) {
     fetchConversations();
   }, [userId]);
 
-  useFetchData(`http://localhost:8080/user/${userId}`, 'user data', setUserData, setError);
-
-
-  const handleClick = (selectedChat) => {
-    onConversationClick(selectedChat);
-  };
-
-return (
-  <div>
-    {error && <p>Error fetching conversations: {error}</p>}
-    {conversations && Array.isArray(conversations) && conversations.map((chat) => (
-      <div
-        key={chat.chat_id}
-        className="conversations-container"
-        onClick={() => handleClick(chat)}
-      >
-        <div className="status-online">
-          <StatusOnline user={chat} />
+  return (
+    <div className="conversations">
+      {error && <p>Error fetching conversations: {error}</p>}
+      {conversations && Array.isArray(conversations) && conversations.map((chat) => (
+        <div
+          key={chat.chat_id}
+          className="conversations_container"
+          onClick={() => onConversationClick(chat)}
+        >
+          {/* Display user information */}
+          <img className="conversations_image" src={chat.profile_picture} alt="Profile" />
+          <span className="conversations_name">{chat.name}</span>
         </div>
-
-        <img className="conversations-image" src={userData.profilePicture} alt="Profile" />
-        <span className="conversations-name">{userData.name}</span>
-      </div>
-    ))}
-  </div>
-);
+      ))}
+    </div>
+  );
 }
