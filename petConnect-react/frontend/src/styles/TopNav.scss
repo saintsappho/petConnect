@@ -71,3 +71,8 @@ form select {
   text-decoration: none;
 }
 
+@media screen and (max-width: 1250px) { // Adjust mid-size screen
+  .top-nav-bar__title {
+    display: none;
+  }
+}
