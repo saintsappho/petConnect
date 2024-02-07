@@ -8,9 +8,12 @@ CREATE TABLE pets (
   species VARCHAR(255) NOT NULL,
   age INTEGER NOT NULL,
   breed VARCHAR(255) NOT NULL,
+  color VARCHAR(255) NOT NULL,
+  sex VARCHAR(255) NOT NULL,
   medical_conditions VARCHAR(255) NOT NULL,
   diet VARCHAR(255) NOT NULL,
   allergies VARCHAR(255) NOT NULL,
   routines VARCHAR(255) NOT NULL,
-  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  profile_photo_url VARCHAR(255) NOT NULL
 );
