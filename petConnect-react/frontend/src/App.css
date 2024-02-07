@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200");
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif, Poppins ;
   line-height: 1.5;
@@ -89,7 +91,6 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   top: 1px;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200");
 
 html {
   width: 100%;

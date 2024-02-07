@@ -17,6 +17,7 @@ export default function AddPostForm(props) {
   //destructuring needed variables from props
   const { setPosts, useFetchData, setFetchError, create, setCreate } = props;
   //
+  const [numChoices, setNumChoices] = useState(2);
   const [post_ID, setPost_ID] = useState(); // hard-coded for now
   const [postState, setPostState] = useState({
     user_ID: 1, // hard-coded for now
@@ -73,6 +74,7 @@ export default function AddPostForm(props) {
          const updatedPostState = {
           ...postState,
           post_ID: newPostId,
+          numChoices: numChoices,         
         };
         console.log("Updated postState for Poll:", updatedPostState);
         const pollResponse = await axios.post(
@@ -154,6 +156,8 @@ export default function AddPostForm(props) {
             postState={postState}
             handlePostStateChange={handlePostStateChange}
             handleSubmit={handleSubmit}
+            numChoices={numChoices}
+            setNumChoices={setNumChoices}
           />
         )}
         {style === "forum-post" && (

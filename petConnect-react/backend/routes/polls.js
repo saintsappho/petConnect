@@ -34,7 +34,19 @@ router.post("/", async (req, res) => {
       post_ID: req.body.post_ID,
       title: req.body.title
     } 
-    const thisPoll = await newPoll(pollData);
+    const choices = []
+    const choiceData = {
+      poll_ID: req.body.post_ID,
+    }
+    let n = 0;
+    while (`choice${n}`){
+      choiceData = {
+        choiceText: req.body[`choice${n}`]
+      }; 
+      choices.push(choiceData);
+      n++
+    }
+    const thisPoll = await newPoll(pollData, choices);
     res.status(201).json(thisPoll);
   } catch (err) {
     console.error(err);

@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 
 export default function EventPost(props) {
-  const { handleSubmit, handlePostStateChange, postState } = props;
+  const { handleSubmit, handlePostStateChange, postState, numChoices, setNumChoices } = props;
   const { title, content } = postState;
-  const [numChoices, setNumChoices] = useState(2);
+  
   const [choice, setChoice] = useState([]);
 
   const htmlchoices = [];

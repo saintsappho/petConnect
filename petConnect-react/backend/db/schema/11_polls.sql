@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS polls CASCADE;
 CREATE TABLE polls (
-    poll_ID INT PRIMARY KEY,
+    poll_ID INT REFERENCES Posts(post_ID) PRIMARY KEY,
     creator_ID INT REFERENCES Users(user_ID),
     title TEXT NOT NULL
 );
