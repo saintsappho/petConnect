@@ -27,7 +27,7 @@ export default function Conversations({ userId, onConversationClick }) {
   }, [userId]);
 
   return (
-    <div>
+    <div className="conversatoions">
       {error && <p>Error fetching conversations: {error}</p>}
       {conversations && Array.isArray(conversations) && conversations.map((chat) => (
         <div
@@ -43,31 +43,3 @@ export default function Conversations({ userId, onConversationClick }) {
     </div>
   );
 }
-
-//   useFetchData(`http://localhost:8080/user/${userId}`, 'user data', setUserData, setError);
-
-
-//   const handleClick = (selectedChat) => {
-//     onConversationClick(selectedChat);
-//   };
-
-// return (
-//   <div>
-//     {error && <p>Error fetching conversations: {error}</p>}
-//     {conversations && Array.isArray(conversations) && conversations.map((chat) => (
-//       <div
-//         key={chat.chat_id}
-//         className="conversations-container"
-//         onClick={() => handleClick(chat)}
-//       >
-//         <div className="status-online">
-//           <StatusOnline user={chat} />
-//         </div>
-
-//         <img className="conversations-image" src={userData.profilePicture} alt="Profile" />
-//         <span className="conversations-name">{userData.name}</span>
-//       </div>
-//     ))}
-//   </div>
-// );
-// }

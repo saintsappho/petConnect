@@ -68,7 +68,7 @@ export default function SendMessage({ currentChat, socket }) {
         id="message"
         cols="30"
         rows="10"
-        placeholder="Type a message"
+        placeholder="Say hello to a friend!"
         value={newMessage}
         onChange={onChange}
       ></textarea>

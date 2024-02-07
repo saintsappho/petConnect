@@ -91,7 +91,7 @@ export default function DirectMessages({ userId }) {
             <div className="message_box_container">
               <div className="message_box_header">
                 {messages.map((message, index) => (
-                  <div key={index}>
+                  <div key={index} className={`message ${message.sender === userId ? 'sent' : 'received'}`}>
                     <p>{message.sender}: {message.message}</p>
                     <p>{message.timestamp}</p>
                   </div>
