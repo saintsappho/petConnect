@@ -1,5 +1,5 @@
 .content-container {
-  width: 50%;
+  width: 100%;
   margin: auto;
   text-align: center;
   padding-top: 2rem;
@@ -24,18 +24,6 @@ img.pet-profile-pic {
   padding: 2rem;
 }
 
-.meet-owner-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border: 2.5px solid #b9b9b9;
-  background-color: #cccccc;
-  border-radius: 10px;
-  width: 12.5em;
-  height: 5rem;
-}
 
 img.owner-profile-pic {
   width: 3.5rem;
@@ -46,4 +34,8 @@ img.owner-profile-pic {
   border: 2px solid #00d7b3d1;
   box-shadow: 0 0 15px rgb(0, 166, 255);
   transition: all 0.3s ease-in-out;
+}
+
+.meet-owner-card {
+  padding: 6px;
 }
