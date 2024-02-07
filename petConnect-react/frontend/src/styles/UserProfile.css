@@ -20,7 +20,8 @@ img.profile__image {
   /* height: 10rem; */
   border-radius: 50%;
   border: 2px solid #0088ff73;
-  box-shadow: 0 0 50px rgba(51, 0, 61, 0.825); /* Adds a shadow */
+  box-shadow: 0 0 .6rem rgb(0, 238, 255),
+  0 0 4rem rgb(34, 0, 171);
   transition: all 0.3s ease-in-out;
 
   &:hover {
