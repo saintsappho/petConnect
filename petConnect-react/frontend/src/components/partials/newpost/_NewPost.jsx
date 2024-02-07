@@ -17,6 +17,7 @@ export default function AddPostForm(props) {
   //destructuring needed variables from props
   const { setPosts, useFetchData, setFetchError } = props;
   //
+  const [post_ID, setPost_ID] = useState(); // hard-coded for now
   const [postState, setPostState] = useState({
     user_ID: 1, // hard-coded for now
     pet_ID: 1, // hard-coded for now
@@ -43,22 +44,28 @@ export default function AddPostForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Use the updated state in the axios requests
-      const response = await axios.post(
-        "http://localhost:8080/posts/",
-        postState,
-      );
+      const response = await axios.post("http://localhost:8080/posts/", postState);
       console.log("Post created:", response.data);
       console.log("postData: ", postState);
       setPosts((prev) => [...prev, response.data]);
+      const newPostId = response.data.post_id;
+      console.log("newPostId: ", newPostId);
       
       if (postState.style === "event-post") {
+        // Creating the updated post state with the new post ID
+        const updatedPostState = {
+          ...postState,
+          post_ID: newPostId,
+        };
+        console.log("Updated postState for Event:", updatedPostState);
+        
+        // Using updatedPostState in the Axios request
         const eventResponse = await axios.post(
           "http://localhost:8080/events/",
-          postState,
+          updatedPostState,
         );
         console.log("Event created:", eventResponse.data);
-        console.log("eventData: ", postState);
+        console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
         setPosts((prev) => [...prev, eventResponse.data]);
       }
       // if (postState.style === "poll-post") {

@@ -9,6 +9,7 @@ export default function Event(props) {
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
   
+  
   useFetchData(`http://localhost:8080/events/${petPost.post_id}`, "events", setEvents, setError);
   
 

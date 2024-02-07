@@ -5,7 +5,6 @@ const postsRouter = require('../../../routes/posts');
 
 const newPost = async (postData) => {
   const { 
-    post_ID,
     user_ID, 
     pet_ID, 
     title, 
@@ -16,16 +15,15 @@ const newPost = async (postData) => {
   try {
     const data = await db.query(
       `INSERT INTO posts (
-        post_ID, 
         user_ID,
         pet_ID, 
         title,
         content,
         style, 
         image_file
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7) 
+      ) VALUES ($1, $2, $3, $4, $5, $6) 
       RETURNING *;`,
-      [post_ID, user_ID, pet_ID, title, content, style, image_file],
+      [ user_ID, pet_ID, title, content, style, image_file],
     );
     // sendPostsUpdate(data.rows[0]);
     return data.rows[0];
