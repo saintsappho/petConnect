@@ -12,18 +12,16 @@ const initializeSocket = (server) => {
 
     socket.on('login', (userId) => {
       console.log(`User ${userId} logged in`);
-      connectedUsers[userId] = socket.id;
+      socket.request.session.userId = userId;
       socket.broadcast.emit('userOnline', userId);
     });
 
     socket.on('disconnect', () => {
-      console.log('User disconnected');
-      const disconnectedUserId = Object.keys(connectedUsers).find(
-        (key) => connectedUsers[key] === socket.id
-      );
-      if (disconnectedUserId) {
-        delete connectedUsers[disconnectedUserId];
-        socket.broadcast.emit('userOffline', disconnectedUserId);
+      console.log(`User disconnected: ${socket.id}`);
+      const userId = socket.request.session.userId;
+      if (userId) {
+        delete socket.request.session.userId;
+        socket.broadcast.emit('userOffline', userId);
       }
     });
   });

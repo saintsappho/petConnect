@@ -24,12 +24,21 @@ io.on("connection", (socket) => {
   });
 
   // Event when a user sends a message
-  socket.on("send_message", ({ senderId, receiverId, text }) => {
-    io.emit("getMessage", {
-      senderId,
-      text,
-    });
+  socket.on("send_message", (obj) => {
+    console.log(`Message received here on the backend: obj =`, obj);
+    io.emit('new_message', obj.message);
+    io.emit('message_processed', obj.chatId);
+    // io.emit("new_message", {
+    //   "senderId",
+    //   "text",
+    // });
   });
+
+  // Add an event to fetch messages
+socket.on("fetch_messages", (chatId) => {
+  console.log(`Fetching messages for chat: ${chatId}`);
+  // io.emit("fetch_messages", chatId);
+});
 
   // Event when a user disconnects
   socket.on("disconnect", () => {
