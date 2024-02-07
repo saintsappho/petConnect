@@ -1,4 +1,4 @@
-INSERT INTO Polls (poll_ID, creator_ID, question) VALUES
+INSERT INTO Polls (poll_ID, creator_ID, title) VALUES
 (1, 1, 'What is your favorite programming language?'),
 (2, 2, 'Which movie genre do you prefer?'),
 (3, 3, 'What is your preferred method of transportation?');

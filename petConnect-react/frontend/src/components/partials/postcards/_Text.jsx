@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import useFormatDateTime from "../../../assets/helpers/formatDateTime";
+
 export default function Text(props) {
   const { randomImage, petPost } = props;
   
@@ -18,6 +20,7 @@ export default function Text(props) {
           <a className="card__button">
             Comment?
           </a>
+        <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
     </div>

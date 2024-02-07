@@ -82,7 +82,7 @@ export default function HomeRoute({
             </div>
             {create && (
               <div className="new-post-card">
-                <NewPost setPosts={setPosts} useFetchData={useFetchData} setFetchError={setFetchError}/>
+                <NewPost create={create} setCreate={setCreate} setPosts={setPosts} useFetchData={useFetchData} setFetchError={setFetchError}/>
               </div>
             )}
           </>

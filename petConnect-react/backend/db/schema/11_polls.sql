@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS polls CASCADE;
 CREATE TABLE polls (
     poll_ID INT PRIMARY KEY,
     creator_ID INT REFERENCES Users(user_ID),
-    question TEXT NOT NULL
+    title TEXT NOT NULL
 );
 DROP TABLE IF EXISTS choices CASCADE;
 CREATE TABLE choices (

@@ -11,9 +11,6 @@ import Text from "./postcards/_Text.jsx";
 
 export default function PetPost(props) {
   const { petPost } = props;
-  const [imageSrc, setImageSrc] = useState(null);
-  const [events, setEvents] = useState(null);
-  const [error, setError] = useState(null);
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -27,7 +24,7 @@ export default function PetPost(props) {
         <Text petPost={petPost} randomImage={randomImage} />
       )}
       {petPost.style === "photo-post" && (
-        <Photo petPost={petPost} randomImage={randomImage} />
+        <Photo petPost={petPost} />
       )}
       {petPost.style === "poll-post" && (
         <Poll petPost={petPost} randomImage={randomImage} />
