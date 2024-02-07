@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
     console.log("req.body", req.body);
     const eventData = {
       creator_ID: 1, // hard-coded for now
+      post_ID: req.body.post_ID,
       title: req.body.title,
       event_description: req.body.event_description,
       event_location: req.body.event_location,
