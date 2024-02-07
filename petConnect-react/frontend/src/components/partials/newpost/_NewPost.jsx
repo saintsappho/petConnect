@@ -15,7 +15,7 @@ import "../../../styles/NewPost.scss";
 
 export default function AddPostForm(props) {
   //destructuring needed variables from props
-  const { setPosts, useFetchData, setFetchError } = props;
+  const { setPosts, useFetchData, setFetchError, create, setCreate } = props;
   //
   const [post_ID, setPost_ID] = useState(); // hard-coded for now
   const [postState, setPostState] = useState({
@@ -68,15 +68,21 @@ export default function AddPostForm(props) {
         console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
         setPosts((prev) => [...prev, eventResponse.data]);
       }
-      // if (postState.style === "poll-post") {
-      //   const pollResponse = await axios.post(
-      //     "http://localhost:8080/polls/",
-      //     postState,
-      //   );
-      //   console.log("poll created:", pollResponse.data);
-      //   console.log("pollData: ", postState);
-      //   setPosts((prev) => [...prev, pollResponse.data]);
-      // }
+      if (postState.style === "poll-post") {
+         // Creating the updated post state with the new post ID
+         const updatedPostState = {
+          ...postState,
+          post_ID: newPostId,
+        };
+        console.log("Updated postState for Poll:", updatedPostState);
+        const pollResponse = await axios.post(
+          "http://localhost:8080/polls/",
+          postState,
+        );
+        console.log("poll created:", pollResponse.data);
+        console.log("pollData: ", postState);
+        setPosts((prev) => [...prev, pollResponse.data]);
+      }
       // if (postState.style === "forum-post") {
       //   const forumResponse = await axios.post(
       //     "http://localhost:8080/forums/",
@@ -88,6 +94,16 @@ export default function AddPostForm(props) {
       // }
     } catch (error) {
       console.error("Error:", error.message);
+    } finally {
+      setCreate(!create); // Close the form after submission
+      setPostState({
+        user_ID: 1, // hard-coded for now
+        pet_ID: 1, // hard-coded for now
+        title: "",
+        content: "", // content should be empty initially
+        style: "text-post", // style should be set initially
+        image_file: null,
+      });
     }
   };
 
