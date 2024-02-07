@@ -5,17 +5,11 @@ import './SendMessage.scss';
 export default function SendMessage({ currentChat, socket }) {
   const [newMessage, setNewMessage] = useState("");
   const [text, setText] = useState("");
-  // const [socket, setSocket] = useState();
 
   const handleSendMessage = () => {
     console.log("Sending message:", newMessage);
-    if (!socket) {
-      console.error("Socket is not defined");
-      return;
-    }
-
-    if (!currentChat || !currentChat.chat_id || !newMessage) {
-      console.error("Invalid chat or message data");
+    if (!socket || !currentChat || !currentChat.chat_id || !newMessage) {
+      console.error("Invalid socket or chat or message data");
       return;
     }
 
@@ -45,7 +39,6 @@ export default function SendMessage({ currentChat, socket }) {
         placeholder="Type a message"
         value={newMessage}
         onChange={onChange}
-        // onChange={(e) => setNewMessage(e.target.value)}
       ></textarea>
       <button className="send_message_button" onClick={handleSendMessage}>
         Send

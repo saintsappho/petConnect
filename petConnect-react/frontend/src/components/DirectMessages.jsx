@@ -1,59 +1,83 @@
 import React, { useEffect, useState } from "react";
+import { Grid, GridItem } from "@chakra-ui/react";
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
 import NavBar from "./NavBar";
 import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
+
 export default function DirectMessages({ userId }) {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  // const [newMessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [socket, setSocket] = useState(null);
   const [error, setError] = useState(null);
 
-  // Declare socket variable
-  const socket = io('http://localhost:4000', { path: '/socket.io' });
+  
 
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log("Socket connected:", socket.connected);
+    const newSocket = io('http://localhost:4000', { path: '/socket.io' });
+    setSocket(prev => newSocket);
 
-      socket.on('send_message', (newConversation) => {
-        console.log("New conversation received:", newConversation);
-        setConversations((prevConversations) => [...prevConversations, newConversation]);
+    newSocket.on('connect', () => {
+      console.log("Socket connected:", newSocket.connected);
+
+      // newSocket.on('send_message', (newConversation) => {
+      //   console.log(`New conversation received: newConv =  newConversation`);
+      //   setConversations((prevConversations) => [...prevConversations, newConversation]);
+      // });
+
+      newSocket.on('new_message', (newMessage) => {
+        console.log(`New message received: newMessage = ${newMessage}`);
+      
+        setNewMessage((prevMessages) => {
+          console.log('Previous messages:', prevMessages); // Log the value of prevMessages
+          console.log('Type of prevMessages:', typeof prevMessages); // Log the type of prevMessages
+          
+          // If prevMessages is null or undefined, initialize it to an empty array
+          prevMessages = prevMessages || [];
+          console.log('After initialization, prevMessages:', prevMessages); // Log the value of prevMessages after initialization
+      
+          return [...prevMessages, newMessage];
+        });
+
+        newSocket.on('message_processed', (chatId) => {
+          console.log(`Message processed for chat: ${chatId}`);
+          // Once the message is processed, trigger the fetch_messages event
+          newSocket.emit('fetch_messages', chatId);
+        });
       });
 
-      // socket.on('new_message', (newMessage) => {
-      //   console.log("New message received:", newMessage);
-      //   setMessages((prev) => [...prev, newMessage]);
-      // });
+      // newSocket.on('fetch_messages', (messages) => {
+      //   console.log("Messages received:", messages);
+      //   setMessages(messages);
+      // })
     });
 
     return () => {
       console.log("Cleaning up listeners");
-      socket.disconnect();
+      newSocket.disconnect();
     };
   }, []);
 
   const handleConversationClick = (selectedChat) => {
-    console.log("Clicked on conversation:", selectedChat);
-
-    if (!selectedChat.chat_id) {
-      console.log("No chat selected");
-      return;
-    }
-
     setCurrentChat(selectedChat);
     console.log("Selected chat:", selectedChat);
-
-    // Emit an event to request messages for the selected chat
+    if (socket) {
+    socket.emit('join_chat', selectedChat.chat_id); // Update event name
     socket.emit('fetch_messages', selectedChat.chat_id);
+    } else {
+      console.log('Not connected to server');
+    }
   };
 
 
   return (
     <div>
+      <Grid templateColumns="repeat(10, 1fr)" h="100vh as={Tabs}">
+        <GridItem colSpan="3" borderRight="1px solid gray">
       <div className="direct_message">
         <div className="message_menu">
           <div className="message_menu_container">Menu</div>
@@ -65,11 +89,14 @@ export default function DirectMessages({ userId }) {
             <Conversations userId={userId} onConversationClick={handleConversationClick} />
           </div>
         </div>
+        </div>
+        </GridItem>
 
+        <GridItem colSpan="7">
         <div className="message_box">
           <div className="message_box_container">
             <div className="message_box_header">
-              {messages.map((message, index) => (
+              {Array.isArray(messages) && messages.map((message, index) => (
                 <SendMessage
                   key={index}
                   message={message.message}
@@ -85,7 +112,8 @@ export default function DirectMessages({ userId }) {
             </div>
           </div>
         </div>
-      </div>
+      </GridItem>
+      </Grid>
     </div>
   );
 }
