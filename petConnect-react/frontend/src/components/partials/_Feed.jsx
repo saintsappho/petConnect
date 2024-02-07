@@ -10,6 +10,12 @@ import PetPost from "./_PetPost.jsx";
 export default function Feed(props) {
   const { user, posts, error } = props;
 
+  //still NO IDEA why this is flipping the order of the posts
+  //happens whenever i open new post form
+  const feedPosts = posts.reverse().map(
+    (post) => (<PetPost key={post.post_id} petPost={post} />),
+  )
+
   if (error) {
     return (
       <>
@@ -28,10 +34,8 @@ export default function Feed(props) {
   }
 
   return (
-    <div className="container">
-      {posts.reverse().map(
-        (post) => (<PetPost key={post.post_id} petPost={post} />),
-      )}
+    <div className="feed-container">
+      {feedPosts}
     </div>
   );
 }
