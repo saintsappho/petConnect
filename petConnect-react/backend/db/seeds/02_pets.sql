@@ -1,5 +1,5 @@
 -- Seeds for Pets Table
-INSERT INTO pets (user_ID, pet_name, species, age, breed, medical_conditions, diet, allergies, routines, registration_date)
+INSERT INTO pets (user_ID, pet_name, species, breed, age, medical_conditions, diet, allergies, routines, registration_date)
 VALUES
   (1, 'Tucker', 'Dog', 'Golden Retriever', 1.5, 'None', 'Regular diet', 'None', 'Morning walk, evening play', '2024-01-01'),
   (2, 'Shredder', 'Cat', 'Siamese', 5, 'Asthma', 'Special diet', 'None', 'Indoor play, nap time', '2024-01-02'),
