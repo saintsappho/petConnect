@@ -1,5 +1,5 @@
 .user-profile-container {
-  padding-top: 2rem;
+  padding-top: 0rem;
 }
 
 .profile__buttons {
@@ -9,24 +9,156 @@
   scale: 1.5;
 }
 
+.profile__header {
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #000000d1;
+  box-shadow: 0 0 10px #808080d1;
+  width: 40%;
+  background-color: #ffffff87;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#friendButton {
+  border: 2px solid #00d7b3d1;
+  background-color: #078d91;
+}
+
+#messageButton {
+  border: 2px solid #00d7b3d1;
+  background-color: #078d91;
+}
+
 #bio {
-  padding-left: 5rem;
-  padding-right: 5rem;
+}
+
+#petSectionTitle {
+  font-size: 1.2rem;
+  font-family: Poppins;
+  margin-bottom: 1rem;
+  line-height: 0.8;
+  border: 1px solid #000000d1;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #808080d1;
+  padding: 1rem;
+  background-color: #ffffff87;
+  width: 5rem;
+
+}
+
+.petsTable {
+  border: 1px solid #000000d1;
+  box-shadow: 0 0 10px #808080d1;
+  display: flex; 
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+  background-color: #ffffff87;
+}
+#petBreed {
+  border: 1px solid #000000d1;
+}
+#petName {
+  border: 1px solid #000000d1;
+}
+#petPhoto {
+  border: 1px solid #000000d1;
+}
+
+h1.profile__name {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: light;
+  margin-bottom: 1rem;
+  line-height: 0.8;
 }
 
 img.profile__image {
   cursor: pointer;
-  /* width: 10rem; */
-  /* height: 10rem; */
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
-  border: 2px solid #0088ff73;
-  box-shadow: 0 0 .6rem rgb(0, 238, 255),
-  0 0 4rem rgb(34, 0, 171);
+  box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
-    transform: scale(1.1);
+    box-shadow: 0 0 50px rgb(255, 84, 0);/* Adds a shadow */
+    transform: scale(1.2);
     transition: all 0.3s ease-in-out;
   }
 }
+
+/* Tablet and mobile layout*/
+@media only screen and (max-width: 480px) {
+  img.profile__image {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .user-profile-container {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile__header {
+    width: 75%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1rem;
+    position: sticky;
+    margin-top: -13rem;
+  }
+
+  #bio {
+    padding-left: 1%;
+    padding-right: 1%;
+    font-size: smaller;
+    margin-top: -10px;
+  }
+
+  .profile__buttons {
+    scale: 1.1;
+  }
+
+  h1.profile__name {
+    font-size: 1.9rem;
+    font-weight: bold;
+    font-family: light;
+    margin-bottom: 1rem;
+    line-height: 0.3;
+  }
+
+  img.profile__image {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  
+}
+

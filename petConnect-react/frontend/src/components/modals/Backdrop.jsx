@@ -5,4 +5,4 @@ const Backdrop = ({ closeModal }) => {
 
 }
 
-export default Backdrop
+export default Backdrop;

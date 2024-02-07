@@ -4,7 +4,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login";
 import NewPost from "./partials/newpost/_NewPost";
 import Feed from "./partials/_Feed";
-import UserProfile from "./UserProfile";
 import NavBar from "./NavBar"
 //hooks
 import useFetchData from "../hooks/useFetchData";
@@ -15,12 +14,7 @@ import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
 
-export default function HomeRoute({
-  onPetSelect,
-  petData,
-  handlePetListSelect,
-  openCurrentUserModal,
-}) {
+export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData }) {
   //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user, isAuthenticated } = useAuth0();
@@ -28,7 +22,9 @@ export default function HomeRoute({
   const [posts, setPosts] = useState([]);
   const [fetchError, setFetchError] = useState(null);
 
-  useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
+  useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);  
+  // useFetchData("http://localhost:8080/users", "users", setUsers, setFetchError); 
+  useFetchData("http://localhost:8080/pets", "pets", setPetData, setFetchError);
 
   // // log to ensure posts are being fetched dynamically
   // useEffect(
@@ -52,8 +48,9 @@ export default function HomeRoute({
   // useFetchData("http://localhost:8080/follows/", "follows", setFollows, setFetchError);
 
   return (
+    
     <div className="HomeRoute">
-      <header>
+      <nav>
         {petData && (
           <NavBar
             petData={petData}
@@ -63,34 +60,28 @@ export default function HomeRoute({
             openCurrentUserModal={openCurrentUserModal}
           />
         )}
-      </header>
+      </nav>
 
-      <div>
+
         {!user && <LoginButton className="login-button-login-screen" />}
         {error && <p>Authentication Error</p>}
         {!error && isLoading && <p>Loading...</p>}
         {!error && !isLoading && user && (
-          <>
+          
             <div className="title-card">
               <h2>Welcome to PetConnect, {user.name}!</h2>
-              <button
-                className="bubbly-button"
-                onClick={() => setCreate(!create)}
-              >
+              <button className="bubbly-button" onClick={() => setCreate(!create)}>
                 New Post
               </button>
             </div>
-            {create && (
-              <div className="new-post-card">
-                <NewPost create={create} setCreate={setCreate} setPosts={setPosts} useFetchData={useFetchData} setFetchError={setFetchError}/>
-              </div>
-            )}
-          </>
         )}
-      </div>
+        {create && (
+          <div className="new-post-card">
+            <NewPost create={create} setCreate={setCreate} setPosts={setPosts} useFetchData={useFetchData} setFetchError={setFetchError}/>
+          </div>
+        )}
 
       <Feed posts={posts} setPosts={setPosts} error={fetchError} />
-      <UserProfile />
 
       <footer>
         <p>
@@ -98,5 +89,6 @@ export default function HomeRoute({
         </p>
       </footer>
     </div>
+    
   );
 }

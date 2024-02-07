@@ -154,3 +154,30 @@ html {
   font-family: "Source Code Pro", monospace;
   text-transform: uppercase;
 }
+
+
+/* Tablet and mobile layout*/
+
+@media only screen and (max-width: 1025px) {
+  .center h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .center h1 {
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .center h1 {
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .center h1 {
+    font-size: 0.8em;
+  }
+}
