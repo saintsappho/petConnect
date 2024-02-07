@@ -10,23 +10,23 @@ export default function PetListWidget({petData, listPayload}) {
     return petData.map((pet) => {
       return (
         <tr key={pet.id} id="pet-list-item">
-          <td>{pet.photo}</td>
-          <td>{pet.name}</td>
+          <td><img id="pet-photo" src={pet.profile_photo_url}/></td>
+          <td>{pet.pet_name}</td>
           <td>{pet.breed}</td>
         </tr>
       );
     });
   }
 
-  // 'all-pets' payload will render the pet list with all pets
+  // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
+          <img id="pet-photo" src={pet.profile_photo_url}/>          
         <tr>
-          <td>{pet.photo}</td>
-          <td>{pet.name}</td>
-          <td>{pet.breed}</td>
+          <td><h2>{pet.owner_name}</h2></td>
+          <td><h2>{pet.pet_name}</h2></td>
         </tr>
         </div>
       );
@@ -34,7 +34,6 @@ export default function PetListWidget({petData, listPayload}) {
   };
 
   // Conditional rendering based on payload
-(listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
-return;
+return (listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
 
-  }
+}

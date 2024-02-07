@@ -78,6 +78,13 @@
   font-weight: bold;
 }
 
+#pet-photo {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 25%;
+}
+
 #petSectionTitle {
   font-size: 1.2rem;
   font-family: Poppins;
