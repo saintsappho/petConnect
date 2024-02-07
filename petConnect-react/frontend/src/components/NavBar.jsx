@@ -15,7 +15,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
       </div>
 
       <div className="top-nav-bar__title">
-        <h1>Petconnect</h1>
+        <h1>PetConnect</h1>
       </div>
 
       <div className="top-nav-bar__links">
