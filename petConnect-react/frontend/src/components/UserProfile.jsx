@@ -18,6 +18,8 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
     setDirectMessagesOpen(false);
   };
 
+  const listPayload = "currentUser";
+
   if (isLoading) {
     return (
       <div>
@@ -35,7 +37,7 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
     isAuthenticated && (
       <div className="user-profile-container">
         <div className="user-profile-header">
-          <img className="user-profile_-mage" src={user.picture} alt={user.name} />
+          <img className="user-profile-image" src={user.picture} alt={user.name} />
           <h1 className="user-profile-name">{user.name}</h1>
           <h2>{user.location}</h2>
           <table className="user-profile-buttons">
@@ -55,7 +57,9 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
         </div>
         <div className="user-profile-body">
           <h2 id="pet-section-title">Pets!</h2>
-          <PetListWidget petData={petData} listPayload="currentUser" />
+          <div className="pet-list-widget">
+          <PetListWidget petData={petData} listPayload={listPayload} />
+          </div>
         </div>
         {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}
       </div>
