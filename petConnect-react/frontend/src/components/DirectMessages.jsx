@@ -89,14 +89,17 @@ export default function DirectMessages({ userId }) {
         <GridItem colSpan="7">
           <div className="message_box">
             <div className="message_box_container">
-              <div className="message_box_header">
-                {messages.map((message, index) => (
-                  <div key={index} className={`message ${message.sender === userId ? 'sent' : 'received'}`}>
-                    <p>{message.sender}: {message.message}</p>
-                    <p>{message.timestamp}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="message_box_header">
+              {messages.map((message, index) => (
+            <div key={index} className={`message ${message.sender === userId ? 'sent' : 'received'}`}>
+              <div className="message-content">
+                <p className="message-sender">{message.sender}</p>
+                <p className="message-text">{message.message}</p>
+             </div>
+                <p className="message-timestamp">{message.timestamp}</p>
+          </div>
+          ))}
+      </div>
               <div className="message_box_footer">
                 <SendMessage currentChat={currentChat} socket={socket} />
               </div>

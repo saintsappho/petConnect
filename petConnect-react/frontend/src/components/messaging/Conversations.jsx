@@ -27,17 +27,17 @@ export default function Conversations({ userId, onConversationClick }) {
   }, [userId]);
 
   return (
-    <div className="conversatoions">
+    <div className="conversations">
       {error && <p>Error fetching conversations: {error}</p>}
       {conversations && Array.isArray(conversations) && conversations.map((chat) => (
         <div
           key={chat.chat_id}
-          className="conversations-container"
+          className="conversations_container"
           onClick={() => onConversationClick(chat)}
         >
           {/* Display user information */}
-          <img className="conversations-image" src={chat.profile_picture} alt="Profile" />
-          <span className="conversations-name">{chat.name}</span>
+          <img className="conversations_image" src={chat.profile_picture} alt="Profile" />
+          <span className="conversations_name">{chat.name}</span>
         </div>
       ))}
     </div>
