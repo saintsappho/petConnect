@@ -6,15 +6,16 @@ const Modal = ({ openModal, closeModal, content }) => {
 
   return (
     <>
-      <Backdrop closeModal={closeModal} />
+     <Backdrop closeModal={closeModal} />  {/*this code block looks disgusting lmao */}
       <div className="modal">
+        <div className="closeBtn">
+          <span id="closeBtnSpan">&times;</span>
+        </div>
         <div className="modalHeader"><h2>Profile</h2></div>
         <div className="modalBody">
-        {content}
+          {content}
         </div>
-        <div className="closeBtn">
-          <span>&times;</span>
-        </div>
+
       </div>
     </>
   );
