@@ -6,6 +6,8 @@ export default function PetListWidget({ petData, listPayload }) {
   function renderCurrentUserPets() {
     console.log('current user pets called', petData);
 
+    if (petData.user_id === 1) {
+
     // 'current-user' payload will render the pet list with the user's pets
     return petData.map((pet) => {
       return (
@@ -18,6 +20,7 @@ export default function PetListWidget({ petData, listPayload }) {
         </div>
       );
     });
+    }
   }
 
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 

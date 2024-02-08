@@ -20,7 +20,7 @@ export default function PetProfile({ selectedPet, user }) {
           <button className="pet-profile-follow-button" onClick={() => { console.log("followed pet") }}>Follow</button>
         </div>
         <div className="pet-profile-bio">
-          <label>I&apos;m a {age} year old {breed} that loves {routines.split(' ')[0]}! </label>
+          <label>I&apos;m a {age} year old {breed} that loves {routines}</label>
         </div>        
       </div>
 
