@@ -35,9 +35,7 @@ router.post("/", async (req, res) => {
       title: req.body.title // acts as a question
     } 
     const choices = []
-    const choiceData = {
-      poll_ID: req.body.poll_ID,
-    }
+    
     let n = 0;
     while (req.body[`choice${n}`] !== undefined) {
       const choiceData = {
