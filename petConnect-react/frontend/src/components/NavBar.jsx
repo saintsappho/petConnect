@@ -18,10 +18,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
           <a href="/">About</a>
         </li>
         <li className="top-nav-bar__item">
-          <button onClick={openCurrentUserModal}>{user.name}</button>
-        </li>
-        <li className="top-nav-bar__item">
-          <LogoutButton />
+          <button onClick={openCurrentUserModal}>{user.user_photo_url}</button>
         </li>
         <li className="top-nav-bar__item">
           <select name="pets" onChange={handlePetListSelect}>
@@ -34,6 +31,10 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
               )))}
           </select>
         </li>
+        <li className="top-nav-bar__item">
+          <LogoutButton />
+        </li>
+
       </div>
     </nav>
   );
