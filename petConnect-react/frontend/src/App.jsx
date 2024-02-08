@@ -88,12 +88,15 @@ function App() {
     event.preventDefault();
     setTimeout(() => {
       setModal(true);
-    }, 100);
+    }, 1000);
   };
 
   const closeModal = () => {
-    setModal(false);
+    console.log('closing modal');
     setModalContent([]);
+    setTimeout(() => {
+      setModal(false);
+    }, 1000);
   };
 
   // useEffect(() => {
