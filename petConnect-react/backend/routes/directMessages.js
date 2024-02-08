@@ -49,6 +49,7 @@ const getMessagesForChat = async (chatId) => {
 const saveMessageToDatabase = async (msg) => {
   const { chatId, sender, receiver, message } = msg;
   try {
+    console.log('Saving message to database:', msg);
     const client = await pool.connect();
     await client.query('INSERT INTO messages (chat_ID, sender, receiver, message) VALUES ($1, $2, $3, $4)', [chatId, sender, receiver, message]);
     client.release(); // Release the client back to the pool
@@ -97,6 +98,7 @@ io.on("connection", (socket) => {
         io.to(messageData.receiver).emit('new_message', messageData);
       } catch (error) {
         console.error("Error saving message:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
       }
     });
 
@@ -197,6 +199,52 @@ router.get("/:chatId", async (req, res) => {
     res.status(200).json(messages);
   } catch (error) {
     console.error("Error fetching messages:", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+// // Define a route for user search
+// app.get('/search', async (req, res) => {
+//   try {
+//     const query = req.query.query; // Get the search query from the request query parameters
+//     // Query the database for users matching the search query
+//     const searchResults = await db.searchUsers(query);
+//     // Return the search results as JSON
+//     res.json(searchResults);
+//   } catch (error) {
+//     console.error('Error searching users:', error);
+//     // Return an error response if something goes wrong
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+
+/// OR
+
+// Search Endpoint
+app.get('/search', async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    const searchResults = await pool.query(
+      'SELECT * FROM users WHERE username ILIKE $1 OR email ILIKE $1',
+      [`%${query}%`]
+    );
+
+    res.json(searchResults.rows);
+  } catch (error) {
+    console.error('Error searching users:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+router.post("/start-conversation", async (req, res) => {
+  try {
+    const { userId, selectedUserId } = req.body;
+    console.log('Initiating conversation between user:', userId, 'and selected user:', selectedUserId);
+    res.status(200).json({ message: 'Conversation initiated successfully' });
+  } catch (error) {
+    console.error('Error starting conversation:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

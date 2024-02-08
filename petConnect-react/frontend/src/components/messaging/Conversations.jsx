@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import StatusOnline from "./StatusOnline";
+import SearchUsers from "./SearchUsers";
 //hooks
 import useFetchData from "../../hooks/useFetchData";
 import "./Conversations.scss";
 
-export default function Conversations({ onConversationClick, accessToken }) {
+export default function Conversations({ currentUserId, onConversationClick, accessToken }) {
   const [conversations, setConversations] = useState([]);
   const [error, setError] = useState(null);
   const [userId, setUserId] = useState(null);
@@ -72,22 +73,29 @@ export default function Conversations({ onConversationClick, accessToken }) {
 
 
  // Fetch user data for private conversations
- const fetchUserData = async () => {
-  try {
-    const response = await axios.get(`http://localhost:8080/users/${userId}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching user data:`, error.message);
-    return [];
-  }
+//  const fetchUserData = async () => {
+//   try {
+//     const response = await axios.get(`http://localhost:8080/users/${userId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error(`Error fetching user data:`, error.message);
+//     return [];
+//   }
+// };
+
+const updateConversations = (newConversation) => {
+  setConversations(prevConversations => [...prevConversations, newConversation]);
 };
 
 return (
   <div className="conversations">
+    <div className="message_search">
+      <SearchUsers currentUserId={currentUserId} updateConversations={updateConversations} />
+    </div>
+
     {error && <p>Error fetching conversations: {error}</p>}
     {conversations && Array.isArray(conversations) && conversations.map((user) => (
       <div key={user.chat_id} className="conversations_container" onClick={() => onConversationClick(user)}>
-        {/* Display user information */}
         <StatusOnline />
         <img className="conversations_image" src={user.picture} alt="Profile" />
         <span className="conversations_name">{user.name}</span>
