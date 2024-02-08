@@ -11,30 +11,24 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
         <h1>Petconnect</h1>
       </div>
       <div className="top-nav-bar__links">
-        <li className="top-nav-bar__item">
-          <a href="/">Home</a>
+        <li className="nav-dropdown">
+          <button className="nav-dropdown-button" onClick={openCurrentUserModal}><img className="nav-user-photo" src={user.picture}></img>
+            <div className="nav-dropdown-content">
+              <a href="/">Profile</a>
+              <div className="nav-dropdown-button">My Pets
+                {petData &&
+                  (petData.map((pet) => (
+                    <a key={pet.pet_id} href="#" onClick={() => handlePetListSelect(pet.pet_id)}>
+                      {pet.pet_name}
+                    </a>
+                  )))}
+              </div>
+              <a href="/">Settings</a>
+              <a href="/">About</a>
+              <a href="/" onClick={LogoutButton}>Logout</a>
+            </div>
+          </button>
         </li>
-        <li className="top-nav-bar__item">
-          <a href="/">About</a>
-        </li>
-        <li className="top-nav-bar__item">
-          <button onClick={openCurrentUserModal}>{user.user_photo_url}</button>
-        </li>
-        <li className="top-nav-bar__item">
-          <select name="pets" onChange={handlePetListSelect}>
-            <option value="">Select a pet</option>
-            {petData &&
-              (petData.map((pet) => (
-                <option key={pet.pet_id} value={pet.pet_id}>
-                  {pet.name}
-                </option>
-              )))}
-          </select>
-        </li>
-        <li className="top-nav-bar__item">
-          <LogoutButton />
-        </li>
-
       </div>
     </nav>
   );
