@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
+import axios from 'axios';
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
 import NavBar from "./NavBar";
@@ -97,6 +98,14 @@ useEffect(() => {
 
 console.log("Received userId:", userId);
 
+// const handleSearch = async (query) => {
+//   try {
+//     const response = await axios.get(`http://localhost:8080/directMessages/search`);
+//   } catch (error) {
+//     console.error('Error searching users:', error);
+//   }
+// };
+
   return (
     <div>
       <Grid templateColumns="repeat(10, 1fr)" h="100vh as={Tabs}">
@@ -105,10 +114,10 @@ console.log("Received userId:", userId);
             <div className="message_menu">
               <div className="message_menu_container">Menu</div>
               <div className="message_search">
-                <input type="text" placeholder="Search Messages" />
+              {/* <SearchUsers /> */}
               </div>
               <div className="message_new">
-                <button>Add New Friend to Chat With</button>
+                {/* <button>Add New Friend to Chat With</button> */}
                 <div>
                    <Conversations accessToken={accessToken} userId={userId} onConversationClick={handleConversationClick} />
                 </div>
