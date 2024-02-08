@@ -17,8 +17,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const polls = await getPollsByPostID(req.params.id)
-    // console.log(polls)
-    res.send(polls)
+    const choices = await getChoicesByPostID(req.params.id)
+    const pollData = { polls, choices };
+    console.log(pollData)
+    res.send(pollData);
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error: Failed to get Polls by post_ID');

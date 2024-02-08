@@ -20,4 +20,4 @@ const getChoicesByPostID = (post_ID) => {
     });
 };
 
-module.exports = { getPolls };
+module.exports = { getPolls, getPollsByPostID, getChoicesByPostID};
