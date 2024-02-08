@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 import './SendMessage.scss';
 
-export default function SendMessage({ currentChat, socket }) {
+export default function SendMessage({ currentChat, currentUserId, socket }) {
   const [newMessage, setNewMessage] = useState("");
 
   // Join chat room when currentChat changes
@@ -15,7 +15,7 @@ export default function SendMessage({ currentChat, socket }) {
   // Joining a chat room
   const handleJoinChat = (chatId) => {
     if (socket) {
-      socket.emit('join_chat', chatId);
+      socket.emit('join_conversation', chatId);
     }
   };
 
@@ -30,7 +30,7 @@ export default function SendMessage({ currentChat, socket }) {
     // Emit the message to the server
     socket.emit("send_message", {
       chatId: currentChat.chat_id,
-      sender: currentChat.user1_ID,
+      sender: currentUserId,
       receiver: currentChat.user2_ID,
       message: newMessage,
     });
