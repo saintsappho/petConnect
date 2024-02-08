@@ -1,19 +1,21 @@
 import useFetchData from "../hooks/useFetchData";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({petData, listPayload}) {
+export default function PetListWidget({ petData, listPayload }) {
 
-   function renderCurrentUserPets() {
+  function renderCurrentUserPets() {
     console.log('current user pets called', petData);
 
     // 'current-user' payload will render the pet list with the user's pets
     return petData.map((pet) => {
       return (
-        <tr key={pet.id} id="pet-list-item">
-          <td><img id="pet-photo" src={pet.profile_photo_url}/></td>
-          <td>{pet.pet_name}</td>
-          <td>{pet.breed}</td>
-        </tr>
+        <div key={pet.id} id="pet-list-item">
+          <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+          <div id="pet-info-short">
+            <th>{pet.pet_name}</th>
+            <tr>{pet.breed}</tr>
+          </div>
+        </div>
       );
     });
   }
@@ -23,17 +25,17 @@ export default function PetListWidget({petData, listPayload}) {
     return petData.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
-          <img id="pet-photo" src={pet.profile_photo_url}/>          
-        <tr>
-          <td><h2>{pet.owner_name}</h2></td>
-          <td><h2>{pet.pet_name}</h2></td>
-        </tr>
+          <img id="pet-photo" src={pet.profile_photo_url} />
+          <td>
+            <td><h2>{pet.owner_name}</h2></td>
+            <td><h2>{pet.pet_name}</h2></td>
+          </td>
         </div>
       );
     });
   };
 
   // Conditional rendering based on payload
-return (listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
+  return (listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
 
 }

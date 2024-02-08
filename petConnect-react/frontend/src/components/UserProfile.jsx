@@ -56,7 +56,6 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
         <div className="user-profile-body">
-          <h2 id="pet-section-title">Pets!</h2>
           <div className="pet-list-widget">
           <PetListWidget petData={petData} listPayload={listPayload} />
           </div>
