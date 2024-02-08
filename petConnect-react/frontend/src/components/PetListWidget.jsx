@@ -4,7 +4,7 @@ import useFetchData from "../hooks/useFetchData";
 export default function PetListWidget({petData, listPayload}) {
 
    function renderCurrentUserPets() {
-    console.log('current user pets called', petData);
+    // console.log('current user pets called', petData);
 
     // 'current-user' payload will render the pet list with the user's pets
     return petData.map((pet) => {

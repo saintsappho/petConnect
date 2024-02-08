@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log("req.body", req.body);
+    // console.log("req.body", req.body);
     const postData = {
       user_ID: 1, // hard-coded for now
       pet_ID: 1, // hard-coded for now

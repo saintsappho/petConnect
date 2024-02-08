@@ -62,7 +62,7 @@ function App() {
     const petId = event.target.value;
     const pet = petData.find(pet => pet.pet_id === Number(petId));
     setSelectedPet(pet);
-    console.log('selected pet: ', pet);
+    // console.log('selected pet: ', pet);
     if (pet === "Select a pet" || pet === undefined) {
       setModalContent([]);
       closeModal(event);
@@ -77,7 +77,7 @@ function App() {
   const openCurrentUserModal = (event) => {
     event.preventDefault();
     setSelectedPet(null);
-    console.log('pet data: ', petData);
+    // console.log('pet data: ', petData);
 
     setPetData(petData);
     setModalContent(<UserProfile petData={petData} user={user} />);

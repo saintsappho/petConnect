@@ -8,7 +8,7 @@ const newPoll = async (pollDataInput, choices) => {
     creator_ID, // hard-coded for now
     title,
   } = pollDataInput; // destructuring
-  console.log("pollData in query", pollDataInput);
+  // console.log("pollData in query", pollDataInput);
 
   try {
     const pollData = await db.query(
@@ -21,12 +21,12 @@ const newPoll = async (pollDataInput, choices) => {
     const insertedChoices = [];
     for (let choice of choices) {
       try {
-        console.log("choice", choice);
+        // console.log("choice", choice);
         const choiceData = await db.query(
           `INSERT INTO choices (poll_ID, choiceText)
            VALUES ($1, $2) 
            RETURNING *;`,
-          [pollData.rows[0].poll_ID, choice.choiceText],
+          [choice.poll_ID, choice.choiceText],
         );
     
         console.log("Choice inserted:", choiceData.rows[0]);

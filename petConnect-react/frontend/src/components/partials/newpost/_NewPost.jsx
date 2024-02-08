@@ -46,8 +46,8 @@ export default function AddPostForm(props) {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8080/posts/", postState);
-      console.log("Post created:", response.data);
-      console.log("postData: ", postState);
+      // console.log("Post created:", response.data);
+      // console.log("postData: ", postState);
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
      
@@ -58,15 +58,15 @@ export default function AddPostForm(props) {
           ...postState,
           post_ID: newPostId,
         };
-        console.log("Updated postState for Event:", updatedPostState);
+        // console.log("Updated postState for Event:", updatedPostState);
         
         // Using updatedPostState in the Axios request
         const eventResponse = await axios.post(
           "http://localhost:8080/events/",
           updatedPostState,
         );
-        console.log("Event created:", eventResponse.data);
-        console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
+        // console.log("Event created:", eventResponse.data);
+        // console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
         setPosts((prev) => [...prev, eventResponse.data]);
       }
       if (postState.style === "poll-post") {
@@ -76,13 +76,13 @@ export default function AddPostForm(props) {
           poll_ID: newPostId,
           numChoices: numChoices,         
         };
-        console.log("Updated postState for Poll:", updatedPostState);
+        // console.log("Updated postState for Poll:", updatedPostState);
         const pollResponse = await axios.post(
           "http://localhost:8080/polls/",
           updatedPostState,
         );
-        console.log("poll created:", pollResponse.data);
-        console.log("pollData: ", updatedPostState);
+        // console.log("poll created:", pollResponse.data);
+        // console.log("pollData: ", updatedPostState);
         setPosts((prev) => [...prev, pollResponse.data]);
       }
       // if (postState.style === "forum-post") {

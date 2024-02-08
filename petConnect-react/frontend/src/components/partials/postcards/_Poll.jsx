@@ -8,7 +8,8 @@ export default function Poll(props) {
   const { randomImage, petPost } = props;
   const [pollData, setPollData] = useState(null);
   const [error, setError] = useState(null);
-
+  // console.log("Poll petPost: ", petPost);
+  // console.log("pollData: ", pollData);
   useFetchData(`http://localhost:8080/polls/${petPost.post_id}`, "polls", setPollData, setError);
   return (
     <div className="card">

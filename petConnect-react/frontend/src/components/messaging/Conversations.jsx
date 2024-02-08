@@ -9,7 +9,7 @@ export default function Conversations({ userId, onConversationClick }) {
   const [conversations, setConversations] = useState([]);
   const [error, setError] = useState(null);
   // const [userData, setUserData] = useState({ profilePicture: '', name: '' });
-  console.log('rendering Conversations component');
+  // console.log('rendering Conversations component');
 
   useEffect(() => {
     const fetchConversations = async () => {
