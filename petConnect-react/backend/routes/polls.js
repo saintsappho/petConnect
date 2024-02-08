@@ -30,21 +30,22 @@ router.post("/", async (req, res) => {
   try {
     console.log("req.body", req.body);
     const pollData = {
-      creator_ID: 1, // hard-coded for now
-      post_ID: req.body.post_ID,
-      title: req.body.title
+      creator_ID: req.body.user_ID, // hard-coded on the other end
+      poll_ID: req.body.poll_ID,
+      title: req.body.title // acts as a question
     } 
     const choices = []
     const choiceData = {
-      poll_ID: req.body.post_ID,
+      poll_ID: req.body.poll_ID,
     }
     let n = 0;
-    while (`choice${n}`){
-      choiceData = {
+    while (req.body[`choice${n}`] !== undefined) {
+      const choiceData = {
+        poll_ID: req.body.post_ID,
         choiceText: req.body[`choice${n}`]
       }; 
       choices.push(choiceData);
-      n++
+      n++;
     }
     const thisPoll = await newPoll(pollData, choices);
     res.status(201).json(thisPoll);

@@ -4,7 +4,7 @@ INSERT INTO Polls (poll_ID, creator_ID, title) VALUES
 (3, 3, 'What is your preferred method of transportation?');
 
 -- Seeds for the Choices table
-INSERT INTO Choices (choice_ID, pollID, choiceText) VALUES
+INSERT INTO Choices (choice_ID, poll_ID, choiceText) VALUES
 (1, 1, 'Java'),
 (2, 1, 'Python'),
 (3, 1, 'JavaScript'),

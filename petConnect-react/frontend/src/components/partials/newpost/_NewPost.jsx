@@ -50,7 +50,7 @@ export default function AddPostForm(props) {
       console.log("postData: ", postState);
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
-      console.log("newPostId: ", newPostId);
+     
       
       if (postState.style === "event-post") {
         // Creating the updated post state with the new post ID
@@ -71,18 +71,18 @@ export default function AddPostForm(props) {
       }
       if (postState.style === "poll-post") {
          // Creating the updated post state with the new post ID
-         const updatedPostState = {
+        const updatedPostState = {
           ...postState,
-          post_ID: newPostId,
+          poll_ID: newPostId,
           numChoices: numChoices,         
         };
         console.log("Updated postState for Poll:", updatedPostState);
         const pollResponse = await axios.post(
           "http://localhost:8080/polls/",
-          postState,
+          updatedPostState,
         );
         console.log("poll created:", pollResponse.data);
-        console.log("pollData: ", postState);
+        console.log("pollData: ", updatedPostState);
         setPosts((prev) => [...prev, pollResponse.data]);
       }
       // if (postState.style === "forum-post") {

@@ -7,7 +7,7 @@ CREATE TABLE polls (
 DROP TABLE IF EXISTS choices CASCADE;
 CREATE TABLE choices (
     choice_ID INT PRIMARY KEY,
-    pollID INT REFERENCES Polls(poll_ID),
+    poll_ID INT REFERENCES Polls(poll_ID),
     choiceText TEXT NOT NULL
 );
 DROP TABLE IF EXISTS votes CASCADE;
