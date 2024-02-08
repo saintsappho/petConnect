@@ -2,14 +2,16 @@ import React from 'react';
 import Backdrop from './Backdrop';
 
 // Modal component
-const Modal = ({ openModal, closeModal, content }) => {
+function Modal({ closeModal, content }) {
 
   return (
     <>
-     <Backdrop closeModal={closeModal} />  {/*this code block looks disgusting lmao */}
+
       <div className="modal">
-        <div className="closeBtn">
-          <span id="closeBtnSpan">&times;</span>
+     
+        <div className="closeModalButton">
+     <Backdrop closeModal={closeModal} />             
+          <span className="closeModalButton2">&times;</span>
         </div>
         <div className="modalHeader"><h2>Profile</h2></div>
         <div className="modalBody">
@@ -19,6 +21,6 @@ const Modal = ({ openModal, closeModal, content }) => {
       </div>
     </>
   );
-};
+}
 
 export default Modal;

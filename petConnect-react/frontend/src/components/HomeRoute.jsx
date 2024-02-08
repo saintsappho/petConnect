@@ -10,7 +10,7 @@ import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
-export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData }) {
+export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, closeModal }) {
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user } = useAuth0();
@@ -27,6 +27,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
               petData={petData}
               onPetSelect={onPetSelect}
               handlePetListSelect={handlePetListSelect}
+              closeModal={closeModal}
               user={user}
               openCurrentUserModal={openCurrentUserModal}
             />

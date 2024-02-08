@@ -1,40 +1,44 @@
 import useFetchData from "../hooks/useFetchData";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({petData, listPayload}) {
+export default function PetListWidget({ petData, listPayload }) {
 
-   function renderCurrentUserPets() {
-    // console.log('current user pets called', petData);
+  function renderCurrentUserPets() {
+    console.log('current user pets called', petData);
+
+    if (petData.user_id === 1) {
 
     // 'current-user' payload will render the pet list with the user's pets
     return petData.map((pet) => {
       return (
-        <tr key={pet.id} id="pet-list-item">
-          <td>{pet.photo}</td>
-          <td>{pet.name}</td>
-          <td>{pet.breed}</td>
-        </tr>
+        <div key={pet.id} id="pet-list-item">
+          <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+          <div id="pet-info-short">
+            <th>{pet.pet_name}</th>
+            <tr>{pet.breed}</tr>
+          </div>
+        </div>
       );
     });
+    }
   }
 
-  // 'all-pets' payload will render the pet list with all pets
+  // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
-        <tr>
-          <td>{pet.photo}</td>
-          <td>{pet.name}</td>
-          <td>{pet.breed}</td>
-        </tr>
+          <img id="pet-photo" src={pet.profile_photo_url} />
+          <td>
+            <td><h2>{pet.owner_name}</h2></td>
+            <td><h2>{pet.pet_name}</h2></td>
+          </td>
         </div>
       );
     });
   };
 
   // Conditional rendering based on payload
-(listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
-return;
+  return (listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
 
-  }
+}

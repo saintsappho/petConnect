@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
+import axios from 'axios';
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
 import NavBar from "./NavBar";
@@ -7,7 +8,7 @@ import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
 
-export default function DirectMessages({ userId }) {
+export default function DirectMessages({ userId, accessToken, currentUserId }) {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [newMessage, setNewMessage] = useState([]);
@@ -61,12 +62,49 @@ export default function DirectMessages({ userId }) {
     setCurrentChat(selectedChat);
     console.log("Selected chat:", selectedChat);
     if (socket) {
-      socket.emit('join_chat', selectedChat.chat_id);
+      socket.emit('join_conversation', selectedChat.chat_id);
       socket.emit('fetch_messages', selectedChat.chat_id);
     } else {
       console.log('Not connected to server');
     }
   };
+
+  // Receiving Messages
+useEffect(() => {
+  if (socket) {
+    socket.on('new_message', (newMessage) => {
+      console.log(`New message received: newMessage = ${newMessage}`);
+
+      setNewMessage((prevMessages) => {
+        prevMessages = prevMessages || [];
+        console.log('After initialization, prevMessages:', prevMessages);
+
+        return [...prevMessages, newMessage];
+      });
+
+      // Fetch messages for the current chat
+      socket.emit('fetch_messages', newMessage.chatId);
+      console.log(`fetching messages with chatID`);
+    });
+  }
+
+  return () => {
+    // Cleanup function
+    if (socket) {
+      socket.off('new_message');
+    }
+  };
+}, [socket]); // Dependency on socket
+
+console.log("Received userId:", userId);
+
+// const handleSearch = async (query) => {
+//   try {
+//     const response = await axios.get(`http://localhost:8080/directMessages/search`);
+//   } catch (error) {
+//     console.error('Error searching users:', error);
+//   }
+// };
 
   return (
     <div>
@@ -76,11 +114,13 @@ export default function DirectMessages({ userId }) {
             <div className="message_menu">
               <div className="message_menu_container">Menu</div>
               <div className="message_search">
-                <input type="text" placeholder="Search Messages" />
+              {/* <SearchUsers /> */}
               </div>
               <div className="message_new">
-                <button>Add New Friend to Chat With</button>
-                <Conversations userId={userId} onConversationClick={handleConversationClick} />
+                {/* <button>Add New Friend to Chat With</button> */}
+                <div>
+                   <Conversations accessToken={accessToken} userId={userId} onConversationClick={handleConversationClick} />
+                </div>
               </div>
             </div>
           </div>
@@ -101,7 +141,7 @@ export default function DirectMessages({ userId }) {
           ))}
       </div>
               <div className="message_box_footer">
-                <SendMessage currentChat={currentChat} socket={socket} />
+                <SendMessage currentChat={currentChat} currentUserId={currentUserId} socket={socket} />
               </div>
             </div>
           </div>

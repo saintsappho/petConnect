@@ -11,6 +11,7 @@ import PetProfile from './components/PetProfile';
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from './components/modals/Modal';
+import AuthProvider from './Auth0/AuthProvider';
 import axios from "axios";
 
 //styles
@@ -20,14 +21,32 @@ import "./styles/Modal.scss"
 import useFetchData from './hooks/useFetchData'
 
 function App() {
-  const { user, isLoading, isAuthenticated } = useAuth0();
+  const { user, isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [modal, setModal] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [petData, setPetData] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const [modalContent, setModalContent] = useState([]);  
+  const [modalContent, setModalContent] = useState([]); 
+  const [accessToken, setAccessToken] = useState(null); 
   const [userPets, setUserPets] = useState([]);
   const [error, setError] = useState(null);
+  const userId = user?.sub;
+
+  // Auth0 Token
+  useEffect(() => {
+    const fetchAccessToken = async () => {
+      try {
+        if (isAuthenticated) {
+          const token = await getAccessTokenSilently();
+          setAccessToken(token);
+        }
+      } catch (error) {
+        console.error("Error fetching access token:", error);
+      }
+    };
+
+    fetchAccessToken();
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   // animation for fancy button
   var animateButton = function (e) {
@@ -80,7 +99,7 @@ function App() {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile petData={petData} user={user} />);
+    setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 
@@ -88,23 +107,20 @@ function App() {
     event.preventDefault();
     setTimeout(() => {
       setModal(true);
-    }, 100);
+    }, 1000);
   };
 
   const closeModal = () => {
-    setModal(false);
+    console.log('closing modal');
     setModalContent([]);
+    setTimeout(() => {
+      setModal(false);
+    }, 1000);
   };
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     axios.post('http://localhost:8080/users/', { user }).then(response => {
-  //       console.log('response', response);
-  //     });
-  //   }
-  // }, [isAuthenticated, user]);
 
   return (
+    <AuthProvider accessToken={accessToken}>
     <div className="App">
       <div>
         {!user && <LoginButton className="login-button-login-page" />}
@@ -125,6 +141,7 @@ function App() {
         />
       )}
     </div>
+    </AuthProvider>
   );
 }
 

@@ -7,7 +7,7 @@ import DirectMessages from "./DirectMessages";
 //The user's name, email, and phone number will be hardcoded for now, but the list of pets will be dynamic and will be pulled from the database.
 //the user's information will be able to be edited by the user, and the user will be able to add or remove pets from their list.
 
-export default function UserProfile({userId, handleConversationClick, petData}) {
+export default function UserProfile({userId, accessToken, handleConversationClick, petData}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
 
@@ -17,6 +17,8 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
   const closeDirectMessages = () => {
     setDirectMessagesOpen(false);
   };
+
+  const listPayload = "currentUser";
 
   if (isLoading) {
     return (
@@ -30,12 +32,13 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
       </div>
     );
   }
+  
 
   return (
     isAuthenticated && (
       <div className="user-profile-container">
         <div className="user-profile-header">
-          <img className="user-profile_-mage" src={user.picture} alt={user.name} />
+          <img className="user-profile-image" src={user.picture} alt={user.name} />
           <h1 className="user-profile-name">{user.name}</h1>
           <h2>{user.location}</h2>
           <table className="user-profile-buttons">
@@ -54,10 +57,11 @@ export default function UserProfile({userId, handleConversationClick, petData}) 
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
         <div className="user-profile-body">
-          <h2 id="pet-section-title">Pets!</h2>
-          <PetListWidget petData={petData} listPayload="currentUser" />
+          <div className="pet-list-widget">
+          <PetListWidget petData={petData} listPayload={listPayload} />
+          </div>
         </div>
-        {isDirectMessagesOpen && <DirectMessages onClose={closeDirectMessages} />}
+        {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
       </div>
     )
   );

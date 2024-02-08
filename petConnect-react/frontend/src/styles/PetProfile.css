@@ -2,24 +2,51 @@
   padding-top: 0rem;
 }
 
+.pet-profile-header {
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #808080d1;
+  width: 45%;
+  background-color: #ffffff87;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pet-profile-header img {
+  cursor: pointer;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+  transition: all 0.3s ease-in-out;
+  object-fit: cover;
+}
+
+.pet-profile-header img:hover {
+  box-shadow: 0 0 50px rgb(255, 84, 0); /* Adds a shadow */
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.pet-profile-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: light;
+  margin-bottom: 1rem;
+  line-height: .5;
+}
+
+.pet-profile-bio {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+
 .pet-profile-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   scale: 1.5;
-}
-
-.pet-profile-header {
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #808080d1;
-  width: 75%;
-  background-color: #ffffff87;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 .pet-profile-buttons button {
@@ -37,40 +64,35 @@
   outline: none;
 }
 
-.pet-profile-header h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: light;
-  margin-bottom: 1rem;
-  line-height: 0;
-}
+.pet-profile-meet-owner {
 
-.pet-profile-header img {
-  cursor: pointer;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
-  transition: all 0.3s ease-in-out;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
 
-.pet-profile-header img:hover {
-  box-shadow: 0 0 50px rgb(255, 84, 0); /* Adds a shadow */
-  transform: scale(1.2);
-  transition: all 0.3s ease-in-out;
 }
 
 .pet-profile-body {
   box-shadow: 0 0 10px #808080d1;
-  display: flex; 
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
+  padding: 2rem;
   background-color: #ffffff87;
+  text-align: start;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
+  border-radius: 12px;
+  scale: .8;
 }
 
 .pet-profile-body td {
+  border: 1px solid #00000047;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  
 
 }
 
@@ -78,14 +100,3 @@
   font-weight: bold;
 }
 
-#petSectionTitle {
-  font-size: 1.2rem;
-  font-family: Poppins;
-  margin-bottom: 1rem;
-  line-height: 0.8;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #808080d1;
-  padding: 1rem;
-  background-color: #ffffff87;
-  width: 5rem;
-}

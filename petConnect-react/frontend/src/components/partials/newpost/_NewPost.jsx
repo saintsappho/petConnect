@@ -97,7 +97,6 @@ export default function AddPostForm(props) {
     } catch (error) {
       console.error("Error:", error.message);
     } finally {
-      setCreate(!create); // Close the form after submission
       setPostState({
         user_ID: 1, // hard-coded for now
         pet_ID: 1, // hard-coded for now
@@ -106,6 +105,9 @@ export default function AddPostForm(props) {
         style: "text-post", // style should be set initially
         image_file: null,
       });
+      setTimeout(() => {
+        setCreate(!create); // Close the form after submission
+      }, 500);
     }
   };
 

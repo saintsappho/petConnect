@@ -1,26 +1,61 @@
 .user-profile-container {
   padding-top: 0rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-profile-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  scale: 1.5;
+  scale: 1.3;
+  margin-top: -.6rem;
+  margin-bottom: -.6rem;
 }
 
 .user-profile-header {
-  padding: 2rem;
+  padding: 1rem;
+  padding-top: 1.4rem;
   border-radius: 12px;
-  border: 1px solid #000000d1;
+  border: 2px solid #cececea6;
   box-shadow: 0 0 10px #808080d1;
-  width: 40%;
+  width: 45%;
   background-color: #ffffff87;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+}
+
+.user-profile-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.pet-list-widget {
+  display: flex;
+}
+
+#pet-list-item {
+  display: flex;
+  padding-top: 2rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#pet-info-short {
+  display: flex;
+  flex-direction: column;
+  padding: .5rem;
+  border: 2px solid #cececea6;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #808080d1;
+  background-color: #ffffff87;
+  margin: 1rem;
 }
 
 #friendButton {
@@ -33,44 +68,29 @@
   background-color: #078d91;
 }
 
-#bio {
-}
-
-#pet-section-title {
-  font-size: 1.2rem;
-  font-family: Poppins;
-  margin-bottom: 1rem;
-  line-height: 0.8;
-  border: 1px solid #000000d1;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #808080d1;
-  padding: 1rem;
-  background-color: #ffffff87;
-  width: 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-
-.petsTable {
-  border: 1px solid #000000d1;
-  box-shadow: 0 0 10px #808080d1;
-  display: flex; 
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 1rem;
-  background-color: #ffffff87;
-}
 #petBreed {
   border: 1px solid #000000d1;
 }
 #petName {
   border: 1px solid #000000d1;
 }
-#petPhoto {
-  border: 1px solid #000000d1;
+
+#pet-photo {
+  border-radius: 50%;
+  box-shadow: 0 0 3px #a5a5a5;
+  height: 6rem; 
+  width: 6rem;
+  object-fit: cover;
+  border: 2px solid #cececea6;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 9px #737373;
+
+  &:hover {
+    box-shadow: 0 0 25px rgb(255, 84, 0);/* Adds a shadow */
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 h1.user-profile-name {
@@ -83,8 +103,8 @@ h1.user-profile-name {
 
 img.user-profile-image {
   cursor: pointer;
-  width: 10rem;
-  height: 10rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 50%;
   box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
   transition: all 0.3s ease-in-out;
