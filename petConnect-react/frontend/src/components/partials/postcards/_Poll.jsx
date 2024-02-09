@@ -14,6 +14,7 @@ export default function Poll(props) {
   const [error, setError] = useState(null);
   const [renderedChoices, setRenderedChoices] = useState(null);
   const [selected, setSelected] = useState(null);
+  const [voted, setVoted] = useState(false);
   // console.log("Poll petPost: ", petPost);
   // console.log("pollData: ", pollData);
 
@@ -52,6 +53,20 @@ export default function Poll(props) {
     setSelected(choice_ID);
   };
 
+  const submitVote = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/polls/${petPost.post_id}/vote`,
+        { poll_ID: petPost.post_id, choice_ID: selected, user_ID: 1 } 
+      );
+      console.log("Vote submitted:", response.data);
+      setVoted(true); 
+    } catch (error) {
+      console.error("Error submitting vote:", error.message);
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="card">
       <figure className="card__thumb">
@@ -63,7 +78,7 @@ export default function Poll(props) {
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
           <div className="card__choices">{renderedChoices}</div>
-          <a className="card__button">Vote Now!</a>
+          {!voted && <a onClick={submitVote} className="card__button">Vote Now!</a>}
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
