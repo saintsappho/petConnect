@@ -42,4 +42,19 @@ const newPoll = async (pollDataInput, choices) => {
   }
 };
 
-module.exports = { newPoll };
+const newVote = async (voteData) => {
+  const { poll_ID, choice_ID, user_ID } = voteData;
+  try {
+    const voteData = await db.query(
+      `INSERT INTO votes (poll_ID, choice_ID, user_ID)
+       VALUES ($1, $2, $3)
+       RETURNING *;`,
+      [poll_ID, choice_ID, user_ID],
+    );
+    return voteData.rows[0];
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = { newPoll, newVote };

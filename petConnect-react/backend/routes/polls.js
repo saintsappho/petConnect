@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getPolls, getPollsByPostID, getChoicesByPostID } = require('../db/queries/gets/getPolls');
-const { newPoll } = require('../db/queries/news/newPoll');
+const { newPoll, newVote } = require('../db/queries/news/newPoll');
 
 router.get('/', async (req, res) => {
   try {
@@ -56,6 +56,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/:id/vote", async (req, res) => {
+  try {
+    newVote(req.body);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal Server Error: Failed to vote");
+  }
+})
 
 module.exports = router;
 
