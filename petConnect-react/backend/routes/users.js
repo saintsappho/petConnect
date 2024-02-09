@@ -7,7 +7,7 @@ const db = require("../db/queries/gets/getUsers");
 router.get("/", async (req, res) => {
   try {
     const users = await getUsers();
-    console.log(users);
+    // console.log(users);
     res.send(users);
   } catch (err) {
     console.error(err);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
+import axios from 'axios';
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
 import NavBar from "./NavBar";
@@ -19,37 +20,40 @@ export default function DirectMessages({ userId, accessToken, currentUserId }) {
 
   useEffect(() => {
     const newSocket = io('http://localhost:4000', { path: '/socket.io' });
-    setSocket(prev => newSocket);
 
     newSocket.on('connect', () => {
       console.log("Socket connected:", newSocket.connected);
     });
 
+    newSocket.on('message_history', (messageHistory) => {
+      console.log("message History:", messageHistory);
+      setMessages(messageHistory);
+    });
+
     newSocket.on('new_message', (newMessage) => {
       console.log(`New message received: newMessage = ${newMessage}`);
 
-      setNewMessage((prevMessages) => {
+      setMessages((prevMessages) => {
         prevMessages = prevMessages || [];
         console.log('After initialization, prevMessages:', prevMessages);
 
         return [...prevMessages, newMessage];
       });
-
-      newSocket.emit('fetch_messages', newMessage.chatId);
-      console.log(`fetching messages with chatID`);
     });
 
-    newSocket.on('message_processed', (chatId) => {
-      console.log(`Message processed for chat: ${chatId}`);
-      // Once the message is processed, trigger fetch_messages event
-      newSocket.emit('fetch_messages', chatId);
-    });
+    // newSocket.on('message_processed', (chatId) => {
+    //   console.log(`Message processed for chat: ${chatId}`);
+    //   // Once the message is processed, trigger fetch_messages event
+    //   newSocket.emit('fetch_messages', chatId);
+    // });
 
     // Listen for the messages_fetched event
-    newSocket.on('messages_fetched', (messages) => {
-      console.log("Messages fetched:", messages);
-      setMessages(messages);
-    });
+    // newSocket.on('messages_fetched', (messages) => {
+    //   console.log("Messages fetched:", messages);
+    //   setMessages(messages);
+    // });
+
+    setSocket(newSocket);
 
     return () => {
       console.log("Cleaning up listeners");
@@ -68,34 +72,15 @@ export default function DirectMessages({ userId, accessToken, currentUserId }) {
     }
   };
 
-  // Receiving Messages
-useEffect(() => {
-  if (socket) {
-    socket.on('new_message', (newMessage) => {
-      console.log(`New message received: newMessage = ${newMessage}`);
-
-      setNewMessage((prevMessages) => {
-        prevMessages = prevMessages || [];
-        console.log('After initialization, prevMessages:', prevMessages);
-
-        return [...prevMessages, newMessage];
-      });
-
-      // Fetch messages for the current chat
-      socket.emit('fetch_messages', newMessage.chatId);
-      console.log(`fetching messages with chatID`);
-    });
-  }
-
-  return () => {
-    // Cleanup function
-    if (socket) {
-      socket.off('new_message');
-    }
-  };
-}, [socket]); // Dependency on socket
-
 console.log("Received userId:", userId);
+
+// const handleSearch = async (query) => {
+//   try {
+//     const response = await axios.get(`http://localhost:8080/directMessages/search`);
+//   } catch (error) {
+//     console.error('Error searching users:', error);
+//   }
+// };
 
   return (
     <div>
@@ -105,10 +90,10 @@ console.log("Received userId:", userId);
             <div className="message_menu">
               <div className="message_menu_container">Menu</div>
               <div className="message_search">
-                <input type="text" placeholder="Search Messages" />
+              {/* <SearchUsers /> */}
               </div>
               <div className="message_new">
-                <button>Add New Friend to Chat With</button>
+                {/* <button>Add New Friend to Chat With</button> */}
                 <div>
                    <Conversations accessToken={accessToken} userId={userId} onConversationClick={handleConversationClick} />
                 </div>
@@ -122,7 +107,7 @@ console.log("Received userId:", userId);
             <div className="message_box_container">
             <div className="message_box_header">
               {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender === userId ? 'sent' : 'received'}`}>
+            <div key={index} className={`message ${message.sender === 1 ? 'sent' : 'received'}`}>
               <div className="message-content">
                 <p className="message-sender">{message.sender}</p>
                 <p className="message-text">{message.message}</p>

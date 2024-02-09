@@ -33,7 +33,6 @@ export default function UserProfile({userId, accessToken, handleConversationClic
     );
   }
   
-  console.log("Parent component userId:", userId);
 
   return (
     isAuthenticated && (

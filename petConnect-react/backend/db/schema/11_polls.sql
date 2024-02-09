@@ -1,19 +1,24 @@
+-- Drop existing tables
+DROP TABLE IF EXISTS votes CASCADE;
+DROP TABLE IF EXISTS choices CASCADE;
 DROP TABLE IF EXISTS polls CASCADE;
+
+-- Create tables
 CREATE TABLE polls (
-    poll_ID INT REFERENCES Posts(post_ID) PRIMARY KEY,
-    creator_ID INT REFERENCES Users(user_ID),
+    poll_ID SERIAL PRIMARY KEY,
+    creator_ID INT REFERENCES users(user_ID),
     title TEXT NOT NULL
 );
-DROP TABLE IF EXISTS choices CASCADE;
+
 CREATE TABLE choices (
-    choice_ID INT PRIMARY KEY,
-    pollID INT REFERENCES Polls(poll_ID),
+    choice_ID SERIAL PRIMARY KEY,
+    poll_ID INT REFERENCES polls(poll_ID),
     choiceText TEXT NOT NULL
 );
-DROP TABLE IF EXISTS votes CASCADE;
+
 CREATE TABLE votes (
-    vote_ID INT PRIMARY KEY,
-    poll_ID INT REFERENCES Polls(poll_ID),
-    choice_ID INT REFERENCES Choices(choice_ID),
-    user_ID INT REFERENCES Users(user_ID)
+    vote_ID SERIAL PRIMARY KEY,
+    poll_ID INT REFERENCES polls(poll_ID),
+    choice_ID INT REFERENCES choices(choice_ID),
+    user_ID INT REFERENCES users(user_ID)
 );

@@ -50,6 +50,7 @@ const commentsRoutes = require('./routes/comments');
 const likesRoutes = require('./routes/likes');
 const attendeesRoutes = require('./routes/attendees');
 const followsRoutes = require('./routes/follows');
+const pollsRoutes = require('./routes/polls');
 
 // Mount all resource routes
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -65,6 +66,7 @@ app.use('/comments', commentsRoutes);
 app.use('/likes', likesRoutes);
 app.use('/attendees', attendeesRoutes);
 app.use('/follows', followsRoutes);
+app.use('/polls', pollsRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page

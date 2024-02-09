@@ -46,11 +46,11 @@ export default function AddPostForm(props) {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8080/posts/", postState);
-      console.log("Post created:", response.data);
-      console.log("postData: ", postState);
+      // console.log("Post created:", response.data);
+      // console.log("postData: ", postState);
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
-      console.log("newPostId: ", newPostId);
+     
       
       if (postState.style === "event-post") {
         // Creating the updated post state with the new post ID
@@ -58,31 +58,31 @@ export default function AddPostForm(props) {
           ...postState,
           post_ID: newPostId,
         };
-        console.log("Updated postState for Event:", updatedPostState);
+        // console.log("Updated postState for Event:", updatedPostState);
         
         // Using updatedPostState in the Axios request
         const eventResponse = await axios.post(
           "http://localhost:8080/events/",
           updatedPostState,
         );
-        console.log("Event created:", eventResponse.data);
-        console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
+        // console.log("Event created:", eventResponse.data);
+        // console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
         setPosts((prev) => [...prev, eventResponse.data]);
       }
       if (postState.style === "poll-post") {
          // Creating the updated post state with the new post ID
-         const updatedPostState = {
+        const updatedPostState = {
           ...postState,
-          post_ID: newPostId,
+          poll_ID: newPostId,
           numChoices: numChoices,         
         };
-        console.log("Updated postState for Poll:", updatedPostState);
+        // console.log("Updated postState for Poll:", updatedPostState);
         const pollResponse = await axios.post(
           "http://localhost:8080/polls/",
-          postState,
+          updatedPostState,
         );
-        console.log("poll created:", pollResponse.data);
-        console.log("pollData: ", postState);
+        // console.log("poll created:", pollResponse.data);
+        // console.log("pollData: ", updatedPostState);
         setPosts((prev) => [...prev, pollResponse.data]);
       }
       // if (postState.style === "forum-post") {
@@ -97,7 +97,6 @@ export default function AddPostForm(props) {
     } catch (error) {
       console.error("Error:", error.message);
     } finally {
-      setCreate(!create); // Close the form after submission
       setPostState({
         user_ID: 1, // hard-coded for now
         pet_ID: 1, // hard-coded for now
@@ -106,6 +105,9 @@ export default function AddPostForm(props) {
         style: "text-post", // style should be set initially
         image_file: null,
       });
+      setTimeout(() => {
+        setCreate(!create); // Close the form after submission
+      }, 500);
     }
   };
 

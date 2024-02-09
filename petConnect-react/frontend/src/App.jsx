@@ -95,9 +95,8 @@ function App() {
   const openCurrentUserModal = (event) => {
     event.preventDefault();
     setSelectedPet(null);
-    console.log('pet data: ', petData);
+    // console.log('pet data: ', petData);
 
-    console.log("App component userId:", userId);
     setPetData(petData);
     setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
     openModal(event);
