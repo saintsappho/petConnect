@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import PetListWidget from './PetListWidget.jsx';
 import DirectMessages from "./DirectMessages";
+import PetPointsProfileWidget from './petPoints/PetPointsProfileWidget.jsx';
 
 //User Profile component will be a modal that pops up when the user clicks on "profile" in the top right corner of the NavBar. It will display the user's name, email, phone number, and a list of their pets.
 //The user's name, email, and phone number will be hardcoded for now, but the list of pets will be dynamic and will be pulled from the database.
@@ -37,6 +38,7 @@ export default function UserProfile({userId, accessToken, handleConversationClic
   return (
     isAuthenticated && (
       <div className="user-profile-container">
+        <div className="user-profile-top">
         <div className="user-profile-header">
           <img className="user-profile-image" src={user.picture} alt={user.name} />
           <h1 className="user-profile-name">{user.name}</h1>
@@ -56,9 +58,15 @@ export default function UserProfile({userId, accessToken, handleConversationClic
           <h2>{user.location}</h2>
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
+
+        <div className="profile-pet-points">
+          <PetPointsProfileWidget userId={userId}/>
+        </div>
+        </div>
+
         <div className="user-profile-body">
           <div className="pet-list-widget">
-          <PetListWidget petData={petData} listPayload={listPayload} />
+          <PetListWidget petData={petData} listPayload={listPayload} userId={userId}/>
           </div>
         </div>
         {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}

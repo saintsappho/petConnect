@@ -1,17 +1,16 @@
 import useFetchData from "../hooks/useFetchData";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({ petData, listPayload }) {
+export default function PetListWidget({ petData, listPayload, userId }) {
 
   function renderCurrentUserPets() {
-    console.log('current user pets called', petData);
-
-    // Hard-coded user id for now
-    const userId = 1;
-    // Find the pet that matches the user id
-      const pet = petData.find(pet => pet.pet_id === Number(userId));
-      
-    return petData.map((pet) => {
+    if (userId.includes("google-oauth2|")) {
+      userId = 1;
+    }
+  
+    const filteredPets = petData.filter(pet => pet.pet_id === Number(userId));
+  
+    return filteredPets.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
@@ -22,9 +21,8 @@ export default function PetListWidget({ petData, listPayload }) {
         </div>
       );
     });
-
   }
-
+  
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {

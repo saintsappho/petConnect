@@ -7,14 +7,15 @@
     height: 80vh;
     transform: translate(-50%, -50%);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    width: 33%;
+    width: 40%;
+    min-width: 45rem;
     overflow-y: scroll;
     scrollbar-width: none;  
     overflow-x: hidden; /* Hide horizontal scrollbar */
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    z-index: 100;
+    z-index: 2;
     box-shadow: 0 0 2.5rem 0 rgba(40, 0, 86, 0.713),
                 0 0 1.5rem 0 rgb(0, 242, 255);
     

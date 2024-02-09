@@ -15,6 +15,11 @@
   margin-bottom: -.6rem;
 }
 
+.user-profile-top {
+  display: flex;
+  justify-content: space-between;
+}
+
 .user-profile-header {
   padding: 1rem;
   padding-top: 1.4rem;
