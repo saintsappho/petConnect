@@ -20,4 +20,11 @@ const getChoicesByPostID = (post_ID) => {
     });
 };
 
-module.exports = { getPolls, getPollsByPostID, getChoicesByPostID};
+const getVotesByPollID = (poll_ID) => {
+  return db.query('SELECT * FROM votes WHERE poll_ID = $1;', [poll_ID])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getPolls, getPollsByPostID, getChoicesByPostID, getVotesByPollID };
