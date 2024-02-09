@@ -3,11 +3,11 @@
 import React from "react";
 
 export default function PollChoice (props) {
-  const { choice, isSelected, onSelect } = props;
+  const { choice, isSelected, onSelect, voted } = props;
   const handleClick = () => {
     onSelect(choice.choice_id);
   };
-
+  
   return (
     <button
       key={choice.choice_id}

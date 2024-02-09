@@ -1,8 +1,9 @@
 const express = require('express');
 const router  = express.Router();
-const { getPolls, getPollsByPostID, getChoicesByPostID } = require('../db/queries/gets/getPolls');
+const { getPolls, getPollsByPostID, getChoicesByPostID, getVotesByPollID } = require('../db/queries/gets/getPolls');
 const { newPoll, newVote } = require('../db/queries/news/newPoll');
 
+//Get All Polls
 router.get('/', async (req, res) => {
   try {
     const polls = await getPolls()
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
     res.status(500).send('Internal Server Error: Failed to get Polls');
   }
 });
-//get By post_ID
+// Get Poll By post_ID
 router.get('/:id', async (req, res) => {
   try {
     const polls = await getPollsByPostID(req.params.id)
@@ -28,6 +29,7 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// Create a new Poll and Choices
 router.post("/", async (req, res) => {
   try {
     // console.log("req.body", req.body);
@@ -56,6 +58,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Vote on a Poll
 router.post("/:id/vote", async (req, res) => {
   try {
     newVote(req.body);
@@ -64,6 +67,22 @@ router.post("/:id/vote", async (req, res) => {
     res.status(500).send("Internal Server Error: Failed to vote");
   }
 })
+
+//Get Polls, Choices, and Votes by post_ID
+router.get('/:id/votes', async (req, res) => {
+  try {
+    const poll_ID = req.params.id;
+    const polls = await getPollsByPostID(poll_ID)
+    const choices = await getChoicesByPostID(poll_ID)
+    const votes = await getVotesByPollID(poll_ID)
+    const pollData = { polls, choices, votes };
+    // console.log(pollData)
+    res.send(pollData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error: Failed to get Polls by post_ID');
+  }
+});
 
 module.exports = router;
 
