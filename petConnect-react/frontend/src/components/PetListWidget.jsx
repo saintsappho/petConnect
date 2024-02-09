@@ -1,18 +1,19 @@
 import useFetchData from "../hooks/useFetchData";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({ petData, listPayload, userId }) {
+export default function PetListWidget({ petData, listPayload, userId, divClass}) {
+
 
   function renderCurrentUserPets() {
     if (userId.includes("google-oauth2|")) {
       userId = 1;
     }
-  
+
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
     return filteredPets.map((pet) => {
       return (
-        <div key={pet.id} id="pet-list-item">
+        <div key={pet.id} className={divClass}>
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
           <div id="pet-info-short">
             <th>{pet.pet_name}</th>

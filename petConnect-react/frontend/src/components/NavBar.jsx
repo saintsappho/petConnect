@@ -3,13 +3,11 @@ import LogoutButton from "./Logout";
 import PetListWidget from './PetListWidget';
 
 export default function Navbar({ petData, handlePetListSelect, openCurrentUserModal, user, userId }) {
- const listPayload = "currentUser";
 
   return (
     <nav className="top-nav-bar">
       <div className="top-nav-bar__logo"></div>
       <div className="top-nav-bar__title">
-        <h1>PetConnect</h1>
       </div>
     <div className="pet-list-container">
       <div className="nav-dropdown">
@@ -26,7 +24,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
           <a href="/" onClick={LogoutButton}>Logout</a>
         </div>
       </div>
-      <PetListWidget petData={petData} listPayload={listPayload} userId={userId}/>
+      <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
       </div>
     </nav>
   );

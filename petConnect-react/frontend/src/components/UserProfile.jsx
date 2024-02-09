@@ -59,14 +59,14 @@ export default function UserProfile({userId, accessToken, handleConversationClic
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
 
-        <div className="user-profile-pet-points">
+        <div className="profile-pet-points">
           <PetPointsProfileWidget userId={userId}/>
         </div>
         </div>
 
         <div className="user-profile-body">
           <div className="pet-list-widget">
-          <PetListWidget petData={petData} listPayload={listPayload} userId={userId}/>
+          <PetListWidget petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-list-item"/>
           </div>
         </div>
         {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}

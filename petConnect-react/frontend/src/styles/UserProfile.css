@@ -38,19 +38,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-}
-
-.user-profile-pet-list-widget {
-  display: flex;
-}
-
-#current-user-profile-pet-list-item {
-  display: flex;
   padding-top: 2rem;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
+
+.pet-list-widget {
+  display: flex;
+}
+
 
 #pet-info-short {
   display: flex;
@@ -59,7 +53,7 @@
   border: 2px solid #cececea6;
   border-radius: 12px;
   box-shadow: 0 0 10px #808080d1;
-  background-color: #ffffff87;
+  background-color: #e6e6fa;
   margin: 1rem;
 }
 

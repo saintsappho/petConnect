@@ -1,6 +1,7 @@
 .top-nav-bar {
   position: fixed;
-  width: 98%;
+  width: 96vw;
+  margin-top: 1rem;
   z-index: 100; /* Adjust the z-index to be lower than the modal's z-index */
   display: flex;
   flex-direction: row;
@@ -21,6 +22,7 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
+  margin-left: 1rem;
 
   &:hover {
     box-shadow: 0 0 50px rgba(255, 86, 2, 0.825); /* Adds a shadow */
@@ -47,13 +49,21 @@ form select {
 }
 
 .nav-user-photo {
-  width: 6rem;
-  height: 6rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 33%;
   object-fit: contain;
 }
 
+.pet-list-container {
+  margin-top: 47rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .nav-dropdown-button {
+  position: relative;
   padding: .5rem;
   background:
   linear-gradient(to top, #e6e6fa, transparent 10%),
@@ -64,12 +74,15 @@ form select {
   background-size: 400% 400%;
   animation: gradient 7s ease infinite;
   border-radius: 33%;
-  z-index: 0;
+  z-index: 1;
+  margin-bottom: 11rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-dropdown {
   position: relative; 
   flex-direction: column;
+  margin-top: 6rem;
 }
 
 .nav-dropdown-body {
@@ -84,13 +97,14 @@ form select {
   background: linear-gradient(-45deg, #00d9ff, #ff009d35, #00ffe573, #5100ff);
   background-size: 400% 400%;
   animation: gradient 7s ease infinite;
-  width: 146px;
+  width: inherit;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: -1;
-  top: 65%;
+  z-index: 0;
+  top: 35%;
+  left: 14%;
   transform: translateY(-50%);
   transition: transform 0.3s ease-out, opacity 0.3s ease;
-  padding-top: 5rem;
+  padding-top: 2rem;
   border-bottom: 1px solid hsla(0, 0%, 100%, 0.335);
   border-left: 1px solid hsl(0, 0%, 100%, 0.335);
   border-right: 1px solid hsl(0, 0%, 100%, 0.335);
@@ -140,7 +154,7 @@ form select {
   position: relative;
 }
 
-.nav-dropdown-body .nav-dropdown .nav-dropdown-petlist {
+.nav-dropdown-body .nav-dropdown  {
   display: none;
   position: absolute;
   top: 0;
