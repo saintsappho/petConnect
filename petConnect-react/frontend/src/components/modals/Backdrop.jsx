@@ -1,8 +1,7 @@
 
-const Backdrop = function({ closeModal }) {
+const Backdrop = function (closeModal) {
   return (
     <div className="backdrop" onClick={closeModal}></div>)
-
 }
 
 export default Backdrop;

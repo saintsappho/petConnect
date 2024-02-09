@@ -31,14 +31,7 @@
   z-index: 100;
 }
 
-.closeModalButton2 {
-  display: block;
-  font-size: 2rem;
-  font-weight: bold;
-  transition: transform 0.2 ease;
-}
-
-.closeBtn span:hover {
+.closeModalButton span:hover {
   transform: scale(1.3);
 }
 
@@ -93,7 +86,7 @@ background-position: 0% 50%;
     0 0 1.5rem 0 rgb(0, 255, 221),
   }
 
-  .closeBtn {
+  .closeModalButton {
     top: 0px;
     right: 4px;
     display: flex;
