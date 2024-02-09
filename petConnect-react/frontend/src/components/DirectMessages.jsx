@@ -9,15 +9,9 @@ import SendMessage from "./messaging/SendMessage";
 
 
 export default function DirectMessages({ userId, accessToken }) {
-  const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const [newMessage, setNewMessage] = useState([]);
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
-  const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchedUsers, setSearchedUsers] = useState([]);
-
 
 
   useEffect(() => {
@@ -64,6 +58,7 @@ export default function DirectMessages({ userId, accessToken }) {
     };
   }, []);
 
+  // select conversation
   const handleConversationClick = (selectedChat) => {
     setCurrentChat(selectedChat);
     console.log("Selected chat:", selectedChat);

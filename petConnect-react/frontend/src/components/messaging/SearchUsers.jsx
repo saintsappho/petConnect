@@ -6,6 +6,7 @@ export default function SearchUsers({ accessToken, onSearch }) {
   const [searchedUsers, setSearchedUsers] = useState([]);
   const [error, setError] = useState(null);
 
+  // Search for users
   const handleSearchUsers = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/users?query=${searchQuery}`, {
@@ -40,4 +41,3 @@ export default function SearchUsers({ accessToken, onSearch }) {
     </div>
   );
 }
-  

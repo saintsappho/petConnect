@@ -13,7 +13,6 @@ const pool = new Pool({
 });
 
 //new conversation
-
 router.post("/", async (req, res) => {
   const { user1_username, user2_username } = req.body;
 
