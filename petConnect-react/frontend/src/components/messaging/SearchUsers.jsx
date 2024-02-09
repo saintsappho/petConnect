@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-export default function SearchUsers({ currentUserId, setConversations }) {
+export default function SearchUsers({ currentUsername, setConversations }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
@@ -23,7 +23,7 @@ export default function SearchUsers({ currentUserId, setConversations }) {
     try {
       console.log('Starting conversation with user:', user);
       const response = await axios.post('http://localhost:8080/directMessages/start-conversation', {
-        userId: currentUserId, 
+        userId: currentUsername, 
         selectedUserId: user.id
       });
 

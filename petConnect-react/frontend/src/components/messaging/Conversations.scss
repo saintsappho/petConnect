@@ -1,23 +1,26 @@
 .conversations {
-  background-color: rgba(35, 34, 34, 0.5);
+  background-color: transparent;
   padding: 10px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.conversations:hover {
-  background-color: rgba(42, 40, 40, 0.5);
-  border-radius: 10px;
-}
+// .conversations:hover {
+//   background-color: rgba(156, 151, 151, 0.5);
+//   border-radius: 10px;
+// }
 
 .conversations_container {
   display: flex;
   align-items: center;
   padding: 10px;
+  width: 100%;
   cursor: pointer;
 }
 
 .conversations_container:hover {
   background-color: rgba(107, 103, 103, 0.3);
+  border-radius: 10px;
 }
 
 .conversations_image {
@@ -30,6 +33,83 @@
 .conversations_name {
   font-size: 30px;
   font-weight: bold;
+}
+
+h1.user_profile_name_msg {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: light;
+  margin-bottom: 1rem;
+  margin-left: .5rem;
+  line-height: 0.8;
+}
+
+img.user_profile_image_msg {
+  cursor: pointer;
+  margin-left: -30px;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 50px rgb(255, 84, 0);/* Adds a shadow */
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+/* Tablet and mobile layout*/
+@media only screen and (max-width: 480px) {
+  h1.user_profile_name_msg {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: light;
+    margin-bottom: 1rem;
+    line-height: 0.3;
+  }
+  img.user_profile_image_msg {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  h1.user_profile_name_msg {
+    // font-size: 1.9rem;
+    font-weight: bold;
+    font-family: light;
+    margin-bottom: 1rem;
+    line-height: 0.3;
+  }
+
+  img.user_profile_image_msg {
+    cursor: pointer;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 0 50px rgb(63, 0, 70); /* Adds a shadow */
+      transform: scale(1.1);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+  
 }
 
 /* StatusOnline.scss */

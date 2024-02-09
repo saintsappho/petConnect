@@ -50,8 +50,20 @@ const saveMessageToDatabase = async (msg) => {
   const { chatId, sender, receiver, message } = msg;
   try {
     console.log('Saving message to database:', msg);
+    console.log('Sender type:', typeof sender, 'Receiver type:', typeof receiver);
     const client = await pool.connect();
-    await client.query('INSERT INTO messages (chat_ID, sender, receiver, message) VALUES ($1, $2, $3, $4)', [chatId, sender, receiver, message]);
+
+    // Ensure that values are passed as strings to the database query
+    const query = {
+      text: 'INSERT INTO messages (chat_ID, sender, receiver, message) VALUES ($1, $2::text, $3::text, $4)',
+      values: [chatId, sender, receiver, message]
+    };
+
+    console.log('Query:', query);
+
+    // Execute the query
+    await client.query(query);
+
     client.release(); // Release the client back to the pool
     console.log('Message saved successfully.');
   } catch (error) {
@@ -80,27 +92,27 @@ io.on("connection", (socket) => {
     socket.leave(chatId); // Leave the room corresponding to the conversation
   });
 
-    // User sends a private message
-    socket.on("send_private_message", async (messageData) => {
-      console.log(`Message received on the backend:`, messageData);
-      try {
-        // Check if the message data is valid
-        if (!messageData || !messageData.chatId || !messageData.sender || !messageData.receiver || !messageData.message) {
-          console.error("Error saving message: Invalid", messageData);
-          return;
-        }
-
-        // Save the message to the database
-        await saveMessageToDatabase(messageData);
-
-        // Emit the new message to the sender and receiver
-        io.to(messageData.sender).emit('new_message', messageData);
-        io.to(messageData.receiver).emit('new_message', messageData);
-      } catch (error) {
-        console.error("Error saving message:", error);
-        res.status(500).json({ error: 'Internal Server Error' });
+  // User sends a private message
+  socket.on("send_private_message", async (messageData) => {
+    console.log(`Message received on the backend:`, messageData);
+    try {
+      // Check if the message data is valid
+      if (!messageData || !messageData.chatId || !messageData.sender || !messageData.receiver || !messageData.message) {
+        console.error("Error saving message: Invalid", messageData);
+        return;
       }
-    });
+
+      // Save the message to the database
+      await saveMessageToDatabase(messageData);
+
+      // Emit the new message to the sender and receiver
+      io.to(messageData.sender).emit('new_message', messageData);
+      io.to(messageData.receiver).emit('new_message', messageData);
+    } catch (error) {
+      console.error("Error saving message:", error);
+      socket.emit('error', { message: 'Internal Server Error' });
+    }
+  });
 
   // Fetch messages
   socket.on("fetch_messages", async (chatId) => {
@@ -127,29 +139,6 @@ server.listen(4000, () => {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //////////////         Express Routes
 ////////////////////////////////////////////////////////////////////////////////////////////
-
-// router.post("/", (req, res) => {
-//   console.log("POST request received at /");
-
-//   getMessages()
-//     .then(result => {
-//       if (result.rows && result.rows.length > 0) {
-//         const newMessage = result.rows[0];
-//         res.status(201).json(newMessage);
-//       } else {
-//         res.status(500).json({ error: 'Internal Server Error: No rows returned' });
-//       }
-//     })
-//     .catch(error => {
-//       console.error(error);
-
-//       if (error.code === '23505') {
-//         res.status(400).json({ error: 'Duplicate message' });
-//       } else {
-//         res.status(500).json({ error: 'Internal Server Error' });
-//       }
-//     });
-// });
 
 router.post("/", async (req, res) => {
   try {
@@ -183,23 +172,6 @@ router.get("/:chatId", async (req, res) => {
 });
 
 
-// // Define a route for user search
-// app.get('/search', async (req, res) => {
-//   try {
-//     const query = req.query.query; // Get the search query from the request query parameters
-//     // Query the database for users matching the search query
-//     const searchResults = await db.searchUsers(query);
-//     // Return the search results as JSON
-//     res.json(searchResults);
-//   } catch (error) {
-//     console.error('Error searching users:', error);
-//     // Return an error response if something goes wrong
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-
-/// OR
-
 // Search Endpoint
 app.get('/search', async (req, res) => {
   const { query } = req.query;
@@ -219,8 +191,8 @@ app.get('/search', async (req, res) => {
 
 router.post("/start-conversation", async (req, res) => {
   try {
-    const { userId, selectedUserId } = req.body;
-    console.log('Initiating conversation between user:', userId, 'and selected user:', selectedUserId);
+    const { username, selectedUsername } = req.body;
+    console.log('Initiating conversation between user:', username, 'and selected user:', selectedUsername);
     res.status(200).json({ message: 'Conversation initiated successfully' });
   } catch (error) {
     console.error('Error starting conversation:', error);

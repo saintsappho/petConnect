@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
-import axios from 'axios';
+import { toast } from 'react-toastify';
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
-import NavBar from "./NavBar";
 import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
 
-export default function DirectMessages({ userId, accessToken, currentUserId }) {
+export default function DirectMessages({ userId, accessToken }) {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [newMessage, setNewMessage] = useState([]);
@@ -33,6 +32,19 @@ export default function DirectMessages({ userId, accessToken, currentUserId }) {
     newSocket.on('new_message', (newMessage) => {
       console.log(`New message received: newMessage = ${newMessage}`);
 
+    // Display notification
+    toast('🐶 New Notification!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+
       setMessages((prevMessages) => {
         prevMessages = prevMessages || [];
         console.log('After initialization, prevMessages:', prevMessages);
@@ -40,18 +52,6 @@ export default function DirectMessages({ userId, accessToken, currentUserId }) {
         return [...prevMessages, newMessage];
       });
     });
-
-    // newSocket.on('message_processed', (chatId) => {
-    //   console.log(`Message processed for chat: ${chatId}`);
-    //   // Once the message is processed, trigger fetch_messages event
-    //   newSocket.emit('fetch_messages', chatId);
-    // });
-
-    // Listen for the messages_fetched event
-    // newSocket.on('messages_fetched', (messages) => {
-    //   console.log("Messages fetched:", messages);
-    //   setMessages(messages);
-    // });
 
     setSocket(newSocket);
 
@@ -72,19 +72,9 @@ export default function DirectMessages({ userId, accessToken, currentUserId }) {
     }
   };
 
-console.log("Received userId:", userId);
-
-// const handleSearch = async (query) => {
-//   try {
-//     const response = await axios.get(`http://localhost:8080/directMessages/search`);
-//   } catch (error) {
-//     console.error('Error searching users:', error);
-//   }
-// };
-
   return (
     <div>
-      <Grid templateColumns="repeat(10, 1fr)" h="100vh as={Tabs}">
+      <Grid templateColumns="repeat(10, 1fr)" h="100vh">
         <GridItem colSpan="3" borderRight="1px solid gray">
           <div className="direct_message">
             <div className="message_menu">
@@ -107,7 +97,7 @@ console.log("Received userId:", userId);
             <div className="message_box_container">
             <div className="message_box_header">
               {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender === 1 ? 'sent' : 'received'}`}>
+            <div key={index} className={`message ${message.sender === "Bob Doug" ? 'sent' : 'received'}`}>
               <div className="message-content">
                 <p className="message-sender">{message.sender}</p>
                 <p className="message-text">{message.message}</p>
@@ -117,7 +107,7 @@ console.log("Received userId:", userId);
           ))}
       </div>
               <div className="message_box_footer">
-                <SendMessage currentChat={currentChat} currentUserId={currentUserId} socket={socket} />
+                <SendMessage currentChat={currentChat} socket={socket} />
               </div>
             </div>
           </div>
