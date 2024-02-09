@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import io from 'socket.io-client';
 import './SendMessage.scss';
 
-export default function SendMessage({ currentChat, currentUserId, socket }) {
+
+export default function SendMessage({ currentChat, socket }) {
   const [newMessage, setNewMessage] = useState("");
 
   // Join chat room when currentChat changes
@@ -30,8 +30,8 @@ export default function SendMessage({ currentChat, currentUserId, socket }) {
     // Emit the message to the server
     socket.emit("send_private_message", {
       chatId: currentChat.chat_id,
-      sender: currentChat.user1_id,
-      receiver: currentChat.user2_id,
+      sender: currentChat.user1_username,
+      receiver: currentChat.user2_username,
       message: newMessage,
     });
 
@@ -46,18 +46,20 @@ export default function SendMessage({ currentChat, currentUserId, socket }) {
 
   return (
     <div>
-      <textarea
-        className="message_type_box"
-        id="message"
-        cols="30"
-        rows="10"
-        placeholder="Say hello to a friend!"
-        value={newMessage}
-        onChange={onChange}
-      ></textarea>
-      <button className="send_message_button" onClick={handleSendMessage}>
+      <div className="footer-chat">
+        <i className="icon fa fa-smile-o clickable" style={{ fontSize: "25pt" }} aria-hidden="true"></i>
+        <input
+          type="text"
+          className="write-message"
+          placeholder="Say hello to a friend!"
+          value={newMessage}
+          onChange={onChange}
+        />
+      <button className="bubbly-button" onClick={handleSendMessage}>
         Send
       </button>
+      </div>
     </div>
   );
 }
+

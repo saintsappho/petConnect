@@ -1,29 +1,59 @@
-.status_online__container {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
+img.status_online__image {
   cursor: pointer;
-  margin-top: 10px;
-}
-
-.status_online__user {
-  position: relative;
-  margin-right: 10px;
-}
-
-.status_online__image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.status_badge {
-  width: 10px;
-  height: 10px;
+  width: 4.5rem;
+  height: 4.5rem;
   border-radius: 50%;
-  background-color: limegreen;
-  position: absolute;
-  top: 2px;
-  right: 2px;
 }
+
+.statusbadge.img.status_online__image.online {
+  box-shadow: 0 0 0.8rem rgb(0, 20, 255), 0 0 3rem rgb(0, 188, 85);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 50px rgb(255, 84, 0);/* Adds a shadow */
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+img.status_online__image.offline {
+  box-shadow: 0 0 0.8rem rgb(64, 64, 66), 0 0 3rem rgb(215, 23, 23);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 50px rgb(10, 85, 132);/* Adds a shadow */
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+
+// .status_online__container {
+//   display: flex;
+//   align-items: center;
+//   font-weight: 500;
+//   cursor: pointer;
+//   margin-top: 10px;
+// }
+
+// .status_online__user {
+//   position: relative;
+//   margin-right: 10px;
+// }
+
+// .status_online__image {
+//   width: 60px;
+//   height: 60px;
+//   object-fit: cover;
+//   margin-right: 10px;
+// }
+
+// .online {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   background-color: limegreen;
+//   position: absolute;
+//   top: 2px;
+//   right: 2px;
+// }

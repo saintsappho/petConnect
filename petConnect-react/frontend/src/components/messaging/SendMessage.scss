@@ -1,51 +1,83 @@
-.send_message {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
+.footer-chat {
+  width: calc(77% - 66px);
+  height: 80px;
+  display:flex;
+  align-items: center;
+  position:absolute;
+  bottom: 0;
+  background-color: transparent;
+  border-top: 2px solid #706464;
+  
 }
 
-.send_message_button {
-  width: 60px; /* Adjust based on input width */
+.write-message {
+  border:none !important;
+  width:70%;
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 15px;
   padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
   border-radius: 5px;
+  background-color: rgba(71, 69, 69, 0.5); 
+}
+
+.footer-chat *::-webkit-input-placeholder {
+  color: #e1dfdf;
+  font-size: 14pt;
+}
+.footer-chat input *:-moz-placeholder {
+  color: #e1dfdf;
+  font-size: 14pt;
+}
+.footer-chat input *::-moz-placeholder {
+  color: #e1dfdf;
+  font-size: 14pt;
+  margin-left:5px;
+}
+.footer-chat input *:-ms-input-placeholder {
+  color: #e1dfdf;
+  font-size: 14pt;
+}
+
+.clickable {
   cursor: pointer;
-  font-size: 14px;
 }
 
-.send_message_header {
-  display: flex;
-  // align-items: center;
-  // padding: 10px;
+// .message_type_box {
+//   width: 300px;
+//   height: 150px;
+// }
+
+// .send_message_button {
+//   width: 60px;
+//   padding: 10px;
+//   background-color: #007bff;
+//   color: #fff;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   font-size: 14px;
+// }
+
+/* Tablet and mobile layout*/
+@media only screen and (max-width: 480px) {
+  .message_type_box {
+    width: 100px;
+    height: 120px;
+  }
+  
+  .send_message_button {
+    width: 60px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
 }
 
-.send_message__image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  margin-right: 10px;
-}
+@media only screen and (max-width: 1025px) {
 
-.message_text {
-  padding: 10px;
-  border-radius: 20px;
-  background-color: #1877f2;
-  color: white;
-  max-width: 60%;
-}
-
-.send_message_footer {
-  font-size: 12px;
-  margin-top: 10px;
-}
-
-.send_message.mine{
-  align-items: flex-end;
-}
-
-.send_message.mine .message_text {
-  background-color: #dcf8c6;
-  color: black;
 }

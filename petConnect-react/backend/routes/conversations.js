@@ -15,17 +15,17 @@ const pool = new Pool({
 //new conversation
 
 router.post("/", async (req, res) => {
-  const { user1_id, user2_id } = req.body;
+  const { user1_username, user2_username } = req.body;
 
   const insertQuery = `
-    INSERT INTO chats (user1_ID, user2_ID)
+    INSERT INTO chats (user1_username, user2_username)
     VALUES ($1, $2)
     RETURNING *;
   `;
 
   try {
     // Insert the new conversation into the database
-    const newConversation = await pool.query(insertQuery, [user1_id, user2_id]);
+    const newConversation = await pool.query(insertQuery, [user1_username, user2_username]);
 
     res.status(200).json(newConversation.rows[0]);
   } catch (error) {
@@ -42,19 +42,19 @@ router.post("/", async (req, res) => {
 
 
 // Get conversation of a user
-router.get("/:userId", async (req, res) => {
-  const userId = req.params.userId;
+router.get("/:username", async (req, res) => {
+  const username = req.params.username;
 
   // Fetch conversations for the specified user
   const getConversationsQuery = `
     SELECT *
     FROM chats
-    WHERE user1_id = $1 OR user2_id = $1;
+    WHERE user1_username = $1 OR user2_username = $1;
   `;
 
   try {
     // Fetch conversations for the specified user
-    const conversations = await pool.query(getConversationsQuery, [userId]);
+    const conversations = await pool.query(getConversationsQuery, [username]);
 
     res.status(200).json(conversations.rows);
   } catch (error) {
