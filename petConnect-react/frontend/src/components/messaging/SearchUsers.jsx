@@ -1,41 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
 
-export default function SearchUsers({ currentUsername, setConversations }) {
+export default function SearchUsers({ accessToken, onSearch }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchedUsers, setSearchedUsers] = useState([]);
+  const [error, setError] = useState(null);
 
-  const handleSearchQueryChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleSearchSubmit = async () => {
+  const handleSearchUsers = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/directMessages/${searchQuery}`);
-      console.log('Search results:', response.data);
-      setSearchResults(response.data);
-    } catch (error) {
-      console.error('Error searching users:', error);
-    }
-  };
-
-  const handleStartConversation = async (user) => {
-    try {
-      console.log('Starting conversation with user:', user);
-      const response = await axios.post('http://localhost:8080/directMessages/start-conversation', {
-        userId: currentUsername, 
-        selectedUserId: user.id
+      const response = await axios.get(`http://localhost:8080/users?query=${searchQuery}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
       });
-
-      // const newConversation = response.data;
-      // updateConversations(newConversation);
-      // setConversations(prevConversations => [...prevConversations, newConversation]);
-  
-      setConversations(prevConversations => [...prevConversations, response.data]);
-      // console.log('Conversation started successfully test1:', newConversation);
-      console.log('Conversation started successfully test2:', response.data);
+      setSearchedUsers(response.data);
+      onSearch(response.data); // Pass the search results back to the parent component
     } catch (error) {
-      console.error('Error starting conversation:', error);
+      console.error("Error searching users:", error);
+      setError(error.message);
     }
   };
 
@@ -43,20 +25,19 @@ export default function SearchUsers({ currentUsername, setConversations }) {
     <div>
       <input
         type="text"
+        placeholder="Search Users"
         value={searchQuery}
-        onChange={handleSearchQueryChange}
-        placeholder="Search for users..."
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleSearchSubmit}>Search</button>
-      <div>
-        {searchResults.map((user, index) => (
-          <div key={`${user.id}-${index}`}>
-            <p>{user.name}</p>
-            <p>{user.username}</p>
-            <button onClick={() => handleStartConversation(user)}>Start Conversation</button>
-          </div>
-        ))}
-      </div>
+      <button onClick={handleSearchUsers}>Search For a New Friend!</button>
+
+      {searchedUsers.map((user) => (
+        <div key={user.id} onClick={() => onSearch(user.username)}>
+          {user.username}
+        </div>
+      ))}
+      {error && <p>Error searching users: {error}</p>}
     </div>
   );
-};
+}
+  

@@ -63,6 +63,21 @@ router.get("/:username", async (req, res) => {
   }
 });
 
+// Delete conversations
+router.delete("/:chatId", async (req, res) => {
+  const chatId = req.params.chatId;
+
+  try {
+    // Delete conversation from the database
+    await pool.query('DELETE FROM chats WHERE chat_ID = $1', [chatId]);
+
+    res.status(200).json({ message: 'Conversation deleted successfully.' });
+  } catch (error) {
+    console.error("Error deleting conversation:", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 
 // get conversation including two userIds

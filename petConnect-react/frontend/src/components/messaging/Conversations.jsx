@@ -6,12 +6,12 @@ import SearchUsers from "./SearchUsers";
 import useFetchData from "../../hooks/useFetchData";
 import "./Conversations.scss";
 
-export default function Conversations({ onConversationClick, accessToken }) {
+export default function Conversations({ onConversationClick, accessToken, onSearch }) {
   const [conversations, setConversations] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
   const [username, setUsername] = useState(null);
-  // const [userData, setUserData] = useState({ profilePicture: '', name: '' });
-  // console.log('rendering Conversations component');
+  const [searchedUsers, setSearchedUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -59,20 +59,61 @@ const updateConversations = (newConversation) => {
   setConversations(prevConversations => [...prevConversations, newConversation]);
 };
 
+// Delete conversations
+const handleDeleteConversation = async (chatId) => {
+  try {
+    await axios.delete(`http://localhost:8080/conversations/${chatId}`);
+    setConversations(prevConversations => prevConversations.filter(conversation => conversation.chat_id !== chatId));
+  } catch (error) {
+    console.error("Error deleting conversation:", error.message);
+    setError(error.message);
+  }
+};
+
+// search for new conversations to start
+const filteredConversations = conversations.filter(conversation =>
+  conversation.user2_username.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
 return (
   <div className="conversations">
     <div className="message_search">
-      <SearchUsers updateConversations={updateConversations} />
+      <SearchUsers accessToken={accessToken} onSearch={setSearchedUsers} />
+      <input
+        type="text"
+        placeholder="Filter Conversation"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
     </div>
 
     {error && <p>Error fetching conversations: {error}</p>}
-    {conversations && Array.isArray(conversations) && conversations.map((user) => (
+    {filteredConversations.map((user) => (
       <div key={user.chat_id} className="conversations_container" onClick={() => onConversationClick(user)}>
         <StatusOnline user={user}/>
         <img className="user_profile_image_msg" src={user.user_photo_url} alt={user.user2_username} />
-          <h1 className="user_profile_name_msg">{user.user2_username}</h1>
+        <h1 className="user_profile_name_msg">{user.user2_username}</h1>
+        <button onClick={() => handleDeleteConversation(user.chat_id)}>Delete</button>
       </div>
     ))}
   </div>
 );
 }
+
+// return (
+//   <div className="conversations">
+//     <div className="message_search">
+//       <SearchUsers updateConversations={updateConversations} />
+//     </div>
+
+//     {error && <p>Error fetching conversations: {error}</p>}
+//     {conversations && Array.isArray(conversations) && conversations.map((user) => (
+//       <div key={user.chat_id} className="conversations_container" onClick={() => onConversationClick(user)}>
+//         <StatusOnline user={user}/>
+//         <img className="user_profile_image_msg" src={user.user_photo_url} alt={user.user2_username} />
+//           <h1 className="user_profile_name_msg">{user.user2_username}</h1>
+//       </div>
+//     ))}
+//   </div>
+// );
+// }

@@ -3,6 +3,7 @@ import { Grid, GridItem } from "@chakra-ui/react";
 import { toast } from 'react-toastify';
 import "../styles/DirectMessages.scss";
 import io from 'socket.io-client';
+import axios from 'axios';
 import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
@@ -14,6 +15,8 @@ export default function DirectMessages({ userId, accessToken }) {
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchedUsers, setSearchedUsers] = useState([]);
 
 
 
@@ -80,16 +83,13 @@ export default function DirectMessages({ userId, accessToken }) {
             <div className="message_menu">
               <div className="message_menu_container">Menu</div>
               <div className="message_search">
-              {/* <SearchUsers /> */}
               </div>
-              <div className="message_new">
-                {/* <button>Add New Friend to Chat With</button> */}
                 <div>
                    <Conversations accessToken={accessToken} userId={userId} onConversationClick={handleConversationClick} />
                 </div>
               </div>
             </div>
-          </div>
+         
         </GridItem>
 
         <GridItem colSpan="7">
@@ -111,6 +111,7 @@ export default function DirectMessages({ userId, accessToken }) {
               </div>
             </div>
           </div>
+          
         </GridItem>
       </Grid>
     </div>
