@@ -86,7 +86,7 @@ io.on("connection", (socket) => {
       try {
         // Check if the message data is valid
         if (!messageData || !messageData.chatId || !messageData.sender || !messageData.receiver || !messageData.message) {
-          console.error("Error saving message: Invalid message data");
+          console.error("Error saving message: Invalid", messageData);
           return;
         }
 
@@ -102,34 +102,13 @@ io.on("connection", (socket) => {
       }
     });
 
-
-  // // User sends a message
-  // socket.on("send_message", async (obj) => {
-  //   console.log(`Message received here on the backend: obj =`, obj);
-  //   try {
-  //     // Check if the text field of the message is not null or undefined
-  //     if (obj.message !== null && obj.message !== undefined) {
-  //       // Save the message to the database
-  //       await saveMessageToDatabase(obj);
-
-  //       // Once saved, emit the new message to other clients
-  //       io.to(obj.chatId).emit('new_message', obj);
-  //       io.to(obj.chatId).emit('message_processed', obj.chatId);
-  //     } else {
-  //       console.error("Error saving message: Text field is null or undefined");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error saving message:", error);
-  //   }
-  // });
-
   // Fetch messages
   socket.on("fetch_messages", async (chatId) => {
     console.log(`Fetching messages for chat: ${chatId}`);
     try {
       const messages = await getMessagesForChat(chatId);
       // Once fetched, emit the messages back to the client
-      socket.emit("messages_fetched", messages);
+      socket.emit("message_history", messages);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }

@@ -28,10 +28,10 @@ export default function SendMessage({ currentChat, currentUserId, socket }) {
     }
 
     // Emit the message to the server
-    socket.emit("send_message", {
+    socket.emit("send_private_message", {
       chatId: currentChat.chat_id,
-      sender: currentUserId,
-      receiver: currentChat.user2_ID,
+      sender: currentChat.user1_id,
+      receiver: currentChat.user2_id,
       message: newMessage,
     });
 
@@ -43,23 +43,6 @@ export default function SendMessage({ currentChat, currentUserId, socket }) {
     setNewMessage(e.target.value);
   }
 
-    // Listening for new messages from the server
-    useEffect(() => {
-      if (socket) {
-        socket.on('new_message', (message) => {
-          // Update UI to display the new message
-          console.log("Received new message:", message);
-          // Additional logic to update UI
-        });
-      }
-  
-      // Cleanup function
-      return () => {
-        if (socket) {
-          socket.off('new_message');
-        }
-      };
-    }, [socket]); // Dependency on socket
 
   return (
     <div>
