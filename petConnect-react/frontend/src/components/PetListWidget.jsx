@@ -6,9 +6,11 @@ export default function PetListWidget({ petData, listPayload }) {
   function renderCurrentUserPets() {
     console.log('current user pets called', petData);
 
-    if (petData.user_id === 1) {
-
-    // 'current-user' payload will render the pet list with the user's pets
+    // Hard-coded user id for now
+    const userId = 1;
+    // Find the pet that matches the user id
+      const pet = petData.find(pet => pet.pet_id === Number(userId));
+      
     return petData.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
@@ -20,7 +22,7 @@ export default function PetListWidget({ petData, listPayload }) {
         </div>
       );
     });
-    }
+
   }
 
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 

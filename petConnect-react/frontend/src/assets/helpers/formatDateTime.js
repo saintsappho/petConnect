@@ -1,4 +1,11 @@
 export default function useFormatDateTime(datetimeString) {
+  // Parse the datetime string to a Date object
+  const originalDate = new Date(datetimeString);
+
+  // Subtract 2 hours
+  const modifiedDate = new Date(originalDate.getTime() - 2 * 60 * 60 * 1000);
+
+  // Format the modified date
   const options = {
     month: 'short',
     day: 'numeric',
@@ -7,6 +14,6 @@ export default function useFormatDateTime(datetimeString) {
     timeZoneName: 'short',
   };
 
-  const formattedDateTime = new Date(datetimeString).toLocaleString('en-US', options);
+  const formattedDateTime = modifiedDate.toLocaleString('en-US', options);
   return formattedDateTime;
 }
