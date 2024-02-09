@@ -14,7 +14,8 @@ export default function EventPost(props) {
       <div className="form-row">
         <div className="input-data textarea">
           <textarea
-            id={"choice" + [i]}
+            key={"choice" + [i]}
+            id={"new-choice" + [i]} 
             value={choice[i]}
             onChange={() => {
               handlePostStateChange(event, ("choice" + [i]));

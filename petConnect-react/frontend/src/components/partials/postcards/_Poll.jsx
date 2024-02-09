@@ -4,6 +4,8 @@ import useFormatDateTime from "../../../assets/helpers/formatDateTime";
 import useFetchData from "../../../hooks/useFetchData";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+//components
+import PollChoice from "./_PollChoice";
 
 export default function Poll(props) {
   const { randomImage, petPost } = props;
@@ -11,13 +13,16 @@ export default function Poll(props) {
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState(null);
   const [renderedChoices, setRenderedChoices] = useState(null);
+  const [selected, setSelected] = useState(null);
   // console.log("Poll petPost: ", petPost);
   // console.log("pollData: ", pollData);
- 
-  useEffect(() => {
+
+  useEffect(() => { // Fetch poll data
     async function fetchData() {
       try {
-        const response = await axios.get(`http://localhost:8080/polls/${petPost.post_id}`);
+        const response = await axios.get(
+          `http://localhost:8080/polls/${petPost.post_id}`,
+        );
         console.log(`useFetchData got this data from polls`, response.data);
         setPollData(response.data);
         setChoices(response.data.choices);
@@ -28,15 +33,25 @@ export default function Poll(props) {
     }
     fetchData();
   }, [petPost.post_id]);
-console.log("choices: ", choices);
-  useEffect(() => {
-    const renderedChoices = choices.map((choice) => {
-      return <button key={choice.choice_id} className="card__choice">{choice.choicetext}</button>
-    })
+
+  useEffect(() => { // Render choices and buttons
+    console.log("choices: ", choices);
+    console.log("selected: ", selected);
+    const renderedChoices = choices.map((choice) => (
+      <PollChoice
+        key={choice.choice_id}
+        choice={choice}
+        onSelect={handleSelectChoice}
+        isSelected={selected === choice.choice_id}
+      />
+    ));
     setRenderedChoices(renderedChoices);
-    console.log("renderedChoices 1: ", renderedChoices);
-  }, [choices])
-  console.log("renderedChoices 2: ", renderedChoices);
+  }, [choices, selected]);
+
+  const handleSelectChoice = (choice_ID) => {
+    setSelected(choice_ID);
+  };
+
   return (
     <div className="card">
       <figure className="card__thumb">
@@ -47,10 +62,8 @@ console.log("choices: ", choices);
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
-          {renderedChoices}
-          <a className="card__button">
-            Vote Now!
-          </a>
+          <div className="card__choices">{renderedChoices}</div>
+          <a className="card__button">Vote Now!</a>
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
