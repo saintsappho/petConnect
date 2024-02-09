@@ -12,7 +12,11 @@ export default function Feed(props) {
 
   //still NO IDEA why this is flipping the order of the posts
   //happens whenever i open new post form
-  const feedPosts = posts.reverse()
+
+  // trick for setting posts for followers
+  // const feedPosts = posts.filter((post) => post.user_id === user.user_id);
+
+
 
   if (error) {
     return (
@@ -33,7 +37,7 @@ export default function Feed(props) {
 
   return (
     <div className="feed-container">
-      {feedPosts.map(
+      {posts.reverse().map(
         (post) => (<PetPost key={post.post_id} petPost={post} />),
       )}
     </div>
