@@ -127,7 +127,7 @@ function App() {
         {!error && isLoading && <Loading />}
         {!error && !isLoading && user && (
           <>
-            <HomeRoute setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+            <HomeRoute userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
           </>
         )}
       </div>

@@ -59,7 +59,7 @@ export default function UserProfile({userId, accessToken, handleConversationClic
           <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
         </div>
 
-        <div className="profile-pet-points">
+        <div className="user-profile-pet-points">
           <PetPointsProfileWidget userId={userId}/>
         </div>
         </div>

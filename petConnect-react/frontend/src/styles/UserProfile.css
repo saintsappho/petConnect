@@ -40,11 +40,11 @@
   justify-content: center;
 }
 
-.pet-list-widget {
+.user-profile-pet-list-widget {
   display: flex;
 }
 
-#pet-list-item {
+#current-user-profile-pet-list-item {
   display: flex;
   padding-top: 2rem;
   align-items: center;

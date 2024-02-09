@@ -8,7 +8,7 @@ export default function PetListWidget({ petData, listPayload, userId }) {
       userId = 1;
     }
   
-    const filteredPets = petData.filter(pet => pet.pet_id === Number(userId));
+    const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
     return filteredPets.map((pet) => {
       return (
