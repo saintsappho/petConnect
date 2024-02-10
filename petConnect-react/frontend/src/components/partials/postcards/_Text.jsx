@@ -1,10 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import useFormatDateTime from "../../../assets/helpers/formatDateTime";
+import React, { useState } from "react";
+import NewComment from "./_NewComment";
 
 export default function Text(props) {
-  const { randomImage, petPost } = props;
-  
+  const { randomImage, petPost, comments } = props;
+  const [form, setForm] = useState(false);
+
   return (
     <div className="card">
       <div id="img-container"></div>
@@ -17,9 +20,10 @@ export default function Text(props) {
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
           <p className="card__snippet">{petPost.content}</p>
-          <a className="card__button">
+          {!form ? <a onClick={()=> setForm(!form)} className="card__button">
             Comment?
-          </a>
+          </a> : <NewComment petPost={petPost}/>}
+          {comments}
         <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>

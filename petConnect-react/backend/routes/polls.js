@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getPolls, getPollsByPostID, getChoicesByPostID, getVotesByPollID } = require('../db/queries/gets/getPolls');
-const { newPoll, newVote } = require('../db/queries/news/newPoll');
+const { newPoll, newVote } = require('../db/queries/posts/newPoll');
 
 //Get All Polls
 router.get('/', async (req, res) => {

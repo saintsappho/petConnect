@@ -15,10 +15,10 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
       return (
         <div key={pet.id} className={divClass}>
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
-          <div id="pet-info-short">
-            <th>{pet.pet_name}</th>
-            <tr>{pet.breed}</tr>
-          </div>
+          <table id="pet-info-short">
+            <thead>{pet.pet_name}</thead>
+            <thead>{pet.breed}</thead>
+          </table>
         </div>
       );
     });

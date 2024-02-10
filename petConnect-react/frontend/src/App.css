@@ -153,6 +153,35 @@ html {
   text-transform: uppercase;
 }
 
+.comment-box textarea{
+  resize: none;
+  width: 75%;
+  background-color: rgb(24, 23, 23);
+  border-radius: 4em; 
+  font-size: 12px;
+  color: white;
+  padding: 0.8em 1.8em;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s; /* Safari */
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  border: #ffffff, 0.5px;
+  border-radius: 3px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 
 /* Tablet and mobile layout*/
 

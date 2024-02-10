@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import useFormatDateTime from "../../../assets/helpers/formatDateTime";
+import NewComment from "./_NewComment";
 
 export default function Photo(props) {
-  const { petPost } = props;
+  const { petPost, comments } = props;
+  const [form, setForm] = useState(false);
 
   return (
     <div className="card">
@@ -15,9 +18,10 @@ export default function Photo(props) {
         ></img>
         <figcaption className="card__caption">
           <p className="card__snippet">{petPost.content}</p>
-          <a className="card__button">
+          {!form ? <a onClick={()=> setForm(!form)} className="card__button">
             Thoughts?
-          </a>
+          </a> : <NewComment post_ID={petPost.post_id}/>}
+          {comments}
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
