@@ -70,15 +70,27 @@ const handleDeleteConversation = async (chatId) => {
   }
 };
 
-// search for new conversations to start
-const filteredConversations = conversations.filter(conversation =>
+const handleSearch = async (selectedUser) => {
+  const data = {user1_username:username, user2_username:selectedUser.username}
+  try {
+    // Fetch or create conversation with the selected user
+    const response = await axios.post(`http://localhost:8080/conversations`, data);
+    setConversations([...conversations, response.data]);
+  } catch (error) {
+    console.error("Error fetching conversation:", error.message);
+    setError(error.message);
+  }
+};
+
+// filter users
+const filteredConversations = conversations?.filter(conversation =>
   conversation.user2_username.toLowerCase().includes(searchQuery.toLowerCase())
 );
 
 return (
   <div className="conversations">
     <div className="message_search">
-      <SearchUsers accessToken={accessToken} onSearch={setSearchedUsers} />
+      <SearchUsers accessToken={accessToken} onSearch={handleSearch} />
       <input
         type="text"
         placeholder="Filter Conversation"

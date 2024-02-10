@@ -106,8 +106,9 @@ io.on("connection", (socket) => {
       await saveMessageToDatabase(messageData);
 
       // Emit the new message to the sender and receiver
-      io.to(messageData.sender).emit('new_message', messageData);
-      io.to(messageData.receiver).emit('new_message', messageData);
+      socket.emit('new_message', messageData);
+      // io.to(messageData.sender).emit('new_message', messageData);
+      // io.to(messageData.receiver).emit('new_message', messageData);
     } catch (error) {
       console.error("Error saving message:", error);
       socket.emit('error', { message: 'Internal Server Error' });

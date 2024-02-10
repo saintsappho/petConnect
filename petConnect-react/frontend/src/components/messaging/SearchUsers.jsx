@@ -15,7 +15,6 @@ export default function SearchUsers({ accessToken, onSearch }) {
         }
       });
       setSearchedUsers(response.data);
-      onSearch(response.data); // Pass the search results back to the parent component
     } catch (error) {
       console.error("Error searching users:", error);
       setError(error.message);
@@ -33,7 +32,7 @@ export default function SearchUsers({ accessToken, onSearch }) {
       <button onClick={handleSearchUsers}>Search For a New Friend!</button>
 
       {searchedUsers.map((user) => (
-        <div key={user.id} onClick={() => onSearch(user.username)}>
+        <div key={user.id} onClick={() => onSearch(user)}>
           {user.username}
         </div>
       ))}

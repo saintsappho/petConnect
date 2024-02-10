@@ -15,16 +15,29 @@ const pool = new Pool({
 //new conversation
 router.post("/", async (req, res) => {
   const { user1_username, user2_username } = req.body;
-
+console.log(req.body);
   const insertQuery = `
-    INSERT INTO chats (user1_username, user2_username)
-    VALUES ($1, $2)
+    INSERT INTO chats (user1_username, user2_username, user_photo_url)
+    VALUES ($1, $2, $3)
     RETURNING *;
   `;
+ const img_url = 'https://images.unsplash.com/photo-1435348773030-a1d74f568bc2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80';
+  const selectQuery = `
+  SELECT *
+  FROM chats
+  WHERE
+  (user1_username = $1 OR user2_username = $1) AND (user1_username = $2 OR user2_username = $2);
+`;
 
   try {
     // Insert the new conversation into the database
-    const newConversation = await pool.query(insertQuery, [user1_username, user2_username]);
+    const existingConversation = await pool.query(selectQuery, [user1_username, user2_username]);
+    console.log(existingConversation);
+    if (existingConversation.rows[0]){
+      return res.status(200).json(existingConversation.rows[0]);
+    }
+
+    const newConversation = await pool.query(insertQuery, [user1_username, user2_username, img_url]);
 
     res.status(200).json(newConversation.rows[0]);
   } catch (error) {
