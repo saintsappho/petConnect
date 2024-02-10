@@ -4,10 +4,13 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 export default function NewComment(props) {
-  const { petPost } = props
+  const { petPost, handleComment } = props
+
   const [comment, setComment] = useState("")
+
   const handleSubmit = async (e) => {
     e.preventDefault()
+    handleComment()
     try {
       const commentData = { 
         post_ID: petPost.post_id,

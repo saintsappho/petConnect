@@ -5,9 +5,11 @@ import React, { useState } from "react";
 import NewComment from "./_NewComment";
 
 export default function Text(props) {
-  const { randomImage, petPost, comments } = props;
+  const { randomImage, petPost, comments, handleComment } = props;
   const [form, setForm] = useState(false);
+  const [displayComments, setDisplayComments] = useState(false);
 
+  
   return (
     <div className="card">
       <div id="img-container"></div>
@@ -22,8 +24,11 @@ export default function Text(props) {
           <p className="card__snippet">{petPost.content}</p>
           {!form ? <a onClick={()=> setForm(!form)} className="card__button">
             Comment?
-          </a> : <NewComment petPost={petPost}/>}
-          {comments}
+          </a> : <NewComment handleComment={handleComment} petPost={petPost}/>}
+          <a onClick={()=> setDisplayComments(!displayComments)} className="show-comments-button">
+            Comments ({comments.length})
+          </a>
+          {displayComments && comments}
         <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>

@@ -13,7 +13,7 @@ import axios from "axios";
 export default function PetPost(props) {
   const { petPost } = props;
   const [comments, setComments] = useState([])
-
+  const [refreshComments, setRefreshComments] = useState(false)
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
       petPost.title || "pet"
@@ -28,24 +28,26 @@ export default function PetPost(props) {
         return <div className="comment" key={comment.comment_ID}>{comment.content} </div>;
       }))
     })
-  }, [])
+  }, [refreshComments])
 
-  
+  const handleComment = () => {
+    setRefreshComments(!refreshComments)
+  }
   
   return (
     <>
       {petPost.style === "text-post" && (
-        <Text petPost={petPost} randomImage={randomImage} comments={comments} />
+        <Text petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments} />
       )}
       {petPost.style === "photo-post" && (
-        <Photo petPost={petPost} comments={comments}/>
+        <Photo petPost={petPost} handleComment={handleComment} comments={comments}/>
         
       )}
       {petPost.style === "poll-post" && (
         <Poll petPost={petPost} randomImage={randomImage} />
       )}
       {petPost.style === "forum-post" && (
-        <Forum petPost={petPost} randomImage={randomImage} comments={comments}/>
+        <Forum petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments}/>
         
       )}
       {petPost.style === "event-post" && (
