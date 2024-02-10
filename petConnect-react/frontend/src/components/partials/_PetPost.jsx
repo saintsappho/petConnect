@@ -14,6 +14,8 @@ export default function PetPost(props) {
   const { petPost } = props;
   const [comments, setComments] = useState([])
   const [refreshComments, setRefreshComments] = useState(false)
+  const [user, setUser] = useState([{}])
+  
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
       petPost.title || "pet"
@@ -21,11 +23,20 @@ export default function PetPost(props) {
   };
 
   useEffect(() => {
+    axios.get(`http://localhost:8080/users/${petPost.user_id}`)
+    .then((response) => {
+      setUser(response.data[0])
+    })
+  }, [])
+
+  console.log("user", user)
+
+  useEffect(() => {
     axios.get(`http://localhost:8080/comments/${petPost.post_id}`)
     .then((response) => {
       setComments(response.data.map((comment, index) => {
         if (index > 2) index++;
-        return <div className="comment" key={comment.comment_ID}>{comment.content} </div>;
+        return (<div className="comment" key={comment.comment_ID}> {comment.content}</div>)
       }))
     })
   }, [refreshComments])
@@ -37,21 +48,21 @@ export default function PetPost(props) {
   return (
     <>
       {petPost.style === "text-post" && (
-        <Text petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments} />
+        <Text user={user} petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments} />
       )}
       {petPost.style === "photo-post" && (
-        <Photo petPost={petPost} handleComment={handleComment} comments={comments}/>
+        <Photo user={user} petPost={petPost} handleComment={handleComment} comments={comments}/>
         
       )}
       {petPost.style === "poll-post" && (
-        <Poll petPost={petPost} randomImage={randomImage} />
+        <Poll user={user} petPost={petPost} randomImage={randomImage} />
       )}
       {petPost.style === "forum-post" && (
-        <Forum petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments}/>
+        <Forum user={user} petPost={petPost} handleComment={handleComment} randomImage={randomImage} comments={comments}/>
         
       )}
       {petPost.style === "event-post" && (
-        <Event petPost={petPost} randomImage={randomImage} />
+        <Event user={user} petPost={petPost} randomImage={randomImage} />
       )}
     </>
   );
