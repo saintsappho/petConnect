@@ -7,4 +7,11 @@ const getComments = () => {
     });
 };
 
-module.exports = { getComments };
+const getCommentsByPostID = (post_ID) => {
+  return db.query('SELECT * FROM comments WHERE post_ID = $1;', [post_ID])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getComments, getCommentsByPostID };

@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getEvents, getEventsByPostID } = require('../db/queries/gets/getEvents');
-const { newEvent } = require('../db/queries/news/newEvent');
+const { newEvent } = require('../db/queries/posts/newEvent');
 
 router.get('/', async (req, res) => {
   try {

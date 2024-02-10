@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import useFormatDateTime from "../../../assets/helpers/formatDateTime";
+import React, { useState } from "react";
+import NewComment from "./_NewComment";
 
 export default function Forum(props) {
-  const { randomImage, petPost } = props;
-
+  const { randomImage, petPost, comments } = props;
+  const [form, setForm] = useState(false);
   return (
     <div className="card">
       <figure className="card__thumb">
@@ -16,9 +18,10 @@ export default function Forum(props) {
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
           <p className="card__snippet">{petPost.content}</p>
-          <a className="card__button">
+          {!form ? <a onClick={()=> setForm(!form)} className="card__button">
             Be Heard!
-          </a>
+          </a> : <NewComment post_ID={petPost.post_id} />}
+          {comments}
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
