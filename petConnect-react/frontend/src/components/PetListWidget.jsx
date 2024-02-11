@@ -16,7 +16,6 @@ export default function PetListWidget({ petData, listPayload, userId }) {
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
           <div id="pet-info-short">
             <th>{pet.pet_name}</th>
-            <tr>{pet.breed}</tr>
           </div>
         </div>
       );

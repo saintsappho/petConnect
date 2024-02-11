@@ -42,7 +42,7 @@ export default function UserProfile({userId, accessToken, handleConversationClic
         <div className="user-profile-header">
           <img className="user-profile-image" src={user.picture} alt={user.name} />
           <h1 className="user-profile-name">{user.name}</h1>
-          <h2>{user.location}</h2>
+          <h2 className="user-profile-location">Alberta, Canada</h2>
           <table className="user-profile-buttons">
             <thead>
               <tr>

@@ -58,6 +58,13 @@ form select {
   object-fit: contain;
 }
 
+.pet-list-container {
+  margin-top: 34rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 .nav-dropdown-button {
   padding: .5rem;
   background:
@@ -69,8 +76,9 @@ form select {
   background-size: 400% 400%;
   animation: gradient 7s ease infinite;
   border-radius: 33%;
-  margin-top: 2rem;
-  z-index: 0;
+  z-index: 1;
+  margin-bottom: 7rem;
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-dropdown {
@@ -92,8 +100,9 @@ form select {
   animation: gradient 7s ease infinite;
   width: 162px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: -1;
-  top: 65%;
+  z-index: 0;
+  top: 35%;
+  left: 22%;
   transform: translateY(-50%);
   transition: transform 0.3s ease-out, opacity 0.3s ease;
   padding-top: 5rem;
