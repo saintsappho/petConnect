@@ -6,5 +6,5 @@ CREATE TABLE comments (
   post_ID INTEGER REFERENCES posts(post_ID),
   user_ID INTEGER REFERENCES users(user_ID),
   content VARCHAR(255) NOT NULL,
-  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

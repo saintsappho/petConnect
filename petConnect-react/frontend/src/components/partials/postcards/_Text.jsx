@@ -31,7 +31,9 @@ export default function Text(props) {
           <a onClick={()=> setDisplayComments(!displayComments)} className="show-comments-button">
             Comments ({comments.length})
           </a>
-          {displayComments && comments}
+          <div className="comments-section">
+            {displayComments && comments}
+          </div>
         <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>

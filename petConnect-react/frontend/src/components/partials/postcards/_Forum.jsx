@@ -7,7 +7,7 @@ import NewComment from "./_NewComment";
 export default function Forum(props) {
   const { randomImage, petPost, comments, handleComment, user } = props;
   const [form, setForm] = useState(false);
-  const [displayComments, setDisplayComments] = useState(false);
+ 
   return (
     <div className="forum">
       <figure className="forum__thumb">
@@ -24,11 +24,13 @@ export default function Forum(props) {
           <p className="forum__snippet">{petPost.content}</p>
           {!form ? <a onClick={()=> setForm(!form)} className="forum__button">
             Be Heard!
-          </a> : <NewComment handleComment={handleComment} post_ID={petPost.post_id} />}
-          <a onClick={()=> setDisplayComments(!displayComments)} className="show-comments-button">
+          </a> : <NewComment handleComment={handleComment} petPost={petPost} />}
+          <a className="show-comments-button">
             Comments ({comments.length})
           </a>
-          {displayComments && comments}
+          <div className="comments-section">
+            {comments}
+          </div>
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>

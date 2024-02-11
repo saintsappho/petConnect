@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 export default function NewComment(props) {
-  const { petPost, handleComment } = props
+  const { petPost, handleComment, post_ID } = props
 
   const [comment, setComment] = useState("")
 

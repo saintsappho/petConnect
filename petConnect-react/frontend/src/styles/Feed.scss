@@ -196,19 +196,21 @@ $desktop: 1024px;
 	background-color: white;
   opacity: .9;
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  scroll-snap-align: start;
 
 	hover {
     opacity: 1;
+  }
+  .forum__image {
+    transform: translateY(-10px);
+    
   }
   .forum__caption {
     top: 50%;
     transform: translateY(-50%);
   }
 
-  .forum__image {
-    transform: translateY(-10px);
-    
-  }
+  
 
   .forum__thumb {
     &::after {
@@ -349,5 +351,38 @@ $desktop: 1024px;
   .selected {
     color: black;
     background-color: white;
+  }
+}
+
+.comments-section{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  scroll-behavior: smooth;
+  border-radius: 10px;
+  scrollbar-width: thin;
+  
+  scroll-snap-align: start;
+  overflow-y: scroll;
+  height: 20vh;
+
+  .comment {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    opacity: .9;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+    .comment__user {
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .comment__text {
+      font-size: 10px;
+    }
   }
 }

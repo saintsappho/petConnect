@@ -29,7 +29,7 @@ export default function Photo(props) {
           ) : (
             <NewComment
               handleComment={handleComment}
-              post_ID={petPost.post_id}
+              petPost={petPost}
             />
           )}
           <a
@@ -38,7 +38,9 @@ export default function Photo(props) {
           >
             Comments ({comments.length})
           </a>
-          {displayComments && comments}
+          <div className="comments-section">
+            {displayComments && comments}
+          </div>
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
