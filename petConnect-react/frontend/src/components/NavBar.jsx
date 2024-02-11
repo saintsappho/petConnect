@@ -1,14 +1,14 @@
-import useFetchData from "../hooks/useFetchData.js";
+
 import "../styles/TopNav.scss";
 import LogoutButton from "./Logout";
-import Modal from "./modals/Modal.jsx";
 import PetListWidget from "./PetListWidget.jsx";
 
 export default function Navbar({ petData, handlePetListSelect, openCurrentUserModal, user, userId }) {
   return (
     <nav className="top-nav-bar">
+                <div className="top-nav-bar__logo"></div>
           <div className="pet-list-container">
-          <div className="top-nav-bar__logo"></div>
+
       <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
       </div>
 
@@ -23,7 +23,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
 
         <div className="nav-dropdown-body">
           <div className="nav-dropdown-petlist">
-            <a href="#">My Pets</a>
+            {/* <a href="#">My Pets</a>
             <div className="user-pets">
               {petData &&
                 (petData.map((pet) => (
@@ -31,7 +31,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
                     {pet.pet_name}
                   </a>
                 )))}
-            </div>
+            </div> */}
           </div>
           <a href="/">Settings</a>
           <a href="/">About</a>

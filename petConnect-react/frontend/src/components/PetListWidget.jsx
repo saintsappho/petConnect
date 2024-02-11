@@ -4,18 +4,20 @@ import useFetchData from "../hooks/useFetchData";
 export default function PetListWidget({ petData, listPayload, userId }) {
 
   function renderCurrentUserPets() {
-    // if (userId.includes("google-oauth2|")) {
-    //   userId = 1;
-    // }
-  
-    const filteredPets = petData.filter(pet => pet.pet_id === Number(userId));
+
+    // this is to render Dylan's pets
+    console.log(userId);
+    if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
+      userId = 10;
+    }
+    const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
     return filteredPets.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
           <div id="pet-info-short">
-            <th>{pet.pet_name}</th>
+            <p>{pet.pet_name}</p>
           </div>
         </div>
       );
