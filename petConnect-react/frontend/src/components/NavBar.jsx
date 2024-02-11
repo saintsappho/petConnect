@@ -4,7 +4,7 @@ import LogoutButton from "./Logout";
 import Modal from "./modals/Modal.jsx";
 import PetListWidget from "./PetListWidget.jsx";
 
-export default function Navbar({ petData, handlePetListSelect, openCurrentUserModal, user }) {
+export default function Navbar({ petData, handlePetListSelect, openCurrentUserModal, user, userId }) {
   return (
     <nav className="top-nav-bar">
           <div className="pet-list-container">
@@ -15,10 +15,12 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
       <div className="top-nav-bar__title">
         <h1>PetConnect</h1>
       </div>
+
       <div className="nav-dropdown">
         <button className="nav-dropdown-button" onClick={openCurrentUserModal}>
           <img className="nav-user-photo" src={user.picture}></img>
         </button>
+
         <div className="nav-dropdown-body">
           <div className="nav-dropdown-petlist">
             <a href="#">My Pets</a>

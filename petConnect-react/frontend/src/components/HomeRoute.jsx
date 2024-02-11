@@ -10,14 +10,14 @@ import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
-export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, closeModal, user}) {
+export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, closeModal, userId }) {
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
-  // const { isLoading, error, user } = useAuth0();
-    const [posts, setPosts] = useState([]);
-    const [fetchError, setFetchError] = useState(null);
+  const { isLoading, error, user } = useAuth0();
+  const [posts, setPosts] = useState([]);
+  const [fetchError, setFetchError] = useState(null);
 
-    useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);  
+    useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
 
     return (
       <div className="HomeRoute">
@@ -29,16 +29,17 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
               handlePetListSelect={handlePetListSelect}
               closeModal={closeModal}
               user={user}
+              userId={userId}
               openCurrentUserModal={openCurrentUserModal}
             />
           )}
         </header>
 
         <div>
-          {/* {!user && <LoginButton className="login-button-login-screen" />}
+          {!user && <LoginButton className="login-button-login-screen" />}
           {error && <p>Authentication Error</p>}
-          {!error && isLoading && <p>Loading...</p>} */}
-          {/* {!error && !isLoading && user && ( */}
+          {!error && isLoading && <p>Loading...</p>}
+          {!error && !isLoading && user && (
             <>
               <div className="title-card">
                 <h2>Welcome to PetConnect, {user.name}!</h2>
@@ -52,7 +53,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
                 </div>
               )}
             </>
-          {/* )} */}
+          )}
         </div>
 
         <Feed posts={posts} setPosts={setPosts} error={fetchError} />
@@ -65,4 +66,3 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
       </div>
     );
   }
-    
