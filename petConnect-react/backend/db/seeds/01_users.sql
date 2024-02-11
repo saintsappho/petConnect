@@ -14,4 +14,5 @@ VALUES
   ('Andy Biersack', 'andy@biersack.com', 'sub_id_11', '2024-01-11'),
   ('Kellin Quinn', 'kellin@quinn.com', 'sub_id_12', '2024-01-12'),
   ('Vic Fuentes', 'vic@fuentes.com', 'sub_id_13', '2024-01-13'),
-  ('Jason Ng', 'JNg@roman.com', 'sub_id_14', '2024-02-07');
+  ('Jason Ng', 'JNg@roman.com', 'sub_id_14', '2024-02-07'),
+  ('Dylan Palin', 'dylan@palin.com', 'sub_id_14', '2024-01-14');

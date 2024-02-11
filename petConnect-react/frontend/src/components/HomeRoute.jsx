@@ -14,10 +14,10 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user } = useAuth0();
-    const [posts, setPosts] = useState([]);
-    const [fetchError, setFetchError] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [fetchError, setFetchError] = useState(null);
 
-    useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);  
+    useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
 
     return (
       <div className="HomeRoute">
@@ -66,4 +66,3 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
       </div>
     );
   }
-    

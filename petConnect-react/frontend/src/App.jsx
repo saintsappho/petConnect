@@ -2,7 +2,6 @@ import './App.css'
 // components
 import HomeRoute from './components/HomeRoute'
 import LoginButton from './components/Login'
-import LogoutButton from './components/Logout'
 import UserProfile from './components/UserProfile'
 import Loading from './components/Loading'
 import PetProfile from './components/PetProfile';
@@ -12,12 +11,6 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Modal from './components/modals/Modal';
 import AuthProvider from './Auth0/AuthProvider';
-import axios from "axios";
-
-//styles
-import "./App.css";
-import "./styles/Modal.scss"
-// hooks
 import useFetchData from './hooks/useFetchData'
 
 function App() {
@@ -31,36 +24,6 @@ function App() {
   const [userPets, setUserPets] = useState([]);
   const [error, setError] = useState(null);
   const userId = user?.sub;
-
-  // Auth0 Token
-  useEffect(() => {
-    const fetchAccessToken = async () => {
-      try {
-        if (isAuthenticated) {
-          const token = await getAccessTokenSilently();
-          setAccessToken(token);
-        }
-      } catch (error) {
-        console.error("Error fetching access token:", error);
-      }
-    };
-
-    fetchAccessToken();
-  }, [isAuthenticated, getAccessTokenSilently]);
-
-  // animation for fancy button
-  var animateButton = function (e) {
-    e.preventDefault;
-    e.target.classList.remove('animate');
-    e.target.classList.add('animate');
-    setTimeout(function () {
-      e.target.classList.remove('animate');
-    }, 700);
-  };
-  var bubblyButtons = document.getElementsByClassName("bubbly-button");
-  for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButton, false);
-  }
 
   // ensure modal is closed when user logs in/out
   useEffect(() => {
@@ -93,8 +56,6 @@ function App() {
   const openCurrentUserModal = (event) => {
     event.preventDefault();
     setSelectedPet(null);
-    // console.log('pet data: ', petData);
-
     setPetData(petData);
     setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
     openModal(event);
@@ -102,19 +63,14 @@ function App() {
 
   const openModal = (event) => {
     event.preventDefault();
-    setTimeout(() => {
-      setModal(true);
-    }, 1000);
+    setModal(true);
   };
 
   const closeModal = () => {
     console.log('closing modal');
     setModalContent([]);
-    setTimeout(() => {
-      setModal(false);
-    }, 1000);
+    setModal(false);
   };
-
 
   return (
     <AuthProvider accessToken={accessToken}>

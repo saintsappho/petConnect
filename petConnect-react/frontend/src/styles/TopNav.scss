@@ -14,15 +14,18 @@
 .top-nav-bar__logo {
   cursor: pointer;
   width: 7rem;
-  height: 7rem;
+  height: 7rem;;
   animation: colorchange 7s infinite linear;
   border-radius: 50%; /* Makes the image circular */
   background-image: url('./RoundLogo.png');
   background-size: 150%;
   background-position: center;
+  background-position-y: -25px;
+  background-position-x: -28px;
   background-repeat: no-repeat;
   transition: all 0.3s ease-in-out;
-  margin-left: 1rem;
+  transform: scale(1);
+  position: absolute;
 
   &:hover {
     box-shadow: 0 0 50px rgba(255, 86, 2, 0.825); /* Adds a shadow */
@@ -56,10 +59,10 @@ form select {
 }
 
 .pet-list-container {
-  margin-top: 47rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-top: 15rem;
 }
 
 .nav-dropdown-button {
@@ -75,7 +78,6 @@ form select {
   animation: gradient 7s ease infinite;
   border-radius: 33%;
   z-index: 1;
-  margin-bottom: 11rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -101,7 +103,7 @@ form select {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 0;
   top: 35%;
-  left: 14%;
+  left: 22%;
   transform: translateY(-50%);
   transition: transform 0.3s ease-out, opacity 0.3s ease;
   padding-top: 2rem;

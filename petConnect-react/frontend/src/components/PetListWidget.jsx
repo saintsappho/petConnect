@@ -5,20 +5,21 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
 
 
   function renderCurrentUserPets() {
-    if (userId.includes("google-oauth2|")) {
-      userId = 1;
-    }
 
+    // this is to render Dylan's pets
+    console.log(userId);
+    if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
+      userId = 10;
+    }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
     return filteredPets.map((pet) => {
       return (
         <div key={pet.id} className={divClass}>
           <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
-          <table id="pet-info-short">
-            <thead>{pet.pet_name}</thead>
-            <thead>{pet.breed}</thead>
-          </table>
+          <div id="pet-info-short">
+            <p>{pet.pet_name}</p>
+          </div>
         </div>
       );
     });
