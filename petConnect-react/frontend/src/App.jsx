@@ -73,9 +73,7 @@ function App() {
   // fetch user's pet data for list
   useFetchData("http://localhost:8080/pets", "pets", setPetData, setFetchError);
 
-  
-
-  // logic for navbar user pet list
+    // logic for navbar user pet list
   function handlePetListSelect(event, petId) {
     console.log('event: ', event);
     event.preventDefault();

@@ -38,7 +38,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
         <div>
           {!user && <LoginButton className="login-button-login-screen" />}
           {error && <p>Authentication Error</p>}
-          {!error && isLoading && <p>Loading...</p>}
+          {!error && isLoading && <><p>Loading...</p><img src="../assets/petProfileHead.gif"></img></>}
           {!error && !isLoading && user && (
             <>
               <div className="title-card">
