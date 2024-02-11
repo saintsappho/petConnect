@@ -10,7 +10,7 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <div id='background'>
-    <Auth0Provider
+    {/* <Auth0Provider
     domain="dev-6ebu1wieb31ofvv3.us.auth0.com"
     clientId="dXjoqKdp9BVih5gK0EATd0gtYDZbr1IM"
     authorizationParams={{
@@ -18,6 +18,7 @@ root.render(
     }}
     >
     <App />
-    </Auth0Provider >
+    </Auth0Provider > */}
+    <App userId={1}/>
   </div>
 );

@@ -8,11 +8,12 @@ import Loading from './components/Loading'
 import PetProfile from './components/PetProfile';
 
 // dependencies
-import { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useMemo, useEffect } from "react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import Modal from './components/modals/Modal';
 import AuthProvider from './Auth0/AuthProvider';
 import axios from "axios";
+
 
 //styles
 import "./App.css";
@@ -21,7 +22,6 @@ import "./styles/Modal.scss"
 import useFetchData from './hooks/useFetchData'
 
 function App() {
-  const { user, isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [modal, setModal] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
   const [petData, setPetData] = useState([]);
@@ -30,23 +30,32 @@ function App() {
   const [accessToken, setAccessToken] = useState(null); 
   const [userPets, setUserPets] = useState([]);
   const [error, setError] = useState(null);
-  const userId = user?.sub;
+  const user = useMemo(() => ({
+    name: 'Bob Doug',
+    email: 'bob@doug.com',
+    sub_id: 'sub_id_1',
+    registration_date: '2024-01-01',
+    user_photo: '',
+  }), []);
+  const userId = "1";
 
-  // Auth0 Token
-  useEffect(() => {
-    const fetchAccessToken = async () => {
-      try {
-        if (isAuthenticated) {
-          const token = await getAccessTokenSilently();
-          setAccessToken(token);
-        }
-      } catch (error) {
-        console.error("Error fetching access token:", error);
-      }
-    };
+  // const userId = user?.sub_id;
 
-    fetchAccessToken();
-  }, [isAuthenticated, getAccessTokenSilently]);
+  // // Auth0 Token
+  // useEffect(() => {
+  //   const fetchAccessToken = async () => {
+  //     try {
+  //       if (isAuthenticated) {
+  //         const token = await getAccessTokenSilently();
+  //         setAccessToken(token);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching access token:", error);
+  //     }
+  //   };
+
+  //   fetchAccessToken();
+  // }, [isAuthenticated, getAccessTokenSilently]);
 
   // animation for fancy button
   var animateButton = function (e) {
@@ -104,32 +113,30 @@ function App() {
 
   const openModal = (event) => {
     event.preventDefault();
-    setTimeout(() => {
-      setModal(true);
-    }, 1000);
+    setModal(true);
   };
 
   const closeModal = () => {
     console.log('closing modal');
     setModalContent([]);
-    setTimeout(() => {
-      setModal(false);
-    }, 1000);
+    setModal(false);
   };
 
 
   return (
-    <AuthProvider accessToken={accessToken}>
+    // <AuthProvider accessToken={accessToken}>
     <div className="App">
       <div>
-        {!user && <LoginButton className="login-button-login-page" />}
+
+        {/* {!user && <LoginButton className="login-button-login-page" />}
         {error && <p>Authentication Error</p>}
         {!error && isLoading && <Loading />}
-        {!error && !isLoading && user && (
-          <>
-            <HomeRoute setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+        {!error && !isLoading && user && ( */}
+
+         { <>
+            <HomeRoute setPetData={setPetData} user={user} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
           </>
-        )}
+        }
       </div>
       {modal && (
         <Modal
@@ -140,7 +147,7 @@ function App() {
         />
       )}
     </div>
-    </AuthProvider>
+    // </AuthProvider>
   );
 }
 

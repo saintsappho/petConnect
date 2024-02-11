@@ -4,9 +4,9 @@ import useFetchData from "../hooks/useFetchData";
 export default function PetListWidget({ petData, listPayload, userId }) {
 
   function renderCurrentUserPets() {
-    if (userId.includes("google-oauth2|")) {
-      userId = 1;
-    }
+    // if (userId.includes("google-oauth2|")) {
+    //   userId = 1;
+    // }
   
     const filteredPets = petData.filter(pet => pet.pet_id === Number(userId));
   
