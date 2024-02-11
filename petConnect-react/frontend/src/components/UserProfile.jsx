@@ -8,7 +8,7 @@ import PetPointsProfileWidget from './petPoints/PetPointsProfileWidget.jsx';
 //The user's name, email, and phone number will be hardcoded for now, but the list of pets will be dynamic and will be pulled from the database.
 //the user's information will be able to be edited by the user, and the user will be able to add or remove pets from their list.
 
-export default function UserProfile({userId, user, accessToken, handleConversationClick, petData}) {
+export default function UserProfile({userId, accessToken, handleConversationClick, petData}) {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
 
@@ -21,18 +21,18 @@ export default function UserProfile({userId, user, accessToken, handleConversati
 
   const listPayload = "currentUser";
 
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       Loading ...<br />
-  //       <img
-  //         className="loading-cat"
-  //         src="./src/assets/petProfileHead.gif"
-  //         alt="Pet Profile Picture"
-  //       />
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div>
+        Loading ...<br />
+        <img
+          className="loading-cat"
+          src="./src/assets/petProfileHead.gif"
+          alt="Pet Profile Picture"
+        />
+      </div>
+    );
+  }
   
 
   return (
@@ -72,5 +72,7 @@ export default function UserProfile({userId, user, accessToken, handleConversati
         {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
       </div>
     )
+  );
+    }
+  
   // );
-}
