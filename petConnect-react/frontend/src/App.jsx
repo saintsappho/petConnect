@@ -54,10 +54,12 @@ function App() {
   }
 
   const openCurrentUserModal = (event) => {
-    event.preventDefault();
     setSelectedPet(null);
-    setPetData(petData);
-    setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
+    console.log('user: ', user);
+    console.log('userId: ', userId);
+    console.log('petData: ', petData);
+    console.log('accessToken: ', accessToken);
+    setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />); 
     openModal(event);
   };
 
@@ -66,7 +68,8 @@ function App() {
     setModal(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (event) => {
+    event.preventDefault();
     console.log('closing modal');
     setModalContent([]);
     setModal(false);

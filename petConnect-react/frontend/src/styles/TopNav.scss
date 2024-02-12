@@ -113,7 +113,7 @@ form select {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 0;
   top: 35%;
-  left: 14%;
+  left: .5%;
   transform: translateY(-50%);
   transition: transform 0.3s ease-out, opacity 0.3s ease;
   padding-top: 6rem;
@@ -125,7 +125,7 @@ form select {
 
 .nav-dropdown-body a {
   color: rgb(255, 255, 255);
-  padding: 12px 16px;
+  padding: 12px 14px;
   text-decoration: none;
   display: block;
   transition: all 0.3s ease-out;

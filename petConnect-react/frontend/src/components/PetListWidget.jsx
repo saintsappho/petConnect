@@ -7,28 +7,24 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
   function renderCurrentUserPets() {
 
     // this is to render Dylan's pets
-    console.log(userId);
     if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
       userId = 10;
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
-    return (
-      <>
-        <button className="pet-info-short" onClick={console.log("I want to add a pet! Please write this functionality!")}>+ Add a pet!</button>
-        {filteredPets.map((pet) => {
-          return (
-            <div key={pet.id} className={divClass}>
-              <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
-              <div id="pet-info-short">
-                <p>{pet.pet_name}</p>
-              </div>
-            </div>
-          );
-        })}
-      </>
-    );
+    return filteredPets.map((pet, index) => {
+      return (
+        <div key={index} className={divClass}>
+          <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+          <div id="pet-info-short">
+            <p>{pet.pet_name}</p>
+          </div>
+        </div>
+      );
+    });
   }
+
+  
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {
