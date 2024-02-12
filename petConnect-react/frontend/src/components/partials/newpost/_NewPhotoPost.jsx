@@ -14,7 +14,8 @@ export default function PhotoPost(props) {
     <form onSubmit={()=>{handleSubmit()}}>
       <div className="form-row">
         <div className="input-data photo">
-          <UploadWidget handlePostStateChange={handlePostStateChange} handleUpload={handleUpload}/>
+          <input type="file" id="new-image" accept="image/*" onChange={(event) => {handlePostStateChange(event, "image_file")}} required/>
+          {/* <UploadWidget handlePostStateChange={handlePostStateChange} handleUpload={handleUpload}/> */}
         </div>
       </div>
       

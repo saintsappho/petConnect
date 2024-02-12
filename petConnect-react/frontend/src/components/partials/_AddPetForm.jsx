@@ -3,7 +3,8 @@ import axios from "axios";
 import UploadWidget from "./newpost/_UploadWidget";
 
 // This component will be used to add a new pet to the database
-export default function AddPetForm() {
+export default function AddPetForm(props) {
+  const { handleNewPet } = props;
   const [file, setFile] = useState(null); // [1
   const [petData, setPetData] = useState({
     pet_name: "",
@@ -16,6 +17,7 @@ export default function AddPetForm() {
     diet: "",
     allergies: "",
     routines: "",
+    user_id: 1,
     profile_photo_url: "",
   });
   const handleInput = (event, key) => {
@@ -107,7 +109,7 @@ export default function AddPetForm() {
           <UploadWidget handlePostStateChange={handleInput} handleUpload={handleUpload}/>
         </label>
       </div>
-      <button onClick={console.log(petData)} type="submit">
+      <button onClick={handleNewPet} type="submit">
         Add Pet
       </button>
     </form>

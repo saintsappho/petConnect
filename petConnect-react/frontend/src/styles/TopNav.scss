@@ -99,6 +99,12 @@ form select {
   opacity: 1;
 }
 
+.selected {
+  box-shadow: 0 0 50px rgba(255, 86, 2, 0.825); /* Adds a shadow */
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
+}
+
 .add-new-pet {
   display: flex;
   border-radius: 50%;

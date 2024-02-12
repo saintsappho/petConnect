@@ -33,22 +33,22 @@ export default function AddPostForm(props) {
     setFile(file);
   };
   const handlePostStateChange = (e, key) => {
-    setPostState({
-      ...postState,
-      [key]: e.target.value, // Use e.target.value for text inputs
-    });
+    if (key === "image_file") {
+      setFile({
+        ...postState,
+        [key]: e,
+      });
+    } else {
+      setPostState({
+        ...postState,
+        [key]: e.target.value, // Use e.target.value for text inputs
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (postState.style === "photo-post") {
-        const updatedPostState = {
-          ...postState,
-          post_ID: newPostId,
-          image_file: file,
-        };
-      }
       const response = await axios.post(
         "http://localhost:8080/posts/",
         postState,
@@ -56,6 +56,14 @@ export default function AddPostForm(props) {
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
 
+      if (postState.style === "photo-post") {
+        e.preventDefault();
+        const updatedPostState = {
+          ...postState,
+          post_ID: newPostId,
+          image_file: file,
+        };
+      }
       if (postState.style === "event-post") {
         const updatedPostState = {
           ...postState,
@@ -102,7 +110,9 @@ export default function AddPostForm(props) {
 
   return (
     <div className="new-post-panel">
-      <button className="close" onClick={() => setCreate(!create)}>&times;</button>
+      <button className="close" onClick={() => setCreate(!create)}>
+        &times;
+      </button>
       <h1 className="text">Add a New Post</h1>
       <div>
         <label htmlFor="style">Style:</label>
