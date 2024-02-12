@@ -35,6 +35,8 @@ export default function PetPost(props) {
       });
   }, []);
 
+ 
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/comments/${petPost.post_id}`)
@@ -106,6 +108,7 @@ export default function PetPost(props) {
           handleComment={handleComment}
           randomImage={randomImage}
           comments={comments}
+        
         />
       )}
       {petPost.style === "photo-post" && (
@@ -114,6 +117,7 @@ export default function PetPost(props) {
           petPost={petPost}
           handleComment={handleComment}
           comments={comments}
+          randomImage={randomImage}
         />
       )}
       {petPost.style === "poll-post" && (
@@ -126,6 +130,7 @@ export default function PetPost(props) {
           handleComment={handleComment}
           randomImage={randomImage}
           comments={comments}
+        
         />
       )}
       {petPost.style === "event-post" && (

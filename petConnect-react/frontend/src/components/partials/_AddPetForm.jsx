@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import UploadWidget from './newpost/_UploadWidget';
 
 // This component will be used to add a new pet to the database
 export default function AddPetForm() {
@@ -96,6 +97,7 @@ export default function AddPetForm() {
         <label>
           Profile Photo URL:
           <input type="text" name="profile_photo_url" required />
+          <UploadWidget />
         </label>
       </div>
       <button type="submit">Add Pet</button>
