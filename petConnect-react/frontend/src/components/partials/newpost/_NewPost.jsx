@@ -28,22 +28,15 @@ export default function AddPostForm(props) {
     style: "text-post", // style should be set initially
     image_file: null,
   });
-  
+
   const handleUpload = (file) => {
-    setFile(file)
-  }
+    setFile(file);
+  };
   const handlePostStateChange = (e, key) => {
-    if (key === "image_file") {
-      setPostState({
-        ...postState,
-        [key]: e, // Use the provided value directly for file inputs
-      });
-    } else {
-      setPostState({
-        ...postState,
-        [key]: e.target.value, // Use e.target.value for text inputs
-      });
-    }
+    setPostState({
+      ...postState,
+      [key]: e.target.value, // Use e.target.value for text inputs
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -56,7 +49,10 @@ export default function AddPostForm(props) {
           image_file: file,
         };
       }
-      const response = await axios.post("http://localhost:8080/posts/", postState);
+      const response = await axios.post(
+        "http://localhost:8080/posts/",
+        postState,
+      );
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
 
@@ -69,14 +65,14 @@ export default function AddPostForm(props) {
           "http://localhost:8080/events/",
           updatedPostState,
         );
-         setPosts((prev) => [...prev, eventResponse.data]);
+        setPosts((prev) => [...prev, eventResponse.data]);
       }
-      
+
       if (postState.style === "poll-post") {
         const updatedPostState = {
           ...postState,
           poll_ID: newPostId,
-          numChoices: numChoices,         
+          numChoices: numChoices,
         };
         const pollResponse = await axios.post(
           "http://localhost:8080/polls/",
