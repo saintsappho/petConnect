@@ -12,15 +12,15 @@ import PetPointsProfileWidget from './petPoints/PetPointsProfileWidget.jsx';
 
 export default function UserProfile({ userId, accessToken, handleConversationClick, petData }) {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
+  // const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
 
-  // Opens and closes the direct messages modal
-  const openDirectMessages = () => {
-    setDirectMessagesOpen(true);
-  };
-  const closeDirectMessages = () => {
-    setDirectMessagesOpen(false);
-  };
+  // // Opens and closes the direct messages modal
+  // const openDirectMessages = () => {
+  //   setDirectMessagesOpen(true);
+  // };
+  // const closeDirectMessages = () => {
+  //   setDirectMessagesOpen(false);
+  // };
 
   // Sets payload for pet list widget
   const listPayload = "currentUser";
@@ -56,7 +56,7 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
                     </td>
                   )}
                   <td>
-                    <button id="messageButton" onClick={openDirectMessages}>Message</button>
+                    {/* <button id="messageButton" onClick={openDirectMessages}>Message</button> */}
                   </td>
                 </tr>
               </thead>
@@ -76,7 +76,7 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
           </div>
         </div>
         
-        {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
+        {/* {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />} */}
       </div>
     )
   );

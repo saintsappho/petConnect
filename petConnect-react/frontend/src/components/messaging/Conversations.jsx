@@ -105,27 +105,9 @@ return (
         <StatusOnline user={user}/>
         <img className="user_profile_image_msg" src={user.user_photo_url} alt={user.user2_username} />
         <h1 className="user_profile_name_msg">{user.user2_username}</h1>
-        <button onClick={() => handleDeleteConversation(user.chat_id)}>Delete</button>
+        <button className="delete_button" onClick={() => handleDeleteConversation(user.chat_id)}>X</button>
       </div>
     ))}
   </div>
 );
 }
-
-// return (
-//   <div className="conversations">
-//     <div className="message_search">
-//       <SearchUsers updateConversations={updateConversations} />
-//     </div>
-
-//     {error && <p>Error fetching conversations: {error}</p>}
-//     {conversations && Array.isArray(conversations) && conversations.map((user) => (
-//       <div key={user.chat_id} className="conversations_container" onClick={() => onConversationClick(user)}>
-//         <StatusOnline user={user}/>
-//         <img className="user_profile_image_msg" src={user.user_photo_url} alt={user.user2_username} />
-//           <h1 className="user_profile_name_msg">{user.user2_username}</h1>
-//       </div>
-//     ))}
-//   </div>
-// );
-// }

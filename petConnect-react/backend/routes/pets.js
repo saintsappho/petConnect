@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const addPet = await newPet(pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, profile_photo_url);
+    const addPet = await newPet(req.body, res);
     res.send(addPet);
   } catch (err) {
     console.error(err);
