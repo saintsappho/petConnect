@@ -5,7 +5,6 @@ import { useState } from "react";
 // Widget used for populating lists of pets based on payload
 export default function PetListWidget({ petData, listPayload, userId, divClass }) {
 
-
   function renderCurrentUserPets() {
 
     // this is to render Dylan's pets
@@ -15,8 +14,6 @@ export default function PetListWidget({ petData, listPayload, userId, divClass }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
 
     const [showAddPetForm, setShowAddPetForm] = useState(false);
-
-    // ...
 
     return (
       <>
