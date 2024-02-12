@@ -181,8 +181,11 @@ form select {
 .top-nav-bar__title {
   font-size: 24px;
   font-weight: 600;
-  color: #000;
-  text-decoration: none;
+  color: #ffffff;
+  margin-left: 10px;
+  position: absolute;
+  left: 9%;
+  transform: translateX(-9%);
 }
 
 @media screen and (max-width: 1250px) { // Adjust mid-size screen

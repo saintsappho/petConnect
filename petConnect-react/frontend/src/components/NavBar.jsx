@@ -7,10 +7,13 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
     <nav className="top-nav-bar">
       <div className="top-nav-bar__logo"></div>
       <div className="pet-list-container">
+        
         <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
       </div>
 
-      <div className="top-nav-bar__title"></div>
+      <div className="top-nav-bar__title">
+        <h1>PetConnect</h1>
+      </div>
         <div className="nav-dropdown">
           <button className="nav-dropdown-button" onClick={openCurrentUserModal}>
             <img className="nav-user-photo" src={user.picture}></img>
