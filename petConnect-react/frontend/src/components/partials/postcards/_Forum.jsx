@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import NewComment from "./_NewComment";
 
 export default function Forum(props) {
-  const { randomImage, petPost, comments, handleComment, user } = props;
+  const { randomImage, petPost, comments, handleComment, user, handleShowComments, show } = props;
   const [form, setForm] = useState(false);
  
   return (
@@ -25,7 +25,7 @@ export default function Forum(props) {
           {!form ? <a onClick={()=> setForm(!form)} className="forum__button">
             Be Heard!
           </a> : <NewComment handleComment={handleComment} petPost={petPost} />}
-          <a className="show-comments-button">
+          <a  className="show-comments-button">
             Comments ({comments.length})
           </a>
           <div className="comments-section">

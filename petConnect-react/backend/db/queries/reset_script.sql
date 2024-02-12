@@ -8,6 +8,9 @@ DROP TABLE IF EXISTS comments CASCADE;
 DROP TABLE IF EXISTS likes CASCADE;
 DROP TABLE IF EXISTS attendees CASCADE;
 DROP TABLE IF EXISTS follows CASCADE;
+DROP TABLE IF EXISTS votes CASCADE;
+DROP TABLE IF EXISTS choices CASCADE;
+DROP TABLE IF EXISTS polls CASCADE;
 
 CREATE TABLE users (
   user_ID SERIAL PRIMARY KEY NOT NULL,
@@ -77,4 +80,23 @@ CREATE TABLE follows (
   follow_ID SERIAL PRIMARY KEY NOT NULL,
   follower INTEGER REFERENCES users(user_ID),
   follow INTEGER REFERENCES users(user_ID)
+);
+
+CREATE TABLE polls (
+    poll_ID SERIAL PRIMARY KEY,
+    creator_ID INT REFERENCES users(user_ID),
+    title TEXT NOT NULL
+);
+
+CREATE TABLE choices (
+    choice_ID SERIAL PRIMARY KEY,
+    poll_ID INT REFERENCES polls(poll_ID),
+    choiceText TEXT NOT NULL
+);
+
+CREATE TABLE votes (
+    vote_ID SERIAL PRIMARY KEY,
+    poll_ID INT REFERENCES polls(poll_ID),
+    choice_ID INT REFERENCES choices(choice_ID),
+    user_ID INT REFERENCES users(user_ID)
 );

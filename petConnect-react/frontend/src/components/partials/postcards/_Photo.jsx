@@ -5,7 +5,7 @@ import useFormatDateTime from "../../../assets/helpers/formatDateTime";
 import NewComment from "./_NewComment";
 
 export default function Photo(props) {
-  const { petPost, comments, handleComment, user } = props;
+  const { petPost, comments, handleComment, user, randomImage } = props;
   const [form, setForm] = useState(false);
   const [displayComments, setDisplayComments] = useState(false);
 
@@ -38,9 +38,9 @@ export default function Photo(props) {
           >
             Comments ({comments.length})
           </a>
-          <div className="comments-section">
-            {displayComments && comments}
-          </div>
+          {displayComments && <div className="comments-section">
+            {comments}
+          </div>}
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>

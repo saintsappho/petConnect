@@ -23,15 +23,15 @@ export default function Event(props) {
   
   useFetchData(`http://localhost:8080/events/${petPost.post_id}`, "events", setEvents, setError);
 
-  useEffect(() => {
-    // Show notification after 3 seconds
-    const notificationTimeout = setTimeout(() => {
-      setShowNotification(true);
-    }, 3000);
+  // useEffect(() => {
+  //   // Show notification after 3 seconds
+  //   const notificationTimeout = setTimeout(() => {
+  //     setShowNotification(true);
+  //   }, 3000);
 
-    // Clean up the timeout to prevent memory leaks
-    return () => clearTimeout(notificationTimeout);
-  }, []);
+  //   // Clean up the timeout to prevent memory leaks
+  //   return () => clearTimeout(notificationTimeout);
+  // }, []);
   
   return (
     <>{isModalOpen && <CalendarEvent isOpen={isModalOpen} onClose={closeModal} />}
