@@ -8,7 +8,7 @@ import Conversations from "./messaging/Conversations";
 import SendMessage from "./messaging/SendMessage";
 
 
-export default function DirectMessages({ userId, accessToken }) {
+export default function DirectMessages({ userId, accessToken, onClose }) {
   const [currentChat, setCurrentChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [socket, setSocket] = useState(null);
@@ -71,12 +71,14 @@ export default function DirectMessages({ userId, accessToken }) {
   };
 
   return (
-    <div>
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={onClose}>&times;</span>
       <Grid templateColumns="repeat(10, 1fr)" h="100vh">
         <GridItem colSpan="3" borderRight="1px solid gray">
           <div className="direct_message">
             <div className="message_menu">
-              <div className="message_menu_container">Menu</div>
+              <div className="message_menu_container"><h1>Messaging!</h1></div>
               <div className="message_search">
               </div>
                 <div>
@@ -92,7 +94,7 @@ export default function DirectMessages({ userId, accessToken }) {
             <div className="message_box_container">
             <div className="message_box_header">
               {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender === "Bob Doug" ? 'sent' : 'received'}`}>
+            <div key={index} className={`message ${message.sender === "Robin Fleur" ? 'sent' : 'received'}`}>
               <div className="message-content">
                 <p className="message-sender">{message.sender}</p>
                 <p className="message-text">{message.message}</p>
@@ -110,5 +112,6 @@ export default function DirectMessages({ userId, accessToken }) {
         </GridItem>
       </Grid>
     </div>
+  </div>
   );
 }

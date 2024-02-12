@@ -1,8 +1,20 @@
 import "../styles/TopNav.scss";
+import { useState } from "react";
 import LogoutButton from "./Logout";
 import PetListWidget from "./PetListWidget.jsx";
+import DirectMessages from "./DirectMessages";
 
-export default function Navbar({ petData, openCurrentUserModal, user, userId }) {
+export default function Navbar({ petData, openCurrentUserModal, user, userId, accessToken }) {
+  const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
+
+  // Opens and closes the direct messages modal
+  const openDirectMessages = () => {
+    setDirectMessagesOpen(true);
+  };
+  const closeDirectMessages = () => {
+    setDirectMessagesOpen(false);
+  };
+
   return (
   <>
     <nav className="top-nav-bar">
@@ -17,6 +29,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
 
           <div className="nav-dropdown-body">
             <a href="/">Settings</a>
+            <button id="messageButton" onClick={openDirectMessages}>Message</button>
             <a href="/">Park Finder</a>
             <a href="/">Shop</a>
             <a href="/">About</a>
@@ -28,6 +41,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
     <div className="pet-list-container"> 
     <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
     </div>
+    {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
     </>
   );
 }
