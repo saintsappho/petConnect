@@ -1,7 +1,7 @@
 -- Seeds for Users Table
 INSERT INTO users (username, email, sub_ID, registration_date, profile_picture)
 VALUES
-  ('Robin Fleur', 'robin@fleur.com', 'sub_id_1', '2024-01-01', 'http://res.cloudinary.com/dp3almven/image/upload/v1707770133/nx3q7cbmgl8xbugortx4.jpg'),
+  ('Robin Fleur', 'robin@fleur.com', 'google-oauth2|106656049516202024826', '2024-01-01', 'http://res.cloudinary.com/dp3almven/image/upload/v1707770133/nx3q7cbmgl8xbugortx4.jpg'),
   ('John Deere', 'john@deere.com', 'sub_id_2', '2024-01-02', 'http://res.cloudinary.com/dp3almven/image/upload/v1707770133/nx3q7cbmgl8xbugortx4.jpg'),
   ('Jane Plain', 'jane@plain.com', 'sub_id_3', '2024-01-03', 'http://res.cloudinary.com/dp3almven/image/upload/v1707770133/nx3q7cbmgl8xbugortx4.jpg'),
   ('Patrick Stump', 'patrick@stump.com', 'sub_id_4', '2024-01-04', 'http://res.cloudinary.com/dp3almven/image/upload/v1707770133/nx3q7cbmgl8xbugortx4.jpg'),

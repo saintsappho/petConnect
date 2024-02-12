@@ -3,19 +3,19 @@ import AddPetForm from "./partials/_AddPetForm";
 import { useState } from "react";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({ petData, listPayload, userId, divClass }) {
+export default function PetListWidget({ user, petData, listPayload, userId, divClass }) {
 
 
   function renderCurrentUserPets() {
 
     // this is to render Dylan's pets
-    if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
+    if (userId.includes("google-oauth2|106656049516202024826")) {
       userId = 1;
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
 
     const [showAddPetForm, setShowAddPetForm] = useState(false);
-
+    
     // ...
 
     return (

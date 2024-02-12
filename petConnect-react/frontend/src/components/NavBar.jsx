@@ -26,7 +26,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
 
     </nav>
     <div className="pet-list-container"> 
-    <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
+    <PetListWidget user={user} petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
     </div>
     </>
   );
