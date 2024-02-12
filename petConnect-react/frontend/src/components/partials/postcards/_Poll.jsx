@@ -8,7 +8,7 @@ import axios from "axios";
 import PollChoice from "./_PollChoice";
 
 export default function Poll(props) {
-  const { randomImage, petPost, user } = props;
+  const { randomImage, petPost, user, handleInspect } = props;
   const [pollData, setPollData] = useState(null);
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState(null);
@@ -122,7 +122,8 @@ export default function Poll(props) {
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
-          <div className="user-details">
+          <div onClick={handleInspect} className="user-details">
+            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
             <h4 className="card__author">{user.username}</h4>
           </div>
           <div className="card__choices">{renderedChoices}</div>

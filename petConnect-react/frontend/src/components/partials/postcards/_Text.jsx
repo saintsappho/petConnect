@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import NewComment from "./_NewComment";
 
 export default function Text(props) {
-  const { randomImage, petPost, comments, handleComment, user } = props;
+  const { randomImage, petPost, comments, handleComment, user, handleInspect } = props;
   const [form, setForm] = useState(false);
   const [displayComments, setDisplayComments] = useState(false);
 
@@ -21,7 +21,8 @@ export default function Text(props) {
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
-          <div className="user-details">
+          <div onClick={handleInspect} className="user-details">
+            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
             <h4 className="card__author">{user.username}</h4>
           </div>
           <p className="card__snippet">{petPost.content}</p>

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import PetListWidget from './PetListWidget.jsx';
