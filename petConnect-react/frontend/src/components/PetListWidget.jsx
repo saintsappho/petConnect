@@ -12,16 +12,26 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
-    return filteredPets.map((pet, index) => {
-      return (
-        <div key={index} className={divClass}>
-          <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+    return (
+      <>
+        {filteredPets.map((pet, index) => {
+          return (
+            <div key={index} className={divClass}>
+              <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+              <div id="pet-info-short">
+                <p>{pet.pet_name}</p>
+              </div>
+            </div>
+          );
+        })}
+        <div className={`${divClass} add-new-pet`}>
+          <div><img id="pet-photo" src="path/to/placeholder/image.png" /></div>
           <div id="pet-info-short">
-            <p>{pet.pet_name}</p>
+            <p>Add new pet</p>
           </div>
         </div>
-      );
-    });
+      </>
+    );
   }
 
   

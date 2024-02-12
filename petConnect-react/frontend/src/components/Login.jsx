@@ -14,11 +14,10 @@ export default function LoginButton ()  {
 
   return (
     <>
-      <button className="bubbly-button" onClick={() => loginWithRedirect()}>Log In</button>;
-      <Feed posts={posts} setPosts={setPosts} error={fetchError} />
+    <div className="home-image" alt="logo" />
+    <h1>Welcome to PetConnect!</h1>
+      <button className="bubbly-button" onClick={() => loginWithRedirect()}>Log In</button>
     </>
-
-  )
-  
+  );
 }
 
