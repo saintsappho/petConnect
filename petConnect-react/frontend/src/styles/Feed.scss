@@ -101,7 +101,7 @@ $desktop: 1024px;
 		transition: .3s;
 
 		@include breakpoint(desktop) {
-			top: calc(100% - 110px);
+			top: calc(100% - 150px);
 			transform: unset;
 		}
 	}

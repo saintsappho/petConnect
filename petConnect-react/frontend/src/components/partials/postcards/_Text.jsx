@@ -21,6 +21,10 @@ export default function Text(props) {
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
+          <div onClick={handleInspect} className="user-details">
+            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
+            <h4 className="card__author">{user.username}</h4>
+          </div>
           <p className="card__snippet">{petPost.content}</p>
           {!form ? <a onClick={()=> setForm(!form)} className="card__button">
             Comment?
