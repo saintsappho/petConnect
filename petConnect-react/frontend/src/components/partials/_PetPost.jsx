@@ -66,9 +66,14 @@ export default function PetPost(props) {
                       </button>
                     </div>
                     <div className="comment-info">
-                      <a href="#" className="comment-author">
-                        {user && user[0].username}
-                      </a>
+                      <div onClick={handleInspect} className="user-details">
+                        <img
+                          src={user.profile_picture}
+                          alt="profile picture"
+                          className="user-profile-picture"
+                        ></img>
+                        <h4 className="card__author">{user.username}</h4>
+                      </div>
                       <p className="m-0">
                         {getRandomNumberUpTo15()} points &bull;{" "}
                         {useFormatDateTime(comment.registration_date)}
@@ -105,7 +110,7 @@ export default function PetPost(props) {
 
   return (
     <>
-    {inspect && <UserProfile user={user}  />}
+      {inspect && <UserProfile user={user} />}
       {petPost.style === "text-post" && (
         <Text
           user={user}

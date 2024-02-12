@@ -9,7 +9,7 @@ VALUES
   (2, 4, 'event-post', 'Caturday Picnic', 'Join us for a fun-filled picnic this Saturday!', '2024-02-03', NULL),
   (5, 5, 'photo-post', '', 'Check out this cool trick!', '2024-02-04', 'https://source.unsplash.com/random/300x510?cool-cat-trick'),
   (3, 2, 'photo-post', '', 'Nothing beats running on the beach.', '2024-02-05', 'https://source.unsplash.com/random/300x510?beach-run'),
-  (6, 6, 'text-post', 'Weight Journey', 'We started a new diet, tracking progress here!', '2024-02-06', NULL),
+  (6, 6, 'text-post', 'Weight Loss Journey', 'We started a new diet, tracking progress here!', '2024-02-06', NULL),
   (2, 3, 'photo-post', '', 'Catching some Zs after a long playdate.', '2024-02-07', 'https://source.unsplash.com/random/300x510?naptime'),
   (7, 7, 'text-post', 'DIY Toys', 'Made some DIY toys this weekend. Huge hit!', '2024-02-08', NULL),
   (3, 1, 'text-post', '10k Steps Challenge', 'Who else is joining the 10k steps challenge?', '2024-02-09', NULL),
