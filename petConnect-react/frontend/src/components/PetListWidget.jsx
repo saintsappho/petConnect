@@ -8,7 +8,7 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
 
     // this is to render Dylan's pets
     if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
-      userId = 10;
+      userId = 1;
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   

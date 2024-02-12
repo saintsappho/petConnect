@@ -4,11 +4,13 @@ import PetListWidget from "./PetListWidget.jsx";
 
 export default function Navbar({ petData, openCurrentUserModal, user, userId }) {
   return (
+  <div>
     <nav className="top-nav-bar">
+      
       <div className="top-nav-bar__logo"></div>
       <div className="pet-list-container">
         
-        <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
+        
       </div>
 
       <div className="top-nav-bar__title">
@@ -38,5 +40,9 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
         </div>
 
     </nav>
+    <div className="pet-list-container"> 
+    <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
+    </div>
+    </div>
   );
 }
