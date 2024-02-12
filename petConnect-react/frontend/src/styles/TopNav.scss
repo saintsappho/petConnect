@@ -46,7 +46,7 @@
   color: #e6e6fa;
   margin-left: 10px;
   position: absolute;
-  left: 7%;
+  left: 9%;
   transform: translateX(-9%);
 }
 
@@ -63,7 +63,7 @@ form select {
 }
 
 .nav-dropdown-button {
-  margin-left: 98vw;
+  margin-left: 88vw;
   padding: .5rem;
   background:
   linear-gradient(to top, #e6e6fa, transparent 10%),
@@ -256,7 +256,15 @@ form select {
 
 
 
+
+
 @media screen and (max-width: 1250px) { // Adjust mid-size screen
+  .top-nav-bar__title {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1080px) { // Adjust mid-size screen
   .top-nav-bar__title {
     display: none;
   }
