@@ -131,6 +131,18 @@ form .form-row .textarea{
   position: relative;
   z-index: 2;
 }
+.photo-post-preview{
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+  max-width: 200px;
+  max-height: 65px;
+  border: #3498db 2px solid;  
+  align-items: center;
+  border-radius: 10px;  
+}
+
+
 @media (max-width: 700px) {
   .new-post-card .text{
     font-size: 30px;
