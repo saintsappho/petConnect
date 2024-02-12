@@ -17,6 +17,7 @@ import useFetchData from './hooks/useFetchData'
 //styles
 import "./App.css";
 import "./styles/Modal.scss"
+import "./styles/Login.css"
 
 function App() {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -24,8 +25,8 @@ function App() {
   const [selectedPet, setSelectedPet] = useState(null);
   const [petData, setPetData] = useState([]);
   const [fetchError, setFetchError] = useState(null);
-  const [modalContent, setModalContent] = useState([]); 
-  const [accessToken, setAccessToken] = useState(null); 
+  const [modalContent, setModalContent] = useState([]);
+  const [accessToken, setAccessToken] = useState(null);
   const [userPets, setUserPets] = useState([]);
   const [error, setError] = useState(null);
   const userId = user?.sub;
@@ -89,7 +90,7 @@ function App() {
   }
 
   const openCurrentUserModal = (event) => {
-        setSelectedPet(null);
+    setSelectedPet(null);
     // console.log('pet data: ', petData);
 
     setPetData(petData);
@@ -99,38 +100,38 @@ function App() {
 
   const openModal = (event) => {
     event.preventDefault();
-          setModal(true);
-      };
+    setModal(true);
+  };
 
   const closeModal = (event) => {
-event.preventDefault();
+    event.preventDefault();
     console.log('closing modal');
     setModalContent([]);
-          setModal(false);
-      };
+    setModal(false);
+  };
 
   return (
     <AuthProvider accessToken={accessToken}>
-    <div className="App">
-      <div>
-{!user && <LoginButton className="login-button-login-page" />}
-        {error && <p>Authentication Error</p>}
-        {!error && isLoading && <Loading />}
-        {!error && !isLoading && user && (
-          <>
-            <HomeRoute userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
-          </>
+      <div className="App">
+        <div className={`${!user ? 'login-page-container' : ''}`}>
+          {!user && <LoginButton className="login-button-login-page" />}
+          {error && <p>Authentication Error</p>}
+          {!error && isLoading && <Loading />}
+          {!error && !isLoading && user && (
+            <>
+              <HomeRoute userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+            </>
+          )}
+        </div>
+        {modal && (
+          <Modal
+            selectedPet={selectedPet}
+            modal={modal}
+            content={modalContent}
+            closeModal={closeModal}
+          />
         )}
       </div>
-      {modal && (
-        <Modal
-          selectedPet={selectedPet}
-          modal={modal}
-          content={modalContent}
-          closeModal={closeModal}
-        />
-      )}
-    </div>
     </AuthProvider>
   );
 }

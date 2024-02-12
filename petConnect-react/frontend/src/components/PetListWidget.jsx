@@ -8,20 +8,30 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
 
     // this is to render Dylan's pets
     if (userId.includes("auth0|65c937b9e1ecca451f9fe1e5")) {
-      userId = 10;
+      userId = 1;
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
   
-    return filteredPets.map((pet, index) => {
-      return (
-        <div key={index} className={divClass}>
-          <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+    return (
+      <>
+        {filteredPets.map((pet, index) => {
+          return (
+            <div key={index} className={divClass}>
+              <div><img id="pet-photo" src={pet.profile_photo_url} /></div>
+              <div id="pet-info-short">
+                <p>{pet.pet_name}</p>
+              </div>
+            </div>
+          );
+        })}
+        <div className={`${divClass} add-new-pet`}>
+          <div><img id="pet-photo" src="path/to/placeholder/image.png" /></div>
           <div id="pet-info-short">
-            <p>{pet.pet_name}</p>
+            <p>Add new pet</p>
           </div>
         </div>
-      );
-    });
+      </>
+    );
   }
 
   

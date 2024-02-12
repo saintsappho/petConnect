@@ -44,3 +44,23 @@
 .Login button {
   box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
+
+div.home-image {
+  cursor: pointer;
+  width: 12rem;
+  height: 12rem;
+  animation: colorchange 7s infinite linear;
+  border-radius: 50%;
+  background-image: url('./RoundLogo.png');
+  background-size: 152%;
+  background-position: center;
+  background-position-y: -45px;
+  background-position-x: -49px;
+  background-repeat: no-repeat;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1);
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
