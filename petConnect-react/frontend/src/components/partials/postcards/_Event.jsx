@@ -38,7 +38,7 @@ export default function Event(props) {
     <div className="card">
       <figure className="card__thumb">
         <img
-          src={petPost.image_file || randomImage()}
+          src={randomImage()}
           alt={petPost.content}
           className="card__image"
         ></img>
