@@ -113,16 +113,19 @@ function App() {
   return (
     <AuthProvider accessToken={accessToken}>
       <div className="App">
-        <div className={`${!user ? 'login-page-container' : ''}`}>
-          {!user && <LoginButton className="login-button-login-page" />}
-          {error && <p>Authentication Error</p>}
-          {!error && isLoading && <Loading />}
-          {!error && !isLoading && user && (
-            <>
-              <HomeRoute userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
-            </>
-          )}
-        </div>
+      <div className={`${(!user && !isLoading) ? 'login-page-container' : ''}`}>
+  {isLoading ? (
+    <Loading />
+  ) : (
+    <>
+      {!user && <LoginButton className="login-button-login-page" />}
+      {error && <p>Authentication Error</p>}
+      {!error && user && (
+        <HomeRoute userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+      )}
+    </>
+  )}
+</div>
         {modal && (
           <Modal
             selectedPet={selectedPet}

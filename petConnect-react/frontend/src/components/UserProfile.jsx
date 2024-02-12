@@ -12,6 +12,7 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
 
+  // Opens and closes the direct messages modal
   const openDirectMessages = () => {
     setDirectMessagesOpen(true);
   };
@@ -19,8 +20,10 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
     setDirectMessagesOpen(false);
   };
 
+  // Sets payload for pet list widget
   const listPayload = "currentUser";
 
+  // If user is loading, display loading message
   if (isLoading) {
     return (
       <div>
@@ -34,7 +37,6 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
     );
   }
 
-
   return (
     isAuthenticated && (
       <div className="user-profile-container">
@@ -46,9 +48,11 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
             <table className="user-profile-buttons">
               <thead>
                 <tr>
-                  <td>
-                    <button id="friendButton" onClick={() => { console.log("add-friend") }}>Add Friend</button>
-                  </td>
+                  {!userId && (
+                    <td>
+                      <button id="friendButton" onClick={() => { console.log("add-friend") }}>Add Friend</button>
+                    </td>
+                  )}
                   <td>
                     <button id="messageButton" onClick={openDirectMessages}>Message</button>
                   </td>

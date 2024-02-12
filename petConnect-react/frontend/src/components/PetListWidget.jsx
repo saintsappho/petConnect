@@ -25,10 +25,7 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
           );
         })}
         <div className={`${divClass} add-new-pet`}>
-          <div><img id="pet-photo" src="path/to/placeholder/image.png" /></div>
-          <div id="pet-info-short">
             <p>Add new pet</p>
-          </div>
         </div>
       </>
     );

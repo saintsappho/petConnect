@@ -8,5 +8,5 @@ export default function LogoutButton() {
       Log Out
     </button>
   );
-  
+
 }
