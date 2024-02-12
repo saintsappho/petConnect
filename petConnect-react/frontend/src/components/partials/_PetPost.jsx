@@ -10,17 +10,23 @@ import Poll from "./postcards/_Poll.jsx";
 import Text from "./postcards/_Text.jsx";
 import axios from "axios";
 import useFormatDateTime from "../../assets/helpers/formatDateTime.js";
+import UserProfile from "../UserProfile.jsx";
 
 export default function PetPost(props) {
   const { petPost } = props;
   const [comments, setComments] = useState([]);
   const [refreshComments, setRefreshComments] = useState(false);
   const [user, setUser] = useState([{}]);
+  const [inspect, setInspect] = useState(false);
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
       petPost.title || "pet"
     }`;
+  };
+
+  const handleInspect = () => {
+    setInspect(!inspect);
   };
 
   function getRandomNumberUpTo15() {
@@ -34,8 +40,6 @@ export default function PetPost(props) {
         setUser(response.data[0]);
       });
   }, []);
-
- 
 
   useEffect(() => {
     axios
@@ -62,9 +66,14 @@ export default function PetPost(props) {
                       </button>
                     </div>
                     <div className="comment-info">
-                      <a href="#" className="comment-author">
-                        {user && user[0].username}
-                      </a>
+                      <div onClick={handleInspect} className="user-details">
+                        <img
+                          src={user.profile_picture}
+                          alt="profile picture"
+                          className="user-profile-picture"
+                        ></img>
+                        <h4 className="card__author">{user.username}</h4>
+                      </div>
                       <p className="m-0">
                         {getRandomNumberUpTo15()} points &bull;{" "}
                         {useFormatDateTime(comment.registration_date)}
@@ -101,6 +110,7 @@ export default function PetPost(props) {
 
   return (
     <>
+      {inspect && <UserProfile user={user} />}
       {petPost.style === "text-post" && (
         <Text
           user={user}
@@ -108,7 +118,8 @@ export default function PetPost(props) {
           handleComment={handleComment}
           randomImage={randomImage}
           comments={comments}
-        
+          inspect={inspect}
+          handleInspect={handleInspect}
         />
       )}
       {petPost.style === "photo-post" && (
@@ -118,10 +129,18 @@ export default function PetPost(props) {
           handleComment={handleComment}
           comments={comments}
           randomImage={randomImage}
+          inspect={inspect}
+          handleInspect={handleInspect}
         />
       )}
       {petPost.style === "poll-post" && (
-        <Poll user={user} petPost={petPost} randomImage={randomImage} />
+        <Poll
+          user={user}
+          petPost={petPost}
+          randomImage={randomImage}
+          inspect={inspect}
+          handleInspect={handleInspect}
+        />
       )}
       {petPost.style === "forum-post" && (
         <Forum
@@ -130,11 +149,18 @@ export default function PetPost(props) {
           handleComment={handleComment}
           randomImage={randomImage}
           comments={comments}
-        
+          inspect={inspect}
+          handleInspect={handleInspect}
         />
       )}
       {petPost.style === "event-post" && (
-        <Event user={user} petPost={petPost} randomImage={randomImage} />
+        <Event
+          user={user}
+          petPost={petPost}
+          randomImage={randomImage}
+          inspect={inspect}
+          handleInspect={handleInspect}
+        />
       )}
     </>
   );

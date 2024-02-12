@@ -5,7 +5,7 @@ import useFormatDateTime from "../../../assets/helpers/formatDateTime";
 import NewComment from "./_NewComment";
 
 export default function Photo(props) {
-  const { petPost, comments, handleComment, user, randomImage } = props;
+  const { petPost, comments, handleComment, user, handleInspect } = props;
   const [form, setForm] = useState(false);
   const [displayComments, setDisplayComments] = useState(false);
 
@@ -18,7 +18,12 @@ export default function Photo(props) {
           className="card__image"
         ></img>
         <figcaption className="card__caption">
-          <div className="user-details">
+          <div onClick={handleInspect} className="user-details">
+            <img
+              src={user.profile_picture}
+              alt="profile picture"
+              className="user-profile-picture"
+            ></img>
             <h4 className="card__author">{user.username}</h4>
           </div>
           <p className="card__snippet">{petPost.content}</p>
@@ -27,10 +32,7 @@ export default function Photo(props) {
               Thoughts?
             </a>
           ) : (
-            <NewComment
-              handleComment={handleComment}
-              petPost={petPost}
-            />
+            <NewComment handleComment={handleComment} petPost={petPost} />
           )}
           <a
             onClick={() => setDisplayComments(!displayComments)}
@@ -38,9 +40,9 @@ export default function Photo(props) {
           >
             Comments ({comments.length})
           </a>
-          {displayComments && <div className="comments-section">
-            {comments}
-          </div>}
+          {displayComments && (
+            <div className="comments-section">{comments}</div>
+          )}
           <p>{useFormatDateTime(petPost.registration_date)}</p>
         </figcaption>
       </figure>
