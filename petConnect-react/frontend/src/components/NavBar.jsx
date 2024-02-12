@@ -21,7 +21,7 @@ export default function Navbar({ petData, handlePetListSelect, openCurrentUserMo
           </div>
           <a href="/">Settings</a>
           <a href="/">About</a>
-          <a href="/" onClick={LogoutButton}>Logout</a>
+          <a href="/" onClick={LogoutButton}><LogoutButton /></a>
         </div>
       </div>
       <PetListWidget petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>

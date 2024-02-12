@@ -8,9 +8,32 @@ export default function Event(props) {
   const { randomImage, petPost } = props;
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
+
+    // // Function to handle adding event to Google Calendar
+    // const handleAddToCalendar = async () => {
+    //   try {
+    //     // Make a request to your backend proxy API to add the event
+    //     const response = await fetch('http://localhost:5173/add-to-calendar', {
+    //       method: 'POST',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({ eventId: petPost.post_id }), // Pass necessary data
+    //     });
+        
+    //     if (response.ok) {
+    //       alert('Event added to Google Calendar successfully!');
+    //     } else {
+    //       throw new Error('Failed to add event to Google Calendar');
+    //     }
+    //   } catch (error) {
+    //     console.error('Error adding event to Google Calendar:', error.message);
+    //     alert('Failed to add event to Google Calendar. Please try again later.');
+    //   }
+    // };
   
   useFetchData(`http://localhost:8080/events/${petPost.post_id}`, "events", setEvents, setError);
-  
+
   
   return (
     <div className="card">
