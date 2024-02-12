@@ -30,7 +30,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId }) 
             </div>
             <a href="/">Settings</a>
             <a href="/">About</a>
-            <a href="/" onClick={LogoutButton}>Logout</a>
+            <a href="/" onClick={LogoutButton}><LogoutButton /></a>
           </div>
         </div>
 
