@@ -89,6 +89,30 @@ function App() {
     }
   }
 
+  function handleAddNewPet(event) {
+    event.preventDefault();
+    setModalContent(<AddPetForm onSubmit={handleAddPet} />);
+    openModal(event);
+  }
+  
+  async function handleAddPet(petName, petType) {
+    try {
+      const response = await axios.post('http://localhost:8080/pets', {
+        name: petName,
+        type: petType,
+      });
+  
+      console.log(response.data);
+      closeModal();
+      // Update the pet data
+      useFetchData("http://localhost:8080/pets", "pets", setPetData, setFetchError);
+    } catch (error) {
+      console.error('Error adding pet', error);
+    }
+  }
+
+  // logic for opening user profile modal
+
   const openCurrentUserModal = (event) => {
     setSelectedPet(null);
     // console.log('pet data: ', petData);

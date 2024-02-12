@@ -28,7 +28,7 @@ export default function Event(props) {
           className="card__image"
         ></img>
         <figcaption className="card__caption">
-          {events && (
+          {events && events.length > 0 && (
             <>
               <h2 className="card__title">{events[0].title}</h2>
               <div className="user-details">

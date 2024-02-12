@@ -1,7 +1,9 @@
 import useFetchData from "../hooks/useFetchData";
+import AddPetForm from "./partials/_AddPetForm";
+import { useState } from "react";
 
 // Widget used for populating lists of pets based on payload
-export default function PetListWidget({ petData, listPayload, userId, divClass}) {
+export default function PetListWidget({ petData, listPayload, userId, divClass }) {
 
 
   function renderCurrentUserPets() {
@@ -11,7 +13,11 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
       userId = 1;
     }
     const filteredPets = petData.filter(pet => pet.user_id === Number(userId));
-  
+
+    const [showAddPetForm, setShowAddPetForm] = useState(false);
+
+    // ...
+
     return (
       <>
         {filteredPets.map((pet, index) => {
@@ -25,13 +31,19 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
           );
         })}
         <div className={`${divClass} add-new-pet`}>
-            <p>Add new pet</p>
+          <p onClick={() => setShowAddPetForm(true)}> + Add Pet</p>
         </div>
+        {showAddPetForm && (
+          <div className="new-pet-modal">
+            <div className="new-pet-modal-content">
+              <span className="new-pet-modal-close" onClick={() => setShowAddPetForm(false)}>&times;</span>
+              <AddPetForm />
+            </div>
+          </div>
+        )}
       </>
     );
   }
-
-  
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {
@@ -51,3 +63,4 @@ export default function PetListWidget({ petData, listPayload, userId, divClass})
   return (listPayload === "currentUser") ? renderCurrentUserPets() : renderAllPets();
 
 }
+

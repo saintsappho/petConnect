@@ -23,12 +23,14 @@ $desktop: 1024px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 100%;
+	width: 82%;
 	margin: 20px 0 80px;
+  margin-left: 3rem;
+  padding-top: 6rem;
 }
 
 .card {
-	width: 300px;
+	width: 440px;
   border-radius: 10px;
 	margin: 10px;
 	background-color: #e6e6fa;

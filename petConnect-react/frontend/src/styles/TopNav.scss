@@ -2,7 +2,7 @@
   position: fixed;
   width: 96vw;
   margin-top: 1rem;
-  z-index: 1; /* Adjust the z-index to be lower than the modal's z-index */
+  z-index: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -118,6 +118,39 @@ form select {
     transform: scale(1.2);
     transition: all 0.3s ease-in-out;
   }
+}
+
+.add-pet-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: flex-start;
+  max-width: 100%;
+  margin-left: 9rem;
+  margin-top: -30rem;
+  height: auto;
+  background-color: #e6e6fa91;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.add-pet-form input {
+  display: flex;
+  margin: 6px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #cececea6;
+  transition: all 0.3s ease-in-out;
+}
+
+.new-pet-modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
 }
 
 #pet-info-short {

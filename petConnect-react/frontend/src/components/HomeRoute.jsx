@@ -5,6 +5,7 @@ import NewPost from "./partials/newpost/_NewPost";
 import Feed from "./partials/_Feed";
 import NavBar from "./NavBar"
 import useFetchData from "../hooks/useFetchData";
+import PetPointsFeedWidget from "./petPoints/PetPointsFeedWidget";
 import "../styles/TopNav.scss";
 import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
@@ -21,6 +22,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
 
     return (
       <div className="HomeRoute">
+        {create && <div className="overlay"></div>}
         <header>
           {petData && (
             <NavBar
@@ -57,6 +59,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
         </div>
 
         <Feed posts={posts} setPosts={setPosts} error={fetchError} />
+        <PetPointsFeedWidget userId={userId}/>
 
         <footer>
           <p>
