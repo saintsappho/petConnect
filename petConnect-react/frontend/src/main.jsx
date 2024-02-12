@@ -1,12 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, {useState, useEffect} from 'react';
 import { createRoot } from 'react-dom/client';
 import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
-import HomeRoute from './components/HomeRoute';
 import "./main.css";
 
 const root = createRoot(document.getElementById('root'));
+const api_key = "891329768945174";
+const cloud_name = "dp3almven";
 
 root.render(
   <div id='background'>

@@ -19,6 +19,7 @@ export default function AddPostForm(props) {
   //
   const [numChoices, setNumChoices] = useState(2);
   const [post_ID, setPost_ID] = useState(); // hard-coded for now
+  const [file, setFile] = useState(null);
   const [postState, setPostState] = useState({
     user_ID: 1, // hard-coded for now
     pet_ID: 1, // hard-coded for now
@@ -27,7 +28,10 @@ export default function AddPostForm(props) {
     style: "text-post", // style should be set initially
     image_file: null,
   });
-
+  
+  const handleUpload = (file) => {
+    setFile(file)
+  }
   const handlePostStateChange = (e, key) => {
     if (key === "image_file") {
       setPostState({
@@ -45,55 +49,41 @@ export default function AddPostForm(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if (postState.style === "photo-post") {
+        const updatedPostState = {
+          ...postState,
+          post_ID: newPostId,
+          image_file: file,
+        };
+      }
       const response = await axios.post("http://localhost:8080/posts/", postState);
-      // console.log("Post created:", response.data);
-      // console.log("postData: ", postState);
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
-     
-      
+
       if (postState.style === "event-post") {
-        // Creating the updated post state with the new post ID
         const updatedPostState = {
           ...postState,
           post_ID: newPostId,
         };
-        // console.log("Updated postState for Event:", updatedPostState);
-        
-        // Using updatedPostState in the Axios request
         const eventResponse = await axios.post(
           "http://localhost:8080/events/",
           updatedPostState,
         );
-        // console.log("Event created:", eventResponse.data);
-        // console.log("eventData: ", updatedPostState); // Logging the actual data sent in the POST request
-        setPosts((prev) => [...prev, eventResponse.data]);
+         setPosts((prev) => [...prev, eventResponse.data]);
       }
+      
       if (postState.style === "poll-post") {
-         // Creating the updated post state with the new post ID
         const updatedPostState = {
           ...postState,
           poll_ID: newPostId,
           numChoices: numChoices,         
         };
-        // console.log("Updated postState for Poll:", updatedPostState);
         const pollResponse = await axios.post(
           "http://localhost:8080/polls/",
           updatedPostState,
         );
-        // console.log("poll created:", pollResponse.data);
-        // console.log("pollData: ", updatedPostState);
         setPosts((prev) => [...prev, pollResponse.data]);
       }
-      // if (postState.style === "forum-post") {
-      //   const forumResponse = await axios.post(
-      //     "http://localhost:8080/forums/",
-      //     postState,
-      //   );
-      //   console.log("forum created:", forumResponse.data);
-      //   console.log("forumData: ", postState);
-      //   setPosts((prev) => [...prev, forumResponse.data]);
-      // }
     } catch (error) {
       console.error("Error:", error.message);
     } finally {
@@ -142,6 +132,7 @@ export default function AddPostForm(props) {
         {style === "photo-post" && (
           <PhotoPost
             postState={postState}
+            handleUpload={handleUpload}
             handlePostStateChange={handlePostStateChange}
             handleSubmit={handleSubmit}
           />
