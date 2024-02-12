@@ -3,11 +3,16 @@
 import React, { useState, useEffect } from "react";
 import useFetchData from "../../../hooks/useFetchData";
 import formatDateTime from "../../../assets/helpers/formatDateTime";
+import CalendarEvent from "../../modals/CalendarEvent"
 
 export default function Event(props) {
   const { randomImage, petPost, user } = props;
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   useFetchData(
     `http://localhost:8080/events/${petPost.post_id}`,
@@ -18,8 +23,18 @@ export default function Event(props) {
   
   useFetchData(`http://localhost:8080/events/${petPost.post_id}`, "events", setEvents, setError);
 
+  useEffect(() => {
+    // Show notification after 3 seconds
+    const notificationTimeout = setTimeout(() => {
+      setShowNotification(true);
+    }, 3000);
+
+    // Clean up the timeout to prevent memory leaks
+    return () => clearTimeout(notificationTimeout);
+  }, []);
   
   return (
+    <>{isModalOpen && <CalendarEvent isOpen={isModalOpen} onClose={closeModal} />}
     <div className="card">
       <figure className="card__thumb">
         <img
@@ -39,11 +54,12 @@ export default function Event(props) {
               </p>
               <p className="card__location">{events[0].event_location}</p>
               <p className="card__snippet">{events[0].event_description}</p>
-              <a className="card__button">You In?</a>
+              <a className="card__button" onClick={openModal}>You In?</a>
             </>
           )}
         </figcaption>
       </figure>
     </div>
+    </>
   );
 }
