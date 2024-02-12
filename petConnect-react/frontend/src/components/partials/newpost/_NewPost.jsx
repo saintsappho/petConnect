@@ -102,6 +102,7 @@ export default function AddPostForm(props) {
 
   return (
     <div className="new-post-panel">
+      <button className="close" onClick={() => setCreate(!create)}>&times;</button>
       <h1 className="text">Add a New Post</h1>
       <div>
         <label htmlFor="style">Style:</label>

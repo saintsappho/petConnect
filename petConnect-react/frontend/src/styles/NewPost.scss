@@ -145,6 +145,15 @@ form .form-row .textarea{
   border-radius: 10px;  
 }
 
+.close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #3498db;
+
+}
 
 @media (max-width: 700px) {
   .new-post-card .text{

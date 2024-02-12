@@ -92,7 +92,7 @@ export default function DirectMessages({ userId, accessToken }) {
             <div className="message_box_container">
             <div className="message_box_header">
               {messages.map((message, index) => (
-            <div key={index} className={`message ${message.sender === "Bob Doug" ? 'sent' : 'received'}`}>
+            <div key={index} className={`message ${message.sender === "Robin Fleur" ? 'sent' : 'received'}`}>
               <div className="message-content">
                 <p className="message-sender">{message.sender}</p>
                 <p className="message-text">{message.message}</p>
