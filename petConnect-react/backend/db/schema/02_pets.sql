@@ -15,5 +15,5 @@ CREATE TABLE pets (
   allergies VARCHAR(255) NOT NULL,
   routines VARCHAR(255) NOT NULL,
   registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  profile_photo_url VARCHAR(255) NOT NULL
+  image_file VARCHAR(255) NOT NULL
 );

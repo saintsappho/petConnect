@@ -29,12 +29,9 @@ export default function AddPostForm(props) {
     image_file: null,
   });
 
-  const handleUpload = (file) => {
-    setFile(file);
-  };
   const handlePostStateChange = (e, key) => {
     if (key === "image_file") {
-      setFile({
+      setPostState({
         ...postState,
         [key]: e,
       });
@@ -55,15 +52,6 @@ export default function AddPostForm(props) {
       );
       setPosts((prev) => [...prev, response.data]);
       const newPostId = response.data.post_id;
-
-      if (postState.style === "photo-post") {
-        e.preventDefault();
-        const updatedPostState = {
-          ...postState,
-          post_ID: newPostId,
-          image_file: file,
-        };
-      }
       if (postState.style === "event-post") {
         const updatedPostState = {
           ...postState,
@@ -139,7 +127,6 @@ export default function AddPostForm(props) {
         {style === "photo-post" && (
           <PhotoPost
             postState={postState}
-            handleUpload={handleUpload}
             handlePostStateChange={handlePostStateChange}
             handleSubmit={handleSubmit}
           />

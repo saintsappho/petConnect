@@ -46,7 +46,7 @@ export default function PetListWidget({
                   onClick={handlePetSelect}
                   className={selectedPet === (true, pet.name) ? "selected" : ""}
                   id="pet-photo"
-                  src={pet.profile_photo_url}
+                  src={pet.image_file}
                 />
               </div>
               <div id="pet-info-short">
@@ -79,7 +79,7 @@ export default function PetListWidget({
     return petData.map((pet) => {
       return (
         <div key={pet.id} id="pet-list-item">
-          <img id="pet-photo" src={pet.profile_photo_url} />
+          <img id="pet-photo" src={pet.image_file} />
           <td>
             <td>
               <h2>{pet.owner_name}</h2>

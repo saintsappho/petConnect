@@ -13,11 +13,11 @@ const newPet = async (petData, res) => {
     diet,
     allergies,
     routines,
-    profile_photo_url,
+    image_file,
     user_id
   } = petData;
-  const query = `INSERT INTO pets (pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, profile_photo_url, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
-  const values = [pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, profile_photo_url, user_id];
+  const query = `INSERT INTO pets (pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, image_file, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *`;
+  const values = [pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, image_file, user_id];
   try {
     const data = await db.query(query, values);
     res.json(data.rows);

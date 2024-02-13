@@ -4,18 +4,16 @@ import { useState } from "react";
 import UploadWidget from "./_UploadWidget";
 
 export default function PhotoPost(props) {
-  const { handleSubmit, handlePostStateChange, postState, handleUpload } = props;
-
+  const { handleSubmit, handlePostStateChange, postState } = props;
   const { image_file, content } = postState;
+  const [imgResult, setImgResult] = useState(null);
 
-  
-  
   return (
-    <form onSubmit={()=>{handleSubmit()}}>
+    <form onSubmit={handleSubmit}>
       <div className="form-row">
         <div className="input-data photo">
-          <input type="file" id="new-image" accept="image/*" onChange={(event) => {handlePostStateChange(event, "image_file")}} required/>
-          {/* <UploadWidget handlePostStateChange={handlePostStateChange} handleUpload={handleUpload}/> */}
+          {/* <input type="file" id="new-image" value={image_file} accept="image/*" onChange={(event) => {handlePostStateChange(event, "image_file")}} required/> */}
+          <UploadWidget postState={postState} imgResult={imgResult} setImgResult={setImgResult} handlePostStateChange={handlePostStateChange} />
         </div>
       </div>
       

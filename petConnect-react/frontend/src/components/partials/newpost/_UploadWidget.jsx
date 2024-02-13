@@ -4,10 +4,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 export default function UploadWidget(props) {
-  const { handleUpload, handlePostStateChange } = props;
+  const { handlePostStateChange, imgResult, setImgResult, postState } = props;
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-  const [imgResult, setImgResult] = useState(null);
+  
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -18,10 +18,10 @@ export default function UploadWidget(props) {
       (error, result) => {
         if (!error && result && result.event === "success") {
           console.log("Done! Here is the image info: ", result.info);
-          handleUpload(result.info.url);
           setImgResult(result.info.url);
           handlePostStateChange(result.info.url, "image_file");
-          console.log("result.info.url added to postState: ", result.info.url);
+          console.log("result.info.url: ", result.info.url);
+          console.log("added following to postState: ", postState.image_file);
         }
       },
     );
