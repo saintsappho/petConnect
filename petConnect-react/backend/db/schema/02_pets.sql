@@ -14,6 +14,7 @@ CREATE TABLE pets (
   diet VARCHAR(255) NOT NULL,
   allergies VARCHAR(255) NOT NULL,
   routines VARCHAR(255) NOT NULL,
+  points INTEGER DEFAULT 0,
   registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   image_file VARCHAR(255) NOT NULL
 );

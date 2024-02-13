@@ -27,9 +27,69 @@ export default function PetPointsfeedWidget() {
   const [xpLevel, setXpLevel] = useState(0); // You might calculate this based on `petPoints`
   
   const incrementPoints = () => {
-    setPetPoints(petPoints + 1);
-    // Update ranking, latest activity, achievements, etc. based on new points
+    const newPoints = petPoints + 1;
+    setPetPoints(newPoints);
+
+    axios.post('/api/updatePoints', {
+      userId: user.id, // replace with actual user id
+      newPoints: newPoints
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+    // Calculate ranking based on pet's points
+  const calculateRanking = (points) => {
+    if (points < 50) return 'Bronze';
+    else if (points < 100) return 'Silver';
+    else if (points < 150) return 'Gold';
+    else return 'Platinum';
   };
+
+  useEffect(() => {
+    // Fetch pet points and other relevant data from the server
+    const fetchPetData = async () => {
+      try {
+        // Example: Fetch pet points from the server
+        const response = await axios.get(`/api/petPoints/${user.petId}`);
+        const petPointsFromServer = response.data.points;
+        setPetPoints(petPointsFromServer);
+
+                // Calculate and set the ranking based on the pet's points
+                const calculatedRanking = calculateRanking(petPointsFromServer);
+                setRanking(calculatedRanking);
+              } catch (error) {
+                console.error('Error fetching pet data:', error);
+              }
+            };
+        
+            fetchPetData();
+          }, [user.petId]); // Trigger the effect whenever the pet ID changes
+        
+          const incrementPoints = () => {
+            const newPoints = petPoints + 1;
+            setPetPoints(newPoints);
+        
+            axios.post('/api/updatePoints', {
+              userId: user.id, // replace with actual user id
+              newPoints: newPoints
+            })
+            .then(response => {
+              console.log(response.data);
+              // After updating points, recalculate and update the ranking
+              const calculatedRanking = calculateRanking(newPoints);
+              setRanking(calculatedRanking);
+            })
+            .catch(error => {
+              console.error(error);
+            });
+          };
+
+  };
+
 
 return (
   <div className="pet-points-feed-widget-background">

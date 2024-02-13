@@ -176,3 +176,16 @@ form .form-row .textarea{
     width: 40%!important;
   }
 }
+
+#pfp-thumb {
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  position: sticky;
+  margin-left: -21rem;
+  margin-top: 1rem;
+  z-index: 1;
+  margin-bottom: -4rem;
+}
