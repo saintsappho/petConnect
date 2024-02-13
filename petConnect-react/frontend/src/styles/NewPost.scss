@@ -88,7 +88,7 @@ form .form-row .textarea{
   position: absolute;
   bottom: 0;
   height: 2px;
-  width: 100%;
+  left: 20px;
 }
 .input-data .underline:before{
   position: absolute;
@@ -99,6 +99,7 @@ form .form-row .textarea{
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
+  left: 0;
 }
 .input-data input:focus ~ .underline:before,
 .input-data input:valid ~ .underline:before,
