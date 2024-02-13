@@ -149,8 +149,10 @@ export default function PetPost(props) {
             closeModal={closeModal}
           />
         )}
-      {user.username === 'Robin Fleur'  && ( <span onClick={() => {()=>{setAdminSettings(!adminSettings)}}} className="post-options">&#8801;</span>)}
-      {adminSettings && (<><button>Edit</button><button>Delete</button></>)}
+      <div className="post-options">
+        {user.username === 'Robin Fleur'  && ( <button onClick={()=> setAdminSettings(!adminSettings)} className="post-burger">&#8801;</button>)}
+        {adminSettings && (<div className="post-options-buttons"><button className="edit-button">Edit</button><button className="delete-button">Delete</button></div>)}
+      </div>
       {petPost.style === "text-post" && (
         <Text
           user={user}
