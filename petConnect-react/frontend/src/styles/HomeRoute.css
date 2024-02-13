@@ -151,11 +151,11 @@ color: grey;
 
 #daily-challenge h4 {
   margin-top: .5rem;
-  margin-bottom: 0;;
+  margin-bottom: 0;
 }
 
 #daily-challenge p {
-  margin-top: -4px;
+  margin-top: -2px;
   margin-bottom: 0;
 }
 
@@ -165,4 +165,11 @@ color: grey;
   color:black;
   background-color: #4eb7ae;
   border-radius: 12px;;
+}
+
+.achievement-icon {
+  display: inline-block;
+  scale: 250%;
+  margin-right: 10rem;
+  margin-bottom: -10px;
 }

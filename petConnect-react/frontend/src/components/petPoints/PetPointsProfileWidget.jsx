@@ -11,14 +11,14 @@ export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, 
         <h3 className="pet-points-profile-widget-ranking-line">Ranking: <span className="pet-points-profile-widget-ranking">{ranking}</span></h3>
         <h4>Latest Activity: {latestActivity}</h4>
         <div className="pet-points-profile-widget-achievements">
-          <h2>Achievements:</h2>
-          <ul className="achievements-list">
-            {achievements.slice(0, 3).map((achievement, index) => (
-              <li key={index}>
-                <span className="achievement-icon">{achievement.icon}</span>
-                <div className="achievement-info">
-                  <h5>{achievement.name}</h5>
-                  <p className="achievement-description">{achievement.description}</p>
+          <h2>Recent Adventures:</h2>
+          <ul className="pet-points-profile-achievements-list">
+            {achievements.filter(achievement => achievement.completed).slice(0, 3).map((achievement, index) => (
+              <li id="profile-achievement-list-item" key={index}>
+                <span className="profile-achievement-icon">{achievement.icon}</span>
+                <div className="profile-achievement-info">
+                  <h4>{achievement.name}</h4>
+                  <p>{achievement.description}</p>
                 </div>
               </li>
             ))}
@@ -26,5 +26,6 @@ export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, 
         </div>
       </div>
     </div>
-  );
-}
+  )
+  
+            }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import XPBar from './XPBar';
 
-export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, user, achievements }) {
+export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, user, achievements, setAchievements }) {
   const [ranking, setRanking] = useState('Bronze');
   const [latestActivity, setLatestActivity] = useState('Played fetch');
   const [loadingBarCompleted, setLoadingBarCompleted] = useState(0);
@@ -48,7 +48,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
             ))}</div>
           </div>
           <button onClick={(event) => handleSetPetPoints(event, 10)}>Claim Daily Login!</button>
-          <h2>Daily Challenges:</h2>
+          <h2>Daily Adventures:</h2>
           <ul>
             {achievements.slice(0, 3).map((achievement, index) => (
               <li id="daily-challenge" key={index}>
@@ -58,7 +58,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
                   <p>{achievement.description}</p>
                 </div>
                 <button onClick={() => handleComplete(index)}>
-                  {achievement.completed ? 'Completed' : 'Complete Challenge'}
+                  {achievement.completed ? 'Completed!' : 'Complete Challenge'}
                 </button>
               </li>
             ))}

@@ -126,29 +126,8 @@ img.user-profile-image {
   background-color: #e6e6fa;
   border-radius: 12px;
   padding: 1rem;
+  min-width: 15rem;
 }
-
-.achievement-icon {
-  display: inline-block;
-  scale: 250%;
-}
-
-.achievements-list li {
-  list-style-type: '';
-  padding: .6rem;
-}
-
- .achievements-list {
-  display: flex;
-  width: 72%;
-  padding-left: -5rem;
- }
-
- .achievement-description {
-  font-size: small;
-  width: 120%;
-  margin-top: -1rem;
- }
 
  .pet-points-profile-widget-ranking {
   color: brown;
@@ -165,6 +144,35 @@ img.user-profile-image {
 
  .pet-points-profile-widget-content {
   line-height: 1;
+ }
+
+.profile-achievement-icon {
+  display: inline-block;
+  scale: 250%;
+  margin-right: 10rem;
+}
+
+.profile-achievements-list li {
+  list-style-type: '';
+  padding: .6rem;
+}
+
+ .pet-points-profile-achievements-list {
+  display: flex;
+  position: sticky;
+  flex-direction: row;
+  width: 72%;
+  padding-left: -3rem;
+ }
+
+ #profile-achievement-list-item {
+  margin-left: -4px;
+ }
+
+ .profile-achievement-description {
+  font-size: small;
+  width: 120%;
+  margin-top: -1rem;
  }
 
 
