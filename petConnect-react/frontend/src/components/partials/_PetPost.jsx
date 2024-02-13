@@ -10,7 +10,7 @@ import Poll from "./postcards/_Poll.jsx";
 import Text from "./postcards/_Text.jsx";
 import axios from "axios";
 import useFormatDateTime from "../../assets/helpers/formatDateTime.js";
-import UserProfile from "../UserProfile.jsx";
+import PosterProfile from "../PosterProfile.jsx";
 
 export default function PetPost(props) {
   const { petPost } = props;
@@ -19,6 +19,7 @@ export default function PetPost(props) {
   const [user, setUser] = useState({});
   const [inspect, setInspect] = useState(false);
   const [form, setForm] = useState(false);
+  const [petData, setPetData] = useState([]);
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -39,6 +40,13 @@ export default function PetPost(props) {
       .get(`http://localhost:8080/users/${petPost.user_id}`)
       .then((response) => {
         setUser(response.data[0]);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/pets/${petPost.user_id}`)
+      .then((response) => {
+        setPetData(response.data[0]);
       });
   }, []);
 
@@ -115,7 +123,7 @@ export default function PetPost(props) {
 
   return (
     <>
-      {inspect && <UserProfile user={user} />}
+      {inspect && <PosterProfile user={user} />}
       
       {petPost.style === "text-post" && (
         <Text

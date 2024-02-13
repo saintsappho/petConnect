@@ -7,4 +7,11 @@ const getPets = () => {
     });
 };
 
-module.exports = { getPets };
+const getPetsByID = (id) => {
+  return db.query('SELECT * FROM pets WHERE user_ID = $1;', [id])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getPets, getPetsByID };

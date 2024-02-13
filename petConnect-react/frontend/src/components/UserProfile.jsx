@@ -62,7 +62,7 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
               </thead>
             </table>
             <h2>{user.location}</h2>
-            <article id="bio">&quot;I&apos;m {user.name} and I own 3 pets, a golden retriever named Max, a cat named Benji, and a ferret named Snoopy!&quot;</article>
+            <article id="bio">&quot;Hi I&apos;m {user.name}. {user.bio}&quot;</article>
           </div>
 
           <div className="profile-pet-points">
@@ -72,7 +72,7 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
 
         <div className="user-profile-body">
           <div className="pet-list-widget">
-            <PetListWidget petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-list-item" />
+          <PetListWidget inspect={false} dynClass={"navbar"} petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-widget" />
           </div>
         </div>
         

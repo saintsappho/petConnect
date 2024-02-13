@@ -118,7 +118,7 @@ function App() {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile inspect={false} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 

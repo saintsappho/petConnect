@@ -48,7 +48,11 @@ form .form-row .textarea{
   align-items: center;
   margin-bottom: 30px;
 }
-
+.textarea {
+  :focus-visible {
+    outline: none;
+  }
+}
 .input-data input,
 .textarea textarea{
   display: block;

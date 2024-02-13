@@ -13,31 +13,30 @@ export default function PetListWidget({
   const [selectedPet, setSelectedPet] = useState(false, null);
   const [refreshPets, setRefreshPets] = useState(false);
   const [filteredPets, setFilteredPets] = useState([]);
-
+  const [showAddPetForm, setShowAddPetForm] = useState(false);
+console.log(userId, 'userId')
   function handlePetSelect(pet) {
     setSelectedPet(selectedPet === pet ? null : pet);
   }
 
   function handleNewPet() {
     setTimeout(() => {
-      setRefreshPets(!refreshPets)}, 1000);
+      setRefreshPets(!refreshPets);
+    }, 1000);
   }
-  
+
   // this is to render user's pets
   useEffect(() => {
-    if (userId.includes(userId)) {
-      userId = 1;
-    }
-    setFilteredPets(petData.filter(
-      (pet) => pet.user_id === Number(userId),
-    ));
+    fetch(`http://localhost:8080/pets/${userId}`)
+      .then((response) => response.json())
+      .then((data) => {
+      console.log(data, 'data')
+        setFilteredPets(data);
+      });
   }, [refreshPets]);
 
+
   function renderCurrentUserPets() {
-    const [showAddPetForm, setShowAddPetForm] = useState(false);
-
-    // ...
-
     return (
       <>
         {filteredPets.map((pet, index) => {
@@ -57,9 +56,9 @@ export default function PetListWidget({
             </div>
           );
         })}
-        <div className={`${divClass} add-new-pet`}>
+        {divClass === "poster-pet-widget" ? <></> : (<div className={`${divClass} add-new-pet`}>
           <p onClick={() => setShowAddPetForm(true)}> + Add Pet</p>
-        </div>
+        </div>)}
         {showAddPetForm && (
           <div className="new-pet-modal">
             <div className="new-pet-modal-content">
@@ -69,7 +68,7 @@ export default function PetListWidget({
               >
                 &times;
               </span>
-              <AddPetForm handleNewPet={handleNewPet} />
+               <AddPetForm handleNewPet={handleNewPet} />
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const { getPets } = require('../db/queries/gets/getPets');
+const { getPets, getPetsByID } = require('../db/queries/gets/getPets');
 const { newPet } = require('../db/queries/posts/newPet');
 
 // GET /pets
@@ -8,6 +8,16 @@ const { newPet } = require('../db/queries/posts/newPet');
 router.get('/', async (req, res) => {
   try {
     const pets = await getPets()
+    // console.log(pets)
+    res.send(pets)
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+router.get('/:id', async (req, res) => {
+  try {
+    const pets = await getPetsByID(req.params.id)
     // console.log(pets)
     res.send(pets)
   } catch (err) {

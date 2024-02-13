@@ -7,5 +7,6 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   sub_ID VARCHAR(255) NOT NULL,
   registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  profile_picture VARCHAR(255)
+  profile_picture VARCHAR(255),
+  bio TEXT
 );

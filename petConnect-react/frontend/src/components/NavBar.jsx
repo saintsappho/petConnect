@@ -38,7 +38,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId, ac
 
     </nav>
     <div className="pet-list-container"> 
-    <PetListWidget user={user} petData={petData} listPayload="currentUser" userId={userId} divClass="user-pet-list-item"/>
+    <PetListWidget user={user} petData={petData} listPayload="currentUser" userId={userId} divClass="nav-pet-widget"/>
     </div>
     {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
     </>
