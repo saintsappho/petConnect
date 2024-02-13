@@ -7,9 +7,12 @@
   }
 
 footer {
-  text-align: center;
-  padding: 2rem;
-  margin-top: auto;
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+z-index:-1;
+color: grey;
 }
 
 .login-button-login-screen {
@@ -33,7 +36,6 @@ footer {
   justify-content: center;
   min-height: 6vh;
   width: 12%;
-  padding: 2rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   height: 4rem;
   padding-top: 2rem;
@@ -55,7 +57,8 @@ footer {
   background-image: ;
   display: flex;
   flex-direction: column;
-  width: 26rem;
+  max-height: 34rem;
+  width: 77%;
   padding: 2rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   flex-shrink: 1;
@@ -72,19 +75,34 @@ footer {
   z-index: 1;
 }
 
+.pet-points-feed-widget-header {
+  margin-top: -2rem;
+  margin-bottom: -2rem;
+
+}
+
+
 .pet-points-feed-widget h2 {
   font-size: 1.4rem;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
   border-radius: 12px;
   background-color: #e6e6fa;
 }
 
+.pet-points-feed-widget-content {
+  max-height: 28rem;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  padding-right: 1rem;
+}
+
 .pet-points-feed-widget-background {
-  position: relative;
-  top: 9.5rem;
-  left: 30px;
-  width: 40rem;
-  height: 58rem;
+  position: sticky;
+  top: 11.5rem;
+  width: 31%;
+  height: 40rem;
+  padding-right: 2rem;
+  margin-right: 9%;
   background:
   linear-gradient(to top, #e6e6fa, transparent 10%),
   linear-gradient(to bottom, #e6e6fa, transparent 5%),
@@ -94,8 +112,6 @@ footer {
   background-size: 400% 400%;
   animation: gradient 7s ease infinite;
   border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
-  transform: translateY(0%); /* Adjust this value as needed */
   z-index: -1;
 }
 
