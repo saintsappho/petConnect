@@ -11,6 +11,7 @@ import Text from "./postcards/_Text.jsx";
 import axios from "axios";
 import useFormatDateTime from "../../assets/helpers/formatDateTime.js";
 import PosterProfile from "../PosterProfile.jsx";
+import Modal from '../modals/Modal.jsx';
 
 export default function PetPost(props) {
   const { petPost } = props;
@@ -20,6 +21,8 @@ export default function PetPost(props) {
   const [inspect, setInspect] = useState(false);
   const [form, setForm] = useState(false);
   const [petData, setPetData] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [modalContent, setModalContent] = useState([]); 
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -27,22 +30,36 @@ export default function PetPost(props) {
     }`;
   };
 
+  const openModal = (event) => {
+    event.preventDefault();
+    setModal(true);
+  };
+  const closeModal = (event) => {
+    event.preventDefault();
+    console.log('closing modal');
+    setModalContent([]);
+    setModal(false);
+  };
   const handleInspect = () => {
+    event.preventDefault();
     setInspect(!inspect);
+    setModalContent(<PosterProfile user={user} />);
+    openModal(event);
   };
 
+  
   function getRandomNumberUpTo15() {
     return Math.floor(Math.random() * 16);
   }
 
-  useEffect(() => {
+  useEffect(() => { // setUser
     axios
       .get(`http://localhost:8080/users/${petPost.user_id}`)
       .then((response) => {
         setUser(response.data[0]);
       });
   }, []);
-  useEffect(() => {
+  useEffect(() => { // setPetData
     axios
       .get(`http://localhost:8080/pets/${petPost.user_id}`)
       .then((response) => {
@@ -50,7 +67,7 @@ export default function PetPost(props) {
       });
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // setComments
     axios
       .get(`http://localhost:8080/comments/${petPost.post_id}`)
       .then(async (commentsRes) => {
@@ -120,10 +137,18 @@ export default function PetPost(props) {
   const handleForm = () => {
     setForm(!form);
   }
+  
 
   return (
     <>
-      {inspect && <PosterProfile user={user} />}
+      {modal && (
+          <Modal
+            modal={modal}
+            content={modalContent}
+            closeModal={closeModal}
+          />
+        )}
+      {/* {inspect && <PosterProfile user={user} />} */}
       
       {petPost.style === "text-post" && (
         <Text

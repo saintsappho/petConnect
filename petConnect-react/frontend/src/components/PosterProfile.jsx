@@ -3,6 +3,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import PetListWidget from "./PetListWidget";
+import "../styles/PosterProfile.scss";
 
 export default function PosterProfile({ user }) {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -34,17 +35,17 @@ export default function PosterProfile({ user }) {
   console.log("user", user);
   return (
     isAuthenticated && (
-      <div className="user-profile-container">
-        <div className="user-profile-top">
-          <div className="user-profile-header">
+      <div className="poster-profile-container">
+        <div className="poster-profile-top">
+          <div className="poster-profile-header">
             <img
-              className="user-profile-image"
+              className="poster-profile-image"
               src={user.profile_picture}
               alt={user.username}
             />
-            <h1 className="user-profile-name">{user.username}</h1>
+            <h1 className="poster-profile-name">{user.username}</h1>
             <br />{" "}
-            <table className="user-profile-buttons">
+            <table className="poster-profile-buttons">
               <thead>
                 <tr>
                   <td>
@@ -75,7 +76,7 @@ export default function PosterProfile({ user }) {
               &quot;Hi!, I&apos;m {user.username}. {user.bio}&quot;
             </article>
           </div>
-          <div className="user-profile-body">
+          <div className="poster-profile-body">
             <div className="pet-list-widget">
               <PetListWidget
                 dynClass={"inspect"}

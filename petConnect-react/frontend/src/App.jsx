@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import './App.css'
 // components
 import HomeRoute from './components/HomeRoute'
@@ -118,7 +119,7 @@ function App() {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile inspect={false} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 

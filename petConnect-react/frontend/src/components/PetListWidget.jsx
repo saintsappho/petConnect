@@ -14,7 +14,7 @@ export default function PetListWidget({
   const [refreshPets, setRefreshPets] = useState(false);
   const [filteredPets, setFilteredPets] = useState([]);
   const [showAddPetForm, setShowAddPetForm] = useState(false);
-console.log(userId, 'userId')
+
   function handlePetSelect(pet) {
     setSelectedPet(selectedPet === pet ? null : pet);
   }
@@ -24,7 +24,9 @@ console.log(userId, 'userId')
       setRefreshPets(!refreshPets);
     }, 1000);
   }
-
+  if (isNaN(userId)) {
+    userId = 1;
+  }
   // this is to render user's pets
   useEffect(() => {
     fetch(`http://localhost:8080/pets/${userId}`)
