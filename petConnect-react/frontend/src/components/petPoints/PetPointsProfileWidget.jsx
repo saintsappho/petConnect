@@ -1,33 +1,31 @@
 import React, { useState } from 'react';
 
-export default function PetPointsProfileWidget() {
-  const [petPoints, setPetPoints] = useState(0);
+export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, achievements }) {
   const [ranking, setRanking] = useState('Bronze');
   const [latestActivity, setLatestActivity] = useState('Played fetch');
-  const [achievements, setAchievements] = useState(['First Walk', 'First Fetch']);
-
-  const incrementPoints = () => {
-    setPetPoints(petPoints + 1);
-    // Update ranking, latest activity, achievements, etc. based on new points
-  };
 
   return (
     <div className="pet-points-profile-widget">
-      <div className="pet-points-profile-widget-header">
-        <h3>Pet Points</h3>
-      </div>
       <div className="pet-points-profile-widget-content">
-        <h1>Points: {petPoints}</h1>
-        <h2>Ranking: {ranking}</h2>
-        <h2>Latest Activity: {latestActivity}</h2>
-        <h2>Achievements:</h2>
-        <ul>
-          {achievements.map((achievement, index) => (
-            <li key={index}>{achievement}</li>
-          ))}
-        </ul>
-        <button onClick={incrementPoints}>Earn Points</button>
+        <h1>Pet<span className="pet-points-profile-widget-xp">XP</span>: {petPoints}</h1>
+        <h3 className="pet-points-profile-widget-ranking-line">Ranking: <span className="pet-points-profile-widget-ranking">{ranking}</span></h3>
+        <h4>Latest Activity: {latestActivity}</h4>
+        <div className="pet-points-profile-widget-achievements">
+          <h2>Recent Adventures:</h2>
+          <ul className="pet-points-profile-achievements-list">
+            {achievements.filter(achievement => achievement.completed).slice(0, 3).map((achievement, index) => (
+              <li id="profile-achievement-list-item" key={index}>
+                <span className="profile-achievement-icon">{achievement.icon}</span>
+                <div className="profile-achievement-info">
+                  <h4>{achievement.name}</h4>
+                  <p>{achievement.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
-  );
-}
+  )
+  
+            }
