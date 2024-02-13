@@ -18,6 +18,7 @@ export default function Photo(props) {
           className="card__image"
         ></img>
         <figcaption className="card__caption">
+          <h2 className="card__title">{petPost.title}</h2>
           <div onClick={handleInspect} className="user-details">
             <img
               src={user.profile_picture}

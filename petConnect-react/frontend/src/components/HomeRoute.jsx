@@ -44,7 +44,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
           {!error && !isLoading && user && (
             <>
               <div className="title-card">
-                <h2>Welcome to PetConnect, {user.name}!</h2>
+                <h3>Welcome to PetConnect, {user.name}!</h3>
                 <button className="bubbly-button" onClick={() => setCreate(!create)}>
                   New Post
                 </button>

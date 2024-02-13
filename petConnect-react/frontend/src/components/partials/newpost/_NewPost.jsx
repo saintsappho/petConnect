@@ -12,7 +12,6 @@ import PollPost from "./_NewPollPost";
 import "../../../styles/NewPost.scss";
 
 // import { post } from '../../../../../backend/routes/users';
-
 export default function AddPostForm(props) {
   //destructuring needed variables from props
   const { setPosts, create, setCreate } = props;
