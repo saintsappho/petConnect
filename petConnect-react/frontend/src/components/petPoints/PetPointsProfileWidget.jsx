@@ -8,10 +8,10 @@ export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, 
     <div className="pet-points-profile-widget">
       <div className="pet-points-profile-widget-content">
         <h1>Pet<span className="pet-points-profile-widget-xp">XP</span>: {petPoints}</h1>
-        <h3>Ranking: <span className="pet-points-profile-widget-ranking">{ranking}</span></h3>
-        <h3>Latest Activity: {latestActivity}</h3>
+        <h3 className="pet-points-profile-widget-ranking-line">Ranking: <span className="pet-points-profile-widget-ranking">{ranking}</span></h3>
+        <h4>Latest Activity: {latestActivity}</h4>
         <div className="pet-points-profile-widget-achievements">
-          <h3>Achievements:</h3>
+          <h2>Achievements:</h2>
           <ul className="achievements-list">
             {achievements.slice(0, 3).map((achievement, index) => (
               <li key={index}>
