@@ -16,8 +16,9 @@ export default function PetPost(props) {
   const { petPost } = props;
   const [comments, setComments] = useState([]);
   const [refreshComments, setRefreshComments] = useState(false);
-  const [user, setUser] = useState([{}]);
+  const [user, setUser] = useState({});
   const [inspect, setInspect] = useState(false);
+  const [form, setForm] = useState(false);
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -68,11 +69,11 @@ export default function PetPost(props) {
                     <div className="comment-info">
                       <div onClick={handleInspect} className="user-details">
                         <img
-                          src={user.profile_picture}
+                          src={user[0].profile_picture}
                           alt="profile picture"
                           className="user-profile-picture"
                         ></img>
-                        <h4 className="card__author">{user.username}</h4>
+                        <h4 className="comment__author">{user[0].username}</h4>
                       </div>
                       <p className="m-0">
                         {getRandomNumberUpTo15()} points &bull;{" "}
@@ -106,11 +107,16 @@ export default function PetPost(props) {
 
   const handleComment = () => {
     setRefreshComments(!refreshComments);
+    setForm(false)
   };
+  const handleForm = () => {
+    setForm(!form);
+  }
 
   return (
     <>
       {inspect && <UserProfile user={user} />}
+      
       {petPost.style === "text-post" && (
         <Text
           user={user}
@@ -120,6 +126,8 @@ export default function PetPost(props) {
           comments={comments}
           inspect={inspect}
           handleInspect={handleInspect}
+          form={form}
+          handleForm={handleForm}
         />
       )}
       {petPost.style === "photo-post" && (
@@ -131,6 +139,8 @@ export default function PetPost(props) {
           randomImage={randomImage}
           inspect={inspect}
           handleInspect={handleInspect}
+          form={form}
+          handleForm={handleForm}
         />
       )}
       {petPost.style === "poll-post" && (
@@ -151,6 +161,8 @@ export default function PetPost(props) {
           comments={comments}
           inspect={inspect}
           handleInspect={handleInspect}
+          form={form}
+          handleForm={handleForm}
         />
       )}
       {petPost.style === "event-post" && (

@@ -5,7 +5,7 @@ import UploadWidget from "./_UploadWidget";
 
 export default function PhotoPost(props) {
   const { handleSubmit, handlePostStateChange, postState } = props;
-  const { image_file, content } = postState;
+  const { content } = postState;
   const [imgResult, setImgResult] = useState(null);
 
   return (

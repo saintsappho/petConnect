@@ -58,7 +58,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
           )}
         </div>
 
-        <Feed posts={posts} setPosts={setPosts} error={fetchError} />
+        <Feed posts={posts} setPosts={setPosts} error={fetchError} user={user}/>
         <PetPointsFeedWidget userId={userId}/>
 
         <footer>

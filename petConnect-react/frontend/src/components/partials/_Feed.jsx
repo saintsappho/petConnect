@@ -22,7 +22,7 @@ export default function Feed(props) {
     return (
       <>
         <h1>Error fetching posts: {error}</h1>
-        <img src="../../assets/empty.gif" alt="empty box gif" />
+        <img src="../../assets/empty.gif" alt="" />
       </>
     );
   }
@@ -30,7 +30,7 @@ export default function Feed(props) {
     return (
       <>
         <h1>No posts to show </h1>
-        <img src="../../assets/empty.gif" alt="empty box gif" />
+        <img src="../../assets/empty.gif" alt="" />
       </>
     );
   }
@@ -38,7 +38,7 @@ export default function Feed(props) {
   return (
     <div className="feed-container">
       {posts.reverse().map(
-        (post) => (<PetPost key={post.post_id} petPost={post} />),
+        (post) => (<PetPost user_id={user.user_id} key={post.post_id} petPost={post} />),
       )}
     </div>
   );

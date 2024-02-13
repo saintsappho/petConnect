@@ -15,11 +15,9 @@ import "../../../styles/NewPost.scss";
 
 export default function AddPostForm(props) {
   //destructuring needed variables from props
-  const { setPosts, useFetchData, setFetchError, create, setCreate } = props;
+  const { setPosts, create, setCreate } = props;
   //
   const [numChoices, setNumChoices] = useState(2);
-  const [post_ID, setPost_ID] = useState(); // hard-coded for now
-  const [file, setFile] = useState(null);
   const [postState, setPostState] = useState({
     user_ID: 1, // hard-coded for now
     pet_ID: 1, // hard-coded for now
@@ -94,7 +92,7 @@ export default function AddPostForm(props) {
   };
 
   // destructure the postState for easier access
-  const { user_ID, pet_ID, style, content, title, image_file } = postState;
+  const { style } = postState;
 
   return (
     <div className="new-post-panel">

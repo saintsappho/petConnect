@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import NewComment from "./_NewComment";
 
 export default function Forum(props) {
-  const { randomImage, petPost, comments, handleComment, user, handleInspect } = props;
+  const { randomImage, petPost, comments, handleComment, user, handleShowComments, show } = props;
   const [form, setForm] = useState(false);
  
   return (
@@ -18,9 +18,8 @@ export default function Forum(props) {
         ></img>
         <figcaption className="forum__caption">
           <h2 className="forum__title">{petPost.title}</h2>
-          <div onClick={handleInspect} className="user-details">
-            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
-            <h4 className="card__author">{user.username}</h4>
+          <div className="user-details">
+            <h4 className="forum__author">{user.username}</h4>
           </div>
           <p className="forum__snippet">{petPost.content}</p>
           {!form ? <a onClick={()=> setForm(!form)} className="forum__button">

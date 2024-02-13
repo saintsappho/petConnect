@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 export default function EventPost(props) {
   const { handleSubmit, handlePostStateChange, postState } = props;
-  const { title, content, location, eventDescription } = postState;
+  const { title, location, eventDescription } = postState;
   return (
 
     <form onSubmit={handleSubmit}>
