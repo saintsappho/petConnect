@@ -65,6 +65,11 @@ color: grey;
   margin-left: 1.1rem;
 }
 
+.pet-points-profile-widget-xp {
+  font-style: italic;
+  font-weight: light;
+  color: rgb(122, 122, 122)
+}
 .overlay {
   position: fixed;
   top: 0;
@@ -100,7 +105,7 @@ color: grey;
   position: sticky;
   top: 11.5rem;
   width: 31%;
-  height: 40rem;
+  height: 36rem;
   padding-right: 2rem;
   margin-right: 9%;
   background:

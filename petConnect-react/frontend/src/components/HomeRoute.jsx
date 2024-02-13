@@ -11,7 +11,7 @@ import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
-export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, closeModal, userId }) {
+export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, achievements,closeModal, userId, handleSetPetPoints, petPoints, setPetPoints }) {
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user } = useAuth0();
@@ -73,7 +73,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
         </div>
 
         <Feed posts={posts} setPosts={setPosts} error={fetchError} user={user}/>
-        <PetPointsFeedWidget userId={userId}/>
+        <PetPointsFeedWidget achievements={achievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
 
         <footer>
           <p>
