@@ -30,9 +30,8 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId, ac
           <div className="nav-dropdown-body">
             <a href="/">Settings</a>
             <button id="messageButton" onClick={openDirectMessages}>Message</button>
-            <a href="/">Park Finder</a>
+            <a href="http://maps.google.com/?q=dog-parks" target="_blank">Park Finder</a>
             <a href="/">Shop</a>
-            <a href="/">About</a>
             <a href="/" onClick={LogoutButton}><LogoutButton /></a>
           </div>
         </div>
