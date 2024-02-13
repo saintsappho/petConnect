@@ -1,7 +1,10 @@
 .modal-content {
   display: flex;
   flex-direction: column;
-  background-color: #fefefe;
+  background-color: #ece9e9;
+  // background-image: url(https://media.discordapp.net/attachments/1195457375457521764/1206734159243124796/whatsapp-chat-pink-blue-clouds-wurebhpedbuq0uur.jpg?ex=65dd15c3&is=65caa0c3&hm=3fc083dfc4a5af9939d53c3d28cec41d3337df4e5042085d05c87253c52cf7aa&=&format=webp&width=630&height=1120);
+  background-image: url(https://i.redd.it/80jvryjpo2fb1.jpg);
+  background-size: cover;
   padding: 20px;
   border: 1px solid #888;
   width: 100%;
@@ -38,10 +41,34 @@
 
 .message {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  // align-items: flex-end;
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 5px 10px;
+}
+
+.message_menu_container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid 0 0 0 1px;
+  background:
+  linear-gradient(to top, #e6e6fa, transparent 10%),
+  linear-gradient(to bottom, #e6e6fa, transparent 10%),
+  linear-gradient(to left, #e6e6fa, transparent 10%),
+  linear-gradient(to right, #e6e6fa, transparent 10%);
+  background: linear-gradient(-45deg, #5c0095, #058261, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 17s ease infinite;
+  justify-content: center;
+  // z-index: 0;
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+  box-shadow: 0 0 2.8rem 0 rgba(0, 0, 0, 0.261);
+  margin-left: -25px;
+  height: 80px;
+  font-size: 25px;
+  margin-top: -20px;
 }
 
 .message-content {
@@ -54,12 +81,14 @@
   background-color: #007bff;
   color: white; 
   align-self: flex-end;
+  margin-right: 60px;
 }
 
 .received .message-content {
   background-color: #35934b; 
   color: white; 
   align-self: flex-start;
+  margin-left: 30px;
 }
 
 .message-sender {

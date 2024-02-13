@@ -5,6 +5,18 @@
   cursor: pointer;
 }
 
+.message_search {
+  margin-bottom: 30px;
+  
+}
+
+.search_user_button {
+  border: 2px solid #00d7b3d1;
+  background-color: #078d91;
+  margin-bottom: 20px;
+}
+
+
 // .conversations:hover {
 //   background-color: rgba(156, 151, 151, 0.5);
 //   border-radius: 10px;
@@ -15,6 +27,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 15px;
+  margin-left: -20px;
   width: 100%;
   cursor: pointer;
 }
@@ -47,7 +60,6 @@ h1.user_profile_name_msg {
 
 img.user_profile_image_msg {
   cursor: pointer;
-  margin-left: -10px;
   width: 4.5rem;
   height: 4.5rem;
   border-radius: 50%;
@@ -62,7 +74,6 @@ img.user_profile_image_msg {
 }
 
 .delete_button {
-  margin: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer; 
@@ -132,35 +143,35 @@ img.user_profile_image_msg {
 
 /* StatusOnline.scss */
 
-.status-online {
-  display: flex;
-  align-items: center;
-}
+// .status-online {
+//   display: flex;
+//   align-items: center;
+// }
 
-.status-online__container {
-  display: flex;
-  align-items: center;
-}
+// .status-online__container {
+//   display: flex;
+//   align-items: center;
+// }
 
-.status-online__image {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-}
+// .status-online__image {
+//   width: 30px;
+//   height: 30px;
+//   border-radius: 50%;
+//   margin-right: 10px;
+// }
 
-.status-badge {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ccc;
-}
+// .status-badge {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   background-color: #ccc;
+// }
 
-.status-badge.online {
-  background-color: green;
-}
+// .status-badge.online {
+//   background-color: green;
+// }
 
-.status-online__name {
-  font-size: 14px;
-  color: #555;
-}
+// .status-online__name {
+//   font-size: 14px;
+//   color: #555;
+// }
