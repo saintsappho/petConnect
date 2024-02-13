@@ -23,6 +23,8 @@ export default function PetPost(props) {
   const [petData, setPetData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState([]); 
+  const [adminSettings, setAdminSettings] = useState(false);
+
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -147,7 +149,8 @@ export default function PetPost(props) {
             closeModal={closeModal}
           />
         )}
-      {user.username === 'Robin Fleur'  && ( <span onClick={() => {console.log("edit/delete")}} className="post-options">&#8801;</span>)}
+      {user.username === 'Robin Fleur'  && ( <span onClick={() => {()=>{setAdminSettings(!adminSettings)}}} className="post-options">&#8801;</span>)}
+      {adminSettings && (<><button>Edit</button><button>Delete</button></>)}
       {petPost.style === "text-post" && (
         <Text
           user={user}
