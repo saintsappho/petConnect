@@ -94,10 +94,17 @@ export default function PetPointsfeedWidget() {
 return (
   <div className="pet-points-feed-widget-background">
     <div className="pet-points-feed-widget">
-    <div className="pet-points-feed-widget-header">
-      <h1>Pet Points!</h1>
-    </div>
     <div className="pet-points-feed-widget-content">
+
+      <div className="daily-challenges">
+        <h2>Daily Challenges</h2>
+        {petPointsChallenges.map((challenge, index) => (
+          <div key={index}>
+            <p>{challenge.challengeName}</p>
+            <button onClick={() => alert(challenge.detail)}>View Details</button>
+          </div>
+        ))}
+      </div>
       <div className="daily-leaderboard">
         <h2>Daily Leaderboard</h2>
         <ul>
@@ -105,15 +112,6 @@ return (
             <li key={index}>{entry.petName}: {entry.points} Points</li>
           ))}
         </ul>
-      </div>
-      <div className="daily-challenges">
-        <h2>Daily Challenges</h2>
-        {dailyChallenges.map((challenge, index) => (
-          <div key={index}>
-            <p>{challenge.challengeName}</p>
-            <button onClick={() => alert(challenge.detail)}>View Details</button>
-          </div>
-        ))}
       </div>
       <div className="recently-completed-by-friends">
         <h2>Recently Completed by Friends</h2>

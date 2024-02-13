@@ -29,6 +29,7 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   const [userPets, setUserPets] = useState([]);
   const [error, setError] = useState(null);
+  const [petPoints, setPetPoints] = useState(0);
   const userId = user?.sub;
 
   // // Auth0 Token
@@ -111,6 +112,12 @@ function App() {
     }
   }
 
+function handleSetPetPoints(event, points) {
+  event.preventDefault();
+  console.log('points: ', points);
+  setPetPoints(points);
+}
+
   // logic for opening user profile modal
 
   const openCurrentUserModal = (event) => {
@@ -118,7 +125,7 @@ function App() {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile accessToken={accessToken} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 

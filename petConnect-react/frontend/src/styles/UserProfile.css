@@ -124,7 +124,39 @@ img.user-profile-image {
 
 .profile-pet-points {
   background-color: #e6e6fa;
+  border-radius: 12px;
+  padding: 1rem;
 }
+
+.achievement-icon {
+  display: inline-block;
+  scale: 250%;
+}
+
+.achievements-list li {
+  list-style-type: '';
+  padding: .6rem;
+}
+
+ .achievements-list {
+  display: flex;
+  width: 72%;
+  padding-left: -5rem;
+ }
+
+ .achievement-description {
+  font-size: small;
+  width: 120%;
+  margin-top: -1rem;
+ }
+
+ .pet-points-profile-widget-ranking {
+  color: brown;
+ }
+ 
+ .pet-points-profile-widget-content {
+  line-height: 1;
+ }
 
 
 /* Tablet and mobile layout*/

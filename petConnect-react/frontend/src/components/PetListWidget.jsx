@@ -41,6 +41,7 @@ export default function PetListWidget({ petData, listPayload, divClass }) {
       </>
     );
   }
+  
   // 'all-pets' payload will render the pet list with all pets  -- NOT WORKING, NEEDS TO BE IMPLEMENTED -- 
   const renderAllPets = () => {
     return petData.map((pet) => {
