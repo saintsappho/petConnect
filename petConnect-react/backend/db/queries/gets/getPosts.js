@@ -7,4 +7,11 @@ const getPosts = () => {
     });
 };
 
-module.exports = { getPosts };
+const getPostByID = (id) => {
+  return db.query('SELECT * FROM posts WHERE post_ID = $1;', [id])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getPosts, getPostByID };

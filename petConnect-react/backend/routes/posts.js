@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getPosts } = require("../db/queries/gets/getPosts");
+const { getPosts, getPostByID } = require("../db/queries/gets/getPosts");
 const { newPost } = require("../db/queries/posts/newPost");
 
 router.get("/", async (req, res) => {
@@ -30,6 +30,33 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Failed to create Post");
+  }
+});
+
+router.put('/:postId', async (req, res) => {
+  const postId = req.params.postId;
+  const updatedPostData = req.body; // Assuming the updated post data is sent in the request body
+  
+  try {
+    // Fetch the existing post from the database
+    const existingPost = await getPostByID(postId);
+    
+    if (!existingPost) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    
+    // Update the post data
+    existingPost.title = updatedPostData.title;
+    existingPost.content = updatedPostData.content;
+    // ... other fields ...
+    
+    // Save the updated post to the database
+    const updatedPost = await existingPost.save();
+    
+    res.json(updatedPost);
+  } catch (error) {
+    console.error('Error updating post', error);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
