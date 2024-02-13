@@ -32,7 +32,7 @@ export default function PetListWidget({
     fetch(`http://localhost:8080/pets/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-      console.log(data, 'data')
+      // console.log(data, 'data')
         setFilteredPets(data);
       });
   }, [refreshPets]);

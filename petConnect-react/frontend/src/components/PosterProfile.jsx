@@ -32,7 +32,7 @@ export default function PosterProfile({ user }) {
       </div>
     );
   }
-  console.log("user", user);
+  // console.log("user", user);
   return (
     isAuthenticated && (
       <div className="poster-profile-container">

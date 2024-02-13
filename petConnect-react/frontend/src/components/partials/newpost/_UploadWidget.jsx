@@ -30,11 +30,11 @@ export default function UploadWidget(props) {
       },
       (error, result) => {
         if (!error && result && result.event === "success") {
-          console.log("Done! Here is the image info: ", result.info);
+          // console.log("Done! Here is the image info: ", result.info);
           setImgResult(result.info.url);
           handlePostStateChange(result.info.url, "image_file");
-          console.log("result.info.url: ", result.info.url);
-          console.log("added following to postState: ", postState.image_file);
+          // console.log("result.info.url: ", result.info.url);
+          // console.log("added following to postState: ", postState.image_file);
         }
       },
     );

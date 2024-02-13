@@ -26,7 +26,7 @@ export default function Poll(props) {
         const response = await axios.get(
           `http://localhost:8080/polls/${petPost.post_id}`,
         );
-        console.log(`useFetchData got this data from polls`, response.data);
+        // console.log(`useFetchData got this data from polls`, response.data);
         setPollData(response.data);
         setChoices(response.data.choices);
       } catch (error) {
@@ -44,7 +44,7 @@ export default function Poll(props) {
         const response = await axios.get(
           `http://localhost:8080/polls/${petPost.post_id}/votes`,
         );
-        console.log("Vote results:", response.data);
+        // console.log("Vote results:", response.data);
         const { choices, votes } = response.data;
 
         const totalVotes = votes.length;
@@ -68,7 +68,7 @@ export default function Poll(props) {
 
   }, [voted]);
 
-  console.log("voteResults: ", voteResults);
+  // console.log("voteResults: ", voteResults);
 
   useEffect(() => {
     // Render choices and buttons

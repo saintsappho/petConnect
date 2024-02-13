@@ -137,7 +137,6 @@ export default function PetPost(props) {
   const handleForm = () => {
     setForm(!form);
   }
-  
 
   return (
     <>
@@ -148,8 +147,7 @@ export default function PetPost(props) {
             closeModal={closeModal}
           />
         )}
-      {/* {inspect && <PosterProfile user={user} />} */}
-      
+      {user.username === 'Robin Fleur'  && ( <span onClick={() => {console.log("edit/delete")}} className="post-options">&#8801;</span>)}
       {petPost.style === "text-post" && (
         <Text
           user={user}

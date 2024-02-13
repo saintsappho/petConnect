@@ -17,7 +17,7 @@ export default function NewComment(props) {
         user_ID: 1,
         content: comment
       }
-      console.log("commentData", commentData)
+      // console.log("commentData", commentData)
       const response = await axios.post(`http://localhost:8080/comments`, {commentData})
       console.log("response", response)
     } catch (error) {

@@ -75,17 +75,17 @@ function App() {
 
   // logic for navbar user pet list
   function handlePetListSelect(event, petId) {
-    console.log('event: ', event);
+    // console.log('event: ', event);
     event.preventDefault();
     setSelectedPet(petId);
-    console.log('selected pet: ', petId);
+    // console.log('selected pet: ', petId);
     if (petId === "Select a pet" || petId === undefined) {
       setModalContent([]);
       closeModal(event);
       return;
     } else {
       setModalContent(<PetProfile user={user} selectedPet={petId} />);
-      console.log('modal content: ', modalContent);
+      // console.log('modal content: ', modalContent);
       openModal(event)
     }
   }
