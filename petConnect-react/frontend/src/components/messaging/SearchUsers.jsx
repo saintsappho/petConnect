@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Conversations.scss";
 import axios from 'axios';
 
 export default function SearchUsers({ accessToken, onSearch }) {
@@ -23,13 +24,13 @@ export default function SearchUsers({ accessToken, onSearch }) {
 
   return (
     <div>
-      <input
+      <input className="search_users"
         type="text"
         placeholder="Search Users"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button onClick={handleSearchUsers}>Search For a New Friend!</button>
+      <button className="search_user_button" onClick={handleSearchUsers}>Search For a New Friend!</button>
 
       {searchedUsers.map((user) => (
         <div key={user.id} onClick={() => onSearch(user)}>

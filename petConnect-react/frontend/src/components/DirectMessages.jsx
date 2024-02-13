@@ -75,10 +75,12 @@ export default function DirectMessages({ userId, accessToken, onClose }) {
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
       <Grid templateColumns="repeat(10, 1fr)" h="100vh">
-        <GridItem colSpan="3" borderRight="1px solid gray">
+      <GridItem colSpan="10">
+          <h1 className="message_menu_container">Messaging!</h1>
+        </GridItem>
+        <GridItem colSpan="3" borderRight="1px solid gray" style={{ marginTop: "-280px" }}>
           <div className="direct_message">
             <div className="message_menu">
-              <div className="message_menu_container"><h1>Messaging!</h1></div>
               <div className="message_search">
               </div>
                 <div>
@@ -86,7 +88,6 @@ export default function DirectMessages({ userId, accessToken, onClose }) {
                 </div>
               </div>
             </div>
-         
         </GridItem>
 
         <GridItem colSpan="7">
