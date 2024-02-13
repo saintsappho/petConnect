@@ -6,7 +6,7 @@ import formatDateTime from "../../../assets/helpers/formatDateTime";
 import CalendarEvent from "../../modals/CalendarEvent";
 
 export default function Event(props) {
-  const { randomImage, petPost, user, handleInspect } = props;
+  const { randomImage, petPost, user, handleInspect, } = props;
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,20 +28,10 @@ export default function Event(props) {
     setError,
   );
 
-  // useEffect(() => {
-  //   // Show notification after 3 seconds
-  //   const notificationTimeout = setTimeout(() => {
-  //     setShowNotification(true);
-  //   }, 3000);
-
-  //   // Clean up the timeout to prevent memory leaks
-  //   return () => clearTimeout(notificationTimeout);
-  // }, []);
-
   return (
     <>
       {isModalOpen && (
-        <CalendarEvent isOpen={isModalOpen} onClose={closeModal} />
+        <CalendarEvent onClose={closeModal} />
       )}
       <div className="card">
         <figure className="card__thumb">
