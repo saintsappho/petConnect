@@ -196,7 +196,7 @@ export default function AddPetForm(props) {
           )}
         </label>
       </div>
-      <button onClick={handleNewPet} type="submit">
+      <button className="add-pet-button" onClick={handleNewPet} type="submit">
         Add Pet
       </button>
     </form>
