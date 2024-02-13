@@ -60,7 +60,7 @@ export default function PetListWidget({
           );
         })}
         {divClass === "poster-pet-widget" ? <></> : (<div className={`${divClass} add-new-pet`}>
-          <p onClick={() => setShowAddPetForm(true)}> + Add Pet</p>
+          <p className="add-new-pet-button" onClick={() => setShowAddPetForm(true)}> + Add Pet</p>
         </div>)}
         {showAddPetForm && (
           <div className="new-pet-modal">

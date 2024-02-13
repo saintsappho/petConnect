@@ -38,7 +38,7 @@ a:hover {
   z-index: 100;
 }*/
 
-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+/* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 
 .button {
   position: relative;
@@ -89,8 +89,27 @@ box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   top: 1px;
 }
 
-
 html {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  height: 100%;
+  position: relative; /* Ensure the positioning context for pseudo-element */
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://images.pexels.com/photos/207385/pexels-photo-207385.jpeg");
+  background-size: cover;
+  filter: blur(3px); /* Apply the blur effect */
+  z-index: -1; /* Ensure the pseudo-element stays behind content */
+}
+
+/* html {
   width: 100%;
   font-family: 'Poppins', sans-serif;
   height: 100%;
@@ -109,7 +128,7 @@ html {
 
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
-}
+} */
 
 @-webkit-keyframes slidein {
   from {
