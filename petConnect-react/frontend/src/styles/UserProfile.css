@@ -30,14 +30,15 @@ margin-bottom: 20px;
 .user-profile-header {
   padding: 1rem;
   padding-top: 1.4rem;
+  margin-right: 2rem;
   border-radius: 12px;
   border: 2px solid #cececea6;
   box-shadow: 0 0 10px #808080d1;
-  width: 45%;
+  width: 100%;
   background-color: #e6e6faec;
   display: block;
   margin-left: auto;
-  margin-right: auto;
+
 }
 
 .user-profile-body {
@@ -152,8 +153,17 @@ img.user-profile-image {
 
  .pet-points-profile-widget-ranking {
   color: brown;
+  padding-top:1rem;
+ }
+
+ .pet-points-profile-widget h3 {
+  margin-top: -12px;
  }
  
+ .pet-points-profile-widget h4 {
+  margin-top: -12px;
+ }
+
  .pet-points-profile-widget-content {
   line-height: 1;
  }
