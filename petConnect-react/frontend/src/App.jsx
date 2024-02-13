@@ -32,6 +32,7 @@ function App() {
   const [error, setError] = useState(null);
   const [petPoints, setPetPoints] = useState(0);
   const userId = user?.sub;
+
   const [achievements, setAchievements] = useState([
     { name: 'Visit the Vet', icon: '🏥', description: 'Checked in at the vet', completed: false, points: 25 },
     { name: 'Take a Selfie', icon: '📸', description: 'Take a selfie with your pet', completed: false, points: 15 },
@@ -174,7 +175,7 @@ function handleSetPetPoints(event, points) {
       {!user && <LoginButton className="login-button-login-page" />}
       {error && <p>Authentication Error</p>}
       {!error && user && (
-        <HomeRoute achievements={achievements} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+        <HomeRoute achievements={achievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
       )}
     </>
   )}

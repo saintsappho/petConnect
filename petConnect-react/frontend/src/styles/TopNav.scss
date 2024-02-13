@@ -1,6 +1,6 @@
 .top-nav-bar {
   position: fixed;
-  width: 96vw;
+  max-width: 90%;
   margin-top: 1rem;
   z-index: 0;
   display: flex;
@@ -63,7 +63,7 @@ form select {
 }
 
 .nav-dropdown-button {
-  margin-left: 88vw;
+  margin-left: 89vw;
   padding: .5rem;
   background:
   linear-gradient(to top, #e6e6fa, transparent 10%),
