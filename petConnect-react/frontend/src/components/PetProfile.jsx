@@ -9,11 +9,11 @@ export default function PetProfile({ selectedPet, user }) {
     return null;
   }
   const { location } = user;
-  const { pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, registration_date, profile_photo_url } = selectedPet;
+  const { pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, registration_date, image_file } = selectedPet;
   return (
     <div className="pet-profile-container">
       <div className="pet-profile-header">
-        <img className="pet-profile-image" src={profile_photo_url} alt="Pet Profile Picture" />
+        <img className="pet-profile-image" src={image_file} alt="Pet Profile Picture" />
         <h1 className="pet-profile-name">{pet_name}</h1>
         <h2>{location}</h2>
         <div className="pet-profile-buttons">

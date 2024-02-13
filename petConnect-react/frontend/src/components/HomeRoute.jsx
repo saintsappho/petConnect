@@ -19,7 +19,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
   const [fetchError, setFetchError] = useState(null);
 
     useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
-
+    console.log(user)
     return (
       <div className="HomeRoute">
         {create && <div className="overlay"></div>}

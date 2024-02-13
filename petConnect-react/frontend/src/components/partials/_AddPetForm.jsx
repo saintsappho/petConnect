@@ -3,8 +3,10 @@ import axios from "axios";
 import UploadWidget from "./newpost/_UploadWidget";
 
 // This component will be used to add a new pet to the database
-export default function AddPetForm() {
-  const [file, setFile] = useState(null); // [1
+export default function AddPetForm(props) {
+  const { handleNewPet } = props;
+  const [file, setFile] = useState(null); //
+  const [imgResult, setImgResult] = useState(null); //
   const [petData, setPetData] = useState({
     pet_name: "",
     species: "",
@@ -16,13 +18,21 @@ export default function AddPetForm() {
     diet: "",
     allergies: "",
     routines: "",
-    profile_photo_url: "",
+    user_id: 1,
+    image_file: "",
   });
   const handleInput = (event, key) => {
-    setPetData({
-      ...petData,
-      [key]: event.target.value,
-    });
+    if (key === "image_file") {
+      setPetData({
+        ...petData,
+        [key]: event,
+      });
+    } else {
+      setPetData({
+        ...petData,
+        [key]: event.target.value, // Use e.target.value for text inputs
+      });
+    }
   };
 
   const handleUpload = (file) => {
@@ -44,70 +54,149 @@ export default function AddPetForm() {
       <div>
         <label>
           Pet Name:
-          <input onKeyUp={()=>{handleInput(event, "pet_name")}} type="text" name="pet_name" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "pet_name");
+            }}
+            type="text"
+            name="pet_name"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Species:
-          <input onKeyUp={()=>{handleInput(event, "species")}} type="text" name="species" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "species");
+            }}
+            type="text"
+            name="species"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Age:
-          <input onKeyUp={()=>{handleInput(event, "age")}} type="number" name="age" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "age");
+            }}
+            type="number"
+            name="age"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Breed:
-          <input onKeyUp={()=>{handleInput(event, "breed")}} type="text" name="breed" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "breed");
+            }}
+            type="text"
+            name="breed"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           color:
-          <input onKeyUp={()=>{handleInput(event, "color")}} type="text" name="color" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "color");
+            }}
+            type="text"
+            name="color"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Sex:
-          <input onKeyUp={()=>{handleInput(event, "sex")}} type="text" name="sex" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "sex");
+            }}
+            type="text"
+            name="sex"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Medical Conditions:
-          <input onKeyUp={()=>{handleInput(event, "medical_conditions")}} type="text" name="medical_conditions" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "medical_conditions");
+            }}
+            type="text"
+            name="medical_conditions"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Diet:
-          <input onKeyUp={()=>{handleInput(event, "diet")}} type="text" name="diet" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "diet");
+            }}
+            type="text"
+            name="diet"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Allergies:
-          <input onKeyUp={()=>{handleInput(event, "allergies")}} type="text" name="allergies" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "allergies");
+            }}
+            type="text"
+            name="allergies"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Routines:
-          <input onKeyUp={()=>{handleInput(event, "routines")}} type="text" name="routines" required />
+          <input
+            onKeyUp={() => {
+              handleInput(event, "routines");
+            }}
+            type="text"
+            name="routines"
+            required
+          />
         </label>
       </div>
       <div>
         <label>
           Profile Photo:
-          <UploadWidget handlePostStateChange={handleInput} handleUpload={handleUpload}/>
+          {petData.image_file ? (
+            <img className="photo-post-preview" src={petData.image_file}></img>
+          ) : (
+            <UploadWidget
+              postState={petData}
+              setImgResult={setImgResult}
+              handlePostStateChange={handleInput}
+              handleUpload={handleUpload}
+            />
+          )}
         </label>
       </div>
-      <button onClick={console.log(petData)} type="submit">
+      <button onClick={handleNewPet} type="submit">
         Add Pet
       </button>
     </form>

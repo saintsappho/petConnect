@@ -1,5 +1,5 @@
 -- Seeds for Pets Table
-INSERT INTO pets (user_ID, pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, registration_date, profile_photo_url)
+INSERT INTO pets (user_ID, pet_name, species, age, breed, color, sex, medical_conditions, diet, allergies, routines, registration_date, image_file)
 VALUES
   (1, 'Tucker', 'Dog', 1.5, 'Golden Retriever', 'Golden', 'Male', 'None', 'Regular diet', 'None', 'Morning walks and evening playtime!', '2024-01-01', 'https://preview.redd.it/e47iub53dwi81.jpg?width=3024&format=pjpg&auto=webp&s=0745f945f31e2d9fa19b1fa68564f65032471c23'),
   (1, 'Shredder', 'Cat', 5, 'Siamese', 'Cream', 'Male', 'Asthma', 'Special diet', 'None', 'Indoor play and naps in the sun :)', '2024-01-02', 'https://catinaflat.blog/wp-content/uploads/2022/07/siamese-kitten.jpg'),
