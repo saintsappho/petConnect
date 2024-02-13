@@ -17,7 +17,9 @@ export default function PetPost(props) {
   const [comments, setComments] = useState([]);
   const [refreshComments, setRefreshComments] = useState(false);
   const [user, setUser] = useState([{}]);
-  const [inspect, setInspect] = useState(false);
+  const [inspect, setInspect] = useState([]);
+  const [inspectedUser, setInspectedUser] = useState([{}]);
+  const setModalContent = props.setModalContent;
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${

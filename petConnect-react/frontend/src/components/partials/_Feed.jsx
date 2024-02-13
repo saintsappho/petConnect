@@ -38,7 +38,7 @@ export default function Feed(props) {
   return (
     <div className="feed-container">
       {posts.reverse().map(
-        (post) => (<PetPost key={post.post_id} petPost={post} />),
+        (post) => (<PetPost setModalContent={props.setModalContent} key={post.post_id} petPost={post} />),
       )}
     </div>
   );
