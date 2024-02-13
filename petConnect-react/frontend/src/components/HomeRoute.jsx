@@ -11,12 +11,14 @@ import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
-export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, openCurrentUserModal, setPetData, achievements, setAchievements, closeModal, userId, handleSetPetPoints, petPoints, setPetPoints }) {
+export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, ranking, latestActivity, openCurrentUserModal, setPetData, achievements, setAchievements, closeModal, userId, handleSetPetPoints, petPoints, setPetPoints }) {
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user } = useAuth0();
   const [posts, setPosts] = useState([]);
   const [fetchError, setFetchError] = useState(null);
+  
+
   
   var animateButton = function (e) {
     e.preventDefault;
@@ -31,9 +33,8 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
     bubblyButtons[i].addEventListener('click', animateButton, false);
   }
 
-
     useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
-    // console.log(user)
+
     return (
       <div className="HomeRoute">
         {create && <div className="overlay"></div>}
