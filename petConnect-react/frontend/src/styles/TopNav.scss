@@ -54,7 +54,6 @@ form select {
   margin-right: 20px;
 }
 
-
 .nav-user-photo {
   width: 7rem;
   height: 7rem;
@@ -216,33 +215,6 @@ form select {
   }
 }
 
-// .add-new-pet {
-//   position: relative; 
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-top: -30px;
-//   margin-left: 27px;
-//   width: 60px;
-//   height: 60px;
-//   background-color: #4eb7ae;
-//   border: 2px solid #212020a6;
-//   border-radius: 50%;
-//   cursor: pointer;
-//   transition: all 0.5s ease-in-out;
-//   box-shadow: 0 0 9px #737373;
-
-//   &:hover {
-//     box-shadow: 0 0 25px rgb(255, 84, 0);
-//     transform: scale(1.1);
-//   }
-// }
-
-// .add-new-pet-button {
-//   background-color:#4eb7ae;
-//   border-radius: ;
-// }
-
 .add-pet-button {
   margin-left: 10px;
 }
@@ -270,7 +242,6 @@ form select {
   border: 1px solid #cececea6;
   transition: all 0.3s ease-in-out;
 }
-
 
 #pet-info-short {
   opacity: 0;
@@ -372,10 +343,6 @@ form select {
   z-index: 1;
   overflow-y: hidden; /* Hide horizontal scrollbar */
 }
-
-
-
-
 
 @media screen and (max-width: 1250px) { // Adjust mid-size screen
   .top-nav-bar__title {

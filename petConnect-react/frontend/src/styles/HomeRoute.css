@@ -24,7 +24,7 @@ color: grey;
 
 .title-card {
   position: fixed;
-  top: 4rem;
+  top: 8rem;
   left: 96rem;
   margin-top: 2rem;
   border-radius: 10px;
@@ -98,12 +98,6 @@ color: grey;
   margin-bottom: 1rem;
  }
 
- .nav-pet-widget.add-new-pet {
-  position: fixed;
-  margin-top: 0;
-  margin-left: 8px;
- }
-
 .overlay {
   position: fixed;
   top: 0;
@@ -129,7 +123,7 @@ color: grey;
 }
 
 .pet-points-feed-widget-content {
-  max-height: 28rem;
+  max-height: 35rem;
   overflow-y: hidden;
   overflow-x: hidden;
   padding-right: 1rem;
@@ -137,9 +131,9 @@ color: grey;
 
 .pet-points-feed-widget-background {
   position: sticky;
-  top: 11.5rem;
+  top: 15.5rem;
   width: 31%;
-  height: 36rem;
+  height: 40rem;
   padding-right: 2rem;
   margin-right: 9%;
   background:
@@ -180,10 +174,24 @@ color: grey;
 }
 
 .achievement-icon {
-  display: inline-block;
-  scale: 250%;
-  margin-right: 10rem;
+  position: absolute;
+  scale: 210%;
+  margin-right: 2rem;
   margin-bottom: -10px;
 }
 
+.achievement-title {
+  position: sticky;
+  margin-top: -4px;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.achievement-icon-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 1.5rem;
+}

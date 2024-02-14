@@ -52,15 +52,21 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
           <ul>
             {achievements.slice(0, 3).map((achievement, index) => (
               <li id="daily-challenge" key={index}>
-                <span className="achievement-icon">{achievement.icon}</span>
-                <div className="achievement-info">
-                  <h4>{achievement.name}</h4>
-                  <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
-                </div>
-                <button className="bubbly-button" onClick={() => handleComplete(index)}>
-                  {achievement.completed ? 'Completed!' : 'Complete Challenge'}
-                </button>
-              </li>
+  <div className="achievement-icon-title">
+    <div className="achievement-icon">
+      {achievement.icon}
+    </div>
+    <span className="achievement-title">
+      <h4>{achievement.name}</h4>
+    </span>
+  </div>
+  <div className="achievement-info">
+    <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
+  </div>
+  <button className="bubbly-button" onClick={() => handleComplete(index)}>
+    {achievement.completed ? 'Completed!' : 'Complete Challenge'}
+  </button>
+</li>
             ))}
           </ul>
         </div>
