@@ -23,7 +23,7 @@ export default function SearchUsers({ accessToken, onSearch }) {
   };
 
   return (
-    <div>
+    <div className="search-results-container">
       <input className="search_users"
         type="text"
         placeholder="Search Users"
@@ -32,12 +32,34 @@ export default function SearchUsers({ accessToken, onSearch }) {
       />
       <button className="search_user_button" onClick={handleSearchUsers}>Search For a New Friend!</button>
 
-      {searchedUsers.map((user) => (
-        <div key={user.id} onClick={() => onSearch(user)}>
-          {user.username}
-        </div>
-      ))}
+      <div className="search-results">
+        {searchedUsers.map((user) => (
+          <div key={user.id} onClick={() => onSearch(user)}>
+            {user.username}
+          </div>
+        ))}
+      </div>
       {error && <p>Error searching users: {error}</p>}
     </div>
   );
 }
+
+//   return (
+//     <div>
+//       <input className="search_users"
+//         type="text"
+//         placeholder="Search Users"
+//         value={searchQuery}
+//         onChange={(e) => setSearchQuery(e.target.value)}
+//       />
+//       <button className="search_user_button" onClick={handleSearchUsers}>Search For a New Friend!</button>
+
+//       {searchedUsers.map((user) => (
+//         <div key={user.id} onClick={() => onSearch(user)}>
+//           {user.username}
+//         </div>
+//       ))}
+//       {error && <p>Error searching users: {error}</p>}
+//     </div>
+//   );
+// }
