@@ -114,7 +114,7 @@ export default function Poll(props) {
 
   return (
     <div className="card">
-      <img id="pfp-thumb" src={user.profile_picture} alt="profile pic" />
+      {/* <img id="pfp-thumb" src={user.profile_picture} alt="profile pic" /> */}
       <figure className="card__thumb">
         <img
           src={randomImage()}

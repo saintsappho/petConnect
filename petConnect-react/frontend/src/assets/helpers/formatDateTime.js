@@ -3,7 +3,7 @@ export default function useFormatDateTime(datetimeString) {
   const originalDate = new Date(datetimeString);
 
   // Subtract 2 hours
-  const modifiedDate = new Date(originalDate.getTime() - 2 * 60 * 60 * 1000);
+  const modifiedDate = new Date(originalDate.getTime() + 22 * 60 * 60 * 1000);
 
   // Format the modified date
   const options = {
