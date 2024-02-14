@@ -92,7 +92,7 @@ export default function AddPostForm(props) {
 
   // destructure the postState for easier access
   const { style } = postState;
-
+  console.log("create from AddPostForm", create)
   return (
     <div className="new-post-panel">
       <button className="close" onClick={() => setCreate(!create)}>

@@ -34,23 +34,25 @@ export default function Forum(props) {
               <h4 className="forum__author">{user.username}</h4>
             </div>
             <div className="post-options">
-              {user.username === "Robin Fleur" && (
-                <button
-                  onClick={() => setAdminSettings(!adminSettings)}
-                  className="post-burger bubbly-button"
-                >
-                  &#8801;
-                </button>
-              )}
-              {adminSettings && (
-                <div className="post-options-buttons">
-                  <button className="edit-button bubbly-button">Edit</button>
-                  <DeleteButton
-                    handleDelete={handleDelete}
-                    postId={petPost.post_id}
-                  />
-                </div>
-              )}
+              <div className="post-options-buttons">
+                {user.username === "Robin Fleur" && (
+                  <button
+                    onClick={() => setAdminSettings(!adminSettings)}
+                    className="post-burger bubbly-button"
+                  >
+                    &#8801;
+                  </button>
+                )}
+                {adminSettings && (
+                  <>
+                    <button className="edit-button bubbly-button">Edit</button>
+                    <DeleteButton
+                      handleDelete={handleDelete}
+                      postId={petPost.post_id}
+                    />
+                  </>
+                )}
+              </div>
             </div>
           </div>
           <p className="forum__snippet">{petPost.content}</p>

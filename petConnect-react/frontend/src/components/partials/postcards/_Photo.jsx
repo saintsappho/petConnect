@@ -30,34 +30,36 @@ export default function Photo(props) {
           <h2 className="card__title">{petPost.title}</h2>
           <div className="card__buttons">
             <div onClick={handleInspect} className="user-details">
-            <img
-              src={user.profile_picture}
-              alt="profile picture"
-              className="user-profile-picture"
-            ></img>
-            <h4 className="card__author">{user.username}</h4>
-          </div>
-          <div className="post-options">
-            {user.username === "Robin Fleur" && (
-              <button
-                onClick={() => setAdminSettings(!adminSettings)}
-                className="post-burger bubbly-button"
-              >
-                &#8801;
-              </button>
-            )}
-            {adminSettings && (
+              <img
+                src={user.profile_picture}
+                alt="profile picture"
+                className="user-profile-picture"
+              ></img>
+              <h4 className="card__author">{user.username}</h4>
+            </div>
+            <div className="post-options">
               <div className="post-options-buttons">
-                <button className="edit-button bubbly-button">Edit</button>
-                <DeleteButton
-                  handleDelete={handleDelete}
-                  postId={petPost.post_id}
-                />
+                {user.username === "Robin Fleur" && (
+                  <button
+                    onClick={() => setAdminSettings(!adminSettings)}
+                    className="post-burger bubbly-button"
+                  >
+                    &#8801;
+                  </button>
+                )}
+                {adminSettings && (
+                  <>
+                    <button className="edit-button bubbly-button">Edit</button>
+                    <DeleteButton
+                      handleDelete={handleDelete}
+                      postId={petPost.post_id}
+                    />
+                  </>
+                )}
               </div>
-            )}
+            </div>
           </div>
-          </div>
-          
+
           <p className="card__snippet">{petPost.content}</p>
           {!form ? (
             <a onClick={() => setForm(!form)} className="card__button">

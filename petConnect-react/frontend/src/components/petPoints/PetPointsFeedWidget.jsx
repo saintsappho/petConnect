@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import XPBar from './XPBar';
 
-export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, user, achievements, setAchievements }) {
+export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, petPoints, user, create, achievements, setAchievements }) {
   const [ranking, setRanking] = useState('Bronze');
   const [latestActivity, setLatestActivity] = useState('Played fetch');
   const [loadingBarCompleted, setLoadingBarCompleted] = useState(0);
@@ -62,7 +62,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
                 <div className="achievement-info">
                   <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
                 </div>
-                <button className={`bubbly-button ${achievement.completed ? 'claimed' : ''}`} onClick={() => handleComplete(index)}>
+                <button className={`bubbly-button ${achievement.completed ? 'claimed' : ''}`} onClick={() => {setCreate(!create), handleComplete(index)}}>
                   {achievement.completed ? 'Claimed!' : 'Complete Challenge'}
                 </button>
               </li>

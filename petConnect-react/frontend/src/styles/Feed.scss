@@ -436,26 +436,24 @@ $desktop: 1024px;
 }
 .post-burger {
   position: sticky;
-  margin-left: 4.5rem;
-  margin-top: 1.5rem;
-  cursor: pointer;
-  &:hover {
-    color: #b4316c;
-  }
+ 
 }
 
 .post-options-buttons {
-  display: inline-block;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  color: white;
+  margin-left: 1rem;
+  margin-top: 1rem;
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 .delete-button,
 .edit-button {
   min-width: 100px;
+  
 }
 
 .card__image {

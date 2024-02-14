@@ -51,7 +51,7 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
     }, [user, onDelete])
 
 
-  
+  console.log("create from HomeRoute", create)
     // console.log(user)
     return (
       <div className="HomeRoute">
@@ -95,7 +95,7 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
         </div>
 
         <Feed hide={hide} onSuccess={handleDelete} posts={posts} showAddPetForm={showAddPetForm} setPosts={setPosts} error={fetchError} user={user}/>
-        <PetPointsFeedWidget latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
+        <PetPointsFeedWidget create={create} setCreate={setCreate} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
 
         <footer>
           <p>

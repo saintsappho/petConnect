@@ -40,7 +40,7 @@ export default function NewComment(props) {
           placeholder="Write a comment..."
         ></textarea>
       </div>
-      <button onClick={handleSubmit} type="submit" className="btn btn-primary">
+      <button onClick={handleSubmit} type="submit" className="bubbly-button">
         Submit
       </button>
     </form>
