@@ -13,10 +13,11 @@ export default function Forum(props) {
     handleComment,
     handleDelete,
     user,
+    form,
+    handleForm,
     handleShowComments,
     show,
   } = props;
-  const [form, setForm] = useState(false);
   const [adminSettings, setAdminSettings] = useState(false);
 
   return (
@@ -57,7 +58,7 @@ export default function Forum(props) {
           </div>
           <p className="forum__snippet">{petPost.content}</p>
           {!form ? (
-            <a onClick={() => setForm(!form)} className="forum__button">
+            <a onClick={handleForm} className="forum__button">
               Be Heard!
             </a>
           ) : (

@@ -53,6 +53,21 @@ export default function AddPetForm(props) {
     <form className="add-pet-form" onSubmit={handleSubmit}>
       <div>
         <label>
+          Profile Photo:
+          {petData.image_file ? (
+            <img className="photo-post-preview" src={petData.image_file}></img>
+          ) : (
+            <UploadWidget
+              postState={petData}
+              setImgResult={setImgResult}
+              handlePostStateChange={handleInput}
+              handleUpload={handleUpload}
+            />
+          )}
+        </label>
+      </div>
+      <div>
+        <label>
           Pet Name:
           <input
             onKeyUp={() => {
@@ -201,22 +216,11 @@ export default function AddPetForm(props) {
         </label>
         <div className="underline"></div>
       </div>
-      <div>
-        <label>
-          Profile Photo:
-          {petData.image_file ? (
-            <img className="photo-post-preview" src={petData.image_file}></img>
-          ) : (
-            <UploadWidget
-              postState={petData}
-              setImgResult={setImgResult}
-              handlePostStateChange={handleInput}
-              handleUpload={handleUpload}
-            />
-          )}
-        </label>
-      </div>
-      <button className="add-pet-button bubbly-button" onClick={handleNewPet} type="submit">
+      <button
+        className="add-pet-button bubbly-button"
+        onClick={handleNewPet}
+        type="submit"
+      >
         Add Pet
       </button>
     </form>

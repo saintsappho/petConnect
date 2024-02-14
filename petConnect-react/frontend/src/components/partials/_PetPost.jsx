@@ -16,7 +16,7 @@ import Modal from "../modals/Modal.jsx";
 export default function PetPost(props) {
   const { petPost, handleDelete } = props;
   const [comments, setComments] = useState([]);
-  const [refreshComments, setRefreshComments] = useState([]);
+  const [refreshComments, setRefreshComments] = useState(0);
   const [user, setUser] = useState({});
   const [inspect, setInspect] = useState(false);
   const [form, setForm] = useState(false);
@@ -68,72 +68,82 @@ export default function PetPost(props) {
       });
   }, []);
 
-  useEffect(() => {
-    // setComments
-    axios
-      .get(`http://localhost:8080/comments/${petPost.post_id}`)
-      .then(async (commentsRes) => {
-        const commentPromises = commentsRes.data.map(async (comment) => {
-          try {
-            const userRes = await axios.get(
-              `http://localhost:8080/users/${comment.user_id}`,
-            );
-            const user = userRes.data;
-            return (
-              <div className="comment-thread">
-                <div className="comment" key={comment.comment_id}>
-                  <div className="comment-heading">
-                    <div className="comment-voting">
-                      <button type="button">
-                        <span aria-hidden="true">&#9650;</span>
-                        <span className="sr-only"></span>
-                      </button>
-                      <button type="button">
-                        <span aria-hidden="true">&#9660;</span>
-                        <span className="sr-only"></span>
-                      </button>
-                    </div>
-                    <div className="comment-info">
-                      <div onClick={handleInspect} className="user-details">
-                        <img
-                          src={user[0].profile_picture}
-                          alt="profile picture"
-                          className="user-profile-picture"
-                        ></img>
-                        <h4 className="comment__author">{user[0].username}</h4>
-                      </div>
-                      <p className="m-0">
-                        {getRandomNumberUpTo15()} points &bull;{" "}
-                        {useFormatDateTime(comment.registration_date)}
-                      </p>
-                    </div>
+  const fetchCommentsWithUsers = async (postId) => {
+    try {
+      const commentsRes = await axios.get(
+        `http://localhost:8080/comments/${postId}`,
+      );
+      const commentPromises = commentsRes.data.map(async (comment) => {
+        try {
+          const userRes = await axios.get(
+            `http://localhost:8080/users/${comment.user_id}`,
+          );
+          const user = userRes.data;
+          return (
+            <div className="comment-thread">
+              <div className="comment" key={comment.comment_id}>
+                <div className="comment-heading">
+                  <div className="comment-voting">
+                    <button type="button">
+                      <span aria-hidden="true">&#9650;</span>
+                      <span className="sr-only"></span>
+                    </button>
+                    <button type="button">
+                      <span aria-hidden="true">&#9660;</span>
+                      <span className="sr-only"></span>
+                    </button>
                   </div>
-
-                  <div className="comment-body">
-                    <p>{comment.content}</p>
-                    <button type="button">Reply</button>
-                    <button type="button">Flag</button>
+                  <div className="comment-info">
+                    <div onClick={handleInspect} className="user-details">
+                      <img
+                        src={user[0].profile_picture}
+                        alt="profile picture"
+                        className="user-profile-picture"
+                      ></img>
+                      <h4 className="comment__author">{user[0].username}</h4>
+                    </div>
+                    <p className="m-0">
+                      {getRandomNumberUpTo15()} points &bull;{" "}
+                      {useFormatDateTime(comment.registration_date)}
+                    </p>
                   </div>
                 </div>
-              </div>
-            );
-          } catch (error) {
-            console.error(
-              `Error fetching user for comment ${comment.comment_id}:`,
-              error.message,
-            );
-            return null; // Handle the case where user information cannot be fetched
-          }
-        });
 
-        Promise.all(commentPromises).then((commentsWithUsers) => {
-          setComments(commentsWithUsers.filter((comment) => comment !== null));
-        });
+                <div className="comment-body">
+                  <p>{comment.content}</p>
+                  <button type="button">Reply</button>
+                  <button type="button">Flag</button>
+                </div>
+              </div>
+            </div>
+          );
+        } catch (error) {
+          console.error(
+            `Error fetching user for comment ${comment.comment_id}:`,
+            error.message,
+          );
+          return null;
+        }
       });
+
+      const commentsWithUsers = await Promise.all(commentPromises);
+      return commentsWithUsers.filter((comment) => comment !== null);
+    } catch (error) {
+      console.error(`Error fetching comments:`, error.message);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const comments = await fetchCommentsWithUsers(petPost.post_id);
+      setComments(comments);
+    };
+    fetchData();
   }, [refreshComments]);
 
   const handleComment = () => {
-    setRefreshComments(...(refreshComments + 1));
+    setRefreshComments((prev) => prev++); //increment state to trigger useEffect
     setForm(false);
   };
   const handleForm = () => {

@@ -50,8 +50,6 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
       });
     }, [user, onDelete])
 
-
-  console.log("create from HomeRoute", create)
     // console.log(user)
     return (
       <div className="HomeRoute">
