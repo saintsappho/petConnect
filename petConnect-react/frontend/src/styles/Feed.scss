@@ -422,15 +422,26 @@ $desktop: 1024px;
   }
 }
 
+
 .post-burger {
   position: sticky;
-
   border-radius: 10px;
-  max-height: 1.6rem;
-  width: 2rem;
-  margin-left: -5rem;
-  margin-top: 1.6rem;
+  max-height: 1.8rem;
+  width: 2.5rem;
+  margin-left: -4.5rem;
+  margin-top: 1.8rem;
+  background: #e6e6fa;
+  border: 1px solid #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  color: black;
 
+&:hover {
+  color: #b4316c; 
+}
 }
 
 .post-options-buttons {
