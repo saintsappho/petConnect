@@ -116,6 +116,7 @@ function App() {
 
   function handleAddNewPet(event) {
     event.preventDefault();
+    addPoints(10);
     setModalContent(<AddPetForm onSubmit={handleAddPet} />);
     openModal(event);
   }
@@ -142,6 +143,11 @@ function handleSetPetPoints(event, points) {
   setPetPoints(points);
 }
 
+// create a function that can be added to any component to add points to petPoints and takes in point value as props
+const addPoints = (points) => {
+  setPetPoints(petPoints + points);
+}
+
   // logic for opening user profile modal
 
   const openCurrentUserModal = (event) => {
@@ -149,12 +155,13 @@ function handleSetPetPoints(event, points) {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 
   const openModal = (event) => {
     event.preventDefault();
+    addPoints(10);
     setModal(true);
   };
 
@@ -176,7 +183,7 @@ function handleSetPetPoints(event, points) {
       {!user && <LoginButton className="login-button-login-page" />}
       {error && <p>Authentication Error</p>}
       {!error && user && (
-        <HomeRoute showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={{ranking, setRanking}} latestActivity={{latestActivity, setLatestActivity}} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+        <HomeRoute latestActivity={latestActivity} setLatestActivity={setLatestActivity} showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={{ranking, setRanking}} latestActivity={{latestActivity, setLatestActivity}} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
       )}
     </>
   )}

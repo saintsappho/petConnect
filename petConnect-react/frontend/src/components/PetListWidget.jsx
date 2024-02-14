@@ -16,7 +16,6 @@ export default function PetListWidget({
   const [refreshPets, setRefreshPets] = useState(false);
   const [filteredPets, setFilteredPets] = useState([]);
 
-
   function handlePetSelect(pet) {
     setSelectedPet(selectedPet === pet ? null : pet);
   }
