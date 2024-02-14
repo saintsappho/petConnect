@@ -13,7 +13,7 @@ export default function DeleteButton(props) {
         console.log('Post deleted successfully', response.data);
         setShowConfirmation(false);
         if (onSuccess) {
-          onSuccess(response.data);
+          onSuccess();
         }
       })
       .catch((error) => {
