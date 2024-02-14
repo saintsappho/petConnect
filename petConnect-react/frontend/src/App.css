@@ -115,7 +115,7 @@ html {
   height: 100%;
   top: 0;
   left: 0;
-  background-image: url("https://images.pexels.com/photos/207385/pexels-photo-207385.jpeg");
+  background-image: url("../src/assets/pexels-pixabay-207385.jpg");
   background-attachment: fixed;
   -webkit-animation: slidein 100s;
   animation: slidein 100s;
