@@ -55,7 +55,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
                 <span className="achievement-icon">{achievement.icon}</span>
                 <div className="achievement-info">
                   <h4>{achievement.name}</h4>
-                  <p>{achievement.description}</p>
+                  <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
                 </div>
                 <button onClick={() => handleComplete(index)}>
                   {achievement.completed ? 'Completed!' : 'Complete Challenge'}

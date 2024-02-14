@@ -91,6 +91,12 @@ color: grey;
   margin-top: 1rem;
  }
 
+ .nav-pet-widget {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+ }
 
 .overlay {
   position: fixed;
@@ -154,7 +160,7 @@ color: grey;
   margin-bottom: 0;
 }
 
-#daily-challenge p {
+.pet-points-feed-widget-achievement-description {
   margin-top: -2px;
   margin-bottom: 0;
 }
