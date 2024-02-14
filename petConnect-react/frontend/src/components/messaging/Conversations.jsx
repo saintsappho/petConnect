@@ -89,10 +89,11 @@ const filteredConversations = conversations?.filter(conversation =>
 
 return (
   <div className="conversations">
-    <div className="message_search">
+    <div className="filter-box">
       <SearchUsers accessToken={accessToken} onSearch={handleSearch} />
       <input
         type="text"
+        className="filter-input"
         placeholder="Filter Conversation"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}

@@ -23,16 +23,16 @@ $desktop: 1024px;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	width: 125%;
+	width: 68%;
 	margin: 20px 0 80px;
-  margin-left: 8rem;
+  margin-left: 6.5rem;
   padding-top: 6rem;
 }
 
 .card {
-	width: 440px;
+	width: 374px;
   border-radius: 10px;
-	margin: 10px;
+	margin: 8px;
 	background-color: #e6e6fa;
   opacity: .9;
 	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
@@ -64,6 +64,8 @@ $desktop: 1024px;
 		position: relative;
 		max-height: 400px;
 		overflow: hidden;
+    margin-right: 18px;
+    margin-left: 18px;
 		
 		@include breakpoint(desktop) {
 			max-height: 500px;
@@ -424,3 +426,26 @@ $desktop: 1024px;
   position: absolute;
   margin-left: -5rem;
 }
+
+.card__image {
+  width: 22.5rem;
+}
+
+.calendar_modal {
+  width: 90%;
+}
+
+.calendar_modal_content {
+  display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+  opacity: .9;
+  max-width: 445px;
+  max-height: 508px;
+}
+
+

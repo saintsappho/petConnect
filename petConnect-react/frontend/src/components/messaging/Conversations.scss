@@ -27,7 +27,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 15px;
-  margin-left: 5px;
+  margin-left: -20px;
   width: 100%;
   cursor: pointer;
 }
@@ -88,10 +88,32 @@ img.user_profile_image_msg {
   color: red;
 }
 
-// .conversations-container:hover .delete_button {
-//   display: inline-block;
-//   color: black;
-// }
+.search-results-container {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.search_users {
+  height: 30px;
+  width: 250px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(60, 59, 59);
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+.filter-box {
+  margin-bottom: 15px;
+}
+
+.filter-input {
+  background-color: transparent;
+  padding: 4px;
+  border: 1px solid rgb(60, 59, 59);
+  border-radius: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
 
 
 /* Tablet and mobile layout*/
