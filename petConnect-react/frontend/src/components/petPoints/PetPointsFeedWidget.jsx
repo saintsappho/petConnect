@@ -47,7 +47,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
               <XPBar key={idx} bgcolor={item.bgcolor} completed={item.completed} />
             ))}</div>
           </div>
-          <button onClick={(event) => handleSetPetPoints(event, 10)}>Claim Daily Login!</button>
+          <button className="bubbly-button" onClick={(event) => handleSetPetPoints(event, 10)}>Claim Daily Login!</button>
           <h2>Daily Adventures:</h2>
           <ul>
             {achievements.slice(0, 3).map((achievement, index) => (
@@ -57,7 +57,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
                   <h4>{achievement.name}</h4>
                   <p>{achievement.description}</p>
                 </div>
-                <button onClick={() => handleComplete(index)}>
+                <button className="bubbly-button" onClick={() => handleComplete(index)}>
                   {achievement.completed ? 'Completed!' : 'Complete Challenge'}
                 </button>
               </li>

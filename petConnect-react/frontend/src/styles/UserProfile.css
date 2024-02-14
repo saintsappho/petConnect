@@ -140,6 +140,8 @@ img.user-profile-image {
  
  .pet-points-profile-widget h4 {
   margin-top: -12px;
+  min-height: 700px;
+  max-height: 700px;
  }
 
  .pet-points-profile-widget-content {
