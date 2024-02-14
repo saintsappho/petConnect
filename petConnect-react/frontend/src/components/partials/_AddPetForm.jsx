@@ -59,10 +59,12 @@ export default function AddPetForm(props) {
               handleInput(event, "pet_name");
             }}
             type="text"
+            className="input-data textarea"
             name="pet_name"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -72,10 +74,12 @@ export default function AddPetForm(props) {
               handleInput(event, "species");
             }}
             type="text"
+            className="input-data textarea"
             name="species"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -85,10 +89,12 @@ export default function AddPetForm(props) {
               handleInput(event, "age");
             }}
             type="number"
+            className="input-data textarea"
             name="age"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -98,10 +104,12 @@ export default function AddPetForm(props) {
               handleInput(event, "breed");
             }}
             type="text"
+            className="input-data textarea"
             name="breed"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -111,10 +119,12 @@ export default function AddPetForm(props) {
               handleInput(event, "color");
             }}
             type="text"
+            className="input-data textarea"
             name="color"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -124,10 +134,12 @@ export default function AddPetForm(props) {
               handleInput(event, "sex");
             }}
             type="text"
+            className="input-data textarea"
             name="sex"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -137,10 +149,12 @@ export default function AddPetForm(props) {
               handleInput(event, "medical_conditions");
             }}
             type="text"
+            className="input-data textarea"
             name="medical_conditions"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -150,10 +164,12 @@ export default function AddPetForm(props) {
               handleInput(event, "diet");
             }}
             type="text"
+            className="input-data textarea"
             name="diet"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -163,10 +179,12 @@ export default function AddPetForm(props) {
               handleInput(event, "allergies");
             }}
             type="text"
+            className="input-data textarea"
             name="allergies"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -176,10 +194,12 @@ export default function AddPetForm(props) {
               handleInput(event, "routines");
             }}
             type="text"
+            className="input-data textarea"
             name="routines"
             required
           />
         </label>
+        <div className="underline"></div>
       </div>
       <div>
         <label>
@@ -196,7 +216,7 @@ export default function AddPetForm(props) {
           )}
         </label>
       </div>
-      <button className="add-pet-button" onClick={handleNewPet} type="submit">
+      <button className="add-pet-button bubbly-button" onClick={handleNewPet} type="submit">
         Add Pet
       </button>
     </form>
