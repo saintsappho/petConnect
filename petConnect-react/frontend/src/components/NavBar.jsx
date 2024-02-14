@@ -4,7 +4,7 @@ import LogoutButton from "./Logout";
 import PetListWidget from "./PetListWidget.jsx";
 import DirectMessages from "./DirectMessages";
 
-export default function Navbar({ petData, openCurrentUserModal, user, userId, accessToken, showAddPetForm, setShowAddPetForm }) {
+export default function Navbar({ handleHide, petData, openCurrentUserModal, user, userId, accessToken, showAddPetForm, setShowAddPetForm }) {
   const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
@@ -54,7 +54,7 @@ export default function Navbar({ petData, openCurrentUserModal, user, userId, ac
 
     </nav>
     <div className="pet-list-container"> 
-    <PetListWidget setShowAddPetForm={setShowAddPetForm} showAddPetForm={showAddPetForm} user={user} petData={petData} listPayload="currentUser" userId={userId} divClass="nav-pet-widget"/>
+    <PetListWidget handleHide={handleHide} setShowAddPetForm={setShowAddPetForm} showAddPetForm={showAddPetForm} user={user} petData={petData} listPayload="currentUser" userId={userId} divClass="nav-pet-widget"/>
     </div>
     {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
     </>

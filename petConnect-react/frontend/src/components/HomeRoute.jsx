@@ -18,9 +18,14 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
   const [posts, setPosts] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [onDelete, setOnDelete] = useState(false);
+  const [hide, setHide] = useState(false);
   
   const handleDelete = () => {
     setOnDelete(!onDelete);
+  };
+
+  const handleHide = () => {
+    setHide(!hide);
   };
   
   var animateButton = function (e) {
@@ -63,6 +68,7 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
               openCurrentUserModal={openCurrentUserModal}
               setShowAddPetForm={setShowAddPetForm}
               showAddPetForm={showAddPetForm}
+              handleHide={handleHide}
             />
           )}
         </header>
@@ -88,7 +94,7 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
           )}
         </div>
 
-        <Feed onSuccess={handleDelete} posts={posts} showAddPetForm={showAddPetForm} setPosts={setPosts} error={fetchError} user={user}/>
+        <Feed hide={hide} onSuccess={handleDelete} posts={posts} showAddPetForm={showAddPetForm} setPosts={setPosts} error={fetchError} user={user}/>
         <PetPointsFeedWidget latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
 
         <footer>

@@ -29,6 +29,17 @@ $desktop: 1024px;
   padding-top: 6rem;
 }
 
+.hide {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 68.5%;
+	margin: 20px 0 80px;
+  margin-left: 6.5rem;
+  padding-top: 6rem;
+  z-index: -1;
+}
+
 .card {
 	width: 374px;
   border-radius: 10px;

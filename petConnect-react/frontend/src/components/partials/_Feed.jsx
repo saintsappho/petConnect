@@ -8,7 +8,7 @@ import PetPost from "./_PetPost.jsx";
 import { List } from "@chakra-ui/react";
 // hooks
 
-export default function Feed({ user, posts, error, handleDelete, showAddPetForm }) {
+export default function Feed({ user, posts, error, handleDelete, showAddPetForm, hide }) {
 
   //still NO IDEA why this is flipping the order of the posts
   //happens whenever i open new post form
@@ -46,7 +46,7 @@ posts.forEach((post) => {
   }
 
   return (
-    <div className="feed-container">
+    <div className={hide ? "hide" : "feed-container"}>
       {mapPosts}
     </div>
   );
