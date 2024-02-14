@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useInsertionEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import useFetchData from "../hooks/useFetchData";
 import LoginButton from "./Login";
 import NewPost from "./partials/newpost/_NewPost";
 import Feed from "./partials/_Feed";
-import NavBar from "./NavBar"
-import useFetchData from "../hooks/useFetchData";
+import NavBar from "./NavBar";
 import PetPointsFeedWidget from "./petPoints/PetPointsFeedWidget";
 import "../styles/TopNav.scss";
 import "../styles/BubblyButton.scss";
@@ -17,8 +17,11 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, r
   const { isLoading, error, user } = useAuth0();
   const [posts, setPosts] = useState([]);
   const [fetchError, setFetchError] = useState(null);
+  const [onDelete, setOnDelete] = useState(false);
   
-
+  const handleDelete = () => {
+    setOnDelete(!onDelete);
+  };
   
   var animateButton = function (e) {
     e.preventDefault;
@@ -33,10 +36,17 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, r
     bubblyButtons[i].addEventListener('click', animateButton, false);
   }
 
-  useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
-  useEffect(() => {
-    setPosts(posts.reverse())
-  })
+  
+  useEffect(() => { // setPetData dynamically, available for refreshing
+    fetch("http://localhost:8080/posts")
+      .then((response) => response.json())
+      .then((data) => {
+        setPosts(data);
+      });
+    }, [user, onDelete])
+
+
+  
     // console.log(user)
     return (
       <div className="HomeRoute">
@@ -76,7 +86,7 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, r
           )}
         </div>
 
-        <Feed posts={posts} setPosts={setPosts} error={fetchError} user={user}/>
+        <Feed onSuccess={handleDelete} posts={posts} setPosts={setPosts} error={fetchError} user={user}/>
         <PetPointsFeedWidget achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
 
         <footer>

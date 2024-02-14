@@ -11,20 +11,20 @@ import Text from "./postcards/_Text.jsx";
 import axios from "axios";
 import useFormatDateTime from "../../assets/helpers/formatDateTime.js";
 import PosterProfile from "../PosterProfile.jsx";
-import Modal from '../modals/Modal.jsx';
+import Modal from "../modals/Modal.jsx";
+import DeleteButton from "./buttons/_DeleteButton.jsx";
 
 export default function PetPost(props) {
-  const { petPost } = props;
+  const { petPost, handleDelete } = props;
   const [comments, setComments] = useState([]);
-  const [refreshComments, setRefreshComments] = useState(false);
+  const [refreshComments, setRefreshComments] = useState([]);
   const [user, setUser] = useState({});
   const [inspect, setInspect] = useState(false);
   const [form, setForm] = useState(false);
   const [petData, setPetData] = useState([]);
   const [modal, setModal] = useState(false);
-  const [modalContent, setModalContent] = useState([]); 
+  const [modalContent, setModalContent] = useState([]);
   const [adminSettings, setAdminSettings] = useState(false);
-
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -38,7 +38,7 @@ export default function PetPost(props) {
   };
   const closeModal = (event) => {
     event.preventDefault();
-    console.log('closing modal');
+    console.log("closing modal");
     setModalContent([]);
     setModal(false);
   };
@@ -49,19 +49,20 @@ export default function PetPost(props) {
     openModal(event);
   };
 
-  
   function getRandomNumberUpTo15() {
     return Math.floor(Math.random() * 16);
   }
 
-  useEffect(() => { // setUser
+  useEffect(() => {
+    // setUser
     axios
       .get(`http://localhost:8080/users/${petPost.user_id}`)
       .then((response) => {
         setUser(response.data[0]);
       });
   }, []);
-  useEffect(() => { // setPetData
+  useEffect(() => {
+    // setPetData
     axios
       .get(`http://localhost:8080/pets/${petPost.user_id}`)
       .then((response) => {
@@ -69,7 +70,8 @@ export default function PetPost(props) {
       });
   }, []);
 
-  useEffect(() => { // setComments
+  useEffect(() => {
+    // setComments
     axios
       .get(`http://localhost:8080/comments/${petPost.post_id}`)
       .then(async (commentsRes) => {
@@ -133,25 +135,36 @@ export default function PetPost(props) {
   }, [refreshComments]);
 
   const handleComment = () => {
-    setRefreshComments(!refreshComments);
-    setForm(false)
+    setRefreshComments(... refreshComments + 1);
+    setForm(false);
   };
   const handleForm = () => {
     setForm(!form);
-  }
+  };
 
   return (
     <>
       {modal && (
-          <Modal
-            modal={modal}
-            content={modalContent}
-            closeModal={closeModal}
-          />
-        )}
+        <Modal modal={modal} content={modalContent} closeModal={closeModal} />
+      )}
       <div className="post-options">
-        {user.username === 'Robin Fleur'  && ( <button onClick={()=> setAdminSettings(!adminSettings)} className="post-burger">&#8801;</button>)}
-        {adminSettings && (<div className="post-options-buttons"><button className="edit-button">Edit</button><button className="delete-button">Delete</button></div>)}
+        {user.username === "Robin Fleur" && (
+          <button
+            onClick={() => setAdminSettings(!adminSettings)}
+            className="post-burger"
+          >
+            &#8801;
+          </button>
+        )}
+        {adminSettings && (
+          <div className="post-options-buttons">
+            <button className="edit-button">Edit</button>
+            <DeleteButton
+              handleDelete={handleDelete}
+              postId={petPost.post_id}
+            />
+          </div>
+        )}
       </div>
       {petPost.style === "text-post" && (
         <Text

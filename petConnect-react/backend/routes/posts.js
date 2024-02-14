@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { deletePostByID } = require("../db/queries/deletes/deletePost"
+)
 const { getPosts, getPostByID } = require("../db/queries/gets/getPosts");
 const { newPost } = require("../db/queries/posts/newPost");
 
@@ -30,6 +32,27 @@ router.post("/", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Failed to create Post");
+  }
+});
+
+router.delete("/:postId/delete", async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    
+    // Check if the post with the given ID exists before attempting deletion
+    const existingPost = await getPostByID(postId);
+    
+    if (!existingPost || existingPost.length === 0) {
+      return res.status(404).json({ error: "Post not found" });
+    }
+
+    // Delete the post by ID
+    const deletedPost = await deletePostByID(postId);
+
+    res.status(200).json({ message: "Post deleted successfully", deletedPost });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Failed to delete post");
   }
 });
 
