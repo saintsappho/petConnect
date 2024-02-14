@@ -50,19 +50,14 @@ color: grey;
 }
 
 .pet-points-feed-widget {
-  position: relative;
-  margin-top: 1rem;
+  position: sticky;
   border-radius: 12px;
   background-color: #e6e6fa;
-  background-image: ;
   display: flex;
   flex-direction: column;
   max-height: 34rem;
-  width: 77%;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  flex-shrink: 1;
-  margin-left: 1.1rem;
 }
 
 .pet-points-feed-widget h1 {
@@ -124,18 +119,17 @@ color: grey;
 
 .pet-points-feed-widget-content {
   max-height: 35rem;
+  max-width: 98%;
   overflow-y: hidden;
   overflow-x: hidden;
-  padding-right: 1rem;
 }
 
 .pet-points-feed-widget-background {
   position: sticky;
   top: 15.5rem;
-  width: 31%;
   height: 40rem;
-  padding-right: 2rem;
-  margin-right: 9%;
+  right: 9.5%;
+  padding: .7rem;
   background:
   linear-gradient(to top, #e6e6fa, transparent 10%),
   linear-gradient(to bottom, #e6e6fa, transparent 5%),
@@ -166,32 +160,30 @@ color: grey;
 }
 
 #daily-challenge button {
-  margin-top: -30px;
+  margin-top: 2px;
   margin-bottom: 1rem;
+  width: 8rem;
+  height: 3rem;
   color:black;
   background-color: #4eb7ae;
   border-radius: 12px;;
 }
 
 .achievement-icon {
-  position: absolute;
   scale: 210%;
-  margin-right: 2rem;
   margin-bottom: -10px;
 }
 
 .achievement-title {
-  position: sticky;
   margin-top: -4px;
-  margin-left: 2rem;
+  margin-left: 16px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+
 }
 
 .achievement-icon-title {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   margin-left: 1.5rem;
 }
