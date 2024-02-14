@@ -183,7 +183,7 @@ const addPoints = (points) => {
       {!user && <LoginButton className="login-button-login-page" />}
       {error && <p>Authentication Error</p>}
       {!error && user && (
-        <HomeRoute latestActivity={latestActivity} setLatestActivity={setLatestActivity} showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={{ranking, setRanking}} latestActivity={{latestActivity, setLatestActivity}} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
+        <HomeRoute setLatestActivity={setLatestActivity} showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={{ranking, setRanking}} latestActivity={{latestActivity, setLatestActivity}} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
       )}
     </>
   )}
