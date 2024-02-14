@@ -3,12 +3,22 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import PetListWidget from "./PetListWidget";
+import DirectMessages from "./DirectMessages";
 import "../styles/PosterProfile.scss";
 
-export default function PosterProfile({ user }) {
+export default function PosterProfile({ user, userId, accessToken }) {
   const { isAuthenticated, isLoading } = useAuth0();
   const [petData, setPetData] = useState([]);
+  const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
   const listPayload = "currentUser";
+
+  // Opens and closes the direct messages modal
+  const openDirectMessages = () => {
+    setDirectMessagesOpen(true);
+  };
+  const closeDirectMessages = () => {
+    setDirectMessagesOpen(false);
+  };
 
   useEffect(() => {
     fetch(`http://localhost:8080/pets/${user.user_id}`)
@@ -59,14 +69,15 @@ export default function PosterProfile({ user }) {
                     </button>
                   </td>
                   <td>
-                    <button
+                    <button id="messageButton" onClick={openDirectMessages}>Message</button>
+                    {/* <button
                       id="messageButton"
                       onClick={() => {
                         console.log("message");
                       }}
                     >
                       Message
-                    </button>
+                    </button> */}
                   </td>
                 </tr>
               </thead>
@@ -89,6 +100,7 @@ export default function PosterProfile({ user }) {
             </div>
           </div>
         </div>
+        {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />}
       </div>
     )
   );

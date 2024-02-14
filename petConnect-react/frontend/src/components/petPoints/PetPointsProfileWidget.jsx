@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, achievements }) {
-  const [ranking, setRanking] = useState('Bronze');
-  const [latestActivity, setLatestActivity] = useState('Played fetch');
+export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, achievements, ranking, latestActivity, setLatestActivity }) {
+  useEffect(() => {
+    const lastCompletedAchievement = [...achievements].reverse().find(achievement => achievement.completed);
+    if (lastCompletedAchievement) {
+      setLatestActivity(lastCompletedAchievement.name);
+    }
+  }, [achievements]);
 
   return (
     <div className="pet-points-profile-widget">
@@ -27,5 +31,4 @@ export default function PetPointsProfileWidget({ handleSetPetPoints, petPoints, 
       </div>
     </div>
   )
-  
-            }
+}

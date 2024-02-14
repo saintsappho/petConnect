@@ -46,7 +46,7 @@ export default function UploadWidget(props) {
         onClick={() => {
           widgetRef.current.open();
         }}
-        className="submit bubbly-button"
+        className="submit bubbly-button upload-image-button"
       >
         Upload Image
       </button>}

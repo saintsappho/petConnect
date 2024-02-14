@@ -80,6 +80,7 @@ form select {
 }
 
 .pet-list-container {
+  position: fixed;
   padding-left: 5px;
   padding-top: 9rem;
   position: fixed;
@@ -105,39 +106,160 @@ form select {
     transition: all 0.3s ease-in;
 }
 
+.new-pet-modal {
+  position: absolute;
+  top: 30%;
+  left: calc(100% + 100px);
+  transform: translateX(-50%);
+  z-index: 99999;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 400px; 
+}
+.new-pet-modal-content {
+  width: 100%;
+}
+.new-pet-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+//button
 .add-new-pet {
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
+  margin-left: 15px;
+  // width: 50px;
+  // height: 50px;
+  background-color: #4eb7ae;
+  border: 2px solid #212020a6;
   border-radius: 50%;
-  background-color: #e6e6fa;
-  height: 5rem; 
-  width: 5rem;
-  margin-left: 8px;
-  margin-top: 12px;
-  object-fit: cover;
-  border: 2px solid #cececea6;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
   box-shadow: 0 0 9px #737373;
 
+  /* Button styles */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(to bottom, hotpink 0%, tomato 100%);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
+  border-radius: 50%;
+  text-decoration: none;
+  color: white;
+
+  /* Hover effect */
   &:hover {
-    box-shadow: 0 0 25px rgb(255, 84, 0);/* Adds a shadow */
-    transform: scale(1.2);
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 25px rgb(255, 84, 0);
+    transform: scale(1.1);
   }
+}
+
+.add-new-pet::before {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: black;
+  opacity: 0;
+  animation: pulse 1s infinite;
+}
+
+.add-new-pet:hover::before {
+  animation: none;
+  opacity: .4;
+  transform: scale(1.3);
+}
+
+.add-new-pet.is-clicked {
+  background: linear-gradient(to bottom, gray 0%, dimgray 100%);
+}
+
+.add-new-pet.is-clicked:before {
+  animation: blastOut 1s;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: .4;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes blastOut {
+  from {
+    transform: scale(0.9);
+    opacity: .4;
+  }
+  to {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+// .add-new-pet {
+//   position: relative; 
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: -30px;
+//   margin-left: 27px;
+//   width: 60px;
+//   height: 60px;
+//   background-color: #4eb7ae;
+//   border: 2px solid #212020a6;
+//   border-radius: 50%;
+//   cursor: pointer;
+//   transition: all 0.5s ease-in-out;
+//   box-shadow: 0 0 9px #737373;
+
+//   &:hover {
+//     box-shadow: 0 0 25px rgb(255, 84, 0);
+//     transform: scale(1.1);
+//   }
+// }
+
+// .add-new-pet-button {
+//   background-color:#4eb7ae;
+//   border-radius: ;
+// }
+
+.add-pet-button {
+  margin-left: 10px;
+}
+
+.upload-image-button {
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .add-pet-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;  
+  justify-content: center;
   align-items: flex-start;
-  max-width: 100%;
-  margin-left: 9rem;
-  margin-top: -30rem;
-  height: auto;
-  background-color: #e6e6fa91;
-  padding: 6px;
-  border-radius: 12px;
+  margin-left: -21px; 
+  padding: 0; 
+  width: 100%;
 }
 
 .add-pet-form input {
@@ -149,15 +271,6 @@ form select {
   transition: all 0.3s ease-in-out;
 }
 
-.new-pet-modal-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-}
 
 #pet-info-short {
   opacity: 0;

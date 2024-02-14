@@ -78,7 +78,7 @@ export default function DirectMessages({ userId, accessToken, onClose }) {
       <GridItem colSpan="10">
           <h1 className="message_menu_container">Messaging!</h1>
         </GridItem>
-        <GridItem colSpan="3" borderRight="1px solid gray" style={{ marginTop: "-180px" }}>
+        <GridItem colSpan="3" borderRight="1px solid gray" style={{ marginTop: "-400px" }}>
           <div className="direct_message">
             <div className="message_menu">
               <div className="message_search">
@@ -100,7 +100,7 @@ export default function DirectMessages({ userId, accessToken, onClose }) {
                 <p className="message-sender">{message.sender}</p>
                 <p className="message-text">{message.message}</p>
              </div>
-                <p className="message-timestamp">{message.timestamp}</p>
+                {/* <p className="message-timestamp">{message.timestamp}</p> */}
           </div>
           ))}
       </div>

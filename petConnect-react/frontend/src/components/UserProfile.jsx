@@ -10,17 +10,8 @@ import PetPointsProfileWidget from './petPoints/PetPointsProfileWidget.jsx';
 //The user's name, email, and phone number will be hardcoded for now, but the list of pets will be dynamic and will be pulled from the database.
 //the user's information will be able to be edited by the user, and the user will be able to add or remove pets from their list.
 
-export default function UserProfile({ userId, accessToken, handleConversationClick, petData, handleSetPetPoints, achievements,petPoints }) {
+export default function UserProfile({ userId, handleConversationClick, petData, handleSetPetPoints, achievements,petPoints }) {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  // const [isDirectMessagesOpen, setDirectMessagesOpen] = useState(false);
-
-  // // Opens and closes the direct messages modal
-  // const openDirectMessages = () => {
-  //   setDirectMessagesOpen(true);
-  // };
-  // const closeDirectMessages = () => {
-  //   setDirectMessagesOpen(false);
-  // };
 
   // Sets payload for pet list widget
   const listPayload = "currentUser";
@@ -55,9 +46,6 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
                       <button id="friendButton" onClick={() => { console.log("add-friend") }}>Add Friend</button>
                     </td>
                   )}
-                  <td>
-                    {/* <button id="messageButton" onClick={openDirectMessages}>Message</button> */}
-                  </td>
                 </tr>
               </thead>
             </table>
@@ -75,8 +63,6 @@ export default function UserProfile({ userId, accessToken, handleConversationCli
           <PetListWidget inspect={false} dynClass={"navbar"} petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-widget" />
           </div>
         </div>
-        
-        {/* {isDirectMessagesOpen && <DirectMessages accessToken={accessToken} userId={userId} onClose={closeDirectMessages} />} */}
       </div>
     )
   );
