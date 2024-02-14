@@ -5,6 +5,7 @@
 import { useState, useEffect } from "react";
 // components
 import PetPost from "./_PetPost.jsx";
+import { List } from "@chakra-ui/react";
 // hooks
 
 export default function Feed(props) {
@@ -15,8 +16,18 @@ export default function Feed(props) {
 
   // trick for setting posts for followers
   // const feedPosts = posts.filter((post) => post.user_id === user.user_id);
+  const mapPosts = [];
 
-
+posts.forEach((post) => {
+  mapPosts.unshift(
+    <PetPost
+      handleDelete={handleDelete}
+      user_id={user.user_id}
+      key={post.post_id}
+      petPost={post}
+    />
+  );
+});
 
   if (error) {
     return (
@@ -37,9 +48,7 @@ export default function Feed(props) {
 
   return (
     <div className="feed-container">
-      {posts.map(
-        (post) => (<PetPost handleDelete={handleDelete} user_id={user.user_id} key={post.post_id} petPost={post} />),
-      )}
+      {mapPosts}
     </div>
   );
 }
