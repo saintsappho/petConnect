@@ -48,7 +48,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
           </div>
           <button className="bubbly-button" id="daily-login-button" onClick={(event) => { handleSetPetPoints(10); event.target.disabled = true; }}>Claim Daily Login!</button>
           <h2>Daily Adventures:</h2>
-          <ul>
+          <ul className="pet-points-feed-widget-daily-challenges">
             {achievements.slice(0, 3).map((achievement, index) => (
               <li id="daily-challenge" key={index}>
                 <div className="achievement-icon-title">

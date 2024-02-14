@@ -4,7 +4,7 @@ const XPBar = (props) => {
   const containerStyles = {
     height: 20,
     width: '100%',
-    backgroundColor: "#e0e0de",
+    backgroundColor: "rgb(67, 67, 67)",
     borderRadius: 50,
     margin: 2
   }
