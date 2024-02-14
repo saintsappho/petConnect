@@ -7,16 +7,13 @@ import { useState, useEffect } from "react";
 import PetPost from "./_PetPost.jsx";
 // hooks
 
-export default function Feed(props) {
-  const { user, posts, error, handleDelete } = props;
+export default function Feed({ user, posts, error, handleDelete, showAddPetForm }) {
 
   //still NO IDEA why this is flipping the order of the posts
   //happens whenever i open new post form
 
   // trick for setting posts for followers
   // const feedPosts = posts.filter((post) => post.user_id === user.user_id);
-
-
 
   if (error) {
     return (

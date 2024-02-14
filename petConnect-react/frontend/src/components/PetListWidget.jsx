@@ -9,11 +9,12 @@ export default function PetListWidget({
   listPayload,
   userId,
   divClass,
+  showAddPetForm,
+  setShowAddPetForm,
 }) {
   const [selectedPet, setSelectedPet] = useState(false, null);
   const [refreshPets, setRefreshPets] = useState(false);
   const [filteredPets, setFilteredPets] = useState([]);
-  const [showAddPetForm, setShowAddPetForm] = useState(false);
 
 
   function handlePetSelect(pet) {

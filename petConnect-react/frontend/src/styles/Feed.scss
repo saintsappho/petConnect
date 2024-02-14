@@ -408,3 +408,19 @@ $desktop: 1024px;
     }
   }
 }
+
+.post-burger {
+  position: sticky;
+
+  border-radius: 10px;
+  max-height: 1.6rem;
+  width: 2rem;
+  margin-left: -5rem;
+  margin-top: 1.6rem;
+
+}
+
+.post-options-buttons {
+  position: absolute;
+  margin-left: -5rem;
+}
