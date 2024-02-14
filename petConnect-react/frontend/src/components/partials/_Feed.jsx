@@ -37,7 +37,7 @@ export default function Feed(props) {
 
   return (
     <div className="feed-container">
-      {posts.reverse().map(
+      {posts.map(
         (post) => (<PetPost user_id={user.user_id} key={post.post_id} petPost={post} />),
       )}
     </div>

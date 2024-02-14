@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login";
 import NewPost from "./partials/newpost/_NewPost";
@@ -31,8 +31,10 @@ export default function HomeRoute({ onPetSelect, petData, handlePetListSelect, o
     bubblyButtons[i].addEventListener('click', animateButton, false);
   }
 
-
-    useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
+  useFetchData("http://localhost:8080/posts", "posts", setPosts, setFetchError);
+  useEffect(() => {
+    setPosts(posts.reverse())
+  })
     // console.log(user)
     return (
       <div className="HomeRoute">
