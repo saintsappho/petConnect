@@ -25,6 +25,7 @@ export default function PetListWidget({
     setTimeout(() => {
       setRefreshPets(!refreshPets);
       setShowAddPetForm(false);
+      handleHide();
     }, 1000);
   }
   if (isNaN(userId)) {
