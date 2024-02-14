@@ -137,11 +137,9 @@ function App() {
     }
   }
 
-function handleSetPetPoints(event, points) {
-  event.preventDefault();
-  console.log('points: ', points);
-  setPetPoints(points);
-}
+  const handleSetPetPoints = (pointsToAdd) => {
+    setPetPoints(prevPoints => prevPoints + pointsToAdd);
+  };
 
 // create a function that can be added to any component to add points to petPoints and takes in point value as props
 const addPoints = (points) => {

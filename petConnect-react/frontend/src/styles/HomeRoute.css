@@ -142,6 +142,10 @@ color: grey;
   z-index: 0;
 }
 
+#daily-login-button {
+  margin-top: .5rem;
+}
+
 #daily-challenge {
   list-style: none;
   scale: 1;

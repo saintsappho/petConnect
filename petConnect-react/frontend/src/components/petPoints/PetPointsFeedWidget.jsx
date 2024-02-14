@@ -32,6 +32,7 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
       newAchievements[index].completed = true;
       return newAchievements;
     });
+    handleSetPetPoints(10); // Add 10 points when an achievement is completed
   };
 
   return (
@@ -40,33 +41,31 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, petPoints, use
         <div className="pet-points-feed-widget-content">
           <h1>Pet<span className="pet-points-feed-widget-xp">XP</span>: {petPoints}</h1>
           <h3 className="pet-points-feed-widget-ranking-line">Ranking: <span className="pet-points-feed-widget-ranking">{ranking}</span></h3>
-
-
           <div className="xp-bar-container">
             <div>{xpBarData.map((item, idx) => (
               <XPBar key={idx} bgcolor={item.bgcolor} completed={item.completed} />
             ))}</div>
           </div>
-          <button className="bubbly-button" onClick={(event) => handleSetPetPoints(event, 10)}>Claim Daily Login!</button>
+          <button className="bubbly-button" id="daily-login-button" onClick={(event) => { handleSetPetPoints(10); event.target.disabled = true; }}>Claim Daily Login!</button>
           <h2>Daily Adventures:</h2>
           <ul>
             {achievements.slice(0, 3).map((achievement, index) => (
               <li id="daily-challenge" key={index}>
-  <div className="achievement-icon-title">
-    <div className="achievement-icon">
-      {achievement.icon}
-    </div>
-    <span className="achievement-title">
-      <h4>{achievement.name}</h4>
-    </span>
-  </div>
-  <div className="achievement-info">
-    <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
-  </div>
-  <button className="bubbly-button" onClick={() => handleComplete(index)}>
-    {achievement.completed ? 'Completed!' : 'Complete Challenge'}
-  </button>
-</li>
+                <div className="achievement-icon-title">
+                  <div className="achievement-icon">
+                    {achievement.icon}
+                  </div>
+                  <span className="achievement-title">
+                    <h4>{achievement.name}</h4>
+                  </span>
+                </div>
+                <div className="achievement-info">
+                  <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
+                </div>
+                <button className={`bubbly-button ${achievement.completed ? 'claimed' : ''}`} onClick={() => handleComplete(index)}>
+                  {achievement.completed ? 'Claimed!' : 'Complete Challenge'}
+                </button>
+              </li>
             ))}
           </ul>
         </div>
