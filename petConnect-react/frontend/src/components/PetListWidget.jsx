@@ -12,14 +12,12 @@ export default function PetListWidget({
   showAddPetForm,
   setShowAddPetForm,
   handleHide,
+  handlePetListSelect,
 }) {
   const [selectedPet, setSelectedPet] = useState(false, null);
   const [refreshPets, setRefreshPets] = useState(false);
   const [filteredPets, setFilteredPets] = useState([]);
 
-  function handlePetSelect(pet) {
-    setSelectedPet(selectedPet === pet ? null : pet);
-  }
 
   function handleNewPet() {
     setTimeout(() => {
@@ -34,11 +32,14 @@ export default function PetListWidget({
     fetch(`http://localhost:8080/pets/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-      // console.log(data, 'data')
+        // console.log(data, 'data')
         setFilteredPets(data);
       });
   }, [refreshPets]);
 
+  const petId = filteredPets.id;
+
+  // 'currentUser' payload will render the pet list with only the current user's pets
 
   function renderCurrentUserPets() {
     return (
@@ -48,9 +49,9 @@ export default function PetListWidget({
             <div key={index} className={divClass}>
               <div>
                 <img
-                  onClick={handlePetSelect}
+                  onClick={(event) => handlePetListSelect(event, petId)}
                   className={selectedPet === (true, pet.name) ? "selected" : ""}
-                  id="pet-photo"
+                  id={"pet-photo"}
                   src={pet.image_file}
                 />
               </div>
@@ -61,18 +62,18 @@ export default function PetListWidget({
           );
         })}
         {divClass === "poster-pet-widget" ? <></> : (<div className={`${divClass} add-new-pet`}>
-          <p className="add-new-pet-button" onClick={() => {setShowAddPetForm(true), handleHide()}}> + Add Pet</p>
+          <p className="add-new-pet-button" onClick={() => { setShowAddPetForm(true), handleHide() }}> + Add Pet</p>
         </div>)}
         {showAddPetForm && (
           <div className="new-pet-modal">
             <div className="new-pet-modal-content">
               <span
                 className="new-pet-modal-close"
-                onClick={() => {handleHide(), setShowAddPetForm(false)}}
+                onClick={() => { handleHide(), setShowAddPetForm(false) }}
               >
                 &times;
               </span>
-               <AddPetForm handleNewPet={handleNewPet} />
+              <AddPetForm handleNewPet={handleNewPet} />
             </div>
           </div>
         )}

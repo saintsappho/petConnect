@@ -36,7 +36,7 @@ function App() {
   const [showAddPetForm, setShowAddPetForm] = useState(false);
   
   const userId = user?.sub;
-
+  
   const [achievements, setAchievements] = useState([
     { name: 'Take a Selfie', icon: '📸', description: 'Take a selfie with your pet', completed: false, points: 15 },
     { name: 'Have a Picnic', icon: '🍉', description: 'Enjoy a picnic with your pet in the park', completed: false, points: 25 },
@@ -103,16 +103,11 @@ function App() {
     event.preventDefault();
     setSelectedPet(petId);
     // console.log('selected pet: ', petId);
-    if (petId === "Select a pet" || petId === undefined) {
-      setModalContent([]);
-      closeModal(event);
-      return;
-    } else {
       setModalContent(<PetProfile user={user} selectedPet={petId} />);
       // console.log('modal content: ', modalContent);
       openModal(event)
     }
-  }
+  
 
   function handleAddNewPet(event) {
     event.preventDefault();
