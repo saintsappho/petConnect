@@ -16,7 +16,7 @@ import Modal from "../modals/Modal.jsx";
 export default function PetPost(props) {
   const { petPost, handleDelete } = props;
   const [comments, setComments] = useState([]);
-  const [refreshComments, setRefreshComments] = useState([]);
+  const [refreshComments, setRefreshComments] = useState(0);
   const [user, setUser] = useState({});
   const [inspect, setInspect] = useState(false);
   const [form, setForm] = useState(false);
@@ -133,7 +133,7 @@ export default function PetPost(props) {
   }, [refreshComments]);
 
   const handleComment = () => {
-    setRefreshComments(...(refreshComments + 1));
+    setRefreshComments(prev => ++prev); //increment state to trigger useEffect
     setForm(false);
   };
   const handleForm = () => {

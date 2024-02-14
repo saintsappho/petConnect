@@ -11,10 +11,11 @@ export default function Photo(props) {
     comments,
     handleComment,
     user,
+    form,
+    handleForm,
     handleDelete,
     handleInspect,
   } = props;
-  const [form, setForm] = useState(false);
   const [displayComments, setDisplayComments] = useState(false);
   const [adminSettings, setAdminSettings] = useState(false);
 
@@ -62,14 +63,14 @@ export default function Photo(props) {
 
           <p className="card__snippet">{petPost.content}</p>
           {!form ? (
-            <a onClick={() => setForm(!form)} className="card__button">
+            <a onClick={handleForm} className="card__button">
               Thoughts?
             </a>
           ) : (
             <NewComment handleComment={handleComment} petPost={petPost} />
           )}
           <a
-            onClick={() => setDisplayComments(!displayComments)}
+            onClick={() => setDisplayComments(!displayComments) && handleForm()}
             className="show-comments-button"
           >
             Comments ({comments.length})
