@@ -449,6 +449,14 @@ $desktop: 1024px;
   margin-left: -5rem;
 }
 
+.edit-button,
+.delete-button {
+  border-radius: 10px;
+  color: black;
+  background-color: #b38290;
+  border: 1px solid #423035;
+}
+
 .card__image {
   width: 22.5rem;
 }
