@@ -89,11 +89,11 @@ a:hover {
   top: 1px;
 }
 
-html {
+/* html {
   width: 100%;
   font-family: 'Poppins', sans-serif;
   height: 100%;
-  position: relative; /* Ensure the positioning context for pseudo-element */
+  position: relative; 
 }
 
 html::before {
@@ -105,11 +105,11 @@ html::before {
   height: 100%;
   background-image: url("https://images.pexels.com/photos/207385/pexels-photo-207385.jpeg");
   background-size: cover;
-  filter: blur(3px); /* Apply the blur effect */
-  z-index: -1; /* Ensure the pseudo-element stays behind content */
-}
+  filter: blur(3px); 
+  z-index: -1; 
+} */
 
-/* html {
+html {
   width: 100%;
   font-family: 'Poppins', sans-serif;
   height: 100%;
@@ -128,7 +128,7 @@ html::before {
 
   -webkit-animation-direction: alternate;
   animation-direction: alternate;
-} */
+}
 
 @-webkit-keyframes slidein {
   from {
