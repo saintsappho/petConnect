@@ -6,9 +6,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 //components
 import PollChoice from "./_PollChoice";
+import DeleteButton from "../buttons/_DeleteButton.jsx";
 
 export default function Poll(props) {
-  const { randomImage, petPost, user, handleInspect } = props;
+  const { randomImage, petPost, user, handleInspect, handleDelete } = props;
   const [pollData, setPollData] = useState(null);
   const [choices, setChoices] = useState([]);
   const [error, setError] = useState(null);
@@ -18,6 +19,7 @@ export default function Poll(props) {
   const [voteResults, setVoteResults] = useState(null);
   // console.log("Poll petPost: ", petPost);
   // console.log("pollData: ", pollData);
+  const [adminSettings, setAdminSettings] = useState(false);
 
   useEffect(() => {
     // Fetch poll data
@@ -49,8 +51,11 @@ export default function Poll(props) {
 
         const totalVotes = votes.length;
         const results = choices.map((choice) => {
-          const choiceVotes = votes.filter((vote) => vote.choice_id === choice.choice_id).length;
-          const percentage = totalVotes === 0 ? 0 : (choiceVotes / totalVotes) * 100;
+          const choiceVotes = votes.filter(
+            (vote) => vote.choice_id === choice.choice_id,
+          ).length;
+          const percentage =
+            totalVotes === 0 ? 0 : (choiceVotes / totalVotes) * 100;
 
           return {
             choice_id: choice.choice_id,
@@ -65,7 +70,6 @@ export default function Poll(props) {
       }
     }
     fetchVoteResults();
-
   }, [voted]);
 
   // console.log("voteResults: ", voteResults);
@@ -76,7 +80,11 @@ export default function Poll(props) {
       const renderedChoices = choices.map((choice) => (
         <div key={choice.choice_id} className="card__choice">
           <p>{choice.choicetext}</p>
-          <p>{voteResults.find((result) => result.choice_id === choice.choice_id)?.percentage || 0}% votes</p>
+          <p>
+            {voteResults.find((result) => result.choice_id === choice.choice_id)
+              ?.percentage || 0}
+            % votes
+          </p>
         </div>
       ));
       setRenderedChoices(renderedChoices);
@@ -98,7 +106,7 @@ export default function Poll(props) {
     setSelected(choice_ID);
   };
 
-   const submitVote = async () => {
+  const submitVote = async () => {
     setVoted(true);
     try {
       const response = await axios.post(
@@ -114,7 +122,6 @@ export default function Poll(props) {
 
   return (
     <div className="card">
-      {/* <img id="pfp-thumb" src={user.profile_picture} alt="profile pic" /> */}
       <figure className="card__thumb">
         <img
           src={randomImage()}
@@ -123,10 +130,36 @@ export default function Poll(props) {
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
-          <div onClick={handleInspect} className="user-details">
-            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
+          <div className="card__buttons">
+            <div onClick={handleInspect} className="user-details">
+            <img
+              src={user.profile_picture}
+              alt="profile picture"
+              className="user-profile-picture"
+            ></img>
             <h4 className="card__author">{user.username}</h4>
           </div>
+          <div className="post-options">
+            {user.username === "Robin Fleur" && (
+              <button
+                onClick={() => setAdminSettings(!adminSettings)}
+                className="post-burger bubbly-button"
+              >
+                &#8801;
+              </button>
+            )}
+            {adminSettings && (
+              <div className="post-options-buttons">
+                <button className="edit-button bubbly-button">Edit</button>
+                <DeleteButton
+                  handleDelete={handleDelete}
+                  postId={petPost.post_id}
+                />
+              </div>
+            )}
+          </div>
+          </div>
+          
           <div className="card__choices">{renderedChoices}</div>
           {!voted ? (
             <a onClick={submitVote} className="card__button">

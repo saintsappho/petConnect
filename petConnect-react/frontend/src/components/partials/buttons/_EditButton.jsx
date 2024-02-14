@@ -10,6 +10,6 @@ export default function EditButton (props) {
   });
 
   return(
-    <button className="edit-button">Edit</button>
+    <button className="edit-button bubbly-button">Edit</button>
   )
 }

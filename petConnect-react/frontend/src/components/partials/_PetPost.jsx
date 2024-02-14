@@ -12,7 +12,6 @@ import axios from "axios";
 import useFormatDateTime from "../../assets/helpers/formatDateTime.js";
 import PosterProfile from "../PosterProfile.jsx";
 import Modal from "../modals/Modal.jsx";
-import DeleteButton from "./buttons/_DeleteButton.jsx";
 
 export default function PetPost(props) {
   const { petPost, handleDelete } = props;
@@ -24,7 +23,6 @@ export default function PetPost(props) {
   const [petData, setPetData] = useState([]);
   const [modal, setModal] = useState(false);
   const [modalContent, setModalContent] = useState([]);
-  const [adminSettings, setAdminSettings] = useState(false);
 
   const randomImage = () => {
     return `https://source.unsplash.com/random/300x510?${
@@ -135,7 +133,7 @@ export default function PetPost(props) {
   }, [refreshComments]);
 
   const handleComment = () => {
-    setRefreshComments(... refreshComments + 1);
+    setRefreshComments(...(refreshComments + 1));
     setForm(false);
   };
   const handleForm = () => {
@@ -147,25 +145,7 @@ export default function PetPost(props) {
       {modal && (
         <Modal modal={modal} content={modalContent} closeModal={closeModal} />
       )}
-      <div className="post-options">
-        {user.username === "Robin Fleur" && (
-          <button
-            onClick={() => setAdminSettings(!adminSettings)}
-            className="post-burger"
-          >
-            &#8801;
-          </button>
-        )}
-        {adminSettings && (
-          <div className="post-options-buttons">
-            <button className="edit-button">Edit</button>
-            <DeleteButton
-              handleDelete={handleDelete}
-              postId={petPost.post_id}
-            />
-          </div>
-        )}
-      </div>
+
       {petPost.style === "text-post" && (
         <Text
           user={user}
@@ -177,6 +157,7 @@ export default function PetPost(props) {
           handleInspect={handleInspect}
           form={form}
           handleForm={handleForm}
+          handleDelete={handleDelete}
         />
       )}
       {petPost.style === "photo-post" && (
@@ -190,6 +171,7 @@ export default function PetPost(props) {
           handleInspect={handleInspect}
           form={form}
           handleForm={handleForm}
+          handleDelete={handleDelete}
         />
       )}
       {petPost.style === "poll-post" && (
@@ -199,6 +181,7 @@ export default function PetPost(props) {
           randomImage={randomImage}
           inspect={inspect}
           handleInspect={handleInspect}
+          handleDelete={handleDelete}
         />
       )}
       {petPost.style === "forum-post" && (
@@ -212,6 +195,7 @@ export default function PetPost(props) {
           handleInspect={handleInspect}
           form={form}
           handleForm={handleForm}
+          handleDelete={handleDelete}
         />
       )}
       {petPost.style === "event-post" && (
@@ -221,6 +205,7 @@ export default function PetPost(props) {
           randomImage={randomImage}
           inspect={inspect}
           handleInspect={handleInspect}
+          handleDelete={handleDelete}
         />
       )}
     </>

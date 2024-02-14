@@ -3,12 +3,21 @@
 import useFormatDateTime from "../../../assets/helpers/formatDateTime";
 import React, { useState } from "react";
 import NewComment from "./_NewComment";
+import DeleteButton from "../buttons/_DeleteButton.jsx";
 
 export default function Text(props) {
-  const { randomImage, petPost, comments, handleComment, user, handleInspect } =
-    props;
+  const {
+    randomImage,
+    petPost,
+    comments,
+    handleComment,
+    user,
+    handleInspect,
+    handleDelete,
+  } = props;
   const [form, setForm] = useState(false);
   const [displayComments, setDisplayComments] = useState(false);
+  const [adminSettings, setAdminSettings] = useState(false);
 
   return (
     <div className="card">
@@ -21,10 +30,36 @@ export default function Text(props) {
         ></img>
         <figcaption className="card__caption">
           <h2 className="card__title">{petPost.title}</h2>
-          <div onClick={handleInspect} className="user-details">
-            <img src={user.profile_picture} alt="profile picture" className="user-profile-picture"></img>
+          <div className="card__buttons">
+            <div onClick={handleInspect} className="user-details">
+            <img
+              src={user.profile_picture}
+              alt="profile picture"
+              className="user-profile-picture"
+            ></img>
             <h4 className="card__author">{user.username}</h4>
           </div>
+            <div className="post-options">
+              {user.username === "Robin Fleur" && (
+                <button
+                  onClick={() => setAdminSettings(!adminSettings)}
+                  className="post-burger bubbly-button"
+                >
+                  &#8801;
+                </button>
+              )}
+              {adminSettings && (
+                <div className="post-options-buttons">
+                  <button className="edit-button bubbly-button">Edit</button>
+                  <DeleteButton
+                    handleDelete={handleDelete}
+                    postId={petPost.post_id}
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          
           <p className="card__snippet">{petPost.content}</p>
           {!form ? (
             <a onClick={() => setForm(!form)} className="card__button">

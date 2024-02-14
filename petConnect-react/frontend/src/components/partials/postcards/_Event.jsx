@@ -4,12 +4,14 @@ import React, { useState, useEffect } from "react";
 import useFetchData from "../../../hooks/useFetchData";
 import formatDateTime from "../../../assets/helpers/formatDateTime";
 import CalendarEvent from "../../modals/CalendarEvent";
+import DeleteButton from "../buttons/_DeleteButton.jsx";
 
 export default function Event(props) {
-  const { randomImage, petPost, user, handleInspect, } = props;
+  const { randomImage, petPost, user, handleInspect, handleDelete } = props;
   const [events, setEvents] = useState(null);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [adminSettings, setAdminSettings] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -30,9 +32,7 @@ export default function Event(props) {
 
   return (
     <>
-      {isModalOpen && (
-        <CalendarEvent onClose={closeModal} />
-      )}
+      {isModalOpen && <CalendarEvent onClose={closeModal} />}
       <div className="card">
         <figure className="card__thumb">
           <img
@@ -44,13 +44,34 @@ export default function Event(props) {
             {events && events.length > 0 && (
               <>
                 <h2 className="card__title">{events[0].title}</h2>
-                <div onClick={handleInspect} className="user-details">
-                  <img
-                    src={user.profile_picture}
-                    alt="profile picture"
-                    className="user-profile-picture"
-                  ></img>
-                  <h4 className="card__author">{user.username}</h4>
+                <div className="card__buttons">
+                  <div onClick={handleInspect} className="user-details">
+                    <img
+                      src={user.profile_picture}
+                      alt="profile picture"
+                      className="user-profile-picture"
+                    ></img>
+                    <h4 className="card__author">{user.username}</h4>
+                  </div>
+                  <div className="post-options">
+                    {user.username === "Robin Fleur" && (
+                      <button
+                        onClick={() => setAdminSettings(!adminSettings)}
+                        className="post-burger bubbly-button"
+                      >
+                        &#8801;
+                      </button>
+                    )}
+                    {adminSettings && (
+                      <div className="post-options-buttons">
+                        <button className="edit-button bubbly-button">Edit</button>
+                        <DeleteButton
+                          handleDelete={handleDelete}
+                          postId={petPost.post_id}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <p className="card__start-date">
                   {formatDateTime(events[0].event_date)}

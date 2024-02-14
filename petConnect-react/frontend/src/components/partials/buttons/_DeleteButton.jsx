@@ -34,7 +34,7 @@ export default function DeleteButton(props) {
 
   return (
     <div>
-      <button className="delete-button" onClick={showDeleteConfirmation}>
+      <button className="delete-button bubbly-button" onClick={showDeleteConfirmation}>
         Delete
       </button>
 
