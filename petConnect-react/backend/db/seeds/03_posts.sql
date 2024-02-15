@@ -17,7 +17,7 @@ VALUES
   (8, 8, 'photo-post', 'Swimming Lessons', 'Learning to swim', '2024-02-11', 'https://source.unsplash.com/random/300x510?dog-swimming'),
   (5, 5, 'text-post', 'Cat Vaccination Day', 'Got up to date with vaccinations today.', '2024-02-12', NULL),
   (6, 6, 'event-post', 'Agility Class', 'Starting agility classes next week!', '2024-02-13', NULL),
-  (9, 9, 'text-post', 'Pet Grooming Tips', 'Discovered some life-changing grooming tips!', '2024-02-14', NULL),
+  (9, 9, 'forum-post', 'Pet Grooming Tips', 'Discovered some life-changing grooming tips!', '2024-02-14', NULL),
   (7, 7, 'photo-post', 'My new friend :)', 'Made a new friend at the park today.', '2024-02-15', 'https://source.unsplash.com/random/300x510?dog-park-friend');
   -- Add more posts as needed
 ;
