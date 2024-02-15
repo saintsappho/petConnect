@@ -39,7 +39,6 @@ export default function PetListWidget({
       });
   }, [refreshPets]);
 
-  const petId = filteredPets.id;
 
   // 'currentUser' payload will render the pet list with only the current user's pets
 
@@ -51,7 +50,7 @@ export default function PetListWidget({
             <div key={index} className={divClass}>
               <div>
                 <img
-                  onClick={(event) => handlePetListSelect(event, petId)}
+                  onClick={(event) => handlePetListSelect(event, pet)}
                   className={selectedPet === (true, pet.name) ? "selected" : ""}
                   id={"pet-photo"}
                   src={pet.image_file}

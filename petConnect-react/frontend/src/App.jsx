@@ -23,7 +23,7 @@ import "./styles/Login.css"
 function App() {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [modal, setModal] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
+  const [selectedPet, setSelectedPet] = useState([]);
   const [petData, setPetData] = useState([]);
   const [fetchError, setFetchError] = useState(null);
   const [modalContent, setModalContent] = useState([]);
@@ -89,7 +89,6 @@ function App() {
   // ensure modal is closed when user logs in/out
   useEffect(() => {
     setModal(false);
-    setSelectedPet(null);
     setUserPets([]);
     setModalContent([]);
   }, [user]);
@@ -148,7 +147,7 @@ const addPoints = (points) => {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile handlePetListSelect={handlePetListSelect} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 
