@@ -11,13 +11,13 @@ VALUES
   (3, 2, 'photo-post', 'Alberta Beach Trip', 'Nothing beats running on the beach.', '2024-02-05', 'https://source.unsplash.com/random/300x510?beach-run'),
   (6, 6, 'text-post', 'Weight Loss Journey', 'We started a new diet, tracking progress here!', '2024-02-06', NULL),
   (2, 3, 'photo-post', 'Zzzzz...', 'Catching some Zs after a long playdate.', '2024-02-07', 'https://source.unsplash.com/random/300x510?naptime'),
-  (7, 7, 'text-post', 'DIY Toys', 'Made some DIY toys this weekend. Huge hit!', '2024-02-08', NULL),
+  (7, 7, 'text-post', 'DIY Dog Toys', 'Made some DIY toys this weekend. Huge hit!', '2024-02-08', NULL),
   (3, 1, 'text-post', '10k Steps Challenge', 'Who else is joining the 10k steps challenge?', '2024-02-09', NULL),
   (4, 4, 'photo-post', 'Snow Day', 'First snow day of the year!', '2024-02-10', 'https://source.unsplash.com/random/300x510?first-snow'),
   (8, 8, 'photo-post', 'Swimming Lessons', 'Learning to swim', '2024-02-11', 'https://source.unsplash.com/random/300x510?dog-swimming'),
-  (5, 5, 'text-post', 'Vaccination Day', 'Got up to date with vaccinations today.', '2024-02-12', NULL),
+  (5, 5, 'text-post', 'Cat Vaccination Day', 'Got up to date with vaccinations today.', '2024-02-12', NULL),
   (6, 6, 'event-post', 'Agility Class', 'Starting agility classes next week!', '2024-02-13', NULL),
-  (9, 9, 'text-post', 'Grooming Tips', 'Discovered some life-changing grooming tips!', '2024-02-14', NULL),
+  (9, 9, 'text-post', 'Pet Grooming Tips', 'Discovered some life-changing grooming tips!', '2024-02-14', NULL),
   (7, 7, 'photo-post', 'My new friend :)', 'Made a new friend at the park today.', '2024-02-15', 'https://source.unsplash.com/random/300x510?dog-park-friend');
   -- Add more posts as needed
 ;

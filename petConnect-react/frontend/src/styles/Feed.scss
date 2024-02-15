@@ -207,7 +207,7 @@ $desktop: 1024px;
 }
 
 .forum {
-  width: 300px;
+  width: 374px;
   border-radius: 10px;
   margin: 10px;
   background-color: white;
@@ -224,13 +224,14 @@ $desktop: 1024px;
   .forum__caption {
     top: 50%;
     transform: translateY(-50%);
+    padding: 0 
   }
 
-  .forum__thumb {
-    &::after {
-      top: 0;
-    }
-  }
+  // .forum__thumb {
+  //   &::after {
+  //     top: 0;
+  //   }
+  // }
 
   .forum__snippet {
     margin: 20px 0;
