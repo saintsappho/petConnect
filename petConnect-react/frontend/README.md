@@ -19,17 +19,18 @@ ________________________________________________________________________________
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   pet profiles                                          |                 Dylan      |
-|   add pet                                               |                 Dylan      |
+|       add pet Rock                                      |                 Dylan      |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
-|   social feed overview                                  |           Robin            |
-|   new post                                              |           Robin            |
-|       text (skip)                                       |                            |
-|       event                                             |   Tandra                   |
-|         You In?                                         |   Tandra                   |
-|       poll                                              |                 Dylan      |
-|       forum                                             |           Robin            |
-|         comments on posts and edit/delete               |           Robin            |
+|   social feed overview:                                 |           Robin            |
+|   new posts:                                            |           Robin            |
+|      comments on posts and edit/delete                  |           Robin            |
+|   event  (Dog Party, lets party, with all our dogs!)    |   Tandra                   |
+|      You In?                                            |   Tandra                   |
+|   poll                                                  |                 Dylan      |
+|      best pets for apartment living                     |                 Dylan      |
+|   forum                                                 |           Robin            |
+|      Do you dress your animals up?                      |           Robin            |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   pet points / explain pet points                       |                 Dylan      |
@@ -44,6 +45,7 @@ ________________________________________________________________________________
 |   messaging                                             |   Tandra                   |
 |    sending messages                                     |   Tandra                   |
 |    different convos                                     |                            |
+|       Delete                                            |   Tandra                   |
 |       search                                            |                 Dylan      |
 |       filter                                            |                 Dylan      |
 |_________________________________________________________|____________________________|
