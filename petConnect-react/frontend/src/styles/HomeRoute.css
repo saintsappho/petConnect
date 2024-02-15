@@ -161,6 +161,8 @@ footer {
 .pet-points-feed-widget-achievement-description {
   margin-top: -2px;
   margin-bottom: 0;
+  margin-right: 3em;
+  margin-left: -1rem;
   font-size: smaller;
   display: flex;
 }
@@ -178,6 +180,7 @@ footer {
 .achievement-icon {
   font-size: 1.8em;
   margin-top: -4px;
+  margin-left: 2.1rem;
 }
 
 .achievement-title {
@@ -189,12 +192,12 @@ footer {
 }
 .achievement-icon-title {
   display: flex;
+
 }
 
 .achievement-container {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
+
 }
 
 
