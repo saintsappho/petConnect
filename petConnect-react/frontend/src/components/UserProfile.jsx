@@ -10,7 +10,7 @@ import PetPointsProfileWidget from './petPoints/PetPointsProfileWidget.jsx';
 //The user's name, email, and phone number will be hardcoded for now, but the list of pets will be dynamic and will be pulled from the database.
 //the user's information will be able to be edited by the user, and the user will be able to add or remove pets from their list.
 
-export default function UserProfile({ userId, handleConversationClick, latestActivity, setLatestActivity, petData, handleSetPetPoints, achievements,petPoints }) {
+export default function UserProfile({ userId, handlePetListSelect, handleConversationClick, latestActivity, setLatestActivity, petData, handleSetPetPoints, achievements,petPoints }) {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   // Sets payload for pet list widget
@@ -60,7 +60,7 @@ export default function UserProfile({ userId, handleConversationClick, latestAct
 
         <div className="user-profile-body">
           <div className="pet-list-widget">
-          <PetListWidget inspect={false} dynClass={"navbar"} petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-widget" />
+          <PetListWidget handlePetListSelect={handlePetListSelect} inspect={false} dynClass={"navbar"} petData={petData} listPayload={listPayload} userId={userId} divClass="user-pet-widget" />
           </div>
         </div>
       </div>
