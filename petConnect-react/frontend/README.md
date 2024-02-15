@@ -38,7 +38,7 @@ ________________________________________________________________________________
 |       our profile now shows points                      |                 Dylan      |
 |       User Profile                                      |                            |
 |                                                         |                            |
-|   click user photo on post to see other user's profile  |           Robin            |
+|   click user photo on post to see other user's profile  |                 Dylan      |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   messaging                                             |   Tandra                   |
@@ -49,10 +49,7 @@ ________________________________________________________________________________
 |       filter                                            |           Robin            |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
-|                                                         |           Robin            |
-|   A little bit about bugfixing and teamwork             |   Tandra                   |
-|                                                         |                  Dylan     |
-|_________________________________________________________|____________________________|
-|                                                         |                            |
 |   Closing remarks and thanks                            |   Tandra                   |
 |_________________________________________________________|____________________________|
+
+Whats the best pet for apartment living?
