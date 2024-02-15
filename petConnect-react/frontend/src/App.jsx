@@ -153,7 +153,7 @@ function App() {
     // console.log('pet data: ', petData);
 
     setPetData(petData);
-    setModalContent(<UserProfile handlePetListSelect={handlePetListSelect} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
+    setModalContent(<UserProfile ranking={ranking} petPoints={petPoints} handlePetListSelect={handlePetListSelect} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} accessToken={accessToken} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} petData={petData} user={user} userId={userId} />);
     openModal(event);
   };
 
