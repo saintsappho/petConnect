@@ -47,7 +47,7 @@ export default function Navbar({ handleHide, handlePetListSelect, petData, openC
           <div className="nav-dropdown-body">
             <a href="#" id="messageButton" onClick={openDirectMessages}>Message</a>
             <a href="http://maps.google.com/?q=dog-parks" target="_blank">Park Finder</a>
-            <a href="/">Shop</a>
+            <button href="/" disabled >Shop</button>
             <a href="/" onClick={LogoutButton}><LogoutButton /></a>
           </div>
         </div>

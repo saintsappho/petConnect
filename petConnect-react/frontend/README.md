@@ -19,17 +19,16 @@ ________________________________________________________________________________
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   pet profiles                                          |                 Dylan      |
-|   add pet                                               |                 Dylan      |
+|       add pet Rock                                      |                 Dylan      |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
-|   social feed overview                                  |           Robin            |
-|   new post                                              |           Robin            |
-|       text (skip)                                       |                            |
-|       event                                             |   Tandra                   |
-|         You In?                                         |   Tandra                   |
-|       poll                                              |                 Dylan      |
-|       forum                                             |           Robin            |
-|         comments on posts and edit/delete               |           Robin            |
+|   social feed overview:                                 |           Robin            |
+|   new posts:                                            |           Robin            |
+|      comments on posts and edit/delete                  |           Robin            |
+|   poll                                                  |           Robin            |
+|      best pets for apartment living                     |           Robin            |
+|   event  (Dog Party, lets party, with all our dogs!)    |   Tandra                   |
+|      You In?                                            |   Tandra                   |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   pet points / explain pet points                       |                 Dylan      |
@@ -37,19 +36,20 @@ ________________________________________________________________________________
 |       Photo Post as Selfie Challenge                    |           Robin            |
 |                                                         |                            |
 |       our profile now shows points                      |                 Dylan      |
+|       User Profile                                      |                            |
 |                                                         |                            |
-|   click user photo on post to see other user's profile  |           Robin            |
+|   click user photo on post to see other user's profile  |                 Dylan      |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   messaging                                             |   Tandra                   |
 |    sending messages                                     |   Tandra                   |
 |    different convos                                     |                            |
-|       search                                            |                 Dylan      |
-|       filter                                            |                 Dylan      |
-|_________________________________________________________|____________________________|
-|                                                         |                            |
-|   A little bit about teamwork                           |           Robin            |
+|       Delete                                            |   Tandra                   |
+|       search                                            |           Robin            |
+|       filter                                            |           Robin            |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   Closing remarks and thanks                            |   Tandra                   |
 |_________________________________________________________|____________________________|
+
+Whats the best pet for apartment living?

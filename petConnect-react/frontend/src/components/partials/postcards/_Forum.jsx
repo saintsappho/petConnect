@@ -15,6 +15,7 @@ export default function Forum(props) {
     user,
     form,
     handleForm,
+    handleInspect,
     handleShowComments,
     show,
   } = props;
@@ -31,8 +32,13 @@ export default function Forum(props) {
         <figcaption className="forum__caption">
           <h2 className="forum__title">{petPost.title}</h2>
           <div className="card__buttons">
-            <div className="user-details">
-              <h4 className="forum__author">{user.username}</h4>
+          <div onClick={handleInspect} className="user-details">
+              <img
+                src={user.profile_picture}
+                alt="profile picture"
+                className="user-profile-picture"
+              ></img>
+              <h4 className="card__author">{user.username}</h4>
             </div>
             <div className="post-options">
               <div className="post-options-buttons">
