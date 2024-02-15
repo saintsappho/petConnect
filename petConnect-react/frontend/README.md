@@ -25,12 +25,10 @@ ________________________________________________________________________________
 |   social feed overview:                                 |           Robin            |
 |   new posts:                                            |           Robin            |
 |      comments on posts and edit/delete                  |           Robin            |
+|   poll                                                  |           Robin            |
+|      best pets for apartment living                     |           Robin            |
 |   event  (Dog Party, lets party, with all our dogs!)    |   Tandra                   |
 |      You In?                                            |   Tandra                   |
-|   poll                                                  |                 Dylan      |
-|      best pets for apartment living                     |                 Dylan      |
-|   forum                                                 |           Robin            |
-|      Do you dress your animals up?                      |           Robin            |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   pet points / explain pet points                       |                 Dylan      |
@@ -38,6 +36,7 @@ ________________________________________________________________________________
 |       Photo Post as Selfie Challenge                    |           Robin            |
 |                                                         |                            |
 |       our profile now shows points                      |                 Dylan      |
+|       User Profile                                      |                            |
 |                                                         |                            |
 |   click user photo on post to see other user's profile  |           Robin            |
 |_________________________________________________________|____________________________|
@@ -46,11 +45,13 @@ ________________________________________________________________________________
 |    sending messages                                     |   Tandra                   |
 |    different convos                                     |                            |
 |       Delete                                            |   Tandra                   |
-|       search                                            |                 Dylan      |
-|       filter                                            |                 Dylan      |
+|       search                                            |           Robin            |
+|       filter                                            |           Robin            |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
-|   A little bit about teamwork                           |           Robin            |
+|                                                         |           Robin            |
+|   A little bit about bugfixing and teamwork             |   Tandra                   |
+|                                                         |                  Dylan     |
 |_________________________________________________________|____________________________|
 |                                                         |                            |
 |   Closing remarks and thanks                            |   Tandra                   |
