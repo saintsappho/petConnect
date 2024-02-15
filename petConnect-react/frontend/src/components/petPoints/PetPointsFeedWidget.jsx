@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import XPBar from './XPBar';
 
-export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, petPoints, user, create, achievements, setAchievements }) {
-  const [ranking, setRanking] = useState('Bronze');
+export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, petPoints, user, create, achievements, setAchievements, ranking, setRanking }) {
   const [latestActivity, setLatestActivity] = useState('Played fetch');
   const [loadingBarCompleted, setLoadingBarCompleted] = useState(0);
   const [dailyChallenges, setDailyChallenges] = useState([]);
@@ -18,12 +17,8 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, pet
 
   const [xpLevel, setXpLevel] = useState(0);
 
-  const incrementPoints = () => {
-    const newPoints = petPoints + 10;
-    handleSetPetPoints(newPoints);
-  };
   const xpBarData = [
-    { bgcolor: "#6a1b9a", completed: petPoints },
+    { bgcolor: petPoints >= 100 ? "#6426e0" : "#6a1b9a", completed: petPoints % 100 },
   ];
 
   const handleComplete = (index) => {
@@ -40,7 +35,9 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, pet
       <div className="pet-points-feed-widget">
         <div className="pet-points-feed-widget-content">
           <h1>Pet<span className="pet-points-feed-widget-xp">XP</span>: {petPoints}</h1>
-          <h3 className="pet-points-feed-widget-ranking-line">Ranking: <span className="pet-points-feed-widget-ranking">{ranking}</span></h3>
+          <h3 className="pet-points-feed-widget-ranking-line">
+            Reward Level: <span className={`pet-points-feed-widget-ranking rank-${ranking.toLowerCase()}`}>{ranking}</span>
+          </h3>
           <div className="xp-bar-container">
             <div>{xpBarData.map((item, idx) => (
               <XPBar key={idx} bgcolor={item.bgcolor} completed={item.completed} />
@@ -49,22 +46,24 @@ export default function PetPointsFeedWidget({ handleSetPetPoints, setCreate, pet
           <button className="bubbly-button" id="daily-login-button" onClick={(event) => { handleSetPetPoints(10); event.target.disabled = true; }}>Claim Daily Login!</button>
           <h2>Daily Adventures:</h2>
           <ul className="pet-points-feed-widget-daily-challenges">
-            {achievements.slice(0, 3).map((achievement, index) => (
+            {achievements.slice(0, 4).map((achievement, index) => (
               <li id="daily-challenge" key={index}>
-                <div className="achievement-icon-title">
-                  <div className="achievement-icon">
-                    {achievement.icon}
-                  </div>
-                  <span className="achievement-title">
-                    <h4>{achievement.name}</h4>
-                  </span>
+                <div className="achievement-container">
+
+                    <div className="achievement-icon">
+                      {achievement.icon}
+                    </div>
+                    <div className="achievement-info">
+                      <span className="achievement-title">
+                        <h4>{achievement.name}</h4>
+                      </span>
+                      <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
+                    </div>
+
                 </div>
-                <div className="achievement-info">
-                  <p className="pet-points-feed-widget-achievement-description">{achievement.description}</p>
-                </div>
-                <button className={`bubbly-button ${achievement.completed ? 'claimed' : ''}`} onClick={() => {setCreate(!create), handleComplete(index)}}>
-                  {achievement.completed ? 'Claimed!' : 'Complete Challenge'}
-                </button>
+                <button className={`bubbly-button ${achievement.completed ? 'claimed' : ''}`} onClick={() => { setCreate(!create), handleComplete(index) }}>
+                    {achievement.completed ? 'Claimed!' : 'Complete'}
+                  </button>
               </li>
             ))}
           </ul>

@@ -110,7 +110,7 @@ function App() {
 
   function handleAddNewPet(event) {
     event.preventDefault();
-    addPoints(10);
+    handleSetPetPoints(10);
     setModalContent(<AddPetForm onSubmit={handleAddPet} />);
     openModal(event);
   }
@@ -132,13 +132,19 @@ function App() {
   }
 
   const handleSetPetPoints = (pointsToAdd) => {
-    setPetPoints(prevPoints => prevPoints + pointsToAdd);
+    let newPoints = petPoints + pointsToAdd;
+    console.log('new points: ', newPoints);
+    setPetPoints(newPoints);
+  
+    if (petPoints >= 200) {
+      setRanking('Gold');
+    } else if (petPoints >= 100) {
+      console.log('silver');
+      setRanking('Silver');
+    } else {
+      setRanking('Bronze');
+    }
   };
-
-// create a function that can be added to any component to add points to petPoints and takes in point value as props
-const addPoints = (points) => {
-  setPetPoints(petPoints + points);
-}
 
   // logic for opening user profile modal
 
@@ -153,7 +159,7 @@ const addPoints = (points) => {
 
   const openModal = (event) => {
     event.preventDefault();
-    addPoints(10);
+    handleSetPetPoints(10);
     setModal(true);
   };
 
@@ -175,8 +181,7 @@ const addPoints = (points) => {
       {!user && <LoginButton className="login-button-login-page" />}
       {error && <p>Authentication Error</p>}
       {!error && user && (
-        <HomeRoute setLatestActivity={setLatestActivity} showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={{ranking, setRanking}} latestActivity={{latestActivity, setLatestActivity}} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />
-      )}
+        <HomeRoute setLatestActivity={setLatestActivity} showAddPetForm={showAddPetForm} setShowAddPetForm={setShowAddPetForm} handleAddNewPet={handleAddNewPet} achievements={achievements} handleSetPetPoints={handleSetPetPoints} ranking={ranking} setRanking={setRanking} latestActivity={latestActivity} setLatestActivity={setLatestActivity} setAchievements={setAchievements} petPoints={petPoints} user={user} userId={userId} setPetData={setPetData} openCurrentUserModal={openCurrentUserModal} petData={petData} handlePetListSelect={handlePetListSelect} />      )}
     </>
   )}
 </div>

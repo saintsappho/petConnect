@@ -11,7 +11,7 @@ import "../styles/BubblyButton.scss";
 import "../styles/HomeRoute.css";
 import "../styles/UserProfile.css";
 
-export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, handlePetListSelect, setLatestActivity, showAddPetForm, ranking, latestActivity, openCurrentUserModal, setPetData, achievements, setAchievements, closeModal, userId, handleSetPetPoints, petPoints, setPetPoints }) {
+export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, handlePetListSelect, setLatestActivity, showAddPetForm, ranking, setRanking, latestActivity, openCurrentUserModal, setPetData, achievements, setAchievements, closeModal, userId, handleSetPetPoints, petPoints, setPetPoints }) {
 //calling all backend routes to check if they are working and ensure data is being sent to the frontend
   const [create, setCreate] = useState(false);
   const { isLoading, error, user } = useAuth0();
@@ -93,7 +93,7 @@ export default function HomeRoute({ onPetSelect, petData, setShowAddPetForm, han
         </div>
 
         <Feed hide={hide} onSuccess={handleDelete} posts={posts} showAddPetForm={showAddPetForm} setPosts={setPosts} error={fetchError} user={user}/>
-        <PetPointsFeedWidget create={create} setCreate={setCreate} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId}/>
+        <PetPointsFeedWidget create={create} setCreate={setCreate} latestActivity={latestActivity} setLatestActivity={setLatestActivity} achievements={achievements} setAchievements={setAchievements} handleSetPetPoints={handleSetPetPoints} petPoints={petPoints} setPetPoints={setPetPoints} userId={userId} ranking={ranking} setRanking={setRanking}/>
 
         <footer>
           <p>
